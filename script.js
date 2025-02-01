@@ -1,4 +1,9 @@
 /* Toggel Viewer Modi */
+document.addEventListener("DOMContentLoaded", function () {
+    // Event Listener für den Button hinzufügen
+    document.getElementById('toggleModeButton').addEventListener('click', toggleMode);
+});
+
 function toggleMode() {
     var link = document.getElementById("theme-style");
     var currentHref = link.getAttribute("href");
