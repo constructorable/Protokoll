@@ -18,7 +18,6 @@ table {
     color: #333;
     word-wrap: break-word;
     border: 0px solid #ccc;
-    border-left: 15px solid white;
 }
 
 th,
@@ -119,7 +118,7 @@ input[type="checkbox"]:checked+.checkbox-label::after {
 h2,
 h3 {
     color: #444;
-    margin-bottom: 11px;
+    margin-bottom: 1px;
 }
 
 h2 {
@@ -147,7 +146,7 @@ h2 {
 }
 
 .rooms {
-    background-color: #c8d8e7;
+    background-color: #8faac5;
     padding: 5px;
     margin-top: 20px;
     border-radius: 10px;
@@ -247,5 +246,14 @@ select {
     background-color: #e0e8f0;
 }
 
-
-
+/* Spezifische Stile für Textarea */
+textarea {
+    resize: none;
+    /* Deaktiviert die manuelle Größenänderung */
+    overflow: hidden;
+    /* Verhindert Scrollbars */
+    white-space: pre-wrap;
+    /* Erlaubt Zeilenumbrüche */
+    word-wrap: break-word;
+    /* Erlaubt Wortumbrüche */
+}

@@ -1,12 +1,10 @@
 /* Toggel Viewer Modi */
-document.getElementById("toggleModeButton").addEventListener("click", toggleMode);
-
 function toggleMode() {
     var link = document.getElementById("theme-style");
     var currentHref = link.getAttribute("href");
 
     if (currentHref === "styles.css") {
-        link.setAttribute("href", "stylesprint.css"); // Print Modus
+        link.setAttribute("href", "stylesprint.css"); // Heller Modus
     } else if (currentHref === "stylesprint.css") {
         link.setAttribute("href", "stylestablet.css"); // Tablet-Modus
     } else {
@@ -61,6 +59,16 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* button einziehenden Mieter hinzufügen */
 document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
 
@@ -112,6 +120,16 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* toggle allgemein  */
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".allgemein00").forEach(allgemein => {
@@ -119,62 +137,48 @@ document.addEventListener("DOMContentLoaded", function () {
         const contentElements = Array.from(allgemein.children).filter(el => el !== header);
 
         if (header && contentElements.length > 0) {
-            // Pfeil erstellen und stylen
             const arrow = document.createElement("span");
             arrow.textContent = " ▼";
             arrow.style.transition = "transform 0.3s ease";
-            arrow.style.fontSize = "14px";
             header.appendChild(arrow);
 
-            // Initialer Zustand: Inhalte ausblenden
             contentElements.forEach(element => {
                 element.style.display = "none";
                 element.style.opacity = "0";
-                element.style.transition = "opacity 0.5s ease-out, max-height 0.5s ease-out";
-                element.style.overflow = "hidden";
-                element.style.maxHeight = "0"; // Für eine flüssige Höhenanimation
+                element.style.transition = "opacity 0.5s ease-out";
             });
 
-            // Header-Stile
             header.style.cursor = "pointer";
-            header.style.padding = "12px 16px";
-            header.style.transition = "background 0.3s ease";
+            header.style.padding = "8px";
+            header.style.transition = "background 0.3s";
             header.style.display = "flex";
             header.style.justifyContent = "space-between";
             header.style.alignItems = "center";
-            header.style.backgroundColor = "#f8f9fa";
-            header.style.borderRadius = "8px";
-            header.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 
-            // Hover-Effekt für den Header
-            header.addEventListener("mouseover", () => {
-                header.style.backgroundColor = "#e9ecef";
-            });
-            header.addEventListener("mouseout", () => {
-                header.style.backgroundColor = "#f8f9fa";
-            });
+            /*             header.addEventListener("mouseover", () => {
+                            header.style.background = "#c9c9c9";
+                        });
+                        header.addEventListener("mouseout", () => {
+                            header.style.background = "#c9c9c9";
+                        }); */
 
-            // Klick-Event für das Ein- und Ausblenden der Inhalte
             header.addEventListener("click", function () {
                 const isHidden = contentElements[0].style.display === "none";
 
                 contentElements.forEach(element => {
                     if (isHidden) {
                         element.style.display = "block";
-                        element.style.maxHeight = `${element.scrollHeight}px`; // Höhe anpassen
                         setTimeout(() => {
                             element.style.opacity = "1";
                         }, 10);
                     } else {
                         element.style.opacity = "0";
-                        element.style.maxHeight = "0"; // Höhe zurücksetzen
                         setTimeout(() => {
                             element.style.display = "none";
-                        }, 500); // Wartezeit für die Opacity-Animation
+                        }, 500);
                     }
                 });
 
-                // Pfeilrotation
                 arrow.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
             });
         }
@@ -332,7 +336,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// Räume bzw. deren Eigenschaften entfernen, wenn Raum vorahnden "nein" geklickt wird.
+/* Bild hochladen */
+/* document.getElementById('uploadImageButton').addEventListener('click', function () {
+    document.getElementById('imageInput').click(); // öffnet den Datei-Dialog
+}); */
+/* document.getElementById('imageInput').addEventListener('change', function (event) {
+    const files = event.target.files; // Alle ausgewählten Dateien
+
+    if (files.length > 0) {
+        const images = []; // Array, um die Base64-Daten der Bilder zu speichern
+        let imageCount = 0; // Zählvariable für Bilder
+
+        // Für jede Datei ein FileReader verwenden
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = function () {
+                    images.push(img.src); // Bild in das Array speichern
+                    imageCount++; // Bildzähler erhöhen
+
+                    // Wenn alle Bilder geladen sind, können wir mit der PDF-Erstellung fortfahren
+                    if (images.length === files.length) {
+                        window.imageData = images; // Alle Bilddaten werden global gespeichert
+                    }
+
+                    // Die Anzahl der hochgeladenen Bilder aktualisieren
+                    document.getElementById('imageCount').textContent = `Bilder hochgeladen: ${imageCount}`;
+                };
+            };
+            reader.readAsDataURL(file); // Bild als Base64 lesen
+        });
+    }
+}); */
+
+
+
+// Räume bzw. derein Eigenschaften entfernen, wenn Raum vorahnden "nein" geklickt wird.
 document.addEventListener("DOMContentLoaded", function () {
     function setupRoomToggle(room) {
         // Überprüfen, ob der Container die ID "weitereBemerkungenContainer" hat
@@ -535,27 +577,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* PDF save button */
 document.getElementById('savePdfButton').addEventListener('click', async function () {
-    const element = document.querySelector('.container');
+    const element = document.querySelector('.container'); // Nur den Container erfassen
 
     if (!element) {
         console.error("Fehler: Kein Element mit der Klasse 'container' gefunden.");
         return;
     }
 
+    // Speichern des aktuellen Stylesheet-Hrefs (für den Fall, dass es später wiederhergestellt werden muss)
     const currentTheme = document.getElementById("theme-style").getAttribute("href");
+
+    // Schalte auf das Druck-Stylesheet (stylesprint.css)
     document.getElementById("theme-style").setAttribute("href", "stylesprint.css");
 
+    // Alle Buttons vorübergehend ausblenden
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.style.display = 'none');
 
+    // Alle Pfeile <span> vorübergehend ausblenden
     const span00 = document.querySelectorAll('span');
     span00.forEach(span => span.style.display = 'none');
 
+    // Alle `.rooms`-Tabellen sichtbar machen
     const rooms = document.querySelectorAll('.rooms table');
-    const hiddenStates = new Map();
+    const hiddenStates = new Map(); // Speichert den Originalzustand der Tabellen
+
     rooms.forEach(table => {
-        hiddenStates.set(table, table.style.display);
-        table.style.display = 'table';
+        hiddenStates.set(table, table.style.display); // Originalzustand speichern
+        table.style.display = 'table'; // Sichtbar machen
         table.style.maxHeight = 'none';
         table.style.opacity = '1';
     });
@@ -563,59 +612,43 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     const hiddenStates2 = new Map();
     const allgemein00 = document.querySelectorAll('.allgemein00 h3, .allgemein00 table');
     allgemein00.forEach(table => {
-        hiddenStates2.set(table, table.style.display);
-        table.style.display = 'table';
+        hiddenStates2.set(table, table.style.display); // Originalzustand speichern
+        table.style.display = 'table'; // Sichtbar machen
         table.style.maxHeight = 'none';
         table.style.opacity = '1';
     });
 
+    // Alle `.sign`-Bereiche sichtbar machen
     const signSection = document.querySelector('.sign');
     const signContent = document.querySelector('.signature-content');
     const signHeader = document.querySelector('.sign02');
 
     if (signSection && signContent && signHeader) {
-        signSection.style.display = 'block';
-        signContent.style.display = 'block';
-        signContent.style.maxHeight = 'none';
-        signContent.style.opacity = '1';
+        signSection.style.display = 'block';  // Sichtbar machen der gesamten Unterschriften-Sektion
+        signContent.style.display = 'block'; // Sichtbar machen des Inhalts der Unterschriften-Sektion
+        signContent.style.maxHeight = 'none'; // Max Height zurücksetzen
+        signContent.style.opacity = '1'; // Sichtbar machen
     }
 
+    // Temporär den Placeholder-Text aus allen Eingabefeldern entfernen
     const inputs = document.querySelectorAll('input[placeholder], textarea[placeholder]');
     inputs.forEach(input => {
-        input.setAttribute('data-placeholder', input.getAttribute('placeholder'));
-        input.removeAttribute('placeholder');
-    });
-
-    // Anpassung der Textareas für Zeilenumbrüche
-    const textareas = document.querySelectorAll('textarea');
-    textareas.forEach(textarea => {
-        textarea.style.whiteSpace = 'pre-wrap'; // Zeilenumbrüche aktivieren
-        textarea.style.wordWrap = 'break-word';
-        textarea.style.overflowWrap = 'break-word';
-
-    });
-
-    // Text in die Textareas schreiben, damit html2canvas den Inhalt richtig erfasst
-    textareas.forEach(textarea => {
-        const span = document.createElement('span');
-        span.textContent = textarea.value;
-        span.style.whiteSpace = 'pre-wrap';
-        span.style.wordWrap = 'break-word';
-        textarea.parentNode.insertBefore(span, textarea);
-        textarea.style.display = 'none'; // Das eigentliche textarea ausblenden
-
+        input.setAttribute('data-placeholder', input.getAttribute('placeholder')); // Placeholder speichern
+        input.removeAttribute('placeholder'); // Placeholder entfernen
     });
 
     try {
+        // Warte kurz, damit das Stylesheet geladen wird
         await new Promise(resolve => setTimeout(resolve, 1000));
 
+        // Rendere den Inhalt mit dem stylesprint.css-Stylesheet
         const canvas = await html2canvas(element, {
             logging: false,
             useCORS: true,
             scale: 2
         });
 
-        const imgData = canvas.toDataURL('image/jpeg', 0.5);
+        const imgData = canvas.toDataURL('image/jpeg', 0.5); // 0.5 gibt die Komprimierungsstärke an (0.0 bis 1.0)
 
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF('p', 'mm', 'a4');
@@ -652,66 +685,44 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
+        // Wenn Bilder hochgeladen wurden, fügen wir sie zur PDF hinzu
         if (window.imageData && window.imageData.length > 0) {
-            let imgPositionY = 10;
+            let imgPositionY = 10; // Y-Position für das erste Bild
             window.imageData.forEach((imgData, index) => {
-                pdf.addImage(imgData, 'JPEG', margin, imgPositionY, 50, 50);
-                imgPositionY += 60;
+                pdf.addImage(imgData, 'JPEG', margin, imgPositionY, 50, 50); // Bild in PDF einfügen
+                imgPositionY += 60; // Nächste Position für das Bild (nach unten verschieben)
                 if (imgPositionY + 50 > pageHeight - margin) {
-                    pdf.addPage();
-                    imgPositionY = 10;
+                    pdf.addPage(); // Neue Seite, wenn der Platz knapp wird
+                    imgPositionY = 10; // Y-Position zurücksetzen
                 }
             });
         }
 
+        // PDF speichern
         pdf.save('dokument.pdf');
     } catch (error) {
         console.error("Fehler beim Generieren des PDFs:", error);
     } finally {
+        // Nach dem Speichern der PDF die Buttons wieder sichtbar machen
         buttons.forEach(button => button.style.display = '');
 
+        // `.rooms`-Tabellen wieder in den Originalzustand versetzen
         rooms.forEach(table => {
-            table.style.display = hiddenStates.get(table);
+            table.style.display = hiddenStates.get(table); // Ursprünglicher Zustand
         });
 
+        // Placeholder-Text wiederherstellen
         inputs.forEach(input => {
-            input.setAttribute('placeholder', input.getAttribute('data-placeholder'));
-            input.removeAttribute('data-placeholder');
+            input.setAttribute('placeholder', input.getAttribute('data-placeholder')); // Placeholder zurücksetzen
+            input.removeAttribute('data-placeholder'); // Temporäre Speicherung entfernen
         });
 
-        textareas.forEach(textarea => {
-            textarea.style.display = ''; // Ursprüngliche Sichtbarkeit wiederherstellen
-            textarea.previousSibling.remove(); // Eingefügten Text wieder entfernen
-        });
-
+        // Zurück zum ursprünglichen Stylesheet
         document.getElementById("theme-style").setAttribute("href", currentTheme);
     }
 });
 
 
 
-
-/* Beschriftungsfelder Textarea bei großen Texten anpassen */
-
-// Wähle alle Textareas mit der Klasse .bemerkung-textarea aus
-const textareas = document.querySelectorAll('.bemerkung-textarea');
-
-// Funktion zur Anpassung der Höhe
-function adjustTextareaHeight(textarea) {
-    textarea.style.height = 'auto'; // Setze die Höhe zurück
-    textarea.style.height = (textarea.scrollHeight) + 'px'; // Passe die Höhe basierend auf dem Inhalt an
-
-}
-
-// Event-Listener für alle Textareas hinzufügen
-textareas.forEach(textarea => {
-    // Event-Listener für das 'input'-Ereignis
-    textarea.addEventListener('input', function () {
-        adjustTextareaHeight(this);
-    });
-
-    // Initiale Anpassung beim Laden der Seite
-    adjustTextareaHeight(textarea);
-});
 
 

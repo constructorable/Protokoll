@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    color: #333;
+    word-wrap: break-word;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    color: #333;
+    word-wrap: break-word;
+    border: 1px solid #ccc;
+}
+
+th, td {
+    border: 0px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    padding: 1px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea, select {
+    width: 97%;
+    padding: 0px;
+    margin-top:5px;
+    margin-bottom:5px;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left:5px;
+    padding-bottom:0px;
+    line-height: 1.5; /* Erhöht die Textzeilenhöhe */
+    height: auto; /* Falls eine feste Höhe das Problem verursacht */
+    min-height: 24px; /* Setzt eine Mindesthöhe, um Platz zu schaffen */
+    font-size: 18px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.radio-label, .checkbox-label {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-color: #fff;
+    margin: 1px;
+    margin-top:5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.radio-label::before, .checkbox-label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #8d8d8d;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.radio-label::after, .checkbox-label::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: transparent;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+    transition: color 0.3s ease;
+}
+
+input[type="radio"]:checked + .radio-label::before,
+input[type="checkbox"]:checked + .checkbox-label::before {
+    background-color: #fff;
+   /*  border-color: #000000; */
+}
+
+input[type="radio"]:checked + .radio-label::after,
+input[type="checkbox"]:checked + .checkbox-label::after {
+    color: rgb(24, 24, 24);
+    background-color:#fff;
+}
+
+h2, h3 {
+    color: #444;
+    margin-bottom:1px;
+}
+
+h2 {
+    margin-bottom:25px;
+}
+
+.header01 {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: none;
+}
+
+.rooms {
+    background-color: #cde0ff;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.signature-canvas {
+    border: 2px solid #ccc;
+    background: #fff;
+    width: 500px;
+    height: 150px;
+}
+
+.allgemein {
+
+    border: 0px;
+}
