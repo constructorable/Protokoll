@@ -84,62 +84,24 @@
 
 
 
-            <!--      einziehender Mieter -->
-
-
-<!--             <h3>Zähler</h3>
-            <table id="zaehlerTable">
-                <thead>
-                    <tr>
-                        <th>Bezeichnung</th>
-                        <th>Zählernummer</th>
-                        <th>Einbaulage</th>
-                        <th>Zählerstand</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <select>
-                                <option value="leer"></option>
-                                <option value="gaszaehler">Gaszähler</option>
-                                <option value="stromzaehler">Stromzähler</option>
-                                <option value="waermezaehler">Wärmezähler</option>
-                                <option value="wassertemperaturKalt">Wasserzähler (kalt)</option>
-                                <option value="wassertemperaturWarm">Wasserzähler (warm)</option>
-                                <option value="heizkostenverteiler">Heizkostenverteiler</option>
-                            </select>
-                        </td>
-                        <td><input type="text" placeholder="Zählernummer"></td>
-                        <td><input type="text" placeholder="exakte Einbaulage"></td>
-                        <td><input type="text" placeholder="Zählerstand"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="addZaehlerButton">Zähler hinzufügen +</button> -->
-
-
-
-
             <h3>einziehender Mieter</h3>
             <table id="einzugmieterTable">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Vorname</th>
-                        <th>Tel.: </th>
+                        <th>Tel.</th>
                         <th>E-Mail</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>  <!-- <tbody> HINZUGEFÜGT -->
                     <tr>
-
                         <td><input type="text" placeholder="Name"></td>
                         <td><input type="text" placeholder="Vorname"></td>
-                        <td><input type="text" placeholder="Tel.:"></td>
+                        <td><input type="text" placeholder="Tel."></td>
                         <td><input type="text" placeholder="E-Mail"></td>
                     </tr>
-                </tbody>
+                </tbody> 
             </table>
             <button id="addeinziehenderMieter">einziehenden Mieter hinzufügen +</button>
 
@@ -182,7 +144,7 @@
 
 
             <!--   ausziehender Mieter -->
-<!--             <h3>ausziehender Mieter</h3>
+            <!--             <h3>ausziehender Mieter</h3>
 
             <table>
 
@@ -349,7 +311,8 @@
             <table>
 
                 <tr>
-                    <td>Küche vorhanden</td>
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Küche vorhanden</td>
 
                     <td class="no-border-right text-right" style="text-align: right;">
                         JA
@@ -974,7 +937,7 @@
                 <tr>
                     <td>Anzahl der Rauchwarnmelder</td>
 
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right  text-right" style="text-align:right;">
                         0
                     </td>
                     <td>
@@ -983,44 +946,27 @@
                     </td>
 
 
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right  text-right" style="text-align:right;">
                         1 (oder mehr)
                     </td>
                     <td class="no-border-right">
                         <input type="radio" id="rwm2" name="rwm" value="rwm">
                         <label for="rwm2" class="radio-label"></label>
                     </td>
-                    <td>
 
 
+                </tr>
 
 
+                <tr>
+                    <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
+                    <td colspan="5">
+                        <textarea name="bemerkungen" class="bemerkung-textarea" rows="3"
+                            placeholder="Geben Sie Ihre Bemerkungen ein..."></textarea>
                     </td>
                 </tr>
 
 
-
-
-                <tr>
-                    <tr>
-                        <td>Bemerkungen</td>
-                        <td colspan="5">
-                            <textarea name="bemerkungen" class="bemerkung-textarea" rows="1" placeholder="Geben Sie Ihre Bemerkungen ein..."></textarea>
-                        </td>
-                    </tr>
-
-                    <script>
-                        // JavaScript für automatische Größenanpassung des Textarea
-                        const textarea = document.querySelector('.bemerkung-textarea');
-                
-                        textarea.addEventListener('input', function () {
-                            this.style.height = 'auto'; // Setze die Höhe zurück
-                            this.style.height = (this.scrollHeight) + 'px'; // Passe die Höhe basierend auf dem Inhalt an
-                        });
-                
-                        // Initiale Anpassung beim Laden der Seite
-                        textarea.style.height = (textarea.scrollHeight) + 'px';
-                    </script>
 
 
 
@@ -1039,7 +985,9 @@
             <table>
 
                 <tr>
-                    <td>Badezimmer vorhanden</td>
+
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Badezimmer vorhanden</td>
 
                     <td class="no-border-right text-right">
                         JA
@@ -1758,9 +1706,10 @@
 
 
                 <tr>
-                    <td>Bemerkungen</td>
+                    <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                     <td colspan="5">
-                        <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                        <textarea name="bemerkungen" class="bemerkung-textarea" rows="3"
+                            placeholder="Geben Sie Ihre Bemerkungen ein..."></textarea>
                     </td>
                 </tr>
 
@@ -1782,7 +1731,9 @@
             <table>
 
                 <tr>
-                    <td>Gäste-WC vorhanden</td>
+                    <!--                     <td>Gäste-WC vorhanden</td> -->
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Gäste-WC vorhanden</td>
 
                     <td class="no-border-right text-right">
                         JA
@@ -2525,7 +2476,7 @@
 
 
                 <tr>
-                    <td>Bemerkungen</td>
+                    <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                     <td colspan="5">
                         <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
                     </td>
@@ -2548,7 +2499,9 @@
             <table>
 
                 <tr>
-                    <td>Diele / Flur vorhanden</td>
+
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Diele / Flur vorhanden</td>
 
                     <td class="no-border-right text-right">
                         JA
@@ -2956,7 +2909,7 @@
 
 
                 <tr>
-                    <td>Bemerkungen</td>
+                    <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                     <td colspan="5">
                         <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
                     </td>
@@ -2981,7 +2934,9 @@
 
 
                     <tr>
-                        <td>Abstellraum vorhanden</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            Abstellraum vorhanden</td>
 
                         <td class="no-border-right text-right">
                             JA
@@ -3423,7 +3378,7 @@
 
 
                     <tr>
-                        <td>Bemerkungen</td>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                         <td colspan="5">
                             <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
                         </td>
@@ -3450,7 +3405,9 @@
 
 
                     <tr>
-                        <td>Zimmer 1 vorhanden</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            Zimmer 1 vorhanden</td>
 
                         <td class="no-border-right text-right">
                             JA
@@ -3889,7 +3846,7 @@
 
 
                     <tr>
-                        <td>Bemerkungen</td>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                         <td colspan="5">
                             <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
                         </td>
@@ -3915,7 +3872,9 @@
 
 
                     <tr>
-                        <td>weitere Flächen vorhanden</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            weitere Flächen vorhanden</td>
 
                         <td class="no-border-right text-right">
                             JA
@@ -4141,7 +4100,7 @@
 
 
                     <tr>
-                        <td>Bemerkungen</td>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                         <td colspan="5">
                             <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
                         </td>
@@ -4167,22 +4126,28 @@
                 <table>
                     <!-- Erste Zeile -->
                     <tr>
-                        <td>Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td>
-                        <td class="no-border-right text-right">
+                        <!-- <td>Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td> -->
+
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td>
+
+
+                        <td class="no-border-right text-right" style="text-align:right;">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen1" name="weitereBemerkungen1" value="ja">
                             <label for="weitereBemerkungen1" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             nicht zutreffend
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen2" name="weitereBemerkungen1" value="nein">
                             <label for="weitereBemerkungen2" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             NEIN
                         </td>
                         <td>
@@ -4208,14 +4173,14 @@
                             <input type="radio" id="weitereBemerkungen4" name="weitereBemerkungen2" value="ja">
                             <label for="weitereBemerkungen4" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             NEIN
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen5" name="weitereBemerkungen2" value="nein">
                             <label for="weitereBemerkungen5" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             nicht zutreffend
                         </td>
                         <td>
@@ -4230,21 +4195,21 @@
                         <td>...ermächtigt den Vermieter, die erforderlichen Arbeiten zu beauftragen. Er verpflichtet
                             sich, die dadurch entstehenden Kosten nach Rechnungsstellung zu bezahlen, ggf. mit der
                             Mietsicherheit verrechnen zu lassen oder...</td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen7" name="weitereBemerkungen3" value="ja">
                             <label for="weitereBemerkungen7" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             NEIN
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen8" name="weitereBemerkungen3" value="nein">
                             <label for="weitereBemerkungen8" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align:right;">
                             nicht zutreffend
                         </td>
                         <td>
@@ -4270,7 +4235,7 @@
                         </td>
 
                         <!-- Tabellenzelle für "nicht zutreffend" -->
-                        <td colspan="4" class="no-border-right text-right">
+                        <td style="text-align:right;" colspan="4" class="no-border-right text-right">
                             nicht zutreffend
                         </td>
                         <td colspan="4" style="text-align: center; font-weight: bold;">
@@ -4285,7 +4250,7 @@
 
                     <!-- Fünfte Zeile: Bemerkungen -->
                     <tr>
-                        <td>Bemerkungen</td>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
                         <td colspan="6">
                             <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
                         </td>
@@ -4339,9 +4304,11 @@
 
                     <!-- Dritte Zeile: Bemerkungen -->
                     <tr>
-                        <td colspan="1" style="width: 10%;">Bemerkungen</td> <!-- Schmale Zelle -->
+                        <td colspan="1" style="width: 10%; vertical-align: top; font-weight:600; padding-top:15px;">
+                            Bemerkungen</td> <!-- Schmale Zelle -->
                         <td colspan="7" style="width: 90%;"> <!-- Breite Zelle -->
                             <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+
                         </td>
                     </tr>
                 </table>
@@ -4350,15 +4317,6 @@
 
 
         <!-- Bilder hochladen -->
-
-
-        <!--             <div class="allgemein00">
-                <h3>Bilder hochladen</h3>
-                <button id="uploadImageButton" class="upload-button">+ Bilder hinzufügen</button>
-                <input type="file" id="imageInput" style="display:none" accept="image/*" multiple>
-                <p id="imageCount" class="image-count">Bilder hochgeladen: 0</p> 
-            </div> -->
-
 
 
         <!-- sign -->
@@ -4395,9 +4353,11 @@
 
         <!--        <button id="savePdfButton" type="button">Als PDF speichern</button> -->
 
-        <script src="script.js"></script>
+
     </div>
 
+
+    <script src="script.js" defer></script>
 
 </body>
 
