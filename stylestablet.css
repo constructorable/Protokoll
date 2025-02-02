@@ -51,6 +51,7 @@ th {
 }
 
 input[type="text"],
+input[type="number"],
 textarea,
 select {
     width: 97%;
@@ -429,6 +430,9 @@ h3 {
     margin-left:8px;
 }
 
-.maintoggle {
-    background-color:#fc0
-}
+        /* Stile für das Label, um Zeilenumbruch zu verhindern */
+        .signature-container label {
+            white-space: nowrap; /* Verhindert den Zeilenumbruch */
+            display: inline-block; /* Stellt sicher, dass das Label korrekt ausgerichtet ist */
+            margin-right: 10px; /* Optional: Abstand zwischen Label und Unterschriftsfeld */
+        }
