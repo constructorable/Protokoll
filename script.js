@@ -753,8 +753,3 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         document.getElementById("theme-style").setAttribute("href", currentTheme);
     }
 });
-
-
-
-
-
