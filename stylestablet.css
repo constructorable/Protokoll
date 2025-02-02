@@ -342,6 +342,16 @@ h2 {
     color: #fff;
 }
 
+#toggleModeButton {
+    background-color: rgb(105, 130, 187);
+    color: #fff;
+    font-size:18px;
+    border-radius: 7px;
+    padding-left:15px;
+    padding-right: 15px;
+}
+
+
 
 #addeinziehenderMieter,
 #addausziehenderMieter,
@@ -394,6 +404,7 @@ body {
     display: flex;
     gap: 10px;
     /* Abstand zwischen Buttons */
+    opacity:0.9;
 }
 
 
