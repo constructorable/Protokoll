@@ -197,7 +197,8 @@ h2 {
 /* #addKeyButton, */
 /* #addZaehlerButton, */
 #savePdfButton,
-.signature-clear-btn {
+.signature-clear-btn,
+#uploadImageButton {
     padding: 10px 20px;
     background-color: #ceebd1;
     color: #202020;
@@ -331,13 +332,14 @@ h2 {
 .allgemein00 {
     padding-top: 5px;
     padding-bottom: 9px;
-    background-color: #c7d3e7;
+    background-color: #d6e9d1;
     border-radius: 11px;
 }
 
 
 #savePdfButton,
-#toggleModeButton {
+#toggleModeButton,
+#uploadImageButton {
     background-color: rgb(105, 130, 187);
     color: #fff;
 }
@@ -349,6 +351,7 @@ h2 {
     border-radius: 7px;
     padding-left:15px;
     padding-right: 15px;
+    border:none;
 }
 
 
@@ -419,6 +422,13 @@ body {
     height: 25px;
     /* Höhe der Zellen */
     line-height: 20px;
-    /* Zeilenhöhe für besseren Textfluss */
+  
 }
 
+h3 {
+    margin-left:8px;
+}
+
+.maintoggle {
+    background-color:#fc0
+}
