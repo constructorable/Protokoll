@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="theme-style" rel="stylesheet" href="stylesprint.css"> <!-- Standardmäßig dark mode -->
+    <link id="theme-style" rel="stylesheet" href="stylestablet.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
@@ -138,17 +138,17 @@
                         <td><input type="text" placeholder="PLZ / Ort"></td>
                     </tr>
 
-                    
+
                     <tr id="addausziehenderMieterRow">
                         <td colspan="4" style="text-align: right;">
                             <button id="addausziehenderMieter">ausziehenden Mieter hinzufügen +</button>
                         </td>
                     </tr>
 
-                    
+
                 </tbody>
             </table>
-<!--             <button id="addausziehenderMieter">ausziehenden Mieter hinzufügen +</button> -->
+            <!--             <button id="addausziehenderMieter">ausziehenden Mieter hinzufügen +</button> -->
 
 
 
@@ -208,7 +208,7 @@
 
                 </tbody>
             </table>
-<!--             <button id="addKeyButton">Schlüssel hinzufügen +</button> -->
+            <!--             <button id="addKeyButton">Schlüssel hinzufügen +</button> -->
 
 
             <h3>Art Heizung / Warmwasser</h3>
@@ -291,9 +291,10 @@
             <table>
 
                 <tr>
-                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Küche vorhanden</td>
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Küche vorhanden <span style="color:#fff">____</span> </td>
 
-                    <td class="no-border-right text-right" style="text-align: right;">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         JA
                     </td>
                     <td>
@@ -304,7 +305,7 @@
                     </td>
 
 
-                    <td class="no-border-right text-right" style="text-align: right;">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         NEIN
                     </td>
                     <td>
@@ -314,7 +315,7 @@
 
 
 
-                    <td>
+                    <td style="background-color:#fff;">
                     </td>
 
 
@@ -333,8 +334,8 @@
                     <th>allgemeiner Zustand</th>
                     <th>renoviert</th>
                     <th>neuwertig</th>
-                    <th>geringe Gebrauchsspuren</th>
-                    <th>stärkerer Gebrauchsspuren</th>
+                    <th>geringe Gebrauchs - spuren</th>
+                    <th>stärkerer Gebrauchs - spuren</th>
                     <th>nicht renoviert</th>
                 </tr>
 
@@ -411,14 +412,16 @@
 
                 <tr>
                     <td>Zimmerschlüssel vorhanden</td>
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         JA
                     </td>
                     <td>
                         <input type="radio" id="zimmer2" name="zimmer" value="zimmer">
                         <label for="zimmer2" class="radio-label"></label>
                     </td>
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         NEIN
                     </td>
                     <td class="no-border-right">
@@ -916,7 +919,8 @@
                 <tr>
                     <td>Anzahl der Rauchwarnmelder</td>
 
-                    <td class="no-border-right  text-right" style="text-align:right;">
+                    <td class="no-border-right  text-right" style="text-align:right; padding-right:10px;">
+
                         0
                     </td>
                     <td>
@@ -925,7 +929,8 @@
                     </td>
 
 
-                    <td class="no-border-right  text-right" style="text-align:right;">
+                    <td class="no-border-right  text-right" style="text-align:right; padding-right:10px;">
+
                         1 (oder mehr)
                     </td>
                     <td class="no-border-right">
@@ -935,7 +940,7 @@
 
 
                 </tr>
-                
+
 
                 <tr>
                     <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
@@ -964,10 +969,11 @@
             <table>
 
                 <tr>
-  
-                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Badezimmer vorhanden</td>
 
-                    <td class="no-border-right text-right">
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Badezimmer vorhanden</td>
+
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         JA
                     </td>
                     <td>
@@ -976,18 +982,14 @@
                     </td>
 
 
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         NEIN
                     </td>
                     <td>
                         <input type="radio" id="bath2" name="bath" value="nein">
                         <label for="bath2" class="radio-label"></label>
                     </td>
-                    <td>
-
-
-
-
+                    <td style="background-color:#fff;">
                     </td>
                 </tr>
 
@@ -996,8 +998,8 @@
                     <th>allgemeiner Zustand</th>
                     <th>renoviert</th>
                     <th>neuwertig</th>
-                    <th>geringe Gebrauchsspuren</th>
-                    <th>stärkerer Gebrauchsspuren</th>
+                    <th>geringe Gebrauchs - spuren</th>
+                    <th>stärkerer Gebrauchs - spuren</th>
                     <th>nicht renoviert</th>
                 </tr>
 
@@ -1069,14 +1071,16 @@
 
                 <tr>
                     <td>Schlüssel vorhanden</td>
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         JA
                     </td>
                     <td>
                         <input type="radio" id="bathzimmer2" name="bathzimmer" value="bathzimmer">
                         <label for="bathzimmer2" class="radio-label"></label>
                     </td>
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         NEIN
                     </td>
                     <td class="no-border-right">
@@ -1709,10 +1713,11 @@
             <table>
 
                 <tr>
-<!--                     <td>Gäste-WC vorhanden</td> -->
-                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Gäste-WC vorhanden</td>
+                    <!--                     <td>Gäste-WC vorhanden</td> -->
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Gäste-WC vorhanden</td>
 
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         JA
                     </td>
                     <td>
@@ -1721,18 +1726,14 @@
                     </td>
 
 
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         NEIN
                     </td>
                     <td>
                         <input type="radio" id="guestwc2" name="guestwc" value="nein">
                         <label for="guestwc2" class="radio-label"></label>
                     </td>
-                    <td>
-
-
-
-
+                    <td style="background-color:#fff;">
                     </td>
                 </tr>
 
@@ -1741,8 +1742,8 @@
                     <th>allgemeiner Zustand</th>
                     <th>renoviert</th>
                     <th>neuwertig</th>
-                    <th>geringe Gebrauchsspuren</th>
-                    <th>stärkerer Gebrauchsspuren</th>
+                    <th>geringe Gebrauchs - spuren</th>
+                    <th>stärkerer Gebrauchs - spuren</th>
                     <th>nicht renoviert</th>
                 </tr>
 
@@ -1816,14 +1817,16 @@
 
                 <tr>
                     <td>Schlüssel vorhanden</td>
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         JA
                     </td>
                     <td>
                         <input type="radio" id="guestwczimmer2" name="guestwczimmer" value="guestwczimmer">
                         <label for="guestwczimmer2" class="radio-label"></label>
                     </td>
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         NEIN
                     </td>
                     <td class="no-border-right">
@@ -2477,9 +2480,10 @@
 
                 <tr>
 
-                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Diele / Flur vorhanden</td>
+                    <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                        Diele / Flur vorhanden</td>
 
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         JA
                     </td>
                     <td>
@@ -2488,18 +2492,14 @@
                     </td>
 
 
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                         NEIN
                     </td>
                     <td>
                         <input type="radio" id="dieleflur2" name="dieleflur" value="nein">
                         <label for="dieleflur2" class="radio-label"></label>
                     </td>
-                    <td>
-
-
-
-
+                    <td style="background-color:#fff;">
                     </td>
                 </tr>
 
@@ -2508,8 +2508,8 @@
                     <th>allgemeiner Zustand</th>
                     <th>renoviert</th>
                     <th>neuwertig</th>
-                    <th>geringe Gebrauchsspuren</th>
-                    <th>stärkerer Gebrauchsspuren</th>
+                    <th>geringe Gebrauchs - spuren</th>
+                    <th>stärkerer Gebrauchs - spuren</th>
                     <th>nicht renoviert</th>
                 </tr>
 
@@ -2857,7 +2857,8 @@
                 <tr>
                     <td>Anzahl der Rauchwarnmelder</td>
 
-                    <td class="no-border-right text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         0
                     </td>
                     <td>
@@ -2866,7 +2867,8 @@
                     </td>
 
 
-                    <td class="no-border-right  text-right">
+                    <td class="no-border-right text-right"
+                        style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                         1 (oder mehr)
                     </td>
                     <td class="no-border-right">
@@ -2910,9 +2912,11 @@
 
 
                     <tr>
-                        <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Abstellraum vorhanden</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            Abstellraum vorhanden</td>
 
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             JA
                         </td>
                         <td>
@@ -2921,7 +2925,7 @@
                         </td>
 
 
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             NEIN
                         </td>
 
@@ -2931,9 +2935,7 @@
                             <input type="radio" id="abstell2" name="abstell" value="nein">
                             <label for="abstell2" class="radio-label"></label>
                         </td>
-                        <td>
-
-
+                        <td style="background-color:#fff;">
                         </td>
 
                     <tr>
@@ -2951,8 +2953,8 @@
                         <th>allgemeiner Zustand</th>
                         <th>renoviert</th>
                         <th>neuwertig</th>
-                        <th>geringe Gebrauchsspuren</th>
-                        <th>stärkerer Gebrauchsspuren</th>
+                        <th>geringe Gebrauchs - spuren</th>
+                        <th>stärkerer Gebrauchs - spuren</th>
                         <th>nicht renoviert</th>
                     </tr>
 
@@ -3027,14 +3029,16 @@
 
                     <tr>
                         <td>Schlüssel vorhanden</td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="abstellzimmer2" name="abstellzimmer" value="abstellzimmer">
                             <label for="abstellzimmer2" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             NEIN
                         </td>
                         <td class="no-border-right">
@@ -3323,7 +3327,8 @@
                     <tr>
                         <td>Anzahl der Rauchwarnmelder</td>
 
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             0
                         </td>
                         <td>
@@ -3332,7 +3337,8 @@
                         </td>
 
 
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             1 (oder mehr)
                         </td>
                         <td class="no-border-right">
@@ -3379,9 +3385,11 @@
 
 
                     <tr>
-                                             <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Zimmer 1 vorhanden</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            Zimmer 1 vorhanden</td>
 
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             JA
                         </td>
                         <td>
@@ -3390,7 +3398,7 @@
                         </td>
 
 
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             NEIN
                         </td>
 
@@ -3400,9 +3408,7 @@
                             <input type="radio" id="zimm012" name="zimm01" value="nein">
                             <label for="zimm012" class="radio-label"></label>
                         </td>
-                        <td>
-
-
+                        <td style="background-color:#fff;">
                         </td>
 
                     <tr>
@@ -3420,8 +3426,8 @@
                         <th>allgemeiner Zustand</th>
                         <th>renoviert</th>
                         <th>neuwertig</th>
-                        <th>geringe Gebrauchsspuren</th>
-                        <th>stärkerer Gebrauchsspuren</th>
+                        <th>geringe Gebrauchs - spuren</th>
+                        <th>stärkerer Gebrauchs - spuren</th>
                         <th>nicht renoviert</th>
                     </tr>
 
@@ -3495,14 +3501,16 @@
 
                     <tr>
                         <td>Schlüssel vorhanden</td>
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="zimm01zimmer2" name="zimm01zimmer" value="zimm01zimmer">
                             <label for="zimm01zimmer2" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             NEIN
                         </td>
                         <td class="no-border-right">
@@ -3789,7 +3797,8 @@
                     <tr>
                         <td>Anzahl der Rauchwarnmelder</td>
 
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             0
                         </td>
                         <td>
@@ -3798,7 +3807,8 @@
                         </td>
 
 
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
                             1 (oder mehr)
                         </td>
                         <td class="no-border-right">
@@ -3831,9 +3841,9 @@
         </div>
 
 
-        
-  
-        
+
+
+
         <div style="text-align: right;">
             <button id="duplicateBtn">+ weiteres Zimmer hinzufügen</button>
         </div>
@@ -3850,9 +3860,11 @@
 
 
                     <tr>
-                        <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">weitere Flächen vorhanden</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            weitere Flächen vorhanden</td>
 
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             JA
                         </td>
                         <td>
@@ -3861,7 +3873,7 @@
                         </td>
 
 
-                        <td class="no-border-right  text-right">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             NEIN
                         </td>
 
@@ -3871,76 +3883,9 @@
                             <input type="radio" id="nebenraum2" name="nebenraum" value="nein">
                             <label for="nebenraum2" class="radio-label"></label>
                         </td>
-                        <td>
-
-
+                        <td style="background-color:#fff;">
                         </td>
 
-                        <!--                     <tr>
-                        <td>Bezeichnung / Lage</td>
-                        <td colspan="5">
-                            <input type="text" name="bezeich-lage">
-
-                        </td>
-                    </tr> -->
-
-
-
-                        <!--  <tr> -->
-                        <!--                         <td>Balkon vorhanden</td>
-                        <td class="no-border-right text-right">
-                            JA
-                        </td>
-                        <td>
-                            <input type="radio" id="nebenraumzimmer2" name="nebenraumzimmer" value="nebenraumzimmer">
-                            <label for="nebenraumzimmer2" class="radio-label"></label>
-                        </td>
-                        <td class="no-border-right  text-right">
-                            NEIN
-                        </td>
-                        <td class="no-border-right">
-                            <input type="radio" id="nebenraumzimmer4" name="nebenraumzimmer" value="nebenraumzimmer">
-                            <label for="nebenraumzimmer4" class="radio-label"></label>
-                        </td>
-                        <td>
-                        </td>
-                    </tr> -->
-
-
-
-                        <!--                     <tr>
-                        <th>allgemeiner Zustand</th>
-                        <th>renoviert</th>
-                        <th>neuwertig</th>
-                        <th>geringe Gebrauchsspuren</th>
-                        <th>stärkerer Gebrauchsspuren</th>
-                        <th>nicht renoviert</th>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input type="radio" id="nebenraumzus01" name="nebenraumzus" value="reno">
-                            <label for="nebenraumzus01" class="radio-label"></label>
-                        </td>
-                        <td>
-                            <input type="radio" id="nebenraumzus02" name="nebenraumzus" value="neuwe">
-                            <label for="nebenraumzus02" class="radio-label"></label>
-                        </td>
-                        <td>
-                            <input type="radio" id="nebenraumzus03" name="nebenraumzus" value="geringe">
-                            <label for="nebenraumzus03" class="radio-label"></label>
-                        </td>
-                        <td>
-                            <input type="radio" id="nebenraumzus04" name="nebenraumzus" value="staerkere">
-                            <label for="nebenraumzus04" class="radio-label"></label>
-                        </td>
-                        <td>
-                            <input type="radio" id="nebenraumzus05" name="nebenraumzus" value="nichtreno">
-                            <label for="nebenraumzus05" class="radio-label"></label>
-                        </td>
-
-                    </tr> -->
 
                     <tr class="trennlinie">
                         <td class="keine-linie"></td>
@@ -4104,24 +4049,26 @@
                     <tr>
                         <!-- <td>Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td> -->
 
-                        <td style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td>
+                        <td
+                            style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
+                            Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td>
 
 
-                        <td class="no-border-right text-right" style="text-align:right;">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen1" name="weitereBemerkungen1" value="ja">
                             <label for="weitereBemerkungen1" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right" style="text-align:right;">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             nicht zutreffend
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen2" name="weitereBemerkungen1" value="nein">
                             <label for="weitereBemerkungen2" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right" style="text-align:right;">
+                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             NEIN
                         </td>
                         <td>
@@ -4246,14 +4193,16 @@
                     <!-- Erste Zeile -->
                     <tr>
                         <td colspan="2">anzeigen</td>
-                        <td colspan="2" class="no-border-right text-right">
+                        <td colspan="2" class="no-border-right text-right"
+                            style="background-color:#fff; text-align:right;">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="hauptBemerkungen1" name="hauptBemerkungen1" value="ja">
                             <label for="hauptBemerkungen1" class="radio-label"></label>
                         </td>
-                        <td colspan="2" class="no-border-right text-right">
+                        <td colspan="2" class="no-border-right text-right"
+                            style="background-color:#fff; text-align:right;">
                             nicht erforderlich
                         </td>
                         <td>
@@ -4267,18 +4216,19 @@
                         <td colspan="2">
                             ...Dieses Protokoll ist Bestandteil des Mietvertrags (bei Einzug)
                         </td>
-                        <td colspan="2" class="no-border-right text-right">
+                        <td colspan="2" class="no-border-right text-right" style="background-color:#fff; text-align:right;>
                             JA
                         </td>
                         <td>
-                            <input type="checkbox" id="hauptBemerkungen4" name="hauptBemerkungen2" value="ja" hidden>
+                            <input type=" checkbox" id="hauptBemerkungen4" name="hauptBemerkungen2" value="ja" hidden>
                             <label for="hauptBemerkungen4" class="checkbox-label"></label>
                         </td>
                     </tr>
 
                     <!-- Dritte Zeile: Bemerkungen -->
                     <tr>
-                        <td colspan="1" style="width: 10%; vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen</td> <!-- Schmale Zelle -->
+                        <td colspan="1" style="width: 10%; vertical-align: top; font-weight:600; padding-top:15px;">
+                            Bemerkungen</td> <!-- Schmale Zelle -->
                         <td colspan="7" style="width: 90%;"> <!-- Breite Zelle -->
                             <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
 
