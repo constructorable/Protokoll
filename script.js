@@ -41,7 +41,7 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
     bezeichnungCell2.innerHTML = '<input type="text" placeholder="Name">';
     numbaCell2.innerHTML = '<input type="text" placeholder="Vorname">';
-    lageCell2.innerHTML = '<input type="text" placeholder="Tel.: ">';
+    lageCell2.innerHTML = '<input type="text" placeholder="Tel.:">';
     standCell2.innerHTML = '<input type="text" placeholder="E-Mail">';
 
     newRow2.appendChild(bezeichnungCell2);
@@ -105,8 +105,8 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
             <option value="fahrradbereich">Fahrradbereich</option>
             <option value="sonstige">Sonstige</option>
         </select>`;
-    
-    anzahlCell.innerHTML = '<input type="text" placeholder="Anzahl">';
+
+    anzahlCell.innerHTML = '<input type="number" placeholder="Anzahl">';
     schluesselnummerCell.innerHTML = '<input type="text" placeholder="Schlüsselnummer">';
 
     newRow.appendChild(bezeichnungCell);
@@ -721,33 +721,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
 
 
-/* Schriftgröße für Textinputfelder verkleinern, wenn zu viel Text eingegeeben wurden */
-document.addEventListener("DOMContentLoaded", function () {
-    // Container für die Eingabefelder (optional: falls dynamische Inputs hinzugefügt werden)
-    const container = document.body; // oder ein spezifischer Container (z.B. 'form')
-  
-    // Delegiere das Event auf den Container
-    container.addEventListener("input", function (event) {
-      if (event.target && event.target.type === "text") {
-        const input = event.target;
-        const maxLength = 30;
-        const currentLength = input.value.length;
-  
-        // Falls der Text länger ist als die festgelegte maxLength
-        if (currentLength > maxLength) {
-          let newFontSize = 22 - (currentLength - maxLength) * 0.5;
-          newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
-          input.style.fontSize = `${newFontSize}px`;
-        } else {
-          input.style.fontSize = "22px";
-        }
-      }
-    });
-  });
-  
-  
-  /* Farbe verändern von weiteren Bemerkungen */
-window.addEventListener('DOMContentLoaded', function() {
+
+/* Farbe verändern von weiteren Bemerkungen */
+window.addEventListener('DOMContentLoaded', function () {
     // Container für "weitereBemerkungen"
     const container1 = document.getElementById('weitereBemerkungenContainer');
     const roomsElement1 = container1.querySelector('.rooms');
@@ -780,7 +756,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
     // Hole das H3-Element mit der Klasse sign02
     const signHeader = document.querySelector('.sign02');
 
@@ -790,7 +766,7 @@ window.addEventListener('DOMContentLoaded', function() {
         signHeader.style.backgroundColor = 'rgb(255, 238, 171)';
 
         // Füge einen EventListener hinzu, um das Element zu toggeln (auf/ab)
-        signHeader.addEventListener('click', function() {
+        signHeader.addEventListener('click', function () {
             // Überprüfen, ob der Hintergrund bereits gelb ist
             if (signHeader.style.backgroundColor === 'rgb(252, 192, 0)') {
                 // Wenn ja, Hintergrundfarbe zurücksetzen
@@ -802,3 +778,148 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+
+
+
+/* Schriftgröße für Textinputfelder verkleinern, wenn zu viel Text eingegeeben wurden */
+document.addEventListener("DOMContentLoaded", function () {
+    // Container für die Eingabefelder (optional: falls dynamische Inputs hinzugefügt werden)
+    const container = document.body; // oder ein spezifischer Container (z.B. 'form')
+
+    // Funktion zur Anpassung der Schriftgröße basierend auf dem Platzhalter und der Textlänge
+    function adjustFontSize(input) {
+        const placeholder = input.getAttribute("placeholder")?.trim().toLowerCase(); // Platzhalter normalisieren
+        const currentLength = input.value.length;
+
+        // Überprüfe, ob der Platzhalter "Tel.:" ist
+        if (placeholder === "tel.:") {
+            const maxLength = 9; // Schriftgröße ändert sich nach 10 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 18 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "22px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Überprüfe, ob der Platzhalter "E-Mail" ist
+        else if (placeholder === "e-mail") {
+            const maxLength = 25; // Schriftgröße ändert sich nach 25 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 20 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "20px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Überprüfe, ob der Platzhalter "Vorname" ist
+        else if (placeholder === "vorname") {
+            const maxLength = 12; // Schriftgröße ändert sich nach 12 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 20 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "20px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Überprüfe, ob der Platzhalter "PLZ / Ort" ist
+        else if (placeholder === "plz / ort") {
+            const maxLength = 16; // Schriftgröße ändert sich nach 16 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 20 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "20px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Überprüfe, ob der Platzhalter "Zählernummer" ist
+        else if (placeholder === "zählernummer") {
+            const maxLength = 16; // Schriftgröße ändert sich nach 16 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 20 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "20px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Überprüfe, ob der Platzhalter "exakte Einbaulage" ist
+        else if (placeholder === "exakte einbaulage") {
+            const maxLength = 32; // Schriftgröße ändert sich nach 32 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 20 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "20px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Überprüfe, ob der Platzhalter "Zählerstand" ist
+        else if (placeholder === "zählerstand") {
+            const maxLength = 11; // Schriftgröße ändert sich nach 11 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 18 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "20px"; // Standard-Schriftgröße
+            }
+        }
+
+        // Für alle anderen Inputfelder (z. B. Name, Vorname)
+        else {
+            const maxLength = 29; // Schriftgröße ändert sich nach 29 Zeichen
+            if (currentLength > maxLength) {
+                let newFontSize = 20 - (currentLength - maxLength) * 0.5;
+                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                input.style.fontSize = `${newFontSize}px`;
+            } else {
+                input.style.fontSize = "22px"; // Standard-Schriftgröße
+            }
+        }
+    }
+
+    // Beim Laden der Seite alle Inputfelder durchlaufen und Schriftgröße anpassen
+    const inputs = container.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+        adjustFontSize(input); // Schriftgröße beim Laden anpassen
+    });
+
+    // Event-Listener für Änderungen in den Inputfeldern
+    container.addEventListener("input", function (event) {
+        if (event.target && event.target.type === "text") {
+            adjustFontSize(event.target); // Schriftgröße bei Eingabe anpassen
+        }
+    });
+});
+
+
+/* versehentlich geklickte Radiobutton wieder deaktivieren */
+        document.addEventListener("DOMContentLoaded", function () {
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener("click", function () {
+                    if (this.checked && this.dataset.previouslyChecked) {
+                        // Wenn der Radio-Button bereits ausgewählt war, deaktiviere ihn
+                        this.checked = false;
+                        this.dataset.previouslyChecked = "";
+                    } else {
+                        // Markiere den Radio-Button als zuvor ausgewählt
+                        this.dataset.previouslyChecked = "true";
+                    }
+                });
+            });
+        });
