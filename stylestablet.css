@@ -31,7 +31,7 @@ td {
     padding-left: 10px;
     text-align: left;
     word-wrap: break-word;
-    line-height: 2;
+    line-height: 1.1;
     border:none;
 }
 
@@ -237,6 +237,7 @@ h2 {
     /* Links ausrichten */
     font-weight: bold;
     /* Optional: Fett für bessere Lesbarkeit */
+    font-size: 22px;
 }
 
 .signature-box {
@@ -373,24 +374,12 @@ h2 {
     border-right: 1px solid #fff;
 }
 
-table tr td:nth-child(3),
-table tr th:nth-child(3),
-table tr td:nth-child(5),
-table tr th:nth-child(5) {
-    background-color: rgb(255, 255, 255);
-}
-
-
-
-
-
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     height: 200vh;
-    /* Für Scroll-Test */
 }
 
 .sticky-container {
