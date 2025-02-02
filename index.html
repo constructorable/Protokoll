@@ -18,7 +18,7 @@
     <div class="container">
 
         <div class="sticky-container">
-            <button id="toggleModeButton">Toggle Dark/Bright/Tablet Mode</button>
+            <button id="toggleModeButton">Ansicht ändern</button>
             <button id="savePdfButton">Als PDF speichern</button>
         </div>
 
@@ -29,10 +29,8 @@
         <!--Allgemein -->
         <div class="allgemein00">
 
-            <!--         <div class="uberschrift2"> -->
-            <h3 class="uberschrift2">Allgemeine Informationen</h3>
-            <!--         </div> -->
 
+            <h3 class="uberschrift2">Allgemeine Informationen</h3>
 
             <table>
 
@@ -84,42 +82,6 @@
 
 
 
-            <!--      einziehender Mieter -->
-
-
-            <!--             <h3>Zähler</h3>
-            <table id="zaehlerTable">
-                <thead>
-                    <tr>
-                        <th>Bezeichnung</th>
-                        <th>Zählernummer</th>
-                        <th>Einbaulage</th>
-                        <th>Zählerstand</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <select>
-                                <option value="leer"></option>
-                                <option value="gaszaehler">Gaszähler</option>
-                                <option value="stromzaehler">Stromzähler</option>
-                                <option value="waermezaehler">Wärmezähler</option>
-                                <option value="wassertemperaturKalt">Wasserzähler (kalt)</option>
-                                <option value="wassertemperaturWarm">Wasserzähler (warm)</option>
-                                <option value="heizkostenverteiler">Heizkostenverteiler</option>
-                            </select>
-                        </td>
-                        <td><input type="text" placeholder="Zählernummer"></td>
-                        <td><input type="text" placeholder="exakte Einbaulage"></td>
-                        <td><input type="text" placeholder="Zählerstand"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="addZaehlerButton">Zähler hinzufügen +</button> -->
-
-
-
 
             <h3>einziehender Mieter</h3>
             <table id="einzugmieterTable">
@@ -139,9 +101,18 @@
                         <td><input type="text" placeholder="Tel.:"></td>
                         <td><input type="text" placeholder="E-Mail"></td>
                     </tr>
+
+                    <tr id="addeinziehenderMieterRow">
+                        <td colspan="4" style="text-align: right;">
+                            <button id="addeinziehenderMieter">einziehenden Mieter hinzufügen +</button>
+                        </td>
+                    </tr>
+
+
                 </tbody>
             </table>
-            <button id="addeinziehenderMieter">einziehenden Mieter hinzufügen +</button>
+
+
 
 
 
@@ -166,9 +137,18 @@
                         <td><input type="text" placeholder="neue Straße"></td>
                         <td><input type="text" placeholder="PLZ / Ort"></td>
                     </tr>
+
+                    
+                    <tr id="addausziehenderMieterRow">
+                        <td colspan="4" style="text-align: right;">
+                            <button id="addausziehenderMieter">ausziehenden Mieter hinzufügen +</button>
+                        </td>
+                    </tr>
+
+                    
                 </tbody>
             </table>
-            <button id="addausziehenderMieter">ausziehenden Mieter hinzufügen +</button>
+<!--             <button id="addausziehenderMieter">ausziehenden Mieter hinzufügen +</button> -->
 
 
 
@@ -176,52 +156,6 @@
 
 
 
-
-
-
-
-
-            <!--   ausziehender Mieter -->
-            <!--             <h3>ausziehender Mieter</h3>
-
-            <table>
-
-                <tr>
-                    <td>Name 1</td>
-                    <td colspan="5">
-                        <input type="text" name="bemerkungen" class="testeinzeilig">
-                    </td>
-
-                    <td style="width: 400px; margin-right:10px; text-align: right;">Name 2</td>
-                    <td colspan="5">
-                        <input type="text" name="bemerkungen" class="testeinzeilig">
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td>Neue Anschrift (Straße)</td>
-                    <td colspan="5">
-                        <input type="text" name="bemerkungen" class="testeinzeilig">
-                    </td>
-
-                    <td style="width: 300px; margin-right:10px; text-align: right;">Ort / PLZ</td>
-                    <td colspan="5" >
-                        <input type="text" name="bemerkungen" class="testeinzeilig">
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td>E-Mail</td>
-                    <td colspan="5">
-                        <input type="text" name="bemerkungen" class="testeinzeilig" style="text-align: right;">
-                    </td>
-
-                </tr>
-
-
-            </table> -->
 
 
 
@@ -264,9 +198,17 @@
                         <td><input type="text" placeholder="Schlüsselnummer"></td>
 
                     </tr>
+
+                    <tr id="addKeyRow">
+                        <td colspan="4" style="text-align: right;">
+                            <button id="addKeyButton">Schlüssel hinzufügen +</button>
+                        </td>
+                    </tr>
+
+
                 </tbody>
             </table>
-            <button id="addKeyButton">Schlüssel hinzufügen +</button>
+<!--             <button id="addKeyButton">Schlüssel hinzufügen +</button> -->
 
 
             <h3>Art Heizung / Warmwasser</h3>
@@ -3888,7 +3830,13 @@
             </div>
         </div>
 
-        <button id="duplicateBtn">+ weiteres Zimmer hinzufügen</button>
+
+        
+  
+        
+        <div style="text-align: right;">
+            <button id="duplicateBtn">+ weiteres Zimmer hinzufügen</button>
+        </div>
 
 
         <!-- nebenraumraum -->
