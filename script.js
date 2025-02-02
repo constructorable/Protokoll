@@ -17,16 +17,95 @@ function toggleMode() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* button einziehenden Mieter hinzufügen */
+document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
+    const newRow2 = document.createElement('tr');
+
+    const bezeichnungCell2 = document.createElement('td');
+    const numbaCell2 = document.createElement('td');
+    const lageCell2 = document.createElement('td');
+    const standCell2 = document.createElement('td');
+
+    bezeichnungCell2.innerHTML = '<input type="text" placeholder="Name">';
+    numbaCell2.innerHTML = '<input type="text" placeholder="Vorname">';
+    lageCell2.innerHTML = '<input type="text" placeholder="Tel.: ">';
+    standCell2.innerHTML = '<input type="text" placeholder="E-Mail">';
+
+    newRow2.appendChild(bezeichnungCell2);
+    newRow2.appendChild(numbaCell2);
+    newRow2.appendChild(lageCell2);
+    newRow2.appendChild(standCell2);
+
+    const tbody = document.querySelector('#einzugmieterTable tbody');
+    const buttonRow = document.getElementById('addeinziehenderMieterRow');
+
+    tbody.insertBefore(newRow2, buttonRow); // Füge neue Zeile vor der Button-Zeile ein
+});
+
+
+
+/* button ausziehenden Mieter hinzufügen */
+document.getElementById('addausziehenderMieter').addEventListener('click', function () {
+
+    const newRow4 = document.createElement('tr');
+
+    const bezeichnungCell4 = document.createElement('td');
+    const numbaCell4 = document.createElement('td');
+    const lageCell4 = document.createElement('td');
+    const standCell4 = document.createElement('td');
+
+    bezeichnungCell4.innerHTML = '<input type="text" placeholder="Name">';
+    numbaCell4.innerHTML = '<input type="text" placeholder="Vorname">';
+    lageCell4.innerHTML = '<input type="text" placeholder="neue Straße">';
+    standCell4.innerHTML = '<input type="text" placeholder="PLZ / Ort">';
+
+    newRow4.appendChild(bezeichnungCell4);
+    newRow4.appendChild(numbaCell4);
+    newRow4.appendChild(lageCell4);
+    newRow4.appendChild(standCell4);
+
+    const tbody4 = document.querySelector('#auszugmieterTable tbody');
+    const buttonRow4 = document.getElementById('addausziehenderMieterRow');
+
+    tbody4.insertBefore(newRow4, buttonRow4); // Füge neue Zeile vor der Button-Zeile ein
+});
+
+
+
 /* button schlüssel hinzufügen */
 document.getElementById('addKeyButton').addEventListener('click', function () {
-
     const newRow = document.createElement('tr');
 
     const bezeichnungCell = document.createElement('td');
     const anzahlCell = document.createElement('td');
     const schluesselnummerCell = document.createElement('td');
 
-    bezeichnungCell.innerHTML = '<select><option value="leer"></option><option value="haustuer">Haustür</option><option value="wohnung">Wohnung</option><option value="keller">Keller</option><option value="dachboden">Dachboden</option><option value="briefkasten">Briefkasten</option><option value="abstellraum">Abstellraum</option><option value="fahrradbereich">Fahrradbereich</option><option value="sonstige">Sonstige</option></select>';
+    bezeichnungCell.innerHTML = `
+        <select>
+            <option value="leer"></option>
+            <option value="haustuer">Haustür</option>
+            <option value="wohnung">Wohnung</option>
+            <option value="keller">Keller</option>
+            <option value="dachboden">Dachboden</option>
+            <option value="briefkasten">Briefkasten</option>
+            <option value="abstellraum">Abstellraum</option>
+            <option value="fahrradbereich">Fahrradbereich</option>
+            <option value="sonstige">Sonstige</option>
+        </select>`;
+    
     anzahlCell.innerHTML = '<input type="text" placeholder="Anzahl">';
     schluesselnummerCell.innerHTML = '<input type="text" placeholder="Schlüsselnummer">';
 
@@ -34,8 +113,16 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
     newRow.appendChild(anzahlCell);
     newRow.appendChild(schluesselnummerCell);
 
-    document.querySelector('#schluesselTable tbody').appendChild(newRow);
+    const tbody = document.querySelector('#schluesselTable tbody');
+    const buttonRow = document.getElementById('addKeyRow'); // Korrekte ID
+
+    if (tbody && buttonRow) {
+        tbody.insertBefore(newRow, buttonRow); // Neue Zeile vor der Button-Zeile einfügen
+    } else {
+        console.error("Fehler: Tabelle oder Button-Zeile nicht gefunden.");
+    }
 });
+
 
 
 
@@ -61,66 +148,6 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
 
     document.querySelector('#zaehlerTable tbody').appendChild(newRow);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* button einziehenden Mieter hinzufügen */
-document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
-
-    const newRow2 = document.createElement('tr');
-
-    const bezeichnungCell2 = document.createElement('td');
-    const numbaCell2 = document.createElement('td');
-    const lageCell2 = document.createElement('td');
-    const standCell2 = document.createElement('td');
-
-    bezeichnungCell2.innerHTML = '<input type="text" placeholder="Name">';
-    numbaCell2.innerHTML = '<input type="text" placeholder="Vorname">';
-    lageCell2.innerHTML = '<input type="text" placeholder="Tel.: ">';
-    standCell2.innerHTML = '<input type="text" placeholder="E-Mail">';
-
-    newRow2.appendChild(bezeichnungCell2);
-    newRow2.appendChild(numbaCell2);
-    newRow2.appendChild(lageCell2);
-    newRow2.appendChild(standCell2);
-
-    document.querySelector('#einzugmieterTable tbody').appendChild(newRow2);
-});
-
-
-/* button ausziehenden Mieter hinzufügen */
-document.getElementById('addausziehenderMieter').addEventListener('click', function () {
-
-    const newRow4 = document.createElement('tr');
-
-    const bezeichnungCell4 = document.createElement('td');
-    const numbaCell4 = document.createElement('td');
-    const lageCell4 = document.createElement('td');
-    const standCell4 = document.createElement('td');
-
-    bezeichnungCell4.innerHTML = '<input type="text" placeholder="Name">';
-    numbaCell4.innerHTML = '<input type="text" placeholder="Vorname">';
-    lageCell4.innerHTML = '<input type="text" placeholder="neue Straße">';
-    standCell4.innerHTML = '<input type="text" placeholder="PLZ / Ort">';
-
-    newRow4.appendChild(bezeichnungCell4);
-    newRow4.appendChild(numbaCell4);
-    newRow4.appendChild(lageCell4);
-    newRow4.appendChild(standCell4);
-
-    document.querySelector('#auszugmieterTable tbody').appendChild(newRow4);
-});
-
 
 
 
