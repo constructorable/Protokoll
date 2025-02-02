@@ -128,7 +128,6 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
 
 /* button Zähler hinzufügen */
 document.getElementById('addZaehlerButton').addEventListener('click', function () {
-
     const newRow = document.createElement('tr');
 
     const bezeichnungCell = document.createElement('td');
@@ -146,17 +145,16 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
     newRow.appendChild(lageCell);
     newRow.appendChild(standCell);
 
-    document.querySelector('#zaehlerTable tbody').appendChild(newRow);
+    const tbody = document.querySelector('#zaehlerTable tbody');
+    const addButtonRow = document.getElementById('addZaelerRow'); // Button-Zeile
+
+    if (tbody && addButtonRow) {
+        tbody.appendChild(newRow); // Neue Zeile am Ende der Tabelle hinzufügen
+        tbody.appendChild(addButtonRow); // Button-Zeile wieder an letzter Stelle einfügen
+    } else {
+        console.error("Fehler: Tabelle oder Button-Zeile nicht gefunden.");
+    }
 });
-
-
-
-
-
-
-
-
-
 
 
 
@@ -368,41 +366,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-/* Bild hochladen */
-/* document.getElementById('uploadImageButton').addEventListener('click', function () {
-    document.getElementById('imageInput').click(); // öffnet den Datei-Dialog
-}); */
-/* document.getElementById('imageInput').addEventListener('change', function (event) {
-    const files = event.target.files; // Alle ausgewählten Dateien
-
-    if (files.length > 0) {
-        const images = []; // Array, um die Base64-Daten der Bilder zu speichern
-        let imageCount = 0; // Zählvariable für Bilder
-
-        // Für jede Datei ein FileReader verwenden
-        Array.from(files).forEach(file => {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = new Image();
-                img.src = e.target.result;
-                img.onload = function () {
-                    images.push(img.src); // Bild in das Array speichern
-                    imageCount++; // Bildzähler erhöhen
-
-                    // Wenn alle Bilder geladen sind, können wir mit der PDF-Erstellung fortfahren
-                    if (images.length === files.length) {
-                        window.imageData = images; // Alle Bilddaten werden global gespeichert
-                    }
-
-                    // Die Anzahl der hochgeladenen Bilder aktualisieren
-                    document.getElementById('imageCount').textContent = `Bilder hochgeladen: ${imageCount}`;
-                };
-            };
-            reader.readAsDataURL(file); // Bild als Base64 lesen
-        });
-    }
-}); */
 
 
 
@@ -751,5 +714,91 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         // Zurück zum ursprünglichen Stylesheet
         document.getElementById("theme-style").setAttribute("href", currentTheme);
+    }
+});
+
+
+
+
+
+/* Schriftgröße für Textinputfelder verkleinern, wenn zu viel Text eingegeeben wurden */
+document.addEventListener("DOMContentLoaded", function () {
+    // Container für die Eingabefelder (optional: falls dynamische Inputs hinzugefügt werden)
+    const container = document.body; // oder ein spezifischer Container (z.B. 'form')
+  
+    // Delegiere das Event auf den Container
+    container.addEventListener("input", function (event) {
+      if (event.target && event.target.type === "text") {
+        const input = event.target;
+        const maxLength = 30;
+        const currentLength = input.value.length;
+  
+        // Falls der Text länger ist als die festgelegte maxLength
+        if (currentLength > maxLength) {
+          let newFontSize = 22 - (currentLength - maxLength) * 0.5;
+          newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+          input.style.fontSize = `${newFontSize}px`;
+        } else {
+          input.style.fontSize = "22px";
+        }
+      }
+    });
+  });
+  
+  
+  /* Farbe verändern von weiteren Bemerkungen */
+window.addEventListener('DOMContentLoaded', function() {
+    // Container für "weitereBemerkungen"
+    const container1 = document.getElementById('weitereBemerkungenContainer');
+    const roomsElement1 = container1.querySelector('.rooms');
+    const weitereBemerkungenElement = container1.querySelector('#weitereBemerkungen');
+
+    if (roomsElement1 && weitereBemerkungenElement && roomsElement1 === weitereBemerkungenElement) {
+        roomsElement1.style.backgroundColor = 'rgb(255, 238, 171)';
+    }
+
+    // Container für "hauptBemerkungen"
+    const container2 = document.getElementById('hauptBemerkungenContainer');
+    const roomsElement2 = container2.querySelector('.rooms');
+    const hauptBemerkungenElement = container2.querySelector('#hauptBemerkungen');
+
+    if (roomsElement2 && hauptBemerkungenElement && roomsElement2 === hauptBemerkungenElement) {
+        roomsElement2.style.backgroundColor = 'rgb(255, 238, 171)';
+    }
+
+    // Container für "sign"
+    const signContainer = document.querySelector('.sign');
+    const signHeader = signContainer.querySelector('.sign02');  // Hier das H3-Element auswählen
+
+    // Hier prüfen, ob das H3-Element die Klasse .sign02 ist
+    if (signHeader) {
+        // Nur gelb machen, wenn das H3-Element nach einer .rooms kommt
+        const roomsInSign = signContainer.querySelector('.rooms');
+        if (roomsInSign && roomsInSign.nextElementSibling === signHeader) {
+            signHeader.style.backgroundColor = 'rgb(255, 238, 171)';
+        }
+    }
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+    // Hole das H3-Element mit der Klasse sign02
+    const signHeader = document.querySelector('.sign02');
+
+    // Überprüfe, ob das Element vorhanden ist
+    if (signHeader) {
+        // Setze die Hintergrundfarbe sofort auf Gelb
+        signHeader.style.backgroundColor = 'rgb(255, 238, 171)';
+
+        // Füge einen EventListener hinzu, um das Element zu toggeln (auf/ab)
+        signHeader.addEventListener('click', function() {
+            // Überprüfen, ob der Hintergrund bereits gelb ist
+            if (signHeader.style.backgroundColor === 'rgb(252, 192, 0)') {
+                // Wenn ja, Hintergrundfarbe zurücksetzen
+                signHeader.style.backgroundColor = '';
+            } else {
+                // Ansonsten auf Gelb setzen
+                signHeader.style.backgroundColor = 'rgb(255, 238, 171)';
+            }
+        });
     }
 });
