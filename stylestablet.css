@@ -1,0 +1,503 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    color: #333;
+    word-wrap: break-word;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    color: #333;
+    word-wrap: break-word;
+    /*     border: 1px solid #ccc; */
+    border: none;
+}
+
+th,
+td {
+    border: 0px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 22px;
+    padding: 1px;
+    padding-left: 10px;
+    text-align: left;
+    word-wrap: break-word;
+    line-height: 1.1;
+    border: none;
+}
+
+.rooms td:nth-child(even) {
+    background-color: #f1f1f1;
+    /* Heller Grauton */
+}
+
+.rooms th:nth-child(even) {
+    background-color: #f1f1f1;
+    /* Heller Grauton */
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 97%;
+    padding: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    line-height: 2;
+    /* Erhöht die Textzeilenhöhe */
+    height: auto;
+    /* Falls eine feste Höhe das Problem verursacht */
+    min-height: 24px;
+    /* Setzt eine Mindesthöhe, um Platz zu schaffen */
+    font-size: 22px;
+}
+
+
+textarea {
+    font-family: Arial, sans-serif;
+    /* Schriftart festlegen */
+    min-height: 48px;
+    /* Minimale Höhe */
+    line-height: 1;
+    /* Zeilenhöhe */
+    resize: vertical;
+    /* Nur vertikales Vergrößern erlauben */
+    width: 100%;
+    /* Volle Breite des Containers nutzen */
+    max-width: 100%;
+    /* Verhindert horizontales Überlaufen */
+    box-sizing: border-box;
+    /* Padding und Border in der Breite berücksichtigen */
+    padding: 8px;
+    /* Innenabstand für bessere Benutzerfreundlichkeit */
+    border: 1px solid #ccc;
+    /* Rand hinzufügen */
+    border-radius: 4px;
+    /* Abgerundete Ecken */
+    font-size: 20px;
+    /* Schriftgröße */
+}
+
+select {
+    padding: 8px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.radio-label,
+.checkbox-label {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    margin: 1px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.radio-label::before,
+.checkbox-label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid #8d8d8d;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.radio-label::after,
+.checkbox-label::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: transparent;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    transition: color 0.3s ease;
+}
+
+input[type="radio"]:checked+.radio-label::before,
+input[type="checkbox"]:checked+.checkbox-label::before {
+    background-color: #ffffff00;
+    /*  border-color: #000000; */
+}
+
+input[type="radio"]:checked+.radio-label::after,
+input[type="checkbox"]:checked+.checkbox-label::after {
+    color: rgb(24, 24, 24);
+    background-color: #ffffff00;
+}
+
+h2,
+h3 {
+    color: #444;
+    margin-bottom: 1px;
+
+}
+
+
+h3 {
+    font-size: 22px;
+
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+.header01 {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: none;
+}
+
+.rooms {
+    background-color: #c7d3e7;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.signature-canvas {
+    border: 3px solid #ffd104;
+    background: #fffce1;
+    width: 500px;
+    height: 150px;
+}
+
+.signature-canvas2 {
+    border: 3px solid #20842b;
+    background: #fffce1;
+    width: 500px;
+    height: 150px;
+}
+
+.allgemein {
+
+    border: 0px;
+}
+
+#datum {
+    line-height: 2;
+    min-width: 300px;
+    border-radius: 5px;
+    border-color: 1px solid rgb(189, 189, 189);
+    ;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* #addKeyButton, */
+/* #addZaehlerButton, */
+#savePdfButton,
+.signature-clear-btn,
+#uploadImageButton {
+    padding: 10px 20px;
+    background-color: #ceebd1;
+    color: #202020;
+    border: 0px solid #666;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: block;
+    margin-top: 7px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+#savePdfButton,
+.signature-clear-btn {
+
+    background-color: #ced9eb;
+
+    font-size: 20px;
+
+}
+
+.signature-container {
+    display: flex;
+    align-items: center;
+    /* Elemente vertikal zentrieren */
+    gap: 10px;
+    /* Abstand zwischen Label und Signature-Box */
+    padding: 22px;
+}
+
+.signature-container label {
+    width: 100px;
+    /* Einheitliche Breite für Labels */
+    text-align: left;
+    /* Links ausrichten */
+    font-weight: bold;
+    /* Optional: Fett für bessere Lesbarkeit */
+    font-size: 22px;
+}
+
+.signature-box {
+    display: flex;
+    flex-direction: row-reverse;
+    /* Button nach links, Canvas nach rechts */
+    align-items: center;
+    /* Vertikale Ausrichtung */
+    gap: 10px;
+    /* Abstand zwischen Button & Canvas */
+}
+
+.signature-clear-btn {
+    background-color: rgb(122, 36, 36);
+    /* Rote Hintergrundfarbe */
+    color: white;
+    /* Weiße Schrift */
+    border: none;
+    /* Kein Rand */
+    padding: 10px 15px;
+    /* Innenabstand */
+    font-size: 20px;
+    /* Schriftgröße */
+    cursor: pointer;
+    /* Mauszeiger als Zeiger */
+    border-radius: 5px;
+    /* Abgerundete Ecken */
+}
+
+
+
+
+
+
+
+
+#schluesselTable {
+    width: 100%;
+    /* Tabelle nimmt die gesamte Breite des Elterncontainers ein */
+    border-collapse: collapse;
+    /* Entfernt doppelte Rahmen */
+    table-layout: fixed;
+    /* Erzwingt eine gleichmäßige Verteilung der Spalten */
+}
+
+#schluesselTable th,
+#schluesselTable td {
+    width: 36%;
+    /* Jede der drei Spalten erhält exakt ein Drittel der Gesamtbreite */
+    padding: 11px;
+    /* Beibehaltung des Abstands */
+    text-align: left;
+    /* Optional: Linksbündige Ausrichtung */
+}
+
+#zaehlerTable th,
+#zentral td {
+    width: 24%;
+    /* Jede der drei Spalten erhält exakt ein Drittel der Gesamtbreite */
+    padding: 11px;
+    /* Beibehaltung des Abstands */
+    text-align: left;
+    /* Optional: Linksbündige Ausrichtung */
+}
+
+#zentral td {
+    width: 28%;
+    /* Jede der drei Spalten erhält exakt ein Drittel der Gesamtbreite */
+    padding: 11px;
+    /* Beibehaltung des Abstands */
+    text-align: left;
+    /* Optional: Linksbündige Ausrichtung */
+}
+
+#schluesselTable select,
+#schluesselTable input {
+    width: 100%;
+    /* Dropdowns und Eingabefelder füllen ihre Zelle */
+    box-sizing: border-box;
+    /* Verhindert, dass Padding die Gesamtbreite verändert */
+}
+
+.sign02 {
+    background: transparent;
+    background: #c7d3e7;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+.allgemein00 {
+    padding-top: 5px;
+    padding-bottom: 9px;
+    background-color: #d6e9d1;
+    border-radius: 11px;
+}
+
+
+#savePdfButton,
+#toggleModeButton,
+#uploadImageButton {
+    background-color: rgb(105, 130, 187);
+    color: #fff;
+}
+
+#toggleModeButton {
+    background-color: rgb(105, 130, 187);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: none;
+}
+
+
+
+#addeinziehenderMieter,
+#addausziehenderMieter,
+#addKeyButton,
+#addZaehlerButton,
+#duplicateBtn {
+    background-color: rgb(61, 108, 50);
+    color: #fff;
+    line-height: 2.5;
+    border-radius: 7px;
+    padding-left: 7px;
+    font-size: 20px;
+    margin-top: 7px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+#addeinziehenderMieter,
+#addausziehenderMieter,
+#addKeyButton,
+#addZaehlerButton,
+#duplicateBtn {
+    margin-top: 1px;
+    margin-bottom: 15px;
+
+}
+
+
+.no-border-right {
+    border-right: 1px solid #fff;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 200vh;
+}
+
+.sticky-container {
+    position: sticky;
+    top: 10px;
+    /* Abstand vom oberen Rand */
+    background: rgb(220, 220, 220);
+    /* Hintergrund setzen */
+    padding: 10px;
+    z-index: 1000;
+    /* Über anderen Elementen */
+    display: flex;
+    gap: 10px;
+    /* Abstand zwischen Buttons */
+    opacity: 0.9;
+}
+
+
+.weissezeilemitbutton {
+    background-color: rgb(255, 255, 255)
+}
+
+#schluesselTable th,
+#schluesselTable td {
+    padding: 2px 5px;
+    /* Innenabstand verkleinern */
+    height: 25px;
+    /* Höhe der Zellen */
+    line-height: 20px;
+
+}
+
+h3 {
+    margin-left: 8px;
+}
+
+/* Stile für das Label, um Zeilenumbruch zu verhindern */
+.signature-container label {
+    white-space: nowrap;
+    /* Verhindert den Zeilenumbruch */
+    display: inline-block;
+    /* Stellt sicher, dass das Label korrekt ausgerichtet ist */
+    margin-right: 10px;
+    /* Optional: Abstand zwischen Label und Unterschriftsfeld */
+}
+
+/* Stil für das Container-Element des Input-Felds und Buttons */
+.dupli-container {
+    position: relative;
+}
+
+/* Stil für das Input-Feld */
+.dupli {
+    width: 100%;
+    /* Volle Breite des Containers */
+    max-width: 100%;
+    /* Maximale Breite */
+    font-size: 15px !important;
+    background-color: rgb(232, 237, 246) !important;
+}
+
+/* Stil für den grünen Plus-Button */
+.dupli-button {
+    position: absolute;
+    right: 8px;
+    bottom: 9.8px;
+    font-size: 19.2px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+/* Stil, um den Button auszublenden */
+.dupli-button.hidden {
+    display: none;
+}
