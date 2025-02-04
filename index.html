@@ -975,11 +975,20 @@
 
                 <tr>
                     <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                    <td colspan="5">
-                        <textarea name="bemerkungen" class="bemerkung-textarea" rows="3"
-                            placeholder="Geben Sie Ihre Bemerkungen ein..."></textarea>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <div class="dupli-container">
+                            <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                            <button class="dupli-button" onclick="duplicateRow(this)">
+                                +
+                            </button>
+                        </div>
                     </td>
                 </tr>
+
+
 
 
 
@@ -1714,17 +1723,23 @@
 
 
 
-
-
+                <tr>
+                    <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
+                </tr>
 
 
                 <tr>
-                    <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                    <td colspan="5">
-                        <textarea name="bemerkungen" class="bemerkung-textarea" rows="3"
-                            placeholder="Geben Sie Ihre Bemerkungen ein..."></textarea>
+                    <td colspan="6">
+                        <div class="dupli-container">
+                            <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                            <button class="dupli-button" onclick="duplicateRow(this)">
+                                +
+                            </button>
+                        </div>
                     </td>
                 </tr>
+
+
 
 
 
@@ -1829,7 +1844,7 @@
                         <label for="guestwctuere2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwctuere3" name="guestwctuere" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwctuere3" name="guestwctuere00" value="Reparatur durch den Mieter">
                         <label for="guestwctuere3" class="radio-label"></label>
                     </td>
                     <td>
@@ -1905,7 +1920,7 @@
                         <label for="guestwcrollo2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcrollo3" name="guestwcrollo" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcrollo3" name="guestwcrollo00" value="Reparatur durch den Mieter">
                         <label for="guestwcrollo3" class="radio-label"></label>
                     </td>
                     <td>
@@ -1931,7 +1946,7 @@
                         <label for="guestwcdecke2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcdecke3" name="guestwcdecke" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcdecke3" name="guestwcdecke00" value="Reparatur durch den Mieter">
                         <label for="guestwcdecke3" class="radio-label"></label>
                     </td>
                     <td>
@@ -1957,7 +1972,8 @@
                         <label for="guestwcwaende2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcwaende3" name="guestwcwaende" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcwaende3" name="guestwcwaende00"
+                            value="Reparatur durch den Mieter">
                         <label for="guestwcwaende3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2167,13 +2183,13 @@
                         <label for="guestwcwaschmaschinenanschluss2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcwaschmaschinenanschluss3"
-                            name="guestwcwaschmaschinenanschluss0000" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcwaschmaschinenanschluss3" name="guestwcwaschmaschinenanschluss00"
+                            value="Reparatur durch den Mieter">
                         <label for="guestwcwaschmaschinenanschluss3" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcwaschmaschinenanschluss4"
-                            name="guestwcwaschmaschinenanschluss0000" value="Reparatur durch den Vermieter">
+                        <input type="radio" id="guestwcwaschmaschinenanschluss4" name="guestwcwaschmaschinenanschluss00"
+                            value="Reparatur durch den Vermieter">
                         <label for="guestwcwaschmaschinenanschluss4" class="radio-label"></label>
                     </td>
                     <td>
@@ -2309,7 +2325,7 @@
                         <label for="guestwcventi2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcventi3" name="guestwcventi" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcventi3" name="guestwcventi00" value="Reparatur durch den Mieter">
                         <label for="guestwcventi3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2335,7 +2351,8 @@
                         <label for="guestwcmirrow2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcmirrow3" name="guestwcmirrow" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcmirrow3" name="guestwcmirrow00"
+                            value="Reparatur durch den Mieter">
                         <label for="guestwcmirrow3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2361,7 +2378,7 @@
                         <label for="guestwctowel2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwctowel3" name="guestwctowel" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwctowel3" name="guestwctowel00" value="Reparatur durch den Mieter">
                         <label for="guestwctowel3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2388,7 +2405,7 @@
                         <label for="guestwcpaper2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcpaper3" name="guestwcpaper" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcpaper3" name="guestwcpaper00" value="Reparatur durch den Mieter">
                         <label for="guestwcpaper3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2418,7 +2435,8 @@
                         <label for="guestwctube3" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwctube4" name="guestwctube" value="Reparatur durch den Vermieter">
+                        <input type="radio" id="guestwctube4" name="guestwctube00"
+                            value="Reparatur durch den Vermieter">
                         <label for="guestwctube4" class="radio-label"></label>
                     </td>
                     <td>
@@ -2439,7 +2457,8 @@
                         <label for="guestwcshower2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcshower3" name="guestwcshower" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcshower3" name="guestwcshower00"
+                            value="Reparatur durch den Mieter">
                         <label for="guestwcshower3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2466,7 +2485,8 @@
                         <label for="guestwcbrause2" class="radio-label"></label>
                     </td>
                     <td>
-                        <input type="radio" id="guestwcbrause3" name="guestwcbrause" value="Reparatur durch den Mieter">
+                        <input type="radio" id="guestwcbrause3" name="guestwcbrause00"
+                            value="Reparatur durch den Mieter">
                         <label for="guestwcbrause3" class="radio-label"></label>
                     </td>
                     <td>
@@ -2482,15 +2502,22 @@
 
 
 
-
-
-
                 <tr>
                     <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                    <td colspan="5">
-                        <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <div class="dupli-container">
+                            <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                            <button class="dupli-button" onclick="duplicateRow(this)">
+                                +
+                            </button>
+                        </div>
                     </td>
                 </tr>
+
+
 
 
 
@@ -2928,16 +2955,22 @@
 
                     </td>
                 </tr>
-
-
-
-
                 <tr>
                     <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                    <td colspan="5">
-                        <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <div class="dupli-container">
+                            <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                            <button class="dupli-button" onclick="duplicateRow(this)">
+                                +
+                            </button>
+                        </div>
                     </td>
                 </tr>
+
+
 
 
 
@@ -3080,12 +3113,12 @@
                             <label for="abstelltuere2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstelltuere3" name="abstelltuere"
+                            <input type="radio" id="abstelltuere3" name="abstelltuere00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstelltuere3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstelltuere4" name="abstelltuere"
+                            <input type="radio" id="abstelltuere4" name="abstelltuere00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstelltuere4" class="radio-label"></label>
                         </td>
@@ -3130,12 +3163,12 @@
                             <label for="abstellfenster2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellfenster3" name="abstellfenster"
+                            <input type="radio" id="abstellfenster3" name="abstellfenster00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellfenster3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellfenster4" name="abstellfenster"
+                            <input type="radio" id="abstellfenster4" name="abstellfenster00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellfenster4" class="radio-label"></label>
                         </td>
@@ -3157,12 +3190,12 @@
                             <label for="abstellrollo2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellrollo3" name="abstellrollo"
+                            <input type="radio" id="abstellrollo3" name="abstellrollo00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellrollo3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellrollo4" name="abstellrollo"
+                            <input type="radio" id="abstellrollo4" name="abstellrollo00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellrollo4" class="radio-label"></label>
                         </td>
@@ -3184,12 +3217,12 @@
                             <label for="abstelldecke2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstelldecke3" name="abstelldecke"
+                            <input type="radio" id="abstelldecke3" name="abstelldecke00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstelldecke3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstelldecke4" name="abstelldecke"
+                            <input type="radio" id="abstelldecke4" name="abstelldecke00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstelldecke4" class="radio-label"></label>
                         </td>
@@ -3211,12 +3244,12 @@
                             <label for="abstellwaende2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellwaende3" name="abstellwaende"
+                            <input type="radio" id="abstellwaende3" name="abstellwaende00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellwaende3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellwaende4" name="abstellwaende"
+                            <input type="radio" id="abstellwaende4" name="abstellwaende00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellwaende4" class="radio-label"></label>
                         </td>
@@ -3254,12 +3287,12 @@
                             <label for="abstellheizkoerper2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellheizkoerper3" name="abstellheizkoerper"
+                            <input type="radio" id="abstellheizkoerper3" name="abstellheizkoerper00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellheizkoerper3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellheizkoerper4" name="abstellheizkoerper"
+                            <input type="radio" id="abstellheizkoerper4" name="abstellheizkoerper00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellheizkoerper4" class="radio-label"></label>
                         </td>
@@ -3282,12 +3315,12 @@
                             <label for="abstellfussboden2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellfussboden3" name="abstellfussboden"
+                            <input type="radio" id="abstellfussboden3" name="abstellfussboden00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellfussboden3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellfussboden4" name="abstellfussboden"
+                            <input type="radio" id="abstellfussboden4" name="abstellfussboden00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellfussboden4" class="radio-label"></label>
                         </td>
@@ -3343,12 +3376,12 @@
                             <label for="abstellinternet2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellinternet3" name="abstellinternet"
+                            <input type="radio" id="abstellinternet3" name="abstellinternet00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellinternet3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellinternet4" name="abstellinternet"
+                            <input type="radio" id="abstellinternet4" name="abstellinternet00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellinternet4" class="radio-label"></label>
                         </td>
@@ -3375,12 +3408,12 @@
                             <label for="abstellelektrik2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellelektrik3" name="abstellelektrik"
+                            <input type="radio" id="abstellelektrik3" name="abstellelektrik00"
                                 value="Reparatur durch den Mieter">
                             <label for="abstellelektrik3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="abstellelektrik4" name="abstellelektrik"
+                            <input type="radio" id="abstellelektrik4" name="abstellelektrik00"
                                 value="Reparatur durch den Vermieter">
                             <label for="abstellelektrik4" class="radio-label"></label>
                         </td>
@@ -3425,14 +3458,23 @@
 
 
 
-
                     <tr>
                         <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                        <td colspan="5">
-                            <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
-                        </td>
                     </tr>
 
+
+                    <tr>
+                        <td colspan="6">
+                            <div class="dupli-container">
+                                <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                                <button class="dupli-button" onclick="duplicateRow(this)">
+                                    +
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+    
+    
 
 
                 </table>
@@ -3553,11 +3595,12 @@
                             <label for="zimm01tuere2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01tuere3" name="zimm01tuere" value="Reparatur durch den Mieter">
+                            <input type="radio" id="zimm01tuere3" name="zimm01tuere00"
+                                value="Reparatur durch den Mieter">
                             <label for="zimm01tuere3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01tuere4" name="zimm01tuere"
+                            <input type="radio" id="zimm01tuere4" name="zimm01tuere0000"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01tuere4" class="radio-label"></label>
                         </td>
@@ -3566,6 +3609,10 @@
                             <label for="zimm01tuere5" class="radio-label"></label>
                         </td>
                     </tr>
+
+
+
+
 
 
                     <tr>
@@ -3602,12 +3649,12 @@
                             <label for="zimm01fenster2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01fenster3" name="zimm01fenster"
+                            <input type="radio" id="zimm01fenster3" name="zimm01fenster00"
                                 value="Reparatur durch den Mieter">
                             <label for="zimm01fenster3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01fenster4" name="zimm01fenster"
+                            <input type="radio" id="zimm01fenster4" name="zimm01fenster00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01fenster4" class="radio-label"></label>
                         </td>
@@ -3629,11 +3676,12 @@
                             <label for="zimm01rollo2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01rollo3" name="zimm01rollo" value="Reparatur durch den Mieter">
+                            <input type="radio" id="zimm01rollo3" name="zimm01rollo00"
+                                value="Reparatur durch den Mieter">
                             <label for="zimm01rollo3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01rollo4" name="zimm01rollo"
+                            <input type="radio" id="zimm01rollo4" name="zimm01rollo00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01rollo4" class="radio-label"></label>
                         </td>
@@ -3655,11 +3703,12 @@
                             <label for="zimm01decke2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01decke3" name="zimm01decke" value="Reparatur durch den Mieter">
+                            <input type="radio" id="zimm01decke3" name="zimm01decke00"
+                                value="Reparatur durch den Mieter">
                             <label for="zimm01decke3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01decke4" name="zimm01decke"
+                            <input type="radio" id="zimm01decke4" name="zimm01decke00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01decke4" class="radio-label"></label>
                         </td>
@@ -3681,12 +3730,12 @@
                             <label for="zimm01waende2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01waende3" name="zimm01waende"
+                            <input type="radio" id="zimm01waende3" name="zimm01waende00"
                                 value="Reparatur durch den Mieter">
                             <label for="zimm01waende3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01waende4" name="zimm01waende"
+                            <input type="radio" id="zimm01waende4" name="zimm01waende00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01waende4" class="radio-label"></label>
                         </td>
@@ -3724,12 +3773,12 @@
                             <label for="zimm01heizkoerper2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01heizkoerper3" name="zimm01heizkoerper"
+                            <input type="radio" id="zimm01heizkoerper3" name="zimm01heizkoerper00"
                                 value="Reparatur durch den Mieter">
                             <label for="zimm01heizkoerper3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01heizkoerper4" name="zimm01heizkoerper"
+                            <input type="radio" id="zimm01heizkoerper4" name="zimm01heizkoerper00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01heizkoerper4" class="radio-label"></label>
                         </td>
@@ -3752,12 +3801,12 @@
                             <label for="zimm01fussboden2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01fussboden3" name="zimm01fussboden"
+                            <input type="radio" id="zimm01fussboden3" name="zimm01fussboden00"
                                 value="Reparatur durch den Mieter">
                             <label for="zimm01fussboden3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01fussboden4" name="zimm01fussboden"
+                            <input type="radio" id="zimm01fussboden4" name="zimm01fussboden00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01fussboden4" class="radio-label"></label>
                         </td>
@@ -3813,12 +3862,12 @@
                             <label for="zimm01internet2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01internet3" name="zimm01internet"
+                            <input type="radio" id="zimm01internet3" name="zimm01internet00"
                                 value="Reparatur durch den Mieter">
                             <label for="zimm01internet3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01internet4" name="zimm01internet"
+                            <input type="radio" id="zimm01internet4" name="zimm01internet00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01internet4" class="radio-label"></label>
                         </td>
@@ -3845,12 +3894,12 @@
                             <label for="zimm01elektrik2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01elektrik3" name="zimm01elektrik"
+                            <input type="radio" id="zimm01elektrik3" name="zimm01elektrik00"
                                 value="Reparatur durch den Mieter">
                             <label for="zimm01elektrik3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zimm01elektrik4" name="zimm01elektrik"
+                            <input type="radio" id="zimm01elektrik4" name="zimm01elektrik00"
                                 value="Reparatur durch den Vermieter">
                             <label for="zimm01elektrik4" class="radio-label"></label>
                         </td>
@@ -3893,15 +3942,22 @@
                     </tr>
 
 
-
-
-
                     <tr>
                         <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                        <td colspan="5">
-                            <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                    </tr>
+
+                    <tr>
+                        <td colspan="6">
+                            <div class="dupli-container">
+                                <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                                <button class="dupli-button" onclick="duplicateRow(this)">
+                                    +
+                                </button>
+                            </div>
                         </td>
                     </tr>
+    
+    
 
 
 
@@ -3984,12 +4040,12 @@
                             <label for="nebenraumbalkon2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumbalkon3" name="nebenraumbalkon"
+                            <input type="radio" id="nebenraumbalkon3" name="nebenraumbalkon00"
                                 value="Reparatur durch den Mieter">
                             <label for="nebenraumbalkon3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumbalkon4" name="nebenraumbalkon"
+                            <input type="radio" id="nebenraumbalkon4" name="nebenraumbalkon00"
                                 value="Reparatur durch den Vermieter">
                             <label for="nebenraumbalkon4" class="radio-label"></label>
                         </td>
@@ -4013,12 +4069,12 @@
                             <label for="nebenraumkeller2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumkeller3" name="nebenraumkeller"
+                            <input type="radio" id="nebenraumkeller3" name="nebenraumkeller00"
                                 value="Reparatur durch den Mieter">
                             <label for="nebenraumkeller3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumkeller4" name="nebenraumkeller"
+                            <input type="radio" id="nebenraumkeller4" name="nebenraumkeller00"
                                 value="Reparatur durch den Vermieter">
                             <label for="nebenraumkeller4" class="radio-label"></label>
                         </td>
@@ -4040,12 +4096,12 @@
                             <label for="nebenraumdachboden2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumdachboden3" name="nebenraumdachboden"
+                            <input type="radio" id="nebenraumdachboden3" name="nebenraumdachboden00"
                                 value="Reparatur durch den Mieter">
                             <label for="nebenraumdachboden3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumdachboden4" name="nebenraumdachboden"
+                            <input type="radio" id="nebenraumdachboden4" name="nebenraumdachboden00"
                                 value="Reparatur durch den Vermieter">
                             <label for="nebenraumdachboden4" class="radio-label"></label>
                         </td>
@@ -4068,12 +4124,12 @@
                             <label for="nebenraumgarage2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumgarage3" name="nebenraumgarage"
+                            <input type="radio" id="nebenraumgarage3" name="nebenraumgarage00"
                                 value="Reparatur durch den Mieter">
                             <label for="nebenraumgarage3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="nebenraumgarage4" name="nebenraumgarage"
+                            <input type="radio" id="nebenraumgarage4" name="nebenraumgarage00"
                                 value="Reparatur durch den Vermieter">
                             <label for="nebenraumgarage4" class="radio-label"></label>
                         </td>
@@ -4084,18 +4140,23 @@
                     </tr>
 
 
-
-
-
+                    <tr>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
+                    </tr>
 
 
                     <tr>
-                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
-                        <td colspan="5">
-                            <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                        <td colspan="6">
+                            <div class="dupli-container">
+                                <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                                <button class="dupli-button" onclick="duplicateRow(this)">
+                                    +
+                                </button>
+                            </div>
                         </td>
                     </tr>
-
+    
+    
 
 
                 </table>
@@ -4141,10 +4202,11 @@
                             <input type="radio" id="weitereBemerkungen2" name="weitereBemerkungen1" value="nein">
                             <label for="weitereBemerkungen2" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
+                        <td class="no-border-right text-right"
+                            style="text-align: right; background-color:#fff; padding-left:40px">
                             NEIN
                         </td>
-                        <td>
+                        <td style="padding-right:11px" ;>
                             <input type="radio" id="weitereBemerkungen3" name="weitereBemerkungen1"
                                 value="nichtzutreffend">
                             <label for="weitereBemerkungen3" class="radio-label"></label>
@@ -4153,7 +4215,7 @@
 
                     <!-- Zweite Zeile -->
                     <tr>
-                        <td>
+                        <td style="background-color:#f1f1f1;">
                             ...verpflichtet sich für die Beseitigung erforderlichen Arbeiten bis zum
                             <span class="date-input-container">
                                 <input type="date" id="arbeitsdatum" name="arbeitsdatum" class="elegant-date-input">
@@ -4163,21 +4225,21 @@
                         <td class="no-border-right text-right" style="text-align: right;">
                             JA
                         </td>
-                        <td>
+                        <td style="background-color:#f1f1f1;">
                             <input type="radio" id="weitereBemerkungen4" name="weitereBemerkungen2" value="ja">
                             <label for="weitereBemerkungen4" class="radio-label"></label>
                         </td>
                         <td class="no-border-right text-right" style="text-align:right;">
                             NEIN
                         </td>
-                        <td>
+                        <td style="background-color:#f1f1f1;">
                             <input type="radio" id="weitereBemerkungen5" name="weitereBemerkungen2" value="nein">
                             <label for="weitereBemerkungen5" class="radio-label"></label>
                         </td>
                         <td class="no-border-right text-right" style="text-align:right;">
                             nicht zutreffend
                         </td>
-                        <td>
+                        <td style="background-color:#f1f1f1;">
                             <input type="radio" id="weitereBemerkungen6" name="weitereBemerkungen2"
                                 value="nichtzutreffend">
                             <label for="weitereBemerkungen6" class="radio-label"></label>
@@ -4189,21 +4251,21 @@
                         <td>...ermächtigt den Vermieter, die erforderlichen Arbeiten zu beauftragen. Er verpflichtet
                             sich, die dadurch entstehenden Kosten nach Rechnungsstellung zu bezahlen, ggf. mit der
                             Mietsicherheit verrechnen zu lassen oder...</td>
-                        <td class="no-border-right text-right" style="text-align:right;">
+                        <td class="no-border-right text-right" style="text-align:right; background-color:#fff;">
                             JA
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen7" name="weitereBemerkungen3" value="ja">
                             <label for="weitereBemerkungen7" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right" style="text-align:right;">
+                        <td class="no-border-right text-right" style="text-align:right; background-color:#fff;">
                             NEIN
                         </td>
                         <td>
                             <input type="radio" id="weitereBemerkungen8" name="weitereBemerkungen3" value="nein">
                             <label for="weitereBemerkungen8" class="radio-label"></label>
                         </td>
-                        <td class="no-border-right text-right" style="text-align:right;">
+                        <td class="no-border-right text-right" style="text-align:right; background-color:#fff;">
                             nicht zutreffend
                         </td>
                         <td>
@@ -4215,12 +4277,12 @@
 
                     <!-- Vierte Zeile -->
                     <tr>
-                        <td>
+                        <td style="background-color:#f1f1f1;">
                             ...wird diese Verpflichtung durch Zahlung eines Pauschalbetrages von € abgegolten.
                         </td>
 
                         <!-- Tabellenzelle für den Pauschalbetrag und das €-Symbol -->
-                        <td class="no-border-right text-right">
+                        <td class="no-border-right text-right" style="background-color:#f1f1f1;">
                             <div class="input-euro-container">
                                 <input type="number" id="pauschalbetrag" name="pauschalbetrag"
                                     class="elegant-number-input" min="0" step="1">
@@ -4229,7 +4291,8 @@
                         </td>
 
                         <!-- Tabellenzelle für "nicht zutreffend" -->
-                        <td style="text-align:right;" colspan="4" class="no-border-right text-right">
+                        <td style="text-align:right; background-color:#f1f1f1;" colspan="4"
+                            class="no-border-right text-right">
                             nicht zutreffend
                         </td>
                         <td colspan="4" style="text-align: center; font-weight: bold;">
@@ -4240,15 +4303,24 @@
                     </tr>
 
 
-
-
-                    <!-- Fünfte Zeile: Bemerkungen -->
                     <tr>
                         <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
+                    </tr>
+
+
+                    <tr>
                         <td colspan="6">
-                            <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                            <div class="dupli-container">
+                                <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                                <button class="dupli-button" onclick="duplicateRow(this)">
+                                    +
+                                </button>
+                            </div>
                         </td>
                     </tr>
+    
+
+                    
                 </table>
 
 
@@ -4265,7 +4337,7 @@
                 <table>
                     <!-- Erste Zeile -->
                     <tr>
-                        <td colspan="2">anzeigen</td>
+                        <td colspan="2"></td>
                         <td colspan="2" class="no-border-right text-right"
                             style="background-color:#fff; text-align:right;">
                             JA
@@ -4279,35 +4351,50 @@
                             nicht erforderlich
                         </td>
                         <td>
-                            <input type="radio" id="hauptBemerkungen2" name="hauptBemerkungen1" value="nein">
-                            <label for="hauptBemerkungen2" class="radio-label"></label>
+                            <input type="radio" id="hauptBemerkungen2" name="hauptBemerkungen1" value="nein" style="padding-right:10px;">
+                            <label for="hauptBemerkungen2" class="radio-label"  style="padding-right:20px;"></label>
                         </td>
                     </tr>
 
+
+
+
                     <!-- Zweite Zeile -->
                     <tr>
-                        <td colspan="2">
+                        <td colspan="5">
                             ...Dieses Protokoll ist Bestandteil des Mietvertrags (bei Einzug)
                         </td>
-                        <td colspan="2" class="no-border-right text-right" style="background-color:#fff; text-align:right;>
+                        <td colspan="1" class="no-border-right text-right"
+                            style="background-color:#fff; text-align:right;">
                                 JA
                             </td>
-                            <td>
-                                <input type=" checkbox" id="hauptBemerkungen4" name="hauptBemerkungen2" value="ja"
+                            <td colspan="2">
+                                <input type="checkbox" id="hauptBemerkungen4" name="hauptBemerkungen2" value="ja"
                             hidden>
                             <label for="hauptBemerkungen4" class="checkbox-label"></label>
                         </td>
                     </tr>
 
+
+
+
                     <!-- Dritte Zeile: Bemerkungen -->
                     <tr>
-                        <td colspan="1" style="width: 10%; vertical-align: top; font-weight:600; padding-top:15px;">
-                            Bemerkungen</td> <!-- Schmale Zelle -->
-                        <td colspan="7" style="width: 90%;"> <!-- Breite Zelle -->
-                            <textarea name="bemerkungen" class="bemerkung-textarea"></textarea>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen00</td>
+                    </tr>
 
+                    <tr>
+                        <td colspan="6">
+                            <div class="dupli-container">
+                                <input type="text" class="dupli" placeholder="Bemerkungen..." maxlength="113">
+                                <button class="dupli-button" onclick="duplicateRow(this)">
+                                    +
+                                </button>
+                            </div>
                         </td>
                     </tr>
+
+
                 </table>
             </div>
         </div>
@@ -4316,36 +4403,68 @@
         <!-- sign -->
         <div class="sign">
             <h3 class="sign02">Unterschriften</h3>
-            <div class="signature-content"><br>
+
+
+
+
+
+            <div class="signature-content">
+
+
+<!--                 <tr>
+                    <td colspan="5">
+                        ...Dieses Protokoll ist Bestandteil des Mietvertrags (bei Einzug)
+                    </td>
+                    <td colspan="1" class="no-border-right text-right"
+                        style="background-color:#fff; text-align:right;">
+                            JA
+                        </td>
+                        <td colspan="2">
+                            <input type=" checkbox" id="hauptBemerkungen4" name="hauptBemerkungen2" value="ja"
+                        hidden>
+                        <label for="hauptBemerkungen4" class="checkbox-label"></label>
+                    </td>
+                </tr> -->
+
+                
                 <div style="font-size:22px; margin-left:15px;">
                     Dieses Protokoll erkennen die Unterzeichner an. Es ist Bestandteil des Mieterverhältnisses /
                     Mietvertrags. <br><br>Info: Für Ummeldungen beim Energieversorger sind die Mieter zuständig!
                     <br><br>
                 </div>
+
                 <div class="signature-container">
-                    <label for="mieter-signature">Mieter:</label>
+                    <label for="mieter-signature">Mieter 1:</label>
                     <div class="signature-box">
-                        <canvas id="mieter-signature" class="signature-canvas"></canvas>
                         <button type="button" class="signature-clear-btn"
                             onclick="clearSignature('mieter-signature')">x</button>
+                        <canvas id="mieter-signature" class="signature-canvas"></canvas>
+                    </div>
+                </div>
+
+                <div class="signature-container">
+                    <label for="mieter-signature2">Mieter 2:</label>
+                    <div class="signature-box">
+                        <button type="button" class="signature-clear-btn"
+                            onclick="clearSignature('mieter-signature2')">x</button>
+                        <canvas id="mieter-signature2" class="signature-canvas"></canvas>
                     </div>
                 </div>
 
                 <div class="signature-container">
                     <label for="vermieter-signature">Vermieter:</label>
                     <div class="signature-box">
-                        <canvas id="vermieter-signature" class="signature-canvas"></canvas>
                         <button type="button" class="signature-clear-btn"
                             onclick="clearSignature('vermieter-signature')">x</button>
+                        <canvas id="vermieter-signature" class="signature-canvas2"></canvas>
                     </div>
                 </div>
             </div>
+
+
+
+            <script src="script.js"></script>
         </div>
-
-
-
-        <script src="script.js"></script>
-    </div>
 
 
 </body>
