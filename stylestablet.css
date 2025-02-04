@@ -9,7 +9,7 @@ body {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding:20px;
+    padding: 20px;
 }
 
 table {
@@ -32,7 +32,7 @@ td {
     text-align: left;
     word-wrap: break-word;
     line-height: 1.1;
-    border:none;
+    border: none;
 }
 
 .rooms td:nth-child(even) {
@@ -75,7 +75,28 @@ select {
 
 
 textarea {
+    font-family: Arial, sans-serif;
+    /* Schriftart festlegen */
     min-height: 48px;
+    /* Minimale Höhe */
+    line-height: 1;
+    /* Zeilenhöhe */
+    resize: vertical;
+    /* Nur vertikales Vergrößern erlauben */
+    width: 100%;
+    /* Volle Breite des Containers nutzen */
+    max-width: 100%;
+    /* Verhindert horizontales Überlaufen */
+    box-sizing: border-box;
+    /* Padding und Border in der Breite berücksichtigen */
+    padding: 8px;
+    /* Innenabstand für bessere Benutzerfreundlichkeit */
+    border: 1px solid #ccc;
+    /* Rand hinzufügen */
+    border-radius: 4px;
+    /* Abgerundete Ecken */
+    font-size: 20px;
+    /* Schriftgröße */
 }
 
 select {
@@ -148,8 +169,7 @@ h3 {
 
 
 h3 {
-    font-size: 22px
-;
+    font-size: 22px;
 
 }
 
@@ -179,6 +199,13 @@ h2 {
     height: 150px;
 }
 
+.signature-canvas2 {
+    border: 3px solid #20842b;
+    background: #fffce1;
+    width: 500px;
+    height: 150px;
+}
+
 .allgemein {
 
     border: 0px;
@@ -190,8 +217,7 @@ h2 {
     border-radius: 5px;
     border-color: 1px solid rgb(189, 189, 189);
     ;
-    font-size: 22px
-;
+    font-size: 22px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -230,6 +256,7 @@ h2 {
     /* Elemente vertikal zentrieren */
     gap: 10px;
     /* Abstand zwischen Label und Signature-Box */
+    padding: 22px;
 }
 
 .signature-container label {
@@ -348,11 +375,11 @@ h2 {
 #toggleModeButton {
     background-color: rgb(105, 130, 187);
     color: #fff;
-    font-size:18px;
+    font-size: 18px;
     border-radius: 7px;
-    padding-left:15px;
+    padding-left: 15px;
     padding-right: 15px;
-    border:none;
+    border: none;
 }
 
 
@@ -408,7 +435,7 @@ body {
     display: flex;
     gap: 10px;
     /* Abstand zwischen Buttons */
-    opacity:0.9;
+    opacity: 0.9;
 }
 
 
@@ -423,16 +450,54 @@ body {
     height: 25px;
     /* Höhe der Zellen */
     line-height: 20px;
-  
+
 }
 
 h3 {
-    margin-left:8px;
+    margin-left: 8px;
 }
 
-        /* Stile für das Label, um Zeilenumbruch zu verhindern */
-        .signature-container label {
-            white-space: nowrap; /* Verhindert den Zeilenumbruch */
-            display: inline-block; /* Stellt sicher, dass das Label korrekt ausgerichtet ist */
-            margin-right: 10px; /* Optional: Abstand zwischen Label und Unterschriftsfeld */
-        }
+/* Stile für das Label, um Zeilenumbruch zu verhindern */
+.signature-container label {
+    white-space: nowrap;
+    /* Verhindert den Zeilenumbruch */
+    display: inline-block;
+    /* Stellt sicher, dass das Label korrekt ausgerichtet ist */
+    margin-right: 10px;
+    /* Optional: Abstand zwischen Label und Unterschriftsfeld */
+}
+
+/* Stil für das Container-Element des Input-Felds und Buttons */
+.dupli-container {
+    position: relative;
+}
+
+/* Stil für das Input-Feld */
+.dupli {
+    width: 100%;
+    /* Volle Breite des Containers */
+    max-width: 100%;
+    /* Maximale Breite */
+    font-size: 15px !important;
+    background-color: rgb(232, 237, 246) !important;
+}
+
+/* Stil für den grünen Plus-Button */
+.dupli-button {
+    position: absolute;
+    right: 8px;
+    bottom: 9.8px;
+    font-size: 19.2px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+/* Stil, um den Button auszublenden */
+.dupli-button.hidden {
+    display: none;
+}
