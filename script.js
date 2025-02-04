@@ -20,16 +20,6 @@ function toggleMode() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* button einziehenden Mieter hinzufügen */
 document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
     const newRow2 = document.createElement('tr');
@@ -359,6 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     initializeWhenVisible("mieter-signature", () => initSignatureCanvas("mieter-signature"));
+    initializeWhenVisible("mieter-signature2", () => initSignatureCanvas("mieter-signature2"));
     initializeWhenVisible("vermieter-signature", () => initSignatureCanvas("vermieter-signature"));
 });
 
@@ -487,15 +478,6 @@ document.getElementById('pauschalbetrag').addEventListener('input', function (e)
 
 
 
-// Funktion zum Löschen der Unterschrift
-function clearSignature(canvasId) {
-    const canvas = document.getElementById(canvasId);
-    const context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-
-
 
 
 /* Bild hochladen */
@@ -521,11 +503,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Wenn das Bild geladen ist
                     img.onload = function () {
-                        // Skaliere das Bild auf maximal 900x600 Pixel
+                        // Skaliere das Bild auf n Pixel
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
 
-                        const maxWidth = 800;
+                        const maxWidth = 1000;
                         const maxHeight = 500;
                         let width = img.width;
                         let height = img.height;
@@ -720,9 +702,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
 
 
-
-
-/* Farbe verändern von weiteren Bemerkungen */
+/* Farbe der Toggle-Überschriften verändern von weiteren Bemerkungen */
 window.addEventListener('DOMContentLoaded', function () {
     // Container für "weitereBemerkungen"
     const container1 = document.getElementById('weitereBemerkungenContainer');
@@ -756,7 +736,9 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-window.addEventListener('DOMContentLoaded', function () {
+
+/* vermutlich hinfällig */
+/* window.addEventListener('DOMContentLoaded', function () {
     // Hole das H3-Element mit der Klasse sign02
     const signHeader = document.querySelector('.sign02');
 
@@ -777,8 +759,7 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-});
-
+}); */
 
 
 
@@ -786,107 +767,103 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /* Schriftgröße für Textinputfelder verkleinern, wenn zu viel Text eingegeeben wurden */
 document.addEventListener("DOMContentLoaded", function () {
-    // Container für die Eingabefelder (optional: falls dynamische Inputs hinzugefügt werden)
-    const container = document.body; // oder ein spezifischer Container (z.B. 'form')
+    const container = document.body;
 
-    // Funktion zur Anpassung der Schriftgröße basierend auf dem Platzhalter und der Textlänge
     function adjustFontSize(input) {
-        const placeholder = input.getAttribute("placeholder")?.trim().toLowerCase(); // Platzhalter normalisieren
+        const placeholder = input.getAttribute("placeholder")?.trim().toLowerCase();
         const currentLength = input.value.length;
 
-        // Überprüfe, ob der Platzhalter "Tel.:" ist
+        // Überspringe Input-Felder mit dem Platzhalter "Bemerkungen..."
+        if (placeholder === "bemerkungen...") {
+            return; // Beende die Funktion, ohne die Schriftgröße anzupassen
+        }
+
         if (placeholder === "tel.:") {
-            const maxLength = 9; // Schriftgröße ändert sich nach 10 Zeichen
+            const maxLength = 9;
             if (currentLength > maxLength) {
                 let newFontSize = 18 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "22px"; // Standard-Schriftgröße
+                input.style.fontSize = "22px";
             }
         }
 
-        // Überprüfe, ob der Platzhalter "E-Mail" ist
         else if (placeholder === "e-mail") {
-            const maxLength = 25; // Schriftgröße ändert sich nach 25 Zeichen
+            const maxLength = 25;
             if (currentLength > maxLength) {
                 let newFontSize = 20 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "20px"; // Standard-Schriftgröße
+                input.style.fontSize = "20px";
             }
         }
 
-        // Überprüfe, ob der Platzhalter "Vorname" ist
         else if (placeholder === "vorname") {
-            const maxLength = 12; // Schriftgröße ändert sich nach 12 Zeichen
+            const maxLength = 12;
             if (currentLength > maxLength) {
                 let newFontSize = 20 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "20px"; // Standard-Schriftgröße
+                input.style.fontSize = "20px";
             }
         }
 
-        // Überprüfe, ob der Platzhalter "PLZ / Ort" ist
         else if (placeholder === "plz / ort") {
-            const maxLength = 16; // Schriftgröße ändert sich nach 16 Zeichen
+            const maxLength = 16;
             if (currentLength > maxLength) {
                 let newFontSize = 20 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "20px"; // Standard-Schriftgröße
+                input.style.fontSize = "20px";
             }
         }
 
-        // Überprüfe, ob der Platzhalter "Zählernummer" ist
         else if (placeholder === "zählernummer") {
-            const maxLength = 16; // Schriftgröße ändert sich nach 16 Zeichen
+            const maxLength = 16;
             if (currentLength > maxLength) {
                 let newFontSize = 20 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "20px"; // Standard-Schriftgröße
+                input.style.fontSize = "20px";
             }
         }
 
-        // Überprüfe, ob der Platzhalter "exakte Einbaulage" ist
         else if (placeholder === "exakte einbaulage") {
-            const maxLength = 32; // Schriftgröße ändert sich nach 32 Zeichen
+            const maxLength = 32;
             if (currentLength > maxLength) {
                 let newFontSize = 20 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "20px"; // Standard-Schriftgröße
+                input.style.fontSize = "20px";
             }
         }
 
-        // Überprüfe, ob der Platzhalter "Zählerstand" ist
         else if (placeholder === "zählerstand") {
-            const maxLength = 11; // Schriftgröße ändert sich nach 11 Zeichen
+            const maxLength = 11;
             if (currentLength > maxLength) {
                 let newFontSize = 18 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "20px"; // Standard-Schriftgröße
+                input.style.fontSize = "20px";
             }
         }
 
         // Für alle anderen Inputfelder (z. B. Name, Vorname)
         else {
-            const maxLength = 29; // Schriftgröße ändert sich nach 29 Zeichen
+            const maxLength = 29;
             if (currentLength > maxLength) {
                 let newFontSize = 20 - (currentLength - maxLength) * 0.5;
-                newFontSize = Math.max(newFontSize, 8); // Mindestschriftgröße von 8px
+                newFontSize = Math.max(newFontSize, 8);
                 input.style.fontSize = `${newFontSize}px`;
             } else {
-                input.style.fontSize = "22px"; // Standard-Schriftgröße
+                input.style.fontSize = "22px";
             }
         }
     }
@@ -894,32 +871,95 @@ document.addEventListener("DOMContentLoaded", function () {
     // Beim Laden der Seite alle Inputfelder durchlaufen und Schriftgröße anpassen
     const inputs = container.querySelectorAll('input[type="text"]');
     inputs.forEach(input => {
-        adjustFontSize(input); // Schriftgröße beim Laden anpassen
+        adjustFontSize(input);
     });
 
     // Event-Listener für Änderungen in den Inputfeldern
     container.addEventListener("input", function (event) {
         if (event.target && event.target.type === "text") {
-            adjustFontSize(event.target); // Schriftgröße bei Eingabe anpassen
+            adjustFontSize(event.target);
         }
     });
 });
 
 
-/* versehentlich geklickte Radiobutton wieder deaktivieren */
-        document.addEventListener("DOMContentLoaded", function () {
-            const radioButtons = document.querySelectorAll('input[type="radio"]');
 
-            radioButtons.forEach(radio => {
-                radio.addEventListener("click", function () {
-                    if (this.checked && this.dataset.previouslyChecked) {
-                        // Wenn der Radio-Button bereits ausgewählt war, deaktiviere ihn
-                        this.checked = false;
-                        this.dataset.previouslyChecked = "";
-                    } else {
-                        // Markiere den Radio-Button als zuvor ausgewählt
-                        this.dataset.previouslyChecked = "true";
-                    }
-                });
-            });
+/* versehentlich geklickte Radiobutton wieder deaktivieren */
+document.addEventListener("DOMContentLoaded", function () {
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener("click", function () {
+            if (this.checked && this.dataset.previouslyChecked) {
+                // Wenn der Radio-Button bereits ausgewählt war, deaktiviere ihn
+                this.checked = false;
+                this.dataset.previouslyChecked = "";
+            } else {
+                // Markiere den Radio-Button als zuvor ausgewählt
+                this.dataset.previouslyChecked = "true";
+            }
         });
+    });
+});
+
+
+
+// Funktion zur Anpassung der Höhe des Textarea
+/* function adjustTextareaHeight(textarea) {
+
+    textarea.style.height = "auto";
+
+    textarea.style.height = textarea.scrollHeight + "px";
+}
+function initializeTextareaAutoResize() {
+    // Wähle alle Textarea-Elemente mit der Klasse "bemerkung-textarea" aus
+    const textareas = document.querySelectorAll(".bemerkung-textarea");
+
+    // Wende die Höhenanpassung auf jedes Textarea-Element an
+    textareas.forEach(textarea => {
+        // Höhe sofort anpassen (falls bereits Text vorhanden ist)
+        adjustTextareaHeight(textarea);
+
+        // Höhe bei jeder Eingabe anpassen
+        textarea.addEventListener("input", () => {
+            adjustTextareaHeight(textarea);
+        });
+    });
+}
+document.addEventListener("DOMContentLoaded", initializeTextareaAutoResize);
+window.addEventListener("load", initializeTextareaAutoResize);
+ */
+
+
+
+/* Bemerkungszeile duplizieren */
+function duplicateRow(button) {
+    // Finde die aktuelle Zeile (die Zeile, in der der Button geklickt wurde)
+    const row = button.closest('tr');
+
+    // Klone die Zeile
+    const newRow = row.cloneNode(true);
+
+    // Lösche den Wert im Input-Feld der neuen Zeile
+    const inputField = newRow.querySelector('input.dupli');
+    if (inputField) {
+        inputField.value = '';
+    }
+
+    // Verstecke den Button in der aktuellen Zeile
+    const currentButton = row.querySelector('.dupli-button');
+    if (currentButton) {
+        currentButton.classList.add('hidden');
+    }
+
+    // Füge die neue Zeile nach der aktuellen Zeile ein
+    row.parentNode.insertBefore(newRow, row.nextSibling);
+}
+
+
+// Funktion zum Löschen der Unterschrift
+function clearSignature(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
