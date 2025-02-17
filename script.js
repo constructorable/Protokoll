@@ -24,58 +24,30 @@ function toggleMode() {
 
 
 
-/* Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc nicht vorkommen */
-/* Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc nicht vorkommen */
-/* Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc nicht vorkommen */
+/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
+/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
+/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
 document.addEventListener("DOMContentLoaded", function () {
-    // Funktion zur Überprüfung der Tabelle für "Schlüssel"
-    function checkAndUpdateSchluessel() {
-        let table = document.getElementById("schluesselTable");
-
-        // Durchlaufe alle h3-Elemente
-        document.querySelectorAll("h3").forEach(function (h3) {
-            let text = h3.textContent.trim();
-
-            if (table) {
-                // Falls die Tabelle existiert, stelle sicher, dass die Überschrift "Schlüssel" ist
-                if (text === "Schlüssel (nicht angegeben)") {
-                    h3.textContent = "Schlüssel";
-                    h3.style.color = "black";
-                    h3.style.borderBottom = "0px solid black";
-                    h3.style.paddingBottom = "0px";
-                }
-            } else {
-                // Falls die Tabelle nicht existiert, ändere "Schlüssel" zu "Schlüssel (nicht angegeben)"
-                if (text === "Schlüssel") {
-                    h3.textContent = "Schlüssel (nicht angegeben)";
-                    h3.style.color = "red";
-                    h3.style.borderBottom = "1px solid black";
-                    h3.style.paddingBottom = "5px";
-                }
-            }
-        });
-    }
-
-    // Funktion zur Überprüfung der Tabelle für "ausziehender Mieter"
-    function checkAndUpdateAusziehenderMieter() {
-        let table = document.getElementById("auszugmieterTable");
+    // Allgemeine Funktion zur Überprüfung und Aktualisierung von Überschriften
+    function checkAndUpdateHeading(tableId, headingText, notGivenText) {
+        let table = document.getElementById(tableId);
 
         document.querySelectorAll("h3").forEach(function (h3) {
             let text = h3.textContent.trim();
 
             if (table) {
-                // Falls die Tabelle existiert, stelle sicher, dass die Überschrift wieder "ausziehender Mieter" ist
-                if (text === "ausziehender Mieter (nicht zutreffend)") {
-                    h3.textContent = "ausziehender Mieter";
+                // Wenn die Tabelle existiert, setze die Überschrift auf den Standardtext
+                if (text === notGivenText) {
+                    h3.textContent = headingText;
                     h3.style.color = "black";
                     h3.style.borderBottom = "0px solid black";
                     h3.style.paddingBottom = "0px";
                 }
             } else {
-                // Falls die Tabelle nicht existiert, ändere "ausziehender Mieter" zu "ausziehender Mieter (nicht zutreffend)"
-                if (text === "ausziehender Mieter") {
-                    h3.textContent = "ausziehender Mieter (nicht zutreffend)";
-                    h3.style.color = "red";
+                // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
+                if (text === headingText) {
+                    h3.textContent = notGivenText;
+                    h3.style.color = "blue";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -88,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let found = false;
 
         // Prüfe, ob ein Element mit der ID, die "NameEin" enthält, vorhanden ist
-        for (let i = 1; i <= 99; i++) { // Gehe von NameEin01 bis NameEin99 durch
+        for (let i = 1; i <= 99; i++) {
             let element = document.getElementById("NameEin" + String(i).padStart(2, "0"));
             if (element) {
                 found = true;
@@ -96,12 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Wenn ein passendes Element gefunden wurde, die Überschrift anpassen
+        // Passe die Überschrift basierend auf dem Vorhandensein der Tabelle an
         document.querySelectorAll("h3").forEach(function (h3) {
             let text = h3.textContent.trim();
 
             if (found) {
-                // Falls ein "NameEin" Element gefunden wurde, stelle sicher, dass die Überschrift wieder "einziehender Mieter" ist
                 if (text === "einziehender Mieter (nicht zutreffend)") {
                     h3.textContent = "einziehender Mieter";
                     h3.style.color = "black";
@@ -109,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     h3.style.paddingBottom = "0px";
                 }
             } else {
-                // Falls kein "NameEin" Element vorhanden ist, ändere "einziehender Mieter" zu "einziehender Mieter (nicht zutreffend)"
                 if (text === "einziehender Mieter") {
                     h3.textContent = "einziehender Mieter (nicht zutreffend)";
                     h3.style.color = "red";
@@ -121,87 +91,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Initiale Prüfung beim Laden der Seite
-    checkAndUpdateSchluessel();  // Standardmäßig wird "Schlüssel (nicht angegeben)" angezeigt
-    checkAndUpdateAusziehenderMieter();
+    checkAndUpdateHeading("schluesselTable", "Schlüssel", "Schlüssel (nicht angegeben)");
+    checkAndUpdateHeading("auszugmieterTable", "ausziehender Mieter", "ausziehender Mieter (nicht zutreffend)");
+    checkAndUpdateHeading("zaehlerTable", "Zähler", "Zähler (nicht angegeben)");
     checkAndUpdateEinziehenderMieter();
 
-    // Event Listener für den Button "Schlüssel hinzufügen"
+    // Event Listener für Buttons
     document.getElementById('addKeyButton').addEventListener('click', function () {
-        // Überprüfe nach dem Hinzufügen des Schlüssels die Tabelle und passe die Überschrift an
         setTimeout(function () {
-            checkAndUpdateSchluessel();  // Überprüft, ob die Tabelle jetzt existiert und passt die Überschrift an
-            checkAndUpdateAusziehenderMieter();
+            checkAndUpdateHeading("schluesselTable", "Schlüssel", "Schlüssel (nicht angegeben)");
+            checkAndUpdateHeading("auszugmieterTable", "ausziehender Mieter", "ausziehender Mieter (nicht zutreffend)");
             checkAndUpdateEinziehenderMieter();
-        }, 100); // Verzögerung nach der Änderung im DOM
+        }, 100);
     });
 
-    // Event Listener für den Button "ausziehender Mieter hinzufügen"
     document.getElementById('addausziehenderMieter').addEventListener('click', function () {
-        // Überprüfe nach dem Hinzufügen des Mieters die Tabelle und passe die Überschrift an
         setTimeout(function () {
-            checkAndUpdateAusziehenderMieter();
+            checkAndUpdateHeading("auszugmieterTable", "ausziehender Mieter", "ausziehender Mieter (nicht zutreffend)");
             checkAndUpdateEinziehenderMieter();
-            checkAndUpdateSchluessel();  // Auch die Schlüssel-Überschrift wird überprüft
-        }, 100); // Verzögere die Überprüfung ein wenig, um DOM-Änderungen abzuwarten
+            checkAndUpdateHeading("schluesselTable", "Schlüssel", "Schlüssel (nicht angegeben)");
+        }, 100);
     });
 
-    // Event Listener für den Button "einziehender Mieter hinzufügen"
     document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
-        // Überprüfe nach dem Hinzufügen des Mieters die Tabelle und passe die Überschrift an
         setTimeout(function () {
-            checkAndUpdateAusziehenderMieter();
+            checkAndUpdateHeading("auszugmieterTable", "ausziehender Mieter", "ausziehender Mieter (nicht zutreffend)");
             checkAndUpdateEinziehenderMieter();
-            checkAndUpdateSchluessel();  // Auch die Schlüssel-Überschrift wird überprüft
-        }, 100); // Verzögere die Überprüfung ein wenig, um DOM-Änderungen abzuwarten
+            checkAndUpdateHeading("schluesselTable", "Schlüssel", "Schlüssel (nicht angegeben)");
+        }, 100);
     });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    function checkAndUpdateZaehler() {
-        let table = document.getElementById("zaehlerTable");
 
-        document.querySelectorAll("h3").forEach(function (h3) {
-            let text = h3.textContent.trim();
-
-            if (table) {
-                if (text === "Zähler (nicht angegeben)") {
-                    h3.textContent = "Zähler";
-                    h3.style.color = "black";
-                    h3.style.borderBottom = "0px solid black";
-                    h3.style.paddingBottom = "0px";
-                }
-            } else {
-                if (text === "Zähler") {
-                    h3.textContent = "Zähler (nicht angegeben)";
-                    h3.style.color = "red";
-                    h3.style.borderBottom = "1px solid black";
-                    h3.style.paddingBottom = "5px";
-                }
-            }
-        });
-    }
-    // Initiale Überprüfung beim Laden der Seite
-    checkAndUpdateZaehler();
-    // Event Listener für den Button "Zähler hinzufügen"
     document.getElementById('addZaehlerButton').addEventListener('click', function () {
-        setTimeout(checkAndUpdateZaehler, 100);
+        setTimeout(function () {
+            checkAndUpdateHeading("zaehlerTable", "Zähler", "Zähler (nicht angegeben)");
+        }, 100);
     });
 });
 
 
 
 
-
-
-/* Button einziehender Mieter hinzufügen... */
-/* Button einziehender Mieter hinzufügen... */
-/* Button einziehender Mieter hinzufügen... */
+/* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
+/* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
+/* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 let counterEinziehender = 1;
 document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
     let table = document.getElementById('einzugmieterTable');
-
-
-
-
     if (!table) {
         table = document.createElement('table');
         table.id = 'einzugmieterTable';
@@ -226,7 +161,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
         button.insertAdjacentElement('beforebegin', table);
     }
 
-
     const newRow1 = document.createElement('tr');
     const nameCell = document.createElement('td');
     const vornameCell = document.createElement('td');
@@ -237,10 +171,10 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     const nameId = `NameEin${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameEin${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="von Fürst-Metternich Strobel" style="width: 280px;">`;
-    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Heinricht-Maximilian" style="width: 180px;">`;
-    strasseCell.innerHTML = '<input type="text" placeholder="Tel.:" class="phones" value="0175 / 89874585" style="width: 180px;">';
-    plzOrtCell.innerHTML = '<input type="email" placeholder="mail@web.de" class="mails" value="klausschneider1960@gmail56.com" style="width: 240px;">';
+    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="Fürst-Metternich Strobel" style="width: 200px;">`;
+    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Heinrich-Maximilian" style="width: 160px;">`;
+    strasseCell.innerHTML = '<input type="text" placeholder="Tel.:" class="phones" value="0175 / 89874585" style="width: 160px;">';
+    plzOrtCell.innerHTML = '<input type="email" placeholder="mail@web.de" class="mails" value="klausschneider1960@gmail56.com" style="width: 330px;">';
 
     newRow1.appendChild(nameCell);
     newRow1.appendChild(vornameCell);
@@ -250,15 +184,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     // Neue Zeile als erste Zeile im tbody einfügen (also oberhalb der bestehenden)
     const tbody = table.querySelector('tbody');
     tbody.insertBefore(newRow1, tbody.firstChild);
-
-
-
-
-
-
-
-
-
 
 
     const signatureContainer = document.createElement('div');
@@ -305,14 +230,13 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
     nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
     vornameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
-});
-document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
-    // Überprüfe, ob die Tabelle mit der ID "einzugmieterTable" existiert
-    let table = document.getElementById('einzugmieterTable');
 
-    if (table) {
+    // Überschriftenzeile bei einziehenden Mieter hinzufügen
+    let table2 = document.getElementById('einzugmieterTable');
+
+    if (table2) {
         // Überprüfe, ob bereits eine Kopfzeile (thead) vorhanden ist
-        if (!table.querySelector('thead')) {
+        if (!table2.querySelector('thead')) {
             // Erstelle das thead und tr-Element
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
@@ -331,9 +255,10 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
             thead.appendChild(headerRow);
 
             // Füge das thead zur Tabelle hinzu
-            table.insertBefore(thead, table.querySelector('tbody'));
+            table2.insertBefore(thead, table2.querySelector('tbody'));
         }
     }
+
 });
 
 
@@ -341,9 +266,12 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
 
 
-/* button ausziehenden Mieter hinzufügen fügt eine zeile hinzu und unterschriftenfelder für ausziehenden Mieter */
-/* button ausziehenden Mieter hinzufügen fügt eine zeile hinzu und unterschriftenfelder für ausziehenden Mieter */
-/* button ausziehenden Mieter hinzufügen fügt eine zeile hinzu und unterschriftenfelder für ausziehenden Mieter */
+
+
+
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 let counter = 1;
 document.getElementById('addausziehenderMieter').addEventListener('click', function () {
     let table = document.getElementById('auszugmieterTable');
@@ -382,17 +310,10 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     const nameId = `NameAus${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameAus${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="Müller-Heidrich" style="width: 225px;">`;
-    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Hans-Peter" style="width: 150px;">`;
-    strasseCell.innerHTML = '<input type="text" placeholder="neue Straße" class="newstreets" value="Paul von Gossen Str. 159" style="width: 250px;">';
-    plzOrtCell.innerHTML = '<input type="text" placeholder="PLZ / Ort" class="plzauszug" value="90415 Nünrberg-Fischbach" style="width: 240px;">';
-
-    /* 
-        nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="von Fürst-Metternich Strobel" style="width: 310px;">`;
-        vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Heinricht-Maximilian" style="width: 180px;">`;
-        strasseCell.innerHTML = '<input type="text" placeholder="Tel.:" class="phones" value="0175 / 89874585" style="width: 180px;">';
-        plzOrtCell.innerHTML = '<input type="email" placeholder="mail@web.de" class="mails" value="klausschneider1960@gmail56.com" style="width: 240px;">';
-       xxxxxxxxxx */
+    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="Müller-Heidrich" style="width: 200px;">`;
+    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Hans-Peter" style="width: 130px;">`;
+    strasseCell.innerHTML = '<input type="text" placeholder="neue Straße" class="newstreets" value="Paul von Gossen Str. 159" style="width: 300px;">';
+    plzOrtCell.innerHTML = '<input type="text" placeholder="PLZ / Ort" class="plzauszug" value="90415 Nünrberg-Fischbach" style="width: 220px;">';
 
     newRow.appendChild(nameCell);
     newRow.appendChild(vornameCell);
@@ -428,7 +349,7 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     mieterInfo.style.marginTop = '-100px';
     mieterInfo.style.marginBottom = '100px';
     mieterInfo.style.fontWeight = 'bold';
-    mieterInfo.style.textAlign = 'center';  // Falls nötig, für bessere Optik
+    mieterInfo.style.textAlign = 'center';
     mieterInfo.innerHTML = `ausziehender Mieter: <span id="ausziehender-mieter-fullname-${counter}"></span>`;
 
     signatureContainer.appendChild(mieterInfo); // Direkt unter das Signaturfeld
@@ -443,85 +364,116 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
     vornameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
 });
+
+
+
+
+
+
+
+
+
+// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
+// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
+// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
 function resizeCanvas(canvas) {
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
 }
+
+
+
+
+
+// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
+// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
+// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
 function initSignatureCanvas(canvasId) {
     const canvas = document.getElementById(canvasId);
+    // Der 2D-Zeichenkontext des Canvas wird abgerufen, um darauf zeichnen zu können.
     const context = canvas.getContext('2d');
 
-    // Größe des Canvas festlegen
+    // Die Breite und Höhe des Canvas werden festgelegt.
     canvas.width = 500;
     canvas.height = 150;
 
-    let isDrawing = false;
+    // Variablen, um den Zeichenzustand und die letzten Koordinaten zu speichern.
+    let isDrawing = false; // Gibt an, ob gerade gezeichnet wird.
     let lastX = 0;
     let lastY = 0;
 
-    // Zeichnen starten, wenn die Maus oder der Finger gedrückt wird
-    canvas.addEventListener('mousedown', (e) => startDrawing(e));
-    canvas.addEventListener('touchstart', (e) => startDrawing(e), { passive: true });
+    // Event-Listener für Maus- und Touch-Ereignisse werden hinzugefügt.
+    canvas.addEventListener('mousedown', (e) => startDrawing(e)); // Wenn die Maus GEDRÜCKT wird.
+    canvas.addEventListener('touchstart', (e) => startDrawing(e), { passive: true }); // Wenn der Bildschirm BERÜHRT wird.
 
-    // Zeichnen fortsetzen, wenn die Maus oder der Finger bewegt wird
-    canvas.addEventListener('mousemove', (e) => draw(e));
-    canvas.addEventListener('touchmove', (e) => draw(e), { passive: true });
+    canvas.addEventListener('mousemove', (e) => draw(e)); // Wenn die Maus BEWEGT wird.
+    canvas.addEventListener('touchmove', (e) => draw(e), { passive: true }); // Wenn der Finger auf dem Bildschirm BEWEGT wird.
 
-    // Zeichnen stoppen, wenn die Maus oder der Finger losgelassen wird
-    canvas.addEventListener('mouseup', () => stopDrawing());
-    canvas.addEventListener('touchend', () => stopDrawing(), { passive: true });
+    canvas.addEventListener('mouseup', () => stopDrawing()); // Wenn die Maustaste LOSGELASSEN wird.
+    canvas.addEventListener('touchend', () => stopDrawing(), { passive: true }); // Wenn die BERÜHRUNG ENDET.
 
-    // Start des Zeichnens
+    // Diese Funktion wird aufgerufen, wenn das Zeichnen beginnt.
     function startDrawing(e) {
         isDrawing = true;
-        const pos = getMousePos(e);
+        const pos = getMousePos(e); // Die aktuelle Position der Maus oder des Fingers wird ermittelt.
         lastX = pos.x;
         lastY = pos.y;
     }
 
-    // Zeichnen der Linie
+    // Diese Funktion wird aufgerufen, wenn die Maus oder der Finger bewegt wird.
     function draw(e) {
-        if (!isDrawing) return;
+        if (!isDrawing) return; // Wenn nicht gezeichnet wird, wird die Funktion beendet.
 
-        const pos = getMousePos(e);
-        context.beginPath();
-        context.moveTo(lastX, lastY);
-        context.lineTo(pos.x, pos.y);
-        context.stroke();
-        context.lineWidth = 3;
+        const pos = getMousePos(e); // Die aktuelle Position der Maus oder des Fingers wird ermittelt.
+        context.beginPath(); // Ein neuer Pfad wird begonnen.
+        context.moveTo(lastX, lastY); // Der Zeichenstift wird zur letzten Position bewegt.
+        context.lineTo(pos.x, pos.y); // Eine Linie wird zur aktuellen Position gezogen.
+        context.stroke(); // Die Linie wird gezeichnet.
+        context.lineWidth = 5; // Die Dicke der Linie wird festgelegt.
 
         lastX = pos.x;
         lastY = pos.y;
     }
 
-    // Beenden des Zeichnens
+    // Diese Funktion wird aufgerufen, wenn das Zeichnen beendet wird.
     function stopDrawing() {
-        isDrawing = false;
+        isDrawing = false; // Zeichenzustand wird auf "false" gesetzt.
     }
 
-    // Mausposition auf dem Canvas ermitteln (unter Berücksichtigung der Position des Canvas im Dokument)
+    // Diese Funktion berechnet die Position der Maus oder des Fingers relativ zum Canvas.
     function getMousePos(e) {
-        const rect = canvas.getBoundingClientRect();  // Berechnet die Position des Canvas relativ zur Seite
-        const x = e.clientX - rect.left;  // Mausposition relativ zum Canvas
-        const y = e.clientY - rect.top;   // Mausposition relativ zum Canvas
-        return { x, y };
+        const rect = canvas.getBoundingClientRect(); // Die Position und Größe des Canvas werden ermittelt.
+        const x = e.clientX - rect.left; // Die X-Koordinate relativ zum Canvas.
+        const y = e.clientY - rect.top; // Die Y-Koordinate relativ zum Canvas.
+        return { x, y }; // Die berechneten Koordinaten werden zurückgegeben.
     }
 }
-// Unterschrift löschen
-function clearSignature(canvasId) {
-    const canvas = document.getElementById(canvasId);
-    const context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+
+
+
+// Unterschriftenfeld für Vermieter
+// Unterschriftenfeld für Vermieter
+// Unterschriftenfeld für Vermieter
+window.onload = function () {
+    initSignatureCanvas('vermieter-signature');
+};
+
+
+
+// Vorname und Nachname unter die Unterschriftenfelder setzen
+// Vorname und Nachname unter die Unterschriftenfelder setzen
+// Vorname und Nachname unter die Unterschriftenfelder setzen
+function updateFullName(fullNameSpan, name, vorname) {
+    fullNameSpan.textContent = name && vorname ? `${vorname} ${name}` : '';
 }
-// Initialisiere das Canvas nach dem Laden der Seite
-window.onload = function () {
-    initSignatureCanvas('vermieter-signature');
-};
-// Initialisiere das Canvas nach dem Laden der Seite
-window.onload = function () {
-    initSignatureCanvas('vermieter-signature');
-};
+
+
+// Button Unterschriften löschen
+// Button Unterschriften löschen
+// Button Unterschriften löschen
 function clearSignature(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (canvas) {
@@ -529,9 +481,8 @@ function clearSignature(canvasId) {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
 }
-function updateFullName(fullNameSpan, name, vorname) {
-    fullNameSpan.textContent = name && vorname ? `${vorname} ${name}` : 'Bitte Name und Vorname eingeben';
-}
+
+
 
 
 
@@ -652,7 +603,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
         const headerRow = document.createElement('tr');
 
         const headers = [
-            { text: 'Bezeichnung', width: '230px' },
+            { text: 'Bezeichnung', width: '210px' },
             { text: 'Zählernummer', width: '180px' },
             { text: 'Einbaulage', width: '280px' },
             { text: 'Zählerstand', width: '180px' }
@@ -680,7 +631,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
 
     const bezeichnungCell = document.createElement('td');
     bezeichnungCell.innerHTML = `
-        <select style="width:230px;">
+        <select style="width:210px;">
             <option value="leer"></option>
             <option value="gaszaehler">Gaszähler</option>
             <option value="stromzaehler">Stromzähler</option>
@@ -710,66 +661,6 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
 });
 
 
-
-
-
-
-/* Toggle Allgemein */
-/* Toggle Allgemein */
-/* Toggle Allgemein */
-/* document.addEventListener('DOMContentLoaded', function () {
-    const heading = document.querySelector('.uberschrift2');
-
-    heading.addEventListener('click', function () {
-        const toggleDiv = document.getElementById('toggleDiv');
-
-        if (toggleDiv) {
-            if (toggleDiv.style.display === 'none' || toggleDiv.style.display === '') {
-                toggleDiv.style.display = 'block';
-                setTimeout(() => {
-                    toggleDiv.style.opacity = '1';
-                }, 10);
-            } else {
-                toggleDiv.style.opacity = '0';
-                setTimeout(() => {
-                    toggleDiv.style.display = 'none';
-                }, 300);
-            }
-        }
-    });
-}); */
-
-
-
-
-/* toggle sign-Content */
-/* toggle sign-Content */
-/* toggle sign-Content */
-document.addEventListener('DOMContentLoaded', function () {
-    // Wähle das sichtbare div mit der Klasse "sign" aus
-    const signDiv = document.querySelector('.sign');
-    // Wähle das auszublendende div mit der ID "signtoggle" aus
-    const signToggle = document.getElementById('signtoggle');
-
-    // Füge ein Klick-Event hinzu
-    /*     signDiv.addEventListener('click', function () {
-            // Toggle die Sichtbarkeit
-            if (signToggle.style.display === 'none' || signToggle.style.display === '') {
-                signToggle.style.display = 'block';
-                // Füge die Klasse "visible" hinzu, um die Animation zu starten
-                setTimeout(() => {
-                    signToggle.classList.add('visible');
-                }, 10);
-            } else {
-                // Entferne die Klasse "visible", um die Animation rückgängig zu machen
-                signToggle.classList.remove('visible');
-                // Verstecke das Element nach Abschluss der Animation
-                setTimeout(() => {
-                    signToggle.style.display = 'none';
-                }, 300); // Wartezeit entsprechend der CSS-Transition
-            }
-        }); */
-});
 
 
 
@@ -907,106 +798,9 @@ function duplicateRow(button) {
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
-/* function setupImageUpload(uploadButton) {
-    uploadButton.addEventListener("change", function (event) {
-        const title = this.getAttribute("data-title"); // Titel aus dem data-title-Attribut lesen
-
-        // Container für Miniaturansichten und hochauflösende Bilder auswählen
-        const imagePreview = this.nextElementSibling; // Miniaturansicht-Container
-        const signContainer = document.querySelector('.bilderzimmer'); // Container für hochauflösende Bilder
-
-        // Bilder verarbeiten und hinzufügen, ohne bestehende Bilder zu ersetzen
-        Array.from(event.target.files).forEach(file => {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                let img = new Image();
-                img.src = e.target.result;
-
-                img.onload = function () {
-                    let canvas = document.createElement("canvas");
-                    let ctx = canvas.getContext("2d");
-
-                    let width = img.width;
-                    let height = img.height;
-
-                    // Skalieren, wenn eine Seite kleiner als 800px ist
-                    if (width < 800 || height < 800) {
-                        let scale = Math.max(800 / width, 800 / height);
-                        width = Math.round(width * scale);
-                        height = Math.round(height * scale);
-                    }
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-                    let scaledImageSrc = canvas.toDataURL("image/jpeg");
-
-                    // Miniaturansicht mit Löschen-Button
-                    let imgWrapper = document.createElement("div");
-                    imgWrapper.style.display = "inline-block";
-                    imgWrapper.style.position = "relative";
-                    imgWrapper.style.margin = "5px";
-
-                    let imgThumbnail = document.createElement("img");
-                    imgThumbnail.src = scaledImageSrc;
-                    imgThumbnail.style.maxWidth = "100px";
-                    imgThumbnail.style.maxHeight = "100px";
-                    imgThumbnail.style.border = "1px solid #ccc";
-                    imgThumbnail.style.borderRadius = "5px";
-
-                    // Löschen-Button für Miniaturansicht
-                    let deleteButton = document.createElement("button");
-                    deleteButton.textContent = "❌";
-                    deleteButton.style.position = "absolute";
-                    deleteButton.style.top = "-12px";
-                    deleteButton.style.right = "-14px";
-                    deleteButton.style.color = "white";
-                    deleteButton.style.border = "none";
-                    deleteButton.style.cursor = "pointer";
-                    deleteButton.style.fontSize = "14px";
-                    deleteButton.style.borderRadius = "50%";
-                    deleteButton.style.padding = "6px 6px";
-
-                    // Löschen-Funktion
-                    deleteButton.addEventListener("click", function () {
-                        imgWrapper.remove(); // Entfernt das Miniaturbild
-                        highResWrapper.remove(); // Entfernt das hochauflösende Bild
-                    });
-
-                    imgWrapper.appendChild(imgThumbnail);
-                    imgWrapper.appendChild(deleteButton);
-                    imagePreview.appendChild(imgWrapper);
-
-                    // Hochauflösendes Bild mit Titel
-                    let highResWrapper = document.createElement("div");
-                    let titleElement = document.createElement("h3");
-                    titleElement.textContent = title;
-
-                    let imgHighRes = document.createElement("img");
-                    imgHighRes.src = scaledImageSrc;
-                    imgHighRes.style.maxWidth = "950px";
-                    imgHighRes.style.border = "1px solid #ccc";
-                    imgHighRes.style.borderRadius = "5px";
-                    imgHighRes.style.marginBottom = "10px";
-
-                    highResWrapper.appendChild(titleElement);
-                    highResWrapper.appendChild(imgHighRes);
-                    signContainer.appendChild(highResWrapper);
-                };
-            };
-
-            reader.readAsDataURL(file);
-        });
-
-        // Nach dem Hochladen den Input zurücksetzen, damit man das gleiche Bild erneut hochladen kann
-        this.value = "";
-    });
-} */
-/* document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUpload); */
-
 function setupImageUpload(uploadButton) {
     uploadButton.addEventListener("change", function (event) {
-        const title = this.getAttribute("data-title"); // Titel aus dem data-title-Attribut lesen
+        const title = this.getAttribute("data-title");
 
         // Container für Miniaturansichten und hochauflösende Bilder auswählen
         const imagePreview = this.nextElementSibling; // Miniaturansicht-Container
@@ -1081,8 +875,8 @@ function setupImageUpload(uploadButton) {
                         deleteButton.style.padding = "6px 6px";
                         deleteButton.style.paddingTop = "1px";  // Padding oben
                         deleteButton.style.paddingBottom = "1px";  // Padding unten
-                        
-                        
+
+
 
                         // Löschen-Funktion
                         deleteButton.addEventListener("click", function () {
@@ -1125,82 +919,16 @@ function setupImageUpload(uploadButton) {
         this.value = "";
     });
 }
-
 document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUpload);
 
 
 
 
 
-// Funktion zum Duplizieren eines Zimmers
-// Funktion zum Duplizieren eines Zimmers
-// Funktion zum Duplizieren eines Zimmers
-function duplicateRoom() {
-    let container = document.getElementById("zimmerContainer");
-    let originalZimmer = container.querySelector(".rooms");
 
-    if (!originalZimmer) return;
-
-    // Zähle die existierenden Zimmer und ermittele die neue Zimmernummer
-    let neueNummer = container.getElementsByClassName("rooms").length + 1;
-    let neuesZimmer = originalZimmer.cloneNode(true);
-
-    // Formatierte Nummer (z. B. "01", "02", usw.)
-    let formattedNummer = String(neueNummer).padStart(2, '0');
-
-    // Ersetze alle Vorkommen von "01" durch die neue Nummer im inneren HTML
-    neuesZimmer.innerHTML = neuesZimmer.innerHTML.replace(/01/g, formattedNummer);
-
-    // Ersetze die Zimmernummer im Text (z. B. "Zimmer 1" -> "Zimmer 2")
-    neuesZimmer.innerHTML = neuesZimmer.innerHTML.replace(/Zimmer 1/g, "Zimmer " + neueNummer);
-
-    // Aktualisiere die ID des neuen Zimmers
-    neuesZimmer.id = "zimm" + formattedNummer;
-
-    // Passe die Überschrift des neuen Zimmers an
-    let header = neuesZimmer.querySelector("h3");
-    if (header) header.textContent = "Zimmer " + neueNummer;
-
-    // Aktualisiere das data-title Attribut des Upload-Buttons für das neue Zimmer
-    let uploadButton = neuesZimmer.querySelector('.customUploadButton' + formattedNummer);
-    if (uploadButton) {
-        let uploadInput = neuesZimmer.querySelector('.imageUpload' + formattedNummer);
-        // Hier wird das data-title-Attribut im Format 'Zimmer 01', 'Zimmer 02' etc. gesetzt
-        let formattedTitle = "Zimmer " + formattedNummer;
-        uploadButton.setAttribute("for", "uploadZimmer" + formattedNummer);
-        uploadButton.textContent = "+ Bilder hinzufügen (" + formattedTitle + ")";
-        uploadInput.setAttribute("id", "uploadZimmer" + formattedNummer);
-        uploadInput.setAttribute("data-title", formattedTitle);  // data-title im Format 'Zimmer 01'
-    }
-
-    // Setze alle Radio-Buttons im neuen Zimmer zurück
-    neuesZimmer.querySelectorAll("input[type='radio']").forEach(input => input.checked = false);
-
-    // Leere die Bildvorschau-Container im neuen Zimmer
-    let imagePreview = neuesZimmer.querySelector('.imagePreview');
-    let highResImagePreview = neuesZimmer.querySelector('.highResImagePreview');
-    if (imagePreview) imagePreview.innerHTML = ''; // Leere den Miniaturansicht-Container
-    if (highResImagePreview) highResImagePreview.innerHTML = ''; // Leere den hochauflösenden Bild-Container
-
-    // Füge das neue Zimmer in den Container ein
-    container.appendChild(neuesZimmer);
-
-    // Füge die Toggle-Funktionalität nur für das neue Zimmer hinzu
-    addToggleFunctionality(neuesZimmer);
-    setupRoomToggle(neuesZimmer);
-
-    // Füge den Event-Listener für das neue .imageUpload-Element hinzu
-    let newUploadInput = neuesZimmer.querySelector('.imageUpload' + formattedNummer);
-    if (newUploadInput) {
-        setupImageUpload(newUploadInput);
-    }
-}
-
-
-
-/* Stammdaten aus allgemeinen Informationen ziehen und bei Unterschriften duplizieren
-Stammdaten aus allgemeinen Informationen ziehen und bei Unterschriften duplizieren
-Stammdaten aus allgemeinen Informationen ziehen und bei Unterschriften duplizieren */
+// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
+// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
+// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 document.addEventListener("DOMContentLoaded", function () {
     function updateSignFields() {
         document.getElementById("strasseeinzugsign").textContent = document.getElementById("strasseeinzug").value;
@@ -1208,14 +936,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("plzeinzugsign").textContent = document.getElementById("plzeinzug").value;
         document.getElementById("datumsign").textContent = document.getElementById("datum").value;
     }
-
-    // Event-Listener für alle Input-Felder
     document.getElementById("strasseeinzug").addEventListener("input", updateSignFields);
     document.getElementById("lageeinzug").addEventListener("input", updateSignFields);
     document.getElementById("plzeinzug").addEventListener("input", updateSignFields);
     document.getElementById("datum").addEventListener("input", updateSignFields);
-
-    // Initiale Befüllung beim Laden der Seite
     updateSignFields();
 });
 
@@ -1227,206 +951,49 @@ document.addEventListener("DOMContentLoaded", function () {
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
-document.getElementById("strasseeinzug").addEventListener("input", function () {
-    if (this.value.length > 34) {
-        this.style.fontSize = "15px"; // Schriftgröße weiter verkleinern
-    } else if (this.value.length > 28) {
-        this.style.fontSize = "18px"; // Schriftgröße verkleinern
-    } else {
-        this.style.fontSize = "20px"; // Standardgröße beibehalten
-    }
-});
-document.getElementById("plzeinzug").addEventListener("input", function () {
-    if (this.value.length > 32) {
-        this.style.fontSize = "15px"; // Schriftgröße weiter verkleinern
-    } else if (this.value.length > 27) {
-        this.style.fontSize = "18px"; // Schriftgröße verkleinern
-    } else {
-        this.style.fontSize = "20px"; // Standardgröße beibehalten
-    }
-});
-document.getElementById("lageeinzug").addEventListener("input", function () {
-    if (this.value.length > 36) {
-        this.style.fontSize = "15px"; // Schriftgröße weiter verkleinern
-    } else if (this.value.length > 30) {
-        this.style.fontSize = "18px"; // Schriftgröße verkleinern
-    } else {
-        this.style.fontSize = "20px"; // Standardgröße beibehalten
-    }
-});
 document.addEventListener("input", function (event) {
-    if (event.target.id.startsWith("NameEin")) {
-        let inputLength = event.target.value.length;
+    const target = event.target;
+    let inputLength = target.value.length;
 
-        if (inputLength > 28) {
-            event.target.style.fontSize = "15px"; // Kleinste Schriftgröße
-
-        } else if (inputLength > 24) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-
+    // Funktion zur Anpassung der Schriftgröße
+    function adjustFontSize(target, thresholds, sizes = null) {
+        if (inputLength > thresholds[0]) {
+            target.style.fontSize = sizes[0];
+        } else if (inputLength > thresholds[1]) {
+            target.style.fontSize = sizes[1];
         } else {
-            event.target.style.fontSize = "20px"; // Standardgröße
+            target.style.fontSize = sizes[2];
+        }
+    }
+
+    // Regeln für verschiedene Eingabefelder
+    const rules = [
+        { id: "strasseeinzug", thresholds: [34, 28], sizes: ["15px", "18px", "20px"] },
+        { id: "plzeinzug", thresholds: [32, 27], sizes: ["15px", "18px", "20px"] },
+        { id: "lageeinzug", thresholds: [36, 30], sizes: ["15px", "18px", "20px"] },
+        { class: "mails", thresholds: [21, 16], sizes: ["13px", "18px", "20px"] },
+        { class: "phones", thresholds: [16, 12], sizes: ["15px", "18px", "20px"] },
+        { class: "newstreets", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
+        { class: "plzauszug", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
+        { class: "keynumber", thresholds: [26, 20], sizes: ["16px", "18px", "20px"] },
+        { class: "metercounter", thresholds: [14, 12], sizes: ["13px", "18px", "20px"] },
+        { class: "einbaulage", thresholds: [32, 24], sizes: ["16px", "18px", "20px"] },
+        { class: "meterstand", thresholds: [14, 12], sizes: ["15px", "17px", "20px"] },
+        { idStartsWith: "NameEin", thresholds: [28, 24], sizes: ["15px", "18px", "20px"] },
+        { idStartsWith: "VornameEin", thresholds: [24, 16], sizes: ["15px", "18px", "20px"]},
+        { idStartsWith: "VornameAus", thresholds: [16, 11], sizes: ["14px", "16px", "20px"] },
+        { idStartsWith: "NameAus", thresholds: [26, 22], sizes: ["14px", "16px", "20px"] },
+    ];
+
+    // Überprüfe die Regeln und wende sie an
+    for (const rule of rules) {
+        if (
+            (rule.id && target.id === rule.id) ||
+            (rule.class && target.classList.contains(rule.class)) ||
+            (rule.idStartsWith && target.id.startsWith(rule.idStartsWith))
+        ) {
+            adjustFontSize(target, rule.thresholds, rule.sizes);
+            break; // Beende die Schleife, sobald eine Regel gefunden wurde
         }
     }
 });
-document.addEventListener("input", function (event) {
-    if (event.target.id.startsWith("VornameEin")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 24) {
-            event.target.style.fontSize = "15px"; // Kleinste Schriftgröße
-            event.target.style.width = "270px"; // Größte Breite
-        } else if (inputLength > 16) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-            /*             event.target.style.width = "220px"; // Breite vergrößern */
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße
-            /*             event.target.style.width = "180px"; // Standardbreite */
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("mails")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 21) {
-            event.target.style.fontSize = "13px"; // Kleinste Schriftgröße
-        } else if (inputLength > 16) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("phones")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 16) {
-            event.target.style.fontSize = "15px"; // Kleinste Schriftgröße
-        } else if (inputLength > 12) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße beibehalten
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.id.startsWith("VornameAus")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 16) {
-            event.target.style.fontSize = "14px"; // Kleinste Schriftgröße
-        } else if (inputLength > 11) {
-            event.target.style.fontSize = "16px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.id.startsWith("NameAus")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 26) {
-            event.target.style.fontSize = "14px"; // Kleinste Schriftgröße
-        } else if (inputLength > 22) {
-            event.target.style.fontSize = "16px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("newstreets")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 21) {
-            event.target.style.fontSize = "15px"; // Kleinste Schriftgröße
-        } else if (inputLength > 18) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße beibehalten
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("plzauszug")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 21) {
-            event.target.style.fontSize = "15px"; // Kleinste Schriftgröße
-        } else if (inputLength > 18) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße beibehalten
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("keynumber")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 26) {
-            event.target.style.fontSize = "16px"; // Kleinste Schriftgröße
-            /*             event.target.style.width = "320px"; // Größte Breite */
-        } else if (inputLength > 20) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-            /*            event.target.style.width = "310px"; // Breite vergrößern */
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße
-            /*             event.target.style.width = "300px"; // Standardbreite */
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("metercounter")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 14) {
-            event.target.style.fontSize = "13px"; // Kleinste Schriftgröße
-        } else if (inputLength > 12) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße beibehalten
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("einbaulage")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 32) {
-            event.target.style.fontSize = "16px"; // Kleinste Schriftgröße
-        } else if (inputLength > 24) {
-            event.target.style.fontSize = "18px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße beibehalten
-        }
-    }
-});
-document.addEventListener("input", function (event) {
-    if (event.target.classList.contains("meterstand")) {
-        let inputLength = event.target.value.length;
-
-        if (inputLength > 14) {
-            event.target.style.fontSize = "15px"; // Kleinste Schriftgröße
-        } else if (inputLength > 12) {
-            event.target.style.fontSize = "17px"; // Mittlere Schriftgröße
-        } else {
-            event.target.style.fontSize = "20px"; // Standardgröße beibehalten
-        }
-    }
-});
-
-
-
-
-
-
-
-
-
-
-
-
