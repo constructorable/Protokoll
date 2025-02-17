@@ -22,6 +22,110 @@ function toggleMode() {
 
 
 
+/* Schriftgrößenänderung */
+/* Schriftgrößenänderung */
+/* Schriftgrößenänderung */
+/* document.addEventListener("input", function (event) {
+    const target = event.target;
+    let inputLength = target.value.length;
+
+    function adjustFontSize(target, thresholds, sizes = null) {
+        if (inputLength > thresholds[0]) {
+            target.style.fontSize = sizes[0];
+        } else if (inputLength > thresholds[1]) {
+            target.style.fontSize = sizes[1];
+        } else {
+            target.style.fontSize = sizes[2];
+        }
+        // Stelle sicher, dass der Zeilenabstand immer gleich bleibt:
+        target.style.lineHeight = "48px";
+        // Optional: falls inline-Styles die Höhe beeinflussen sollten
+        target.style.height = "48px";
+    }
+
+    const rules = [
+        { id: "strasseeinzug", thresholds: [34, 28], sizes: ["15px", "18px", "20px"] },
+        { id: "plzeinzug", thresholds: [32, 27], sizes: ["15px", "18px", "20px"] },
+        { id: "lageeinzug", thresholds: [36, 30], sizes: ["15px", "18px", "20px"] },
+        { class: "mails", thresholds: [21, 16], sizes: ["13px", "18px", "20px"] },
+        { class: "phones", thresholds: [16, 12], sizes: ["15px", "18px", "20px"] },
+        { class: "newstreets", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
+        { class: "plzauszug", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
+        { class: "keynumber", thresholds: [26, 20], sizes: ["16px", "18px", "20px"] },
+        { class: "metercounter", thresholds: [14, 12], sizes: ["13px", "18px", "20px"] },
+        { class: "einbaulage", thresholds: [32, 24], sizes: ["16px", "18px", "20px"] },
+        { class: "meterstand", thresholds: [14, 12], sizes: ["15px", "17px", "20px"] },
+        { idStartsWith: "NameEin", thresholds: [28, 24], sizes: ["15px", "18px", "20px"] },
+        { idStartsWith: "VornameEin", thresholds: [24, 16], sizes: ["15px", "18px", "20px"] },
+        { idStartsWith: "VornameAus", thresholds: [16, 11], sizes: ["14px", "16px", "20px"] },
+        { idStartsWith: "NameAus", thresholds: [26, 22], sizes: ["14px", "16px", "20px"] },
+    ];
+
+    for (const rule of rules) {
+        if (
+            (rule.id && target.id === rule.id) ||
+            (rule.class && target.classList.contains(rule.class)) ||
+            (rule.idStartsWith && target.id.startsWith(rule.idStartsWith))
+        ) {
+            adjustFontSize(target, rule.thresholds, rule.sizes);
+            break; // Sobald eine passende Regel gefunden wurde, beenden
+        }
+    }
+});
+ */
+
+document.addEventListener("input", function (event) {
+    const input = event.target;
+
+    // Nur für Elemente mit der Klasse "autoscale"
+    if (!input.classList.contains("autoscale")) return;
+
+    // Falls noch nicht gespeichert, merke dir die ursprüngliche Schriftgröße und Höhe
+    if (!input.dataset.originalFontSize) {
+        const computedStyle = window.getComputedStyle(input);
+        input.dataset.originalFontSize = parseFloat(computedStyle.fontSize);
+        input.dataset.originalHeight = computedStyle.height;
+    }
+
+    const originalFontSize = parseFloat(input.dataset.originalFontSize);
+    const originalHeight = input.dataset.originalHeight;
+
+    // Verfügbarer Platz im Inputfeld berechnen
+    const computedStyle = window.getComputedStyle(input);
+    const paddingLeft = parseFloat(computedStyle.paddingLeft);
+    const paddingRight = parseFloat(computedStyle.paddingRight);
+    const availableWidth = input.clientWidth - paddingLeft - paddingRight;
+
+    // Canvas zur Messung der Textbreite
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Setze die ursprüngliche Schriftgröße
+    ctx.font = `${computedStyle.fontWeight} ${originalFontSize}px ${computedStyle.fontFamily}`;
+
+    const text = input.value || "";
+    const textWidth = ctx.measureText(text).width;
+
+    // Frühzeitige Skalierung (reduziere Schriftgröße bereits 10% früher)
+    const shrinkThreshold = availableWidth * 0.9;
+
+    let newFontSize = originalFontSize;
+    if (textWidth > shrinkThreshold) {
+        newFontSize = originalFontSize * (shrinkThreshold / textWidth);
+    }
+
+    // Mindestschriftgröße festlegen
+    newFontSize = Math.max(newFontSize, 10);
+
+    // Setze neue Schriftgröße, aber halte die Höhe konstant
+    input.style.fontSize = newFontSize + "px";
+    input.style.height = originalHeight; // Sicherstellen, dass die Höhe immer gleich bleibt
+});
+
+
+
+
+
 
 
 /* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
@@ -171,10 +275,10 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     const nameId = `NameEin${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameEin${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="Fürst-Metternich Strobel" style="width: 200px;">`;
-    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Heinrich-Maximilian" style="width: 160px;">`;
-    strasseCell.innerHTML = '<input type="text" placeholder="Tel.:" class="phones" value="0175 / 89874585" style="width: 160px;">';
-    plzOrtCell.innerHTML = '<input type="email" placeholder="mail@web.de" class="mails" value="klausschneider1960@gmail56.com" style="width: 330px;">';
+    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" class="autoscale" value="Fürst-Metternich Strobel" style="width: 230px;">`;
+    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" class="autoscale" value="Heinrich-Maximilian" style="width: 150px;">`;
+    strasseCell.innerHTML = '<input type="text" placeholder="Tel.:" class="phones autoscale" value="0175 / 89874585" style="width: 140px;">';
+    plzOrtCell.innerHTML = '<input type="email" placeholder="mail@web.de" class="mails autoscale" value="klausschneider1960@gmail56.com" style="width: 300px;">';
 
     newRow1.appendChild(nameCell);
     newRow1.appendChild(vornameCell);
@@ -310,10 +414,10 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     const nameId = `NameAus${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameAus${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" value="Müller-Heidrich" style="width: 200px;">`;
-    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" value="Hans-Peter" style="width: 130px;">`;
-    strasseCell.innerHTML = '<input type="text" placeholder="neue Straße" class="newstreets" value="Paul von Gossen Str. 159" style="width: 300px;">';
-    plzOrtCell.innerHTML = '<input type="text" placeholder="PLZ / Ort" class="plzauszug" value="90415 Nünrberg-Fischbach" style="width: 220px;">';
+    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" class="autoscale" value="Müller-Heidrich" style="width: 180px;">`;
+    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" class="autoscale" value="Hans-Peter" style="width: 110px;">`;
+    strasseCell.innerHTML = '<input type="text" placeholder="neue Straße" class="newstreets autoscale" value="Paul von Gossen Str. 159" style="width: 300px;">';
+    plzOrtCell.innerHTML = '<input type="text" placeholder="PLZ / Ort" class="plzauszug autoscale" value="90415 Nünrberg-Fischbach" style="width: 220px;">';
 
     newRow.appendChild(nameCell);
     newRow.appendChild(vornameCell);
@@ -373,136 +477,6 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
 
 
 
-// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
-// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
-// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
-function resizeCanvas(canvas) {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-}
-
-
-
-
-
-// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
-// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
-// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
-function initSignatureCanvas(canvasId) {
-    const canvas = document.getElementById(canvasId);
-    const context = canvas.getContext('2d');
-
-    // Initiale Größe anpassen
-    resizeCanvas(canvas);
-
-    // Größe bei Änderung der Bildschirmgröße anpassen
-    window.addEventListener('resize', () => resizeCanvas(canvas));
-
-    // Die Breite und Höhe des Canvas werden festgelegt.
-    canvas.width = 500;
-    canvas.height = 150;
-
-    // Variablen, um den Zeichenzustand und die letzten Koordinaten zu speichern.
-    let isDrawing = false; // Gibt an, ob gerade gezeichnet wird.
-    let lastX = 0;
-    let lastY = 0;
-
-    // Event-Listener für Maus- und Touch-Ereignisse werden hinzugefügt.
-    canvas.addEventListener('mousedown', (e) => startDrawing(e)); // Wenn die Maus GEDRÜCKT wird.
-    canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Verhindert das Scrollen
-        startDrawing(e);
-    }, { passive: false }); // Wenn der Bildschirm BERÜHRT wird.
-
-    canvas.addEventListener('mousemove', (e) => draw(e)); // Wenn die Maus BEWEGT wird.
-    canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault(); // Verhindert das Scrollen
-        draw(e);
-    }, { passive: false }); // Wenn der Finger auf dem Bildschirm BEWEGT wird.
-
-    canvas.addEventListener('mouseup', () => stopDrawing()); // Wenn die Maustaste LOSGELASSEN wird.
-    canvas.addEventListener('touchend', () => stopDrawing(), { passive: true }); // Wenn die BERÜHRUNG ENDET.
-
-    // Diese Funktion wird aufgerufen, wenn das Zeichnen beginnt.
-    function startDrawing(e) {
-        isDrawing = true;
-        const pos = getMousePos(e); // Die aktuelle Position der Maus oder des Fingers wird ermittelt.
-        lastX = pos.x;
-        lastY = pos.y;
-    }
-
-    // Diese Funktion wird aufgerufen, wenn die Maus oder der Finger bewegt wird.
-    function draw(e) {
-        if (!isDrawing) return; // Wenn nicht gezeichnet wird, wird die Funktion beendet.
-
-        const pos = getMousePos(e); // Die aktuelle Position der Maus oder des Fingers wird ermittelt.
-        context.beginPath(); // Ein neuer Pfad wird begonnen.
-        context.moveTo(lastX, lastY); // Der Zeichenstift wird zur letzten Position bewegt.
-        context.lineTo(pos.x, pos.y); // Eine Linie wird zur aktuellen Position gezogen.
-        context.stroke(); // Die Linie wird gezeichnet.
-        context.lineWidth = 5; // Die Dicke der Linie wird festgelegt.
-
-        lastX = pos.x;
-        lastY = pos.y;
-    }
-
-    // Diese Funktion wird aufgerufen, wenn das Zeichnen beendet wird.
-    function stopDrawing() {
-        isDrawing = false; // Zeichenzustand wird auf "false" gesetzt.
-    }
-
-    // Diese Funktion berechnet die Position der Maus oder des Fingers relativ zum Canvas.
-    function getMousePos(e) {
-        const rect = canvas.getBoundingClientRect();
-        let x, y;
-
-        // Für Touch-Ereignisse
-        if (e.touches && e.touches.length > 0) {
-            x = e.touches[0].clientX - rect.left;
-            y = e.touches[0].clientY - rect.top;
-        }
-        // Für Mausereignisse
-        else {
-            x = e.clientX - rect.left;
-            y = e.clientY - rect.top;
-        }
-
-        return { x, y };
-    }
-}
-
-
-
-
-
-// Unterschriftenfeld für Vermieter
-// Unterschriftenfeld für Vermieter
-// Unterschriftenfeld für Vermieter
-window.onload = function () {
-    initSignatureCanvas('vermieter-signature');
-};
-
-
-
-// Vorname und Nachname unter die Unterschriftenfelder setzen
-// Vorname und Nachname unter die Unterschriftenfelder setzen
-// Vorname und Nachname unter die Unterschriftenfelder setzen
-function updateFullName(fullNameSpan, name, vorname) {
-    fullNameSpan.textContent = name && vorname ? `${vorname} ${name}` : '';
-}
-
-
-// Button Unterschriften löschen
-// Button Unterschriften löschen
-// Button Unterschriften löschen
-function clearSignature(canvasId) {
-    const canvas = document.getElementById(canvasId);
-    if (canvas) {
-        const context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-    }
-}
 
 
 
@@ -592,7 +566,7 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
     anzahlCell.innerHTML = '<input type="number" placeholder="Anzahl" style="width: 100%;">';
 
     const schluesselnummerCell = document.createElement('td');
-    schluesselnummerCell.innerHTML = '<input type="text" placeholder="Schlüsselnummer" style="width: 98%;">';
+    schluesselnummerCell.innerHTML = '<input type="text" placeholder="Schlüsselnummer" class="autoscale" style="width: 98%;">';
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(anzahlCell);
@@ -625,10 +599,10 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
         const headerRow = document.createElement('tr');
 
         const headers = [
-            { text: 'Bezeichnung', width: '210px' },
-            { text: 'Zählernummer', width: '180px' },
-            { text: 'Einbaulage', width: '280px' },
-            { text: 'Zählerstand', width: '180px' }
+            { text: 'Bezeichnung', width: '230px' },
+            { text: 'Zählernummer', width: '170px' },
+            { text: 'Einbaulage', width: '290px' },
+            { text: 'Zählerstand', width: '140px' }
         ];
 
         headers.forEach(header => {
@@ -653,7 +627,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
 
     const bezeichnungCell = document.createElement('td');
     bezeichnungCell.innerHTML = `
-        <select style="width:210px;">
+        <select style="width:230px;">
             <option value="leer"></option>
             <option value="gaszaehler">Gaszähler</option>
             <option value="stromzaehler">Stromzähler</option>
@@ -664,13 +638,13 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
         </select>`;
 
     const zaehlernummerCell = document.createElement('td');
-    zaehlernummerCell.innerHTML = '<input type="text" placeholder="Zählernummer" class="metercounter" style="width:180px;">';
+    zaehlernummerCell.innerHTML = '<input type="text" placeholder="Zählernummer" class="metercounter autoscale" style="width:170px;">';
 
     const einbaulageCell = document.createElement('td');
-    einbaulageCell.innerHTML = '<input type="text" placeholder="exakte Einbaulage" style="width:280px;" class="einbaulage">';
+    einbaulageCell.innerHTML = '<input type="text" placeholder="exakte Einbaulage" style="width:290px;" class="einbaulage autoscale">';
 
     const zaehlerstandCell = document.createElement('td');
-    zaehlerstandCell.innerHTML = '<input type="text" placeholder="Zählerstand" class="meterstand" style="width:180px;">';
+    zaehlerstandCell.innerHTML = '<input type="text" placeholder="Zählerstand" class="meterstand autoscale" style="width:140px;">';
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(zaehlernummerCell);
@@ -970,52 +944,152 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-/* Schriftgrößenänderung */
-/* Schriftgrößenänderung */
-/* Schriftgrößenänderung */
-document.addEventListener("input", function (event) {
-    const target = event.target;
-    let inputLength = target.value.length;
 
-    // Funktion zur Anpassung der Schriftgröße
-    function adjustFontSize(target, thresholds, sizes = null) {
-        if (inputLength > thresholds[0]) {
-            target.style.fontSize = sizes[0];
-        } else if (inputLength > thresholds[1]) {
-            target.style.fontSize = sizes[1];
-        } else {
-            target.style.fontSize = sizes[2];
-        }
+
+
+
+
+// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
+// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
+// Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
+function resizeCanvas(canvas) {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+}
+
+
+
+
+
+// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
+// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
+// Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
+function initSignatureCanvas(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const context = canvas.getContext('2d');
+
+    // Initiale Größe anpassen
+    resizeCanvas(canvas);
+
+    // Größe bei Änderung der Bildschirmgröße anpassen
+    window.addEventListener('resize', () => resizeCanvas(canvas));
+
+    let isDrawing = false;
+    let points = []; // Speichert die gezeichneten Punkte
+
+    // Event-Listener für Maus- und Touch-Ereignisse
+    canvas.addEventListener('mousedown', (e) => startDrawing(e));
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        startDrawing(e);
+    }, { passive: false });
+
+    canvas.addEventListener('mousemove', (e) => draw(e));
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        draw(e);
+    }, { passive: false });
+
+    canvas.addEventListener('mouseup', () => stopDrawing());
+    canvas.addEventListener('touchend', () => stopDrawing());
+
+    function startDrawing(e) {
+        isDrawing = true;
+        const pos = getMousePos(e);
+        points = [{ x: pos.x, y: pos.y }]; // Startpunkt hinzufügen
     }
 
-    // Regeln für verschiedene Eingabefelder
-    const rules = [
-        { id: "strasseeinzug", thresholds: [34, 28], sizes: ["15px", "18px", "20px"] },
-        { id: "plzeinzug", thresholds: [32, 27], sizes: ["15px", "18px", "20px"] },
-        { id: "lageeinzug", thresholds: [36, 30], sizes: ["15px", "18px", "20px"] },
-        { class: "mails", thresholds: [21, 16], sizes: ["13px", "18px", "20px"] },
-        { class: "phones", thresholds: [16, 12], sizes: ["15px", "18px", "20px"] },
-        { class: "newstreets", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
-        { class: "plzauszug", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
-        { class: "keynumber", thresholds: [26, 20], sizes: ["16px", "18px", "20px"] },
-        { class: "metercounter", thresholds: [14, 12], sizes: ["13px", "18px", "20px"] },
-        { class: "einbaulage", thresholds: [32, 24], sizes: ["16px", "18px", "20px"] },
-        { class: "meterstand", thresholds: [14, 12], sizes: ["15px", "17px", "20px"] },
-        { idStartsWith: "NameEin", thresholds: [28, 24], sizes: ["15px", "18px", "20px"] },
-        { idStartsWith: "VornameEin", thresholds: [24, 16], sizes: ["15px", "18px", "20px"] },
-        { idStartsWith: "VornameAus", thresholds: [16, 11], sizes: ["14px", "16px", "20px"] },
-        { idStartsWith: "NameAus", thresholds: [26, 22], sizes: ["14px", "16px", "20px"] },
-    ];
+    function draw(e) {
+        if (!isDrawing) return;
 
-    // Überprüfe die Regeln und wende sie an
-    for (const rule of rules) {
-        if (
-            (rule.id && target.id === rule.id) ||
-            (rule.class && target.classList.contains(rule.class)) ||
-            (rule.idStartsWith && target.id.startsWith(rule.idStartsWith))
-        ) {
-            adjustFontSize(target, rule.thresholds, rule.sizes);
-            break; // Beende die Schleife, sobald eine Regel gefunden wurde
+        const pos = getMousePos(e);
+        points.push({ x: pos.x, y: pos.y }); // Neuen Punkt hinzufügen
+
+        // Linie zeichnen
+        context.beginPath();
+        context.moveTo(points[0].x, points[0].y);
+
+        // Glättung der Linie
+        for (let i = 1; i < points.length; i++) {
+            const prevPoint = points[i - 1];
+            const currentPoint = points[i];
+
+            // Interpolation zwischen den Punkten
+            const midX = (prevPoint.x + currentPoint.x) / 2;
+            const midY = (prevPoint.y + currentPoint.y) / 2;
+
+            context.quadraticCurveTo(prevPoint.x, prevPoint.y, midX, midY);
         }
+
+        context.stroke();
+        context.lineWidth = 5;
+        context.lineCap = 'round'; // Runde Linienenden für geschwungenen Effekt
+        context.lineJoin = 'round'; // Runde Verbindungen zwischen Linien
     }
-});
+
+    function stopDrawing() {
+        isDrawing = false;
+        points = []; // Punkte zurücksetzen
+    }
+
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        let x, y;
+
+        // Für Touch-Ereignisse
+        if (e.touches && e.touches.length > 0) {
+            x = e.touches[0].clientX - rect.left;
+            y = e.touches[0].clientY - rect.top;
+        }
+        // Für Mausereignisse
+        else {
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
+
+        return { x, y };
+    }
+}
+
+
+
+// Unterschriften Canvas-Größe dynamisch an Container anpassen
+// Unterschriften Canvas-Größe dynamisch an Container anpassen
+// Unterschriften Canvas-Größe dynamisch an Container anpassen
+function resizeCanvas(canvas) {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+}
+
+
+
+
+// Unterschriftenfeld für Vermieter
+// Unterschriftenfeld für Vermieter
+// Unterschriftenfeld für Vermieter
+window.onload = function () {
+    initSignatureCanvas('vermieter-signature');
+};
+
+
+
+// Vorname und Nachname unter die Unterschriftenfelder setzen
+// Vorname und Nachname unter die Unterschriftenfelder setzen
+// Vorname und Nachname unter die Unterschriftenfelder setzen
+function updateFullName(fullNameSpan, name, vorname) {
+    fullNameSpan.textContent = name && vorname ? `${vorname} ${name}` : '';
+}
+
+
+// Button Unterschriften löschen
+// Button Unterschriften löschen
+// Button Unterschriften löschen
+function clearSignature(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (canvas) {
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+}
