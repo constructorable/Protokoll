@@ -23,12 +23,12 @@
     <div class="container">
 
 
-        <div id="loadingOverlay">
+<!--         <div id="loadingOverlay">
             <div id="progressContainer">
                 <div id="progressBar"></div>
                 <span id="progressText">0% abgeschlossen</span>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -46,7 +46,7 @@
 
             <div class="allgemein00" id="zzzallgemein">
 
-                <h2 style="font-size:28px;">aAbnahme- / Übergabeprotokoll</h2>
+                <h2 style="font-size:28px;">AAbnahme- / Übergabeprotokoll</h2>
                 <h3 class="uberschrift2">Allgemeine Informationen</h3>
 
                 <div class="allgemein00" id="toggleDiv">
@@ -3930,7 +3930,6 @@
 
 
             <div class="sign" id="signtoggle">
-                <!--     <h3 class="sign02">Unterschriften</h3> -->
                 <div class="signature-content">
                     <div style="font-size:18px; margin-left:15px; margin-top: 25px;">
                         Dieses Protokoll erkennen die Unterzeichner an. Es ist Bestandteil des Mieterverhältnisses /
@@ -3938,24 +3937,23 @@
                         <br><br>
                     </div>
 
-
-
-
+                                <!-- Vermieter-Unterschriftenfeld in den dynamischen Teil verschoben -->
+                                <div class="signature-container">
+                                    <label for="vermieter-signature">Vermieter:</label>
+                                    <div class="signature-box">
+                                        <button type="button" class="signature-clear-btn"
+                                            onclick="clearSignature('vermieter-signature')">x</button>
+                                        <canvas id="vermieter-signature" class="signature-canvas2"></canvas>
+                                    </div>
+                                </div>
 
                 </div>
             </div>
 
-                                <!-- Vermieter-Unterschriftenfeld in den dynamischen Teil verschoben -->
-                    <div class="signature-container">
-                        <label for="vermieter-signature">Vermieter:</label>
-                        <div class="signature-box">
-                            <button type="button" class="signature-clear-btn"
-                                onclick="clearSignature('vermieter-signature')">x</button>
-                            <canvas id="vermieter-signature" class="signature-canvas2"></canvas>
-                        </div>
-                    </div>
 
-            
+
+
+
 
         </div>
 
