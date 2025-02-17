@@ -456,7 +456,7 @@ function addRoom() {
     const remarkSection = document.createElement("div");
     remarkSection.classList.add("remark-row");
     remarkSection.innerHTML = `
-        <input type="text" name="remark" placeholder="Bemerkung...">
+        <input type="text" name="remark" class="autoscale" placeholder="">
     `;
 
     
@@ -502,7 +502,7 @@ function addRemark(roomDiv) {
     const newRemarkRow = document.createElement("div");
     newRemarkRow.classList.add("remark-row");
     newRemarkRow.innerHTML = `
-        <input type="text" name="remark" placeholder="Bemerkung...">
+        <input type="text" name="remark" class="autoscale" placeholder="">
     `;
 
     roomDiv.insertBefore(newRemarkRow, roomDiv.querySelector('button.add-remark-btn'));
