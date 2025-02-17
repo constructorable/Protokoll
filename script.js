@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
-                    h3.style.color = "blue";
+                    h3.style.color = "red";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -391,8 +391,13 @@ function resizeCanvas(canvas) {
 // Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
 function initSignatureCanvas(canvasId) {
     const canvas = document.getElementById(canvasId);
-    // Der 2D-Zeichenkontext des Canvas wird abgerufen, um darauf zeichnen zu können.
     const context = canvas.getContext('2d');
+
+    // Initiale Größe anpassen
+    resizeCanvas(canvas);
+
+    // Größe bei Änderung der Bildschirmgröße anpassen
+    window.addEventListener('resize', () => resizeCanvas(canvas));
 
     // Die Breite und Höhe des Canvas werden festgelegt.
     canvas.width = 500;
@@ -405,10 +410,16 @@ function initSignatureCanvas(canvasId) {
 
     // Event-Listener für Maus- und Touch-Ereignisse werden hinzugefügt.
     canvas.addEventListener('mousedown', (e) => startDrawing(e)); // Wenn die Maus GEDRÜCKT wird.
-    canvas.addEventListener('touchstart', (e) => startDrawing(e), { passive: true }); // Wenn der Bildschirm BERÜHRT wird.
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Verhindert das Scrollen
+        startDrawing(e);
+    }, { passive: false }); // Wenn der Bildschirm BERÜHRT wird.
 
     canvas.addEventListener('mousemove', (e) => draw(e)); // Wenn die Maus BEWEGT wird.
-    canvas.addEventListener('touchmove', (e) => draw(e), { passive: true }); // Wenn der Finger auf dem Bildschirm BEWEGT wird.
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault(); // Verhindert das Scrollen
+        draw(e);
+    }, { passive: false }); // Wenn der Finger auf dem Bildschirm BEWEGT wird.
 
     canvas.addEventListener('mouseup', () => stopDrawing()); // Wenn die Maustaste LOSGELASSEN wird.
     canvas.addEventListener('touchend', () => stopDrawing(), { passive: true }); // Wenn die BERÜHRUNG ENDET.
@@ -443,10 +454,21 @@ function initSignatureCanvas(canvasId) {
 
     // Diese Funktion berechnet die Position der Maus oder des Fingers relativ zum Canvas.
     function getMousePos(e) {
-        const rect = canvas.getBoundingClientRect(); // Die Position und Größe des Canvas werden ermittelt.
-        const x = e.clientX - rect.left; // Die X-Koordinate relativ zum Canvas.
-        const y = e.clientY - rect.top; // Die Y-Koordinate relativ zum Canvas.
-        return { x, y }; // Die berechneten Koordinaten werden zurückgegeben.
+        const rect = canvas.getBoundingClientRect();
+        let x, y;
+
+        // Für Touch-Ereignisse
+        if (e.touches && e.touches.length > 0) {
+            x = e.touches[0].clientX - rect.left;
+            y = e.touches[0].clientY - rect.top;
+        }
+        // Für Mausereignisse
+        else {
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
+
+        return { x, y };
     }
 }
 
@@ -980,7 +1002,7 @@ document.addEventListener("input", function (event) {
         { class: "einbaulage", thresholds: [32, 24], sizes: ["16px", "18px", "20px"] },
         { class: "meterstand", thresholds: [14, 12], sizes: ["15px", "17px", "20px"] },
         { idStartsWith: "NameEin", thresholds: [28, 24], sizes: ["15px", "18px", "20px"] },
-        { idStartsWith: "VornameEin", thresholds: [24, 16], sizes: ["15px", "18px", "20px"]},
+        { idStartsWith: "VornameEin", thresholds: [24, 16], sizes: ["15px", "18px", "20px"] },
         { idStartsWith: "VornameAus", thresholds: [16, 11], sizes: ["14px", "16px", "20px"] },
         { idStartsWith: "NameAus", thresholds: [26, 22], sizes: ["14px", "16px", "20px"] },
     ];
