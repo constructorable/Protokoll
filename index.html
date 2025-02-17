@@ -23,7 +23,7 @@
     <div class="container">
 
 
-<!--         <div id="loadingOverlay">
+        <!--         <div id="loadingOverlay">
             <div id="progressContainer">
                 <div id="progressBar"></div>
                 <span id="progressText">0% abgeschlossen</span>
@@ -46,7 +46,7 @@
 
             <div class="allgemein00" id="zzzallgemein">
 
-                <h2 style="font-size:28px;">AAbnahme- / Übergabeprotokoll</h2>
+                <h2 style="font-size:28px;">Abnahme- / Übergabeprotokoll</h2>
                 <h3 class="uberschrift2">Allgemeine Informationen</h3>
 
                 <div class="allgemein00" id="toggleDiv">
@@ -78,15 +78,16 @@
                             <td style="text-align: right; width: 380px; padding-right:10px;">Objekt / Straße</td>
                             <td colspan="5">
                                 <input id="strasseeinzug" type="text" name="bemerkungen"
-                                    class="testeinzeilig langes-input" style="width: 380px;"
+                                    class="testeinzeilig langes-input autoscale" style="width: 350px;"
                                     value="Äußere-Sulzbacher-Straße 159-161, Block C">
                             </td>
 
 
-                            <td style="text-align: right; padding-right: 10px; width: 300px;">Lage / Stockwerk</td>
+                            <td style="text-align: right; padding-right: 10px; width: 240px;">Lage / Stockwerk</td>
                             <td colspan="5">
-                                <input id="lageeinzug" type="text" name="bemerkungen" class="testeinzeilig langes-input"
-                                    style="width: 300px; margin-right:11px;" value="3. Obergeschoss links">
+                                <input id="lageeinzug" type="text" name="bemerkungen"
+                                    class="testeinzeilig langes-input autoscale"
+                                    style="width: 240px; margin-right:11px;" value="3. Obergeschoss links">
                             </td>
 
                         </tr>
@@ -95,16 +96,26 @@
 
                         <tr>
                             <!-- PLZ / Ort 1 -->
-                            <td style="width: 380px; text-align: right; padding:10px;">PLZ / Ort</td>
+                            <td style="width: 350px; text-align: right; padding:10px;">PLZ / Ort</td>
                             <td colspan="5">
-                                <input type="text" id=plzeinzug name="bemerkungen" class="testeinzeilig langes-input"
-                                    style="width: 380px; margin-right:10px;" value="90586 Böblingen-Burghausen">
+                                <input type="text" id=plzeinzug name="bemerkungen"
+                                    class="testeinzeilig langes-input autoscale"
+                                    style="width: 350px; margin-right:10px;" value="90586 Böblingen-Burghausen">
                             </td>
 
-                            <td style="width: 350px; text-align: right; padding-right:10px">Datum</td>
+<!--                             <td style="width: 240px; text-align: right; padding-right:10px">Datum</td>
                             <td colspan="5">
-                                <input type="date" name="datum" id="datum" required value="2025-10-15">
+                                <input type="date" name="datum" id="datum" class="autoscale" style="width: 240px;" required
+                                    value="2025-10-15">
+                            </td> -->
+
+                            <td style="text-align: right; padding-right: 10px; width: 240px;">Datum</td>
+                            <td colspan="5">
+                                <input id="datum" type="date" name="bemerkungen"
+                                    class="testeinzeilig langes-input autoscale"
+                                    style="width: 240px; margin-right:11px;" value="3. Obergeschoss links">
                             </td>
+
                         </tr>
 
 
@@ -306,7 +317,7 @@
                         <th>repa. - bedürftig</th>
                         <th>Reparatur durch den Mieter</th>
                         <th>Reparatur durch den Vermieter</th>
-                        <th>nicht vorhanden</th>
+                        <th>nicht vor handen</th>
                     </tr>
 
                     <tr>
@@ -357,7 +368,7 @@
                     </tr>
 
                     <tr>
-                        <td>Fenster/Beschläge/Glas</td>
+                        <td>Fenster / Beschläge / Glas</td>
                         <td>
                             <input type="radio" id="fenster1" name="fenster" value="in Ordnung">
                             <label for="fenster1" class="radio-label"></label>
@@ -381,7 +392,7 @@
                     </tr>
 
                     <tr>
-                        <td>Jalousie/Rolläden/Klappäden</td>
+                        <td>Jalousie / Rolläden / Klappläden</td>
                         <td>
                             <input type="radio" id="rollo1" name="rollo" value="in Ordnung">
                             <label for="rollo1" class="radio-label"></label>
@@ -872,7 +883,7 @@
                     <tr>
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
@@ -1028,7 +1039,7 @@
                     </tr>
 
                     <tr>
-                        <td>Fenster/Beschläge/Glas</td>
+                        <td>Fenster / Beschläge / Glas</td>
                         <td>
                             <input type="radio" id="bathfenster1" name="bathfenster" value="in Ordnung">
                             <label for="bathfenster1" class="radio-label"></label>
@@ -1055,7 +1066,7 @@
                     </tr>
 
                     <tr>
-                        <td>Jalousie/Rolläden/Klappäden</td>
+                        <td>Jalousie / Rolläden / Klappläden</td>
                         <td>
                             <input type="radio" id="bathrollo1" name="bathrollo" value="in Ordnung">
                             <label for="bathrollo1" class="radio-label"></label>
@@ -1649,7 +1660,7 @@
                     <tr>
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
@@ -1812,7 +1823,7 @@
                     </tr>
 
                     <tr>
-                        <td>Fenster/Beschläge/Glas</td>
+                        <td>Fenster / Beschläge / Glas</td>
                         <td>
                             <input type="radio" id="guestwcfenster1" name="guestwcfenster" value="in Ordnung">
                             <label for="guestwcfenster1" class="radio-label"></label>
@@ -1839,7 +1850,7 @@
                     </tr>
 
                     <tr>
-                        <td>Jalousie/Rolläden/Klappäden</td>
+                        <td>Jalousie / Rolläden / Klappläden</td>
                         <td>
                             <input type="radio" id="guestwcrollo1" name="guestwcrollo" value="in Ordnung">
                             <label for="guestwcrollo1" class="radio-label"></label>
@@ -2450,7 +2461,7 @@
                     <tr>
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
@@ -2619,7 +2630,7 @@
 
 
                     <tr>
-                        <td>Fenster/Beschläge/Glas</td>
+                        <td>Fenster / Beschläge / Glas</td>
                         <td>
                             <input type="radio" id="dieleflurfenster1" name="dieleflurfenster" value="in Ordnung">
                             <label for="dieleflurfenster1" class="radio-label"></label>
@@ -2901,7 +2912,7 @@
                     <tr>
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
@@ -3078,7 +3089,7 @@
                         </tr>
 
                         <tr>
-                            <td>Fenster/Beschläge/Glas</td>
+                            <td>Fenster / Beschläge / Glas</td>
                             <td>
                                 <input type="radio" id="abstellfenster1" name="abstellfenster" value="in Ordnung">
                                 <label for="abstellfenster1" class="radio-label"></label>
@@ -3105,7 +3116,7 @@
                         </tr>
 
                         <tr>
-                            <td>Jalousie/Rolläden/Klappäden</td>
+                            <td>Jalousie / Rolläden / Klappläden</td>
                             <td>
                                 <input type="radio" id="abstellrollo1" name="abstellrollo" value="in Ordnung">
                                 <label for="abstellrollo1" class="radio-label"></label>
@@ -3397,7 +3408,7 @@
                         <tr>
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -3633,7 +3644,7 @@
                         <tr>
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -3809,7 +3820,7 @@
                         <tr>
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -3887,7 +3898,7 @@
                         <tr>
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -3937,15 +3948,15 @@
                         <br><br>
                     </div>
 
-                                <!-- Vermieter-Unterschriftenfeld in den dynamischen Teil verschoben -->
-                                <div class="signature-container">
-                                    <label for="vermieter-signature">Vermieter:</label>
-                                    <div class="signature-box">
-                                        <button type="button" class="signature-clear-btn"
-                                            onclick="clearSignature('vermieter-signature')">x</button>
-                                        <canvas id="vermieter-signature" class="signature-canvas2"></canvas>
-                                    </div>
-                                </div>
+                    <!-- Vermieter-Unterschriftenfeld in den dynamischen Teil verschoben -->
+                    <div class="signature-container">
+                        <label for="vermieter-signature">Vermieter:</label>
+                        <div class="signature-box">
+                            <button type="button" class="signature-clear-btn"
+                                onclick="clearSignature('vermieter-signature')">x</button>
+                            <canvas id="vermieter-signature" class="signature-canvas2"></canvas>
+                        </div>
+                    </div>
 
                 </div>
             </div>
