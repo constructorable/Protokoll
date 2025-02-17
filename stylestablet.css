@@ -260,7 +260,6 @@ h2 {
 
 #datum {
     line-height: 2;
-    min-width: 300px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0px;
     padding-top: 0px;
@@ -567,22 +566,22 @@ h3 {
     /* Volle Breite des Containers */
     max-width: 100%;
     /* Maximale Breite */
-    font-size: 15px !important;
+    font-size: 16px;
     background-color: rgb(232, 237, 246) !important;
 }
 
 /* Stil für den grünen Plus-Button */
 .dupli-button {
     position: absolute;
-    right: 15px;
-    bottom: 2px;
+    right: 3px;
+    bottom: -18px;
     font-size: 19.2px;
-    background: #fff0;
-    color: #696969;
+    background: #7999aca8;
+    color: #fff;
     border: none;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
 }
 
@@ -811,6 +810,12 @@ h3 {
     left: 96%;
 }
 
+.remark-row > input {
+    font-size: 24px;
+    height: 40px;
+  }
+  
+
 
 
 
@@ -983,12 +988,7 @@ td.no-border-right.text-right {
 }
 
 .remark-row input[type="text"] {
-    /*     height: 32px;
-    font-size: 16px;
-    padding: 0;
-    border: none;
-    background-color:#e8edf6;
-    padding-left:10px; */
+
     width: 99%;
     padding: 0px;
     padding-bottom: 0px;
@@ -1006,7 +1006,7 @@ td.no-border-right.text-right {
     min-height: 24px;
     font-size: 22px;
     max-width: 100%;
-    font-size: 15px !important;
+    font-size: 16px;
 
 }
 
@@ -1024,12 +1024,32 @@ td.no-border-right.text-right {
 }
 
 
-#hauptBemerkungen > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(3) > label:nth-child(2) {
+#hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(3)>label:nth-child(2) {
     margin-left: 11px;
-  }
+}
 
-  #weitereBemerkungen > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(4) {
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(4) {
     padding-right: 11px;
-  }
-  
-  
+}
+
+
+/* Verwende eine spezifische Klasse (z.B. .fixed-height) */
+input.fixed-height {
+    height: 40px;
+    /* Feste Höhe */
+    line-height: 40px;
+    /* Gleicher Wert, damit der Text zentriert bleibt */
+    box-sizing: border-box;
+    /* Sorgt dafür, dass Padding/Borders in der Höhe enthalten sind */
+    padding: 0 10px;
+    /* Horizontaler Innenabstand */
+    overflow: hidden;
+    /* Falls der Inhalt doch mal etwas herausragen sollte */
+    white-space: nowrap;
+    /* Verhindert einen Zeilenumbruch */
+}
+
+th {
+    word-break: break-word;
+    white-space: normal;
+}
