@@ -485,8 +485,7 @@ function addRoom() {
     const uploadButton = document.createElement("input");
     uploadButton.setAttribute("type", "file");
     uploadButton.setAttribute("multiple", "true");
-    uploadButton.setAttribute("accept", "image/*");
-    uploadButton.setAttribute("capture", "environment"); // Öffnet Kamera auf Mobilgeräten
+    uploadButton.setAttribute("accept", "image/*"); // Nur Bilder akzeptieren
     uploadButton.setAttribute("id", "file-upload-" + roomCount);
     uploadButton.style.display = "none"; // Versteckt das Standard-Upload-Feld
     
@@ -531,6 +530,8 @@ function addRoom() {
     customButton.style.margin = "20px auto"; // Automatische Ränder für horizontale Zentrierung
     customButton.style.textAlign = "center"; // Text im Button zentrieren
     customButton.style.width = "350px"; // Breite des Buttons (optional)
+    
+    
     
     
 
