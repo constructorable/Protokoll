@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
-                    h3.style.color = "yellow";
+                    h3.style.color = "red";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 if (text === "einziehender Mieter") {
                     h3.textContent = "einziehender Mieter (nicht zutreffend)";
-                    h3.style.color = "yellow";
+                    h3.style.color = "red";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -226,10 +226,10 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     const nameId = `NameEin${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameEin${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" class="autoscale" value="Fürst-Metternich Strobel" style="width: 230px;">`;
-    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" class="autoscale" value="Heinrich-Maximilian" style="width: 150px;">`;
-    strasseCell.innerHTML = '<input type="text" placeholder="Tel.:" class="phones autoscale" value="0175 / 89874585" style="width: 140px;">';
-    plzOrtCell.innerHTML = '<input type="email" placeholder="mail@web.de" class="mails autoscale" value="klausschneider1960@gmail56.com" style="width: 300px;">';
+    nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 265px;">`;
+    vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 150px;">`;
+    strasseCell.innerHTML = '<input type="text" class="phones autoscale" style="width: 140px;">';
+    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 300px;">';
 
     newRow1.appendChild(nameCell);
     newRow1.appendChild(vornameCell);
@@ -365,10 +365,10 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     const nameId = `NameAus${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameAus${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" placeholder="Name" id="${nameId}" class="autoscale" value="Müller-Heidrich" style="width: 180px;">`;
-    vornameCell.innerHTML = `<input type="text" placeholder="Vorname" id="${vornameId}" class="autoscale" value="Hans-Peter" style="width: 110px;">`;
-    strasseCell.innerHTML = '<input type="text" placeholder="neue Straße" class="newstreets autoscale" value="Paul von Gossen Str. 159" style="width: 300px;">';
-    plzOrtCell.innerHTML = '<input type="text" placeholder="PLZ / Ort" class="plzauszug autoscale" value="90415 Nünrberg-Fischbach" style="width: 220px;">';
+    nameCell.innerHTML = `<input type="text"id="${nameId}" class="autoscale" style="width: 180px;">`;
+    vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 110px;">`;
+    strasseCell.innerHTML = '<input type="text" class="newstreets autoscale" style="width: 350px;">';
+    plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 220px;">';
 
     newRow.appendChild(nameCell);
     newRow.appendChild(vornameCell);
@@ -1055,11 +1055,3 @@ function clearSignature(canvasId) {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
 }
-
-
-
-
-
-
-
-
