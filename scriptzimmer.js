@@ -9,7 +9,7 @@ function addRoom() {
     roomDiv.classList.add("room-container");
     /* roomDiv.setAttribute("id", "room-" + roomCount); */
     roomDiv.setAttribute("id", roomId);
-    
+
     const roomTitle = document.createElement("h3");
     roomTitle.textContent = "Zimmer " + roomCount;
 
@@ -459,7 +459,7 @@ function addRoom() {
         <input type="text" name="remark" class="autoscale" placeholder="">
     `;
 
-    
+
     roomDiv.appendChild(roomTitle);
     roomDiv.appendChild(table);
     roomDiv.appendChild(remarkSection);
@@ -470,33 +470,91 @@ function addRoom() {
     addRemarkButton.onclick = function () { addRemark(roomDiv); };
     roomDiv.appendChild(addRemarkButton);
 
+
+
+
+
+
+
+
+
+
+
+
     // Upload-Button mit inkrementeller ID
     const uploadButton = document.createElement("input");
     uploadButton.setAttribute("type", "file");
     uploadButton.setAttribute("multiple", "true");
     uploadButton.setAttribute("accept", "image/*");
-    uploadButton.setAttribute("id", "file-upload-" + roomCount); // Eindeutige ID für jeden Button
-
+    uploadButton.setAttribute("capture", "environment"); // Öffnet Kamera auf Mobilgeräten
+    uploadButton.setAttribute("id", "file-upload-" + roomCount);
+    uploadButton.style.display = "none"; // Versteckt das Standard-Upload-Feld
+    
+    // Dynamischer Button-Text basierend auf der Zimmernummer
+    const buttonText = `+ Bilder hinzufügen (Zimmer ${roomCount})`;
+    
+    // Erstelle einen sichtbaren Button mit der Klasse .customUploadButton
+    const customButton = document.createElement("button");
+    customButton.textContent = buttonText;
+    customButton.classList.add("customUploadButton");
+    
+    // Klick auf den Button öffnet das versteckte Upload-Feld
+    customButton.addEventListener("click", () => {
+        uploadButton.click();
+    });
+    
     // Event Listener für den Upload der Bilder
     uploadButton.addEventListener("change", function (event) {
-        const roomId = this.id.split("-")[2]; // Extrahiere die roomId aus der Button-ID
+        const roomId = this.id.split("-")[2];
         handleFileUpload(event, roomId);
     });
-
-    roomDiv.appendChild(uploadButton);
-
+    
+    // Erstelle einen Bereich für die Bildervorschau
     const imageSection = document.createElement("div");
     imageSection.classList.add("image-preview");
-
+    
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
     imageContainer.setAttribute("id", "preview-" + roomCount);
-
+    
     imageSection.appendChild(imageContainer);
-    roomDiv.appendChild(imageSection);
-
+    
+    // Füge alles in `roomDiv` ein
+    roomDiv.appendChild(uploadButton);  // Unsichtbares Upload-Feld
+    roomDiv.appendChild(customButton);  // Sichtbarer Button mit dynamischem Namen
+    roomDiv.appendChild(imageSection);  // Vorschau-Bereich
+    
     container.appendChild(roomDiv);
+    
+    // CSS-Styles direkt über JavaScript hinzufügen, um den Button zu zentrieren
+    customButton.style.display = "block"; // Button als Block-Element anzeigen
+    customButton.style.margin = "20px auto"; // Automatische Ränder für horizontale Zentrierung
+    customButton.style.textAlign = "center"; // Text im Button zentrieren
+    customButton.style.width = "350px"; // Breite des Buttons (optional)
+    
+    
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function addRemark(roomDiv) {
     const newRemarkRow = document.createElement("div");
@@ -515,7 +573,7 @@ function handleFileUpload(event, roomId) {
     if (!largeRoomImages) {
         const largeImageContainer = document.getElementById("large-images-container");
         const largeRoomTitle = document.createElement("h3");
-      /*   largeRoomTitle.textContent = "Zimmer " + roomId; */
+        /*   largeRoomTitle.textContent = "Zimmer " + roomId; */
         largeImageContainer.appendChild(largeRoomTitle);
 
         largeRoomImages = document.createElement("div");
