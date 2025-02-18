@@ -25,7 +25,6 @@ function toggleMode() {
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
-
 document.addEventListener("input", function (event) {
     const input = event.target;
 
@@ -103,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
-                    h3.style.color = "blue";
+                    h3.style.color = "pink";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -904,12 +903,19 @@ document.addEventListener("DOMContentLoaded", function () {
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
-function resizeCanvas(canvas) {
+function resizeCanvas(canvas, context) {
     const rect = canvas.getBoundingClientRect();
+    
+    // Unterschrift zwischenspeichern
+    const tempImage = canvas.toDataURL();
+
+    // Neue Größe setzen
     canvas.width = rect.width;
     canvas.height = rect.height;
-}
 
+    // Unterschrift wiederherstellen
+    loadSignature(canvas, context, tempImage);
+}
 
 
 
@@ -923,6 +929,9 @@ function initSignatureCanvas(canvasId) {
 
     // Initiale Größe setzen
     resizeCanvas(canvas, context);
+
+    // Vorhandene Unterschrift aus localStorage laden
+    loadSignature(canvas, context, localStorage.getItem('signature'));
 
     // Beim Ändern der Bildschirmgröße neu skalieren
     window.addEventListener('resize', () => resizeCanvas(canvas, context));
@@ -972,6 +981,8 @@ function initSignatureCanvas(canvasId) {
         context.lineWidth = 5;
         context.lineCap = 'round';
         context.lineJoin = 'round';
+
+        saveSignature(canvas); // Unterschrift in localStorage speichern
     }
 
     function stopDrawing() {
@@ -985,6 +996,17 @@ function initSignatureCanvas(canvasId) {
             x: (e.touches ? e.touches[0].clientX : e.clientX) - rect.left,
             y: (e.touches ? e.touches[0].clientY : e.clientY) - rect.top
         };
+    }
+
+    function saveSignature(canvas) {
+        localStorage.setItem('signature', canvas.toDataURL());
+    }
+
+    function loadSignature(canvas, context, imageData) {
+        if (!imageData) return;
+        const img = new Image();
+        img.onload = () => context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.src = imageData;
     }
 }
 
