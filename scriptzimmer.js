@@ -1,5 +1,62 @@
 let roomCount = 0;
 
+
+
+
+function openImageSelectionModal(roomCount) {
+    // Erstelle Modal-Container
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    // Modal-Inhalt
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    const title = document.createElement("h2");
+    title.textContent = `Wählen Sie ein Bild aus (Zimmer ${roomCount})`;
+    modalContent.appendChild(title);
+
+    // Galerie-Option
+    const galleryButton = document.createElement("button");
+    galleryButton.textContent = "Bilder aus Galerie auswählen";
+    galleryButton.classList.add("modal-button");
+    galleryButton.addEventListener("click", function () {
+        // Öffne das Dateiauswahl-Fenster
+        uploadButton.setAttribute("accept", "image/*");  // Nur Bilder akzeptieren
+        uploadButton.click();
+        closeModal(modal);  // Schließt das Modal nach der Auswahl
+    });
+
+    // Kamera-Option
+    const cameraButton = document.createElement("button");
+    cameraButton.textContent = "Mit der Kamera aufnehmen";
+    cameraButton.classList.add("modal-button");
+    cameraButton.addEventListener("click", function () {
+        // Öffne das Kamerafeld
+        uploadButton.setAttribute("accept", "image/*");
+        uploadButton.setAttribute("capture", "environment");  // Öffnet die Kamera
+        uploadButton.click();
+        closeModal(modal);  // Schließt das Modal nach der Auswahl
+    });
+
+    // Füge die Buttons zum Modal hinzu
+    modalContent.appendChild(galleryButton);
+    modalContent.appendChild(cameraButton);
+
+    // Füge das Modal zum Dokument hinzu
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+}
+
+// Funktion zum Schließen des Modals
+function closeModal(modal) {
+    modal.remove();  // Entfernt das Modal aus dem DOM
+}
+
+
+
+
+
 function addRoom() {
     roomCount++;
     const roomId = "zimm" + String(roomCount).padStart(2, '0'); // Erzeugt zimm01, zimm02, zimm03.
@@ -478,9 +535,9 @@ function addRoom() {
     const uploadButton = document.createElement("input");
     uploadButton.setAttribute("type", "file");
     uploadButton.setAttribute("multiple", "true");
-    uploadButton.setAttribute("accept", "image/*"); // Nur Bilder akzeptieren
+    uploadButton.setAttribute("accept", "image/*");
     uploadButton.setAttribute("id", "file-upload-" + roomCount);
-    uploadButton.style.display = "none"; // Versteckt das Standard-Upload-Feld
+    uploadButton.style.display = "none";  // Verstecke das Standard-Upload-Feld
 
     // Dynamischer Button-Text basierend auf der Zimmernummer
     const buttonText = `+ Bilder hinzufügen (Zimmer ${roomCount})`;
@@ -490,9 +547,9 @@ function addRoom() {
     customButton.textContent = buttonText;
     customButton.classList.add("customUploadButton");
 
-    // Klick auf den sichtbaren Button öffnet das versteckte Upload-Feld
+    // Klick auf den Button öffnet das benutzerdefinierte Modal
     customButton.addEventListener("click", () => {
-        uploadButton.click(); // Öffnet das unsichtbare Input-Feld
+        openImageSelectionModal(roomCount);
     });
 
     // Event Listener für den Upload der Bilder
@@ -523,10 +580,6 @@ function addRoom() {
     customButton.style.margin = "20px auto"; // Automatische Ränder für horizontale Zentrierung
     customButton.style.textAlign = "center"; // Text im Button zentrieren
     customButton.style.width = "350px"; // Breite des Buttons (optional)
-
-
-
-
 
 
 }
