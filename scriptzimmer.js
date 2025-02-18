@@ -488,52 +488,101 @@ function addRoom() {
     uploadButton.setAttribute("accept", "image/*"); // Nur Bilder akzeptieren
     uploadButton.setAttribute("id", "file-upload-" + roomCount);
     uploadButton.style.display = "none"; // Versteckt das Standard-Upload-Feld
-    
+
     // Dynamischer Button-Text basierend auf der Zimmernummer
     const buttonText = `+ Bilder hinzufügen (Zimmer ${roomCount})`;
-    
+
     // Erstelle einen sichtbaren Button mit der Klasse .customUploadButton
     const customButton = document.createElement("button");
     customButton.textContent = buttonText;
     customButton.classList.add("customUploadButton");
-    
-    // Klick auf den Button öffnet das versteckte Upload-Feld
+
+    // Erstelle ein Auswahlmenü für die Benutzeroptionen
+    const optionsMenu = document.createElement("div");
+    optionsMenu.classList.add("options-menu");
+
+    const selectCameraOption = document.createElement("button");
+    selectCameraOption.textContent = "Foto mit Kamera aufnehmen";
+    selectCameraOption.classList.add("select-option");
+
+    const selectGalleryOption = document.createElement("button");
+    selectGalleryOption.textContent = "Bilder aus Galerie auswählen";
+    selectGalleryOption.classList.add("select-option");
+
+    // Füge die Auswahlbuttons zum Menü hinzu
+    optionsMenu.appendChild(selectCameraOption);
+    optionsMenu.appendChild(selectGalleryOption);
+
+    // Button-Click öffnet das Menü zur Auswahl
     customButton.addEventListener("click", () => {
-        uploadButton.click();
+        optionsMenu.style.display = optionsMenu.style.display === "block" ? "none" : "block";
     });
-    
+
+    // Wenn der Benutzer "Kamera" auswählt
+    selectCameraOption.addEventListener("click", () => {
+        uploadButton.setAttribute("capture", "environment"); // Öffnet die Kamera auf Mobilgeräten
+        optionsMenu.style.display = "none"; // Menü schließen
+        uploadButton.click(); // Öffnet die Datei-Auswahl
+    });
+
+    // Wenn der Benutzer "Galerie" auswählt
+    selectGalleryOption.addEventListener("click", () => {
+        uploadButton.removeAttribute("capture"); // Deaktiviert den Kamera-Modus
+        optionsMenu.style.display = "none"; // Menü schließen
+        uploadButton.click(); // Öffnet die Datei-Auswahl
+    });
+
     // Event Listener für den Upload der Bilder
     uploadButton.addEventListener("change", function (event) {
         const roomId = this.id.split("-")[2];
         handleFileUpload(event, roomId);
     });
-    
+
     // Erstelle einen Bereich für die Bildervorschau
     const imageSection = document.createElement("div");
     imageSection.classList.add("image-preview");
-    
+
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
     imageContainer.setAttribute("id", "preview-" + roomCount);
-    
+
     imageSection.appendChild(imageContainer);
-    
+
     // Füge alles in `roomDiv` ein
     roomDiv.appendChild(uploadButton);  // Unsichtbares Upload-Feld
     roomDiv.appendChild(customButton);  // Sichtbarer Button mit dynamischem Namen
+    roomDiv.appendChild(optionsMenu);   // Das Menü zur Auswahl von Kamera oder Galerie
     roomDiv.appendChild(imageSection);  // Vorschau-Bereich
-    
+
     container.appendChild(roomDiv);
-    
+
     // CSS-Styles direkt über JavaScript hinzufügen, um den Button zu zentrieren
     customButton.style.display = "block"; // Button als Block-Element anzeigen
     customButton.style.margin = "20px auto"; // Automatische Ränder für horizontale Zentrierung
     customButton.style.textAlign = "center"; // Text im Button zentrieren
     customButton.style.width = "350px"; // Breite des Buttons (optional)
-    
-    
-    
-    
+
+    // Optional: Styles für das Auswahlmenü
+    optionsMenu.style.display = "none"; // Standardmäßig das Menü verbergen
+    optionsMenu.style.position = "absolute";
+    optionsMenu.style.top = "50px";
+    optionsMenu.style.left = "0";
+    optionsMenu.style.width = "100%";
+    optionsMenu.style.backgroundColor = "white";
+    optionsMenu.style.border = "1px solid #ccc";
+    optionsMenu.style.padding = "10px";
+    optionsMenu.style.zIndex = "9999";
+
+    // Optionale Button-Styles
+    selectCameraOption.style.margin = "10px 0";
+    selectGalleryOption.style.margin = "10px 0";
+    selectCameraOption.style.width = "100%";
+    selectGalleryOption.style.width = "100%";
+
+
+
+
+
 
 }
 
