@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
-                    h3.style.color = "blue";
+                    h3.style.color = "yellow";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
