@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 if (text === "einziehender Mieter") {
                     h3.textContent = "einziehender Mieter (nicht zutreffend)";
-                    h3.style.color = "blue";
+                    h3.style.color = "red";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
