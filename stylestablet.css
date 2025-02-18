@@ -492,9 +492,14 @@ h2 {
 }
 
 #duplicateBtn {
-    float: right;
     padding-right: 20px;
     padding-left: 10px;
+    margin-top: 25px;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 90%;
     margin-top: 25px;
 }
 
@@ -1052,4 +1057,26 @@ input.fixed-height {
 th {
     word-break: break-word;
     white-space: normal;
+}
+
+
+.fortsetzung{
+    display:none;
+}
+
+.custom-upload-button {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.custom-upload-button:hover {
+    background-color: #0056b3;
 }
