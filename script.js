@@ -25,54 +25,6 @@ function toggleMode() {
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
-/* document.addEventListener("input", function (event) {
-    const target = event.target;
-    let inputLength = target.value.length;
-
-    function adjustFontSize(target, thresholds, sizes = null) {
-        if (inputLength > thresholds[0]) {
-            target.style.fontSize = sizes[0];
-        } else if (inputLength > thresholds[1]) {
-            target.style.fontSize = sizes[1];
-        } else {
-            target.style.fontSize = sizes[2];
-        }
-        // Stelle sicher, dass der Zeilenabstand immer gleich bleibt:
-        target.style.lineHeight = "48px";
-        // Optional: falls inline-Styles die Höhe beeinflussen sollten
-        target.style.height = "48px";
-    }
-
-    const rules = [
-        { id: "strasseeinzug", thresholds: [34, 28], sizes: ["15px", "18px", "20px"] },
-        { id: "plzeinzug", thresholds: [32, 27], sizes: ["15px", "18px", "20px"] },
-        { id: "lageeinzug", thresholds: [36, 30], sizes: ["15px", "18px", "20px"] },
-        { class: "mails", thresholds: [21, 16], sizes: ["13px", "18px", "20px"] },
-        { class: "phones", thresholds: [16, 12], sizes: ["15px", "18px", "20px"] },
-        { class: "newstreets", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
-        { class: "plzauszug", thresholds: [21, 18], sizes: ["15px", "18px", "20px"] },
-        { class: "keynumber", thresholds: [26, 20], sizes: ["16px", "18px", "20px"] },
-        { class: "metercounter", thresholds: [14, 12], sizes: ["13px", "18px", "20px"] },
-        { class: "einbaulage", thresholds: [32, 24], sizes: ["16px", "18px", "20px"] },
-        { class: "meterstand", thresholds: [14, 12], sizes: ["15px", "17px", "20px"] },
-        { idStartsWith: "NameEin", thresholds: [28, 24], sizes: ["15px", "18px", "20px"] },
-        { idStartsWith: "VornameEin", thresholds: [24, 16], sizes: ["15px", "18px", "20px"] },
-        { idStartsWith: "VornameAus", thresholds: [16, 11], sizes: ["14px", "16px", "20px"] },
-        { idStartsWith: "NameAus", thresholds: [26, 22], sizes: ["14px", "16px", "20px"] },
-    ];
-
-    for (const rule of rules) {
-        if (
-            (rule.id && target.id === rule.id) ||
-            (rule.class && target.classList.contains(rule.class)) ||
-            (rule.idStartsWith && target.id.startsWith(rule.idStartsWith))
-        ) {
-            adjustFontSize(target, rule.thresholds, rule.sizes);
-            break; // Sobald eine passende Regel gefunden wurde, beenden
-        }
-    }
-});
- */
 
 document.addEventListener("input", function (event) {
     const input = event.target;
@@ -151,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
-                    h3.style.color = "red";
+                    h3.style.color = "blue";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -969,16 +921,15 @@ function initSignatureCanvas(canvasId) {
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext('2d');
 
-    // Initiale Größe anpassen
-    resizeCanvas(canvas);
+    // Initiale Größe setzen
+    resizeCanvas(canvas, context);
 
-    // Größe bei Änderung der Bildschirmgröße anpassen
-    window.addEventListener('resize', () => resizeCanvas(canvas));
+    // Beim Ändern der Bildschirmgröße neu skalieren
+    window.addEventListener('resize', () => resizeCanvas(canvas, context));
 
     let isDrawing = false;
-    let points = []; // Speichert die gezeichneten Punkte
+    let points = [];
 
-    // Event-Listener für Maus- und Touch-Ereignisse
     canvas.addEventListener('mousedown', (e) => startDrawing(e));
     canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
@@ -991,31 +942,26 @@ function initSignatureCanvas(canvasId) {
         draw(e);
     }, { passive: false });
 
-    canvas.addEventListener('mouseup', () => stopDrawing());
-    canvas.addEventListener('touchend', () => stopDrawing());
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('touchend', stopDrawing);
 
     function startDrawing(e) {
         isDrawing = true;
-        const pos = getMousePos(e);
-        points = [{ x: pos.x, y: pos.y }]; // Startpunkt hinzufügen
+        points = [{ x: getMousePos(e).x, y: getMousePos(e).y }];
     }
 
     function draw(e) {
         if (!isDrawing) return;
 
         const pos = getMousePos(e);
-        points.push({ x: pos.x, y: pos.y }); // Neuen Punkt hinzufügen
+        points.push({ x: pos.x, y: pos.y });
 
-        // Linie zeichnen
         context.beginPath();
         context.moveTo(points[0].x, points[0].y);
 
-        // Glättung der Linie
         for (let i = 1; i < points.length; i++) {
             const prevPoint = points[i - 1];
             const currentPoint = points[i];
-
-            // Interpolation zwischen den Punkten
             const midX = (prevPoint.x + currentPoint.x) / 2;
             const midY = (prevPoint.y + currentPoint.y) / 2;
 
@@ -1024,31 +970,21 @@ function initSignatureCanvas(canvasId) {
 
         context.stroke();
         context.lineWidth = 5;
-        context.lineCap = 'round'; // Runde Linienenden für geschwungenen Effekt
-        context.lineJoin = 'round'; // Runde Verbindungen zwischen Linien
+        context.lineCap = 'round';
+        context.lineJoin = 'round';
     }
 
     function stopDrawing() {
         isDrawing = false;
-        points = []; // Punkte zurücksetzen
+        points = [];
     }
 
     function getMousePos(e) {
         const rect = canvas.getBoundingClientRect();
-        let x, y;
-
-        // Für Touch-Ereignisse
-        if (e.touches && e.touches.length > 0) {
-            x = e.touches[0].clientX - rect.left;
-            y = e.touches[0].clientY - rect.top;
-        }
-        // Für Mausereignisse
-        else {
-            x = e.clientX - rect.left;
-            y = e.clientY - rect.top;
-        }
-
-        return { x, y };
+        return {
+            x: (e.touches ? e.touches[0].clientX : e.clientX) - rect.left,
+            y: (e.touches ? e.touches[0].clientY : e.clientY) - rect.top
+        };
     }
 }
 
