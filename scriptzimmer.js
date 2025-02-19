@@ -1,62 +1,5 @@
 let roomCount = 0;
 
-
-
-
-function openImageSelectionModal(roomCount) {
-    // Erstelle Modal-Container
-    const modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    // Modal-Inhalt
-    const modalContent = document.createElement("div");
-    modalContent.classList.add("modal-content");
-
-    const title = document.createElement("h2");
-    title.textContent = `Wählen Sie ein Bild aus (Zimmer ${roomCount})`;
-    modalContent.appendChild(title);
-
-    // Galerie-Option
-    const galleryButton = document.createElement("button");
-    galleryButton.textContent = "Bilder aus Galerie auswählen";
-    galleryButton.classList.add("modal-button");
-    galleryButton.addEventListener("click", function () {
-        // Öffne das Dateiauswahl-Fenster
-        uploadButton.setAttribute("accept", "image/*");  // Nur Bilder akzeptieren
-        uploadButton.click();
-        closeModal(modal);  // Schließt das Modal nach der Auswahl
-    });
-
-    // Kamera-Option
-    const cameraButton = document.createElement("button");
-    cameraButton.textContent = "Mit der Kamera aufnehmen";
-    cameraButton.classList.add("modal-button");
-    cameraButton.addEventListener("click", function () {
-        // Öffne das Kamerafeld
-        uploadButton.setAttribute("accept", "image/*");
-        uploadButton.setAttribute("capture", "environment");  // Öffnet die Kamera
-        uploadButton.click();
-        closeModal(modal);  // Schließt das Modal nach der Auswahl
-    });
-
-    // Füge die Buttons zum Modal hinzu
-    modalContent.appendChild(galleryButton);
-    modalContent.appendChild(cameraButton);
-
-    // Füge das Modal zum Dokument hinzu
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-}
-
-// Funktion zum Schließen des Modals
-function closeModal(modal) {
-    modal.remove();  // Entfernt das Modal aus dem DOM
-}
-
-
-
-
-
 function addRoom() {
     roomCount++;
     const roomId = "zimm" + String(roomCount).padStart(2, '0'); // Erzeugt zimm01, zimm02, zimm03.
@@ -527,38 +470,21 @@ function addRoom() {
     addRemarkButton.onclick = function () { addRemark(roomDiv); };
     roomDiv.appendChild(addRemarkButton);
 
-
-
-    // Upload-Button mit inkrementeller ID
-    // Upload-Button mit inkrementeller ID
     // Upload-Button mit inkrementeller ID
     const uploadButton = document.createElement("input");
     uploadButton.setAttribute("type", "file");
     uploadButton.setAttribute("multiple", "true");
     uploadButton.setAttribute("accept", "image/*");
-    uploadButton.setAttribute("id", "file-upload-" + roomCount);
-    uploadButton.style.display = "none";  // Verstecke das Standard-Upload-Feld
-
-    // Dynamischer Button-Text basierend auf der Zimmernummer
-    const buttonText = `+ Bilder hinzufügen (Zimmer ${roomCount})`;
-
-    // Erstelle einen sichtbaren Button mit der Klasse .customUploadButton
-    const customButton = document.createElement("button");
-    customButton.textContent = buttonText;
-    customButton.classList.add("customUploadButton");
-
-    // Klick auf den Button öffnet das benutzerdefinierte Modal
-    customButton.addEventListener("click", () => {
-        openImageSelectionModal(roomCount);
-    });
+    uploadButton.setAttribute("id", "file-upload-" + roomCount); // Eindeutige ID für jeden Button
 
     // Event Listener für den Upload der Bilder
     uploadButton.addEventListener("change", function (event) {
-        const roomId = this.id.split("-")[2];
+        const roomId = this.id.split("-")[2]; // Extrahiere die roomId aus der Button-ID
         handleFileUpload(event, roomId);
     });
 
-    // Erstelle einen Bereich für die Bildervorschau
+    roomDiv.appendChild(uploadButton);
+
     const imageSection = document.createElement("div");
     imageSection.classList.add("image-preview");
 
@@ -567,42 +493,10 @@ function addRoom() {
     imageContainer.setAttribute("id", "preview-" + roomCount);
 
     imageSection.appendChild(imageContainer);
-
-    // Füge alles in `roomDiv` ein
-    roomDiv.appendChild(uploadButton);  // Unsichtbares Upload-Feld
-    roomDiv.appendChild(customButton);  // Sichtbarer Button mit dynamischem Namen
-    roomDiv.appendChild(imageSection);  // Vorschau-Bereich
+    roomDiv.appendChild(imageSection);
 
     container.appendChild(roomDiv);
-
-    // CSS-Styles direkt über JavaScript hinzufügen, um den Button zu zentrieren
-    customButton.style.display = "block"; // Button als Block-Element anzeigen
-    customButton.style.margin = "20px auto"; // Automatische Ränder für horizontale Zentrierung
-    customButton.style.textAlign = "center"; // Text im Button zentrieren
-    customButton.style.width = "350px"; // Breite des Buttons (optional)
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function addRemark(roomDiv) {
     const newRemarkRow = document.createElement("div");
@@ -632,54 +526,64 @@ function handleFileUpload(event, roomId) {
 
     const files = event.target.files;
     for (let file of files) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const imgId = "img-" + roomId + "-" + Math.random().toString(36).substr(2, 9);
+        const imgId = "img-" + roomId + "-" + Math.random().toString(36).substr(2, 9);
+        const imgUrl = URL.createObjectURL(file); // Erzeugt eine Blob-URL
 
-            // Vorschau für das Bild im jeweiligen Zimmer
-            const smallImageWrapper = document.createElement("div");
-            smallImageWrapper.setAttribute("id", "wrapper-" + imgId);
-            smallImageWrapper.classList.add("image-wrapper");
+        // Vorschau für das Bild im jeweiligen Zimmer
+        const smallImageWrapper = document.createElement("div");
+        smallImageWrapper.setAttribute("id", "wrapper-" + imgId);
+        smallImageWrapper.classList.add("image-wrapper");
 
-            const imgSmall = document.createElement("img");
-            imgSmall.setAttribute("src", e.target.result);
+        const imgSmall = document.createElement("img");
+        imgSmall.setAttribute("src", imgUrl);
 
-            const deleteBtnSmall = document.createElement("button");
-            deleteBtnSmall.textContent = "X";
-            deleteBtnSmall.classList.add("delete-btn");
-            deleteBtnSmall.onclick = function () {
-                deleteImage(imgId);
-            };
-
-            smallImageWrapper.appendChild(imgSmall);
-            smallImageWrapper.appendChild(deleteBtnSmall);
-            previewDiv.appendChild(smallImageWrapper);
-
-            // Große Ansicht für das Bild im jeweiligen Zimmer
-            const imageWrapper = document.createElement("div");
-            imageWrapper.classList.add("large-image-wrapper");
-            imageWrapper.setAttribute("id", "large-wrapper-" + imgId);
-
-            const label = document.createElement("p");
-            label.textContent = "Zimmer " + roomId;
-
-            const imgLarge = document.createElement("img");
-            imgLarge.setAttribute("src", e.target.result);
-
-            const deleteBtnLarge = document.createElement("button");
-            deleteBtnLarge.textContent = "X";
-            deleteBtnLarge.classList.add("delete-btn");
-            deleteBtnLarge.onclick = function () {
-                deleteImage(imgId);
-            };
-
-            imageWrapper.appendChild(label);
-            imageWrapper.appendChild(imgLarge);
-            imageWrapper.appendChild(deleteBtnLarge);
-            largeRoomImages.appendChild(imageWrapper);
+        const deleteBtnSmall = document.createElement("button");
+        deleteBtnSmall.textContent = "X";
+        deleteBtnSmall.classList.add("delete-btn");
+        deleteBtnSmall.onclick = function () {
+            deleteImage(imgId, imgUrl);
         };
-        reader.readAsDataURL(file);
+
+        smallImageWrapper.appendChild(imgSmall);
+        smallImageWrapper.appendChild(deleteBtnSmall);
+        previewDiv.appendChild(smallImageWrapper);
+
+        // Große Ansicht für das Bild im jeweiligen Zimmer
+        const imageWrapper = document.createElement("div");
+        imageWrapper.classList.add("large-image-wrapper");
+        imageWrapper.setAttribute("id", "large-wrapper-" + imgId);
+
+        const label = document.createElement("p");
+        label.textContent = "Zimmer " + roomId;
+
+        const imgLarge = document.createElement("img");
+        imgLarge.setAttribute("src", imgUrl);
+
+        const deleteBtnLarge = document.createElement("button");
+        deleteBtnLarge.textContent = "X";
+        deleteBtnLarge.classList.add("delete-btn");
+        deleteBtnLarge.onclick = function () {
+            deleteImage(imgId, imgUrl);
+        };
+
+        imageWrapper.appendChild(label);
+        imageWrapper.appendChild(imgLarge);
+        imageWrapper.appendChild(deleteBtnLarge);
+        largeRoomImages.appendChild(imageWrapper);
     }
+
+    // Angepasste deleteImage-Funktion, um Blob-URLs freizugeben
+    function deleteImage(imgId, imgUrl) {
+        const smallImageWrapper = document.getElementById("wrapper-" + imgId);
+        const largeImageWrapper = document.getElementById("large-wrapper-" + imgId);
+
+        if (smallImageWrapper) smallImageWrapper.remove();
+        if (largeImageWrapper) largeImageWrapper.remove();
+
+        // Speicher freigeben
+        URL.revokeObjectURL(imgUrl);
+    }
+
 }
 
 function deleteImage(imgId) {
