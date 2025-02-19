@@ -69,7 +69,7 @@ select {
     border-radius: 5px;
     padding-left: 5px;
     padding-bottom: 0px;
-    line-height: 2;
+   /*  line-height: 2; */
     /* Erhöht die Textzeilenhöhe */
     height: auto;
     /* Falls eine feste Höhe das Problem verursacht */
@@ -259,7 +259,7 @@ h2 {
 
 
 #datum {
-    line-height: 2;
+  /*   line-height: 2; */
     font-family: Arial, Helvetica, sans-serif;
     padding: 0px;
     padding-top: 0px;
@@ -736,6 +736,7 @@ h3 {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .image-container img,
@@ -743,11 +744,14 @@ h3 {
     object-fit: cover;
     border: 1px solid black;
     position: relative;
+    border-radius:5px;
 }
 
 .image-container img {
-    width: 90px;
-    height: 90px;
+    /* width: 90px; */
+    max-height: 100px;
+    max-width: 100px;
+ /*    height: 70px; */
 }
 
 .large-image-container img {
@@ -775,7 +779,7 @@ h3 {
 }
 
 .image-preview .image-container .image-wrapper .delete-btn {
-    background-color: #cc1313;
+    background-color: #ac1a1a;
     border-radius: 22px;
     top: -8px;
     right: -10px;
@@ -915,7 +919,7 @@ h3 {
     border-radius: 5px;
     padding-left: 5px;
     padding-bottom: 0px;
-    line-height: 2;
+  /*   line-height: 2; */
     height: auto;
     min-height: 24px;
     font-size: 22px;
@@ -1081,6 +1085,8 @@ th {
     background-color: #0056b3;
 }
 
+
+
 /* Modal-Stil */
 .modal {
     position: fixed;
@@ -1124,7 +1130,7 @@ th {
 /* Stil für den Upload-Button */
 .customUploadButton {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #778ec1;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1133,5 +1139,5 @@ th {
 }
 
 .customUploadButton:hover {
-    background-color: #45a049;
+    background-color: #3e5b89;
 }
