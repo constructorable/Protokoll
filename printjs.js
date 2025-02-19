@@ -185,7 +185,22 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
+        // Speichere die ursprünglichen Höhen der Input-Felder
+        const inputs = document.querySelectorAll("input");
+        const originalHeights = [];
+
+        inputs.forEach(input => {
+            originalHeights.push(input.style.height);
+            input.style.height = "24px";
+        });
+
+        // PDF speichern
         pdf.save('protokoll.pdf');
+
+        // Ursprüngliche Höhen wiederherstellen
+        inputs.forEach((input, index) => {
+            input.style.height = originalHeights[index];
+        });
 
     } catch (error) {
         console.error("Fehler beim Generieren des PDFs:", error);
