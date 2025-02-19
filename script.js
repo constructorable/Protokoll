@@ -31,15 +31,13 @@ document.addEventListener("input", function (event) {
     // Nur für Elemente mit der Klasse "autoscale"
     if (!input.classList.contains("autoscale")) return;
 
-    // Falls noch nicht gespeichert, merke dir die ursprüngliche Schriftgröße und Höhe
+    // Falls noch nicht gespeichert, merke dir die ursprüngliche Schriftgröße
     if (!input.dataset.originalFontSize) {
         const computedStyle = window.getComputedStyle(input);
         input.dataset.originalFontSize = parseFloat(computedStyle.fontSize);
-        input.dataset.originalHeight = computedStyle.height;
     }
 
     const originalFontSize = parseFloat(input.dataset.originalFontSize);
-    const originalHeight = input.dataset.originalHeight;
 
     // Verfügbarer Platz im Inputfeld berechnen
     const computedStyle = window.getComputedStyle(input);
@@ -50,8 +48,6 @@ document.addEventListener("input", function (event) {
     // Canvas zur Messung der Textbreite
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
-
-    // Setze die ursprüngliche Schriftgröße
     ctx.font = `${computedStyle.fontWeight} ${originalFontSize}px ${computedStyle.fontFamily}`;
 
     const text = input.value || "";
@@ -65,13 +61,18 @@ document.addEventListener("input", function (event) {
         newFontSize = originalFontSize * (shrinkThreshold / textWidth);
     }
 
-    // Mindestschriftgröße festlegen
-    newFontSize = Math.max(newFontSize, 10);
+    // Mindest- und Maximalschriftgröße festlegen
+    newFontSize = Math.max(10, Math.min(newFontSize, 20));
 
-    // Setze neue Schriftgröße, aber halte die Höhe konstant
+    // Schriftgröße anpassen
     input.style.fontSize = newFontSize + "px";
-    input.style.height = originalHeight; // Sicherstellen, dass die Höhe immer gleich bleibt
+
+    // Höhe immer auf 1.11em setzen
+    input.style.lineHeight = "1.11em"; 
+    input.style.height = "1.11em";
 });
+
+
 
 
 
@@ -589,13 +590,13 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
         </select>`;
 
     const zaehlernummerCell = document.createElement('td');
-    zaehlernummerCell.innerHTML = '<input type="text" placeholder="Zählernummer" class="metercounter autoscale" style="width:170px;">';
+    zaehlernummerCell.innerHTML = '<input type="text" placeholder="" class="metercounter autoscale" style="width:170px;">';
 
     const einbaulageCell = document.createElement('td');
-    einbaulageCell.innerHTML = '<input type="text" placeholder="exakte Einbaulage" style="width:290px;" class="einbaulage autoscale">';
+    einbaulageCell.innerHTML = '<input type="text" placeholder="" class="autoscale" style="width: 98%;">';
 
     const zaehlerstandCell = document.createElement('td');
-    zaehlerstandCell.innerHTML = '<input type="text" placeholder="Zählerstand" class="meterstand autoscale" style="width:140px;">';
+    zaehlerstandCell.innerHTML = '<input type="text" placeholder="" class="meterstand autoscale" style="width:140px;">';
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(zaehlernummerCell);
@@ -811,17 +812,17 @@ function setupImageUpload(uploadButton) {
                         let deleteButton = document.createElement("button");
                         deleteButton.textContent = "X";
                         deleteButton.style.position = "absolute";
-                        deleteButton.style.top = "-12px";
-                        deleteButton.style.right = "-14px";
+                        deleteButton.style.top = "-10px";
+                        deleteButton.style.right = "-11px";
                         deleteButton.style.color = "white";
-                        deleteButton.style.backgroundColor = "red"; // Hintergrundfarbe rot
+                        deleteButton.style.backgroundColor = "rgb(181, 45, 45)"; // Hintergrundfarbe rot
                         deleteButton.style.border = "none";
                         deleteButton.style.cursor = "pointer";
-                        deleteButton.style.fontSize = "14px";
-                        deleteButton.style.borderRadius = "2px";
-                        deleteButton.style.padding = "6px 6px";
-                        deleteButton.style.paddingTop = "1px";  // Padding oben
-                        deleteButton.style.paddingBottom = "1px";  // Padding unten
+                        deleteButton.style.fontSize = "12px";
+                        deleteButton.style.borderRadius = "15px";
+                        deleteButton.style.padding = "3px 7px";
+                 /*        deleteButton.style.paddingTop = "1px";  // Padding oben
+                        deleteButton.style.paddingBottom = "1px";  // Padding unten */
 
 
 
@@ -1055,3 +1056,8 @@ function clearSignature(canvasId) {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
 }
+
+
+
+
+
