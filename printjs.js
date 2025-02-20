@@ -194,8 +194,26 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             input.style.height = "24px";
         });
 
-        // PDF speichern
-        pdf.save('protokoll.pdf');
+        // PDF speichern mit dynamischem Dateinamen
+        const strasse = document.getElementById('strasseeinzug').value;
+        const datum = document.getElementById('datum').value;
+
+        // Protokolltyp ermitteln
+        let protokollTyp = '';
+        const isAbnahme = document.getElementById('abnahme').checked;
+        const isUebergabe = document.getElementById('uebergabe').checked;
+
+        if (isAbnahme && isUebergabe) {
+            protokollTyp = 'Abnahme- und Übergabeprotokoll';
+        } else if (isAbnahme) {
+            protokollTyp = 'Abnahmeprotokoll';
+        } else if (isUebergabe) {
+            protokollTyp = 'Übergabeprotokoll';
+        }
+
+        // Dateinamen zusammenstellen
+        const fileName = `${strasse}_${datum}_${protokollTyp}.pdf`.replace(/\s+/g, '_'); // Leerzeichen durch Unterstriche ersetzen
+        pdf.save(fileName);
 
         // Ursprüngliche Höhen wiederherstellen
         inputs.forEach((input, index) => {
