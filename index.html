@@ -28,7 +28,7 @@
                 <span id="closeLoadingOverlay"
                     style="cursor: pointer; position: absolute; top: 10px; right: 10px; font-size: 20px;">&times;</span>
                 <div id="progressBar" style="width: 0%; height: 20px; background-color: #4CAF50;"></div>
-                <div id="progressText">0% abgeschlossen...</div>
+                <div id="progressText">0% abgeschlossen</div>
             </div>
         </div>
 
@@ -880,15 +880,26 @@
                         <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Küche</td>
                     </tr>
 
-                    <tr>
+
+
+
+
+
+                    <tr class="original-row">
+
                         <td colspan="6">
                             <div class="dupli-container">
                                 <input type="text" class="dupli autoscale" placeholder="">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
+                                <button class="deletedupli-button" onclick="deleteRow(this)">
+                                    -
+                                </button>
                             </div>
                         </td>
+
+
                     </tr>
 
                     <tr>
@@ -900,9 +911,14 @@
                         </td>
                     </tr>
 
+
+
+
+
+
                 </table>
 
-             </div>
+            </div>
 
 
             <!-- Bad -->
@@ -1328,54 +1344,58 @@
 
                     <tr>
                         <td>Waschmaschinen anschluss</td>
+
+
                         <td>
-                            <input type="radio" id="bathwaschmaschinenanschluss1" name="bathwaschmaschinenanschluss"
-                                value="in Ordnung">
-                            <label for="bathbathbathwaschmaschinenanschluss1" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss1_xx"
+                                name="bath_waschmaschinenanschluss_xx" value="in Ordnung">
+                            <label for="bath_waschmaschinenanschluss1_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwaschmaschinenanschluss2" name="bathwaschmaschinenanschluss"
-                                value="reparatur- / renovierungsbedürftig">
-                            <label for="bathwaschmaschinenanschluss2" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss2_xx"
+                                name="bath_waschmaschinenanschluss_xx" value="reparatur- / renovierungsbedürftig">
+                            <label for="bath_waschmaschinenanschluss2_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwaschmaschinenanschluss3" name="bathwaschmaschinenanschluss00"
-                                value="Reparatur durch den Mieter">
-                            <label for="bathwaschmaschinenanschluss3" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss3_xx"
+                                name="bath_waschmaschinenanschluss_x2" value="Reparatur durch den Mieter">
+                            <label for="bath_waschmaschinenanschluss3_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwaschmaschinenanschluss4" name="bathwaschmaschinenanschluss00"
-                                value="Reparatur durch den Vermieter">
-                            <label for="bathwaschmaschinenanschluss4" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss4_xx"
+                                name="bath_waschmaschinenanschluss_x2" value="Reparatur durch den Vermieter">
+                            <label for="bath_waschmaschinenanschluss4_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwaschmaschinenanschluss5" name="bathwaschmaschinenanschluss"
-                                value="nicht vorhanden">
-                            <label for="bathwaschmaschinenanschluss5" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss5_xx"
+                                name="bath_waschmaschinenanschluss_xx" value="nicht vorhanden">
+                            <label for="bath_waschmaschinenanschluss5_xx" class="radio-label"></label>
                         </td>
                     </tr>
 
                     <tr>
                         <td>WC-Sitz, Spüler usw.</td>
                         <td>
-                            <input type="radio" id="bathwc1" name="bathwc" value="in Ordnung">
-                            <label for="bathwc" class="radio-label"></label>
+                            <input type="radio" id="bath_wc1_xx" name="bath_wc_xx" value="in Ordnung">
+                            <label for="bath_wc1_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwc2" name="bathwc" value="reparatur- / renovierungsbedürftig">
-                            <label for="bathwc2" class="radio-label"></label>
+                            <input type="radio" id="bath_wc2_xx" name="bath_wc_xx"
+                                value="reparatur- / renovierungsbedürftig">
+                            <label for="bath_wc2_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwc3" name="bathwc00" value="Reparatur durch den Mieter">
-                            <label for="bathwc3" class="radio-label"></label>
+                            <input type="radio" id="bath_wc3_xx" name="bath_wc_xx1" value="Reparatur durch den Mieter">
+                            <label for="bath_wc3_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwc4" name="bathwc00" value="Reparatur durch den Vermieter">
-                            <label for="bathwc4" class="radio-label"></label>
+                            <input type="radio" id="bath_wc4_xx" name="bath_wc_xx1"
+                                value="Reparatur durch den Vermieter">
+                            <label for="bath_wc4_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwc5" name="bathwc" value="nicht vorhanden">
-                            <label for="bathwc5" class="radio-label"></label>
+                            <input type="radio" id="bath_wc5_xx" name="bath_wc_xx" value="nicht vorhanden">
+                            <label for="bath_wc5_xx" class="radio-label"></label>
                         </td>
                     </tr>
 
@@ -1657,15 +1677,21 @@
                     </tr>
 
 
-                    <tr>
+                    <tr class="original-row">
+
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
+                                <button class="deletedupli-button" onclick="deleteRow(this)">
+                                    -
+                                </button>
                             </div>
                         </td>
+
+
                     </tr>
 
 
@@ -2117,56 +2143,59 @@
 
                     <tr>
                         <td>Waschmaschinen anschluss</td>
+
+
                         <td>
-                            <input type="radio" id="guestwcwaschmaschinenanschluss1"
-                                name="guestwcwaschmaschinenanschluss" value="in Ordnung">
-                            <label for="guestwcguestwcguestwcwaschmaschinenanschluss1" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss1_xxx"
+                                name="bath_waschmaschinenanschluss_xxx2" value="in Ordnung">
+                            <label for="bath_waschmaschinenanschluss1_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwaschmaschinenanschluss2"
-                                name="guestwcwaschmaschinenanschluss" value="reparatur- / renovierungsbedürftig">
-                            <label for="guestwcwaschmaschinenanschluss2" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss2_xxx"
+                                name="bath_waschmaschinenanschluss_xxx2" value="reparatur- / renovierungsbedürftig">
+                            <label for="bath_waschmaschinenanschluss2_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwaschmaschinenanschluss3"
-                                name="guestwcwaschmaschinenanschluss00" value="Reparatur durch den Mieter">
-                            <label for="guestwcwaschmaschinenanschluss3" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss3_xxx"
+                                name="bath_waschmaschinenanschluss_xx3" value="Reparatur durch den Mieter">
+                            <label for="bath_waschmaschinenanschluss3_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwaschmaschinenanschluss4"
-                                name="guestwcwaschmaschinenanschluss00" value="Reparatur durch den Vermieter">
-                            <label for="guestwcwaschmaschinenanschluss4" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss4_xxx"
+                                name="bath_waschmaschinenanschluss_xx3" value="Reparatur durch den Vermieter">
+                            <label for="bath_waschmaschinenanschluss4_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwaschmaschinenanschluss5"
-                                name="guestwcwaschmaschinenanschluss" value="nicht vorhanden">
-                            <label for="guestwcwaschmaschinenanschluss5" class="radio-label"></label>
+                            <input type="radio" id="bath_waschmaschinenanschluss5_xxx"
+                                name="bath_waschmaschinenanschluss_xxx2" value="nicht vorhanden">
+                            <label for="bath_waschmaschinenanschluss5_xxx" class="radio-label"></label>
                         </td>
                     </tr>
 
                     <tr>
                         <td>WC-Sitz, Spüler usw.</td>
                         <td>
-                            <input type="radio" id="guestwcwc1" name="guestwcwc" value="in Ordnung">
-                            <label for="guestwcwc" class="radio-label"></label>
+                            <input type="radio" id="bath_wc1_xxx" name="bath_wc_xxx" value="in Ordnung">
+                            <label for="bath_wc1_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwc2" name="guestwcwc"
+                            <input type="radio" id="bath_wc2_xxx" name="bath_wc_xxx"
                                 value="reparatur- / renovierungsbedürftig">
-                            <label for="guestwcwc2" class="radio-label"></label>
+                            <label for="bath_wc2_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwc3" name="guestwcwc00" value="Reparatur durch den Mieter">
-                            <label for="guestwcwc3" class="radio-label"></label>
+                            <input type="radio" id="bath_wc3_xxx" name="bath_wc_xxx1"
+                                value="Reparatur durch den Mieter">
+                            <label for="bath_wc3_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwc4" name="guestwcwc00"
+                            <input type="radio" id="bath_wc4_xxx" name="bath_wc_xxx1"
                                 value="Reparatur durch den Vermieter">
-                            <label for="guestwcwc4" class="radio-label"></label>
+                            <label for="bath_wc4_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwc5" name="guestwcwc" value="nicht vorhanden">
-                            <label for="guestwcwc5" class="radio-label"></label>
+                            <input type="radio" id="bath_wc5_xxx" name="bath_wc_xxx" value="nicht vorhanden">
+                            <label for="bath_wc5_xxx" class="radio-label"></label>
                         </td>
                     </tr>
 
@@ -2458,15 +2487,21 @@
                         <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Gäste-WC</td>
                     </tr>
 
-                    <tr>
+                    <tr class="original-row">
+
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
+                                <button class="deletedupli-button" onclick="deleteRow(this)">
+                                    -
+                                </button>
                             </div>
                         </td>
+
+
                     </tr>
 
 
@@ -2909,15 +2944,21 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="original-row">
+
                         <td colspan="6">
                             <div class="dupli-container">
-                                <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                <input type="text" class="dupli autoscale" placeholder="">
                                 <button class="dupli-button" onclick="duplicateRow(this)">
                                     +
                                 </button>
+                                <button class="deletedupli-button" onclick="deleteRow(this)">
+                                    -
+                                </button>
                             </div>
                         </td>
+
+
                     </tr>
 
 
@@ -3404,16 +3445,21 @@
                             </td>
                         </tr>
 
+                        <tr class="original-row">
 
-                        <tr>
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
+                                    <button class="deletedupli-button" onclick="deleteRow(this)">
+                                        -
+                                    </button>
                                 </div>
                             </td>
+    
+    
                         </tr>
 
 
@@ -3641,15 +3687,21 @@
                         </tr>
 
 
-                        <tr>
+                        <tr class="original-row">
+
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
+                                    <button class="deletedupli-button" onclick="deleteRow(this)">
+                                        -
+                                    </button>
                                 </div>
                             </td>
+    
+    
                         </tr>
 
 
@@ -3817,15 +3869,21 @@
                         </tr>
 
 
-                        <tr>
-                            <td colspan="6">
+                        <tr class="original-row">
+
+                            <td colspan="7">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
+                                    <button class="deletedupli-button" onclick="deleteRow(this)">
+                                        -
+                                    </button>
                                 </div>
                             </td>
+    
+    
                         </tr>
 
 
@@ -3895,15 +3953,21 @@
                             <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen</td>
                         </tr>
 
-                        <tr>
-                            <td colspan="6">
+                        <tr class="original-row">
+
+                            <td colspan="8">
                                 <div class="dupli-container">
-                                    <input type="text" class="dupli autoscale" placeholder="" maxlength="113">
+                                    <input type="text" class="dupli autoscale" placeholder="">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
+                                    <button class="deletedupli-button" onclick="deleteRow(this)">
+                                        -
+                                    </button>
                                 </div>
                             </td>
+    
+    
                         </tr>
 
                         <tr>
