@@ -520,7 +520,7 @@ body {
     position: sticky;
     top: 10px;
     /* Abstand vom oberen Rand */
-    background: rgb(220, 220, 220);
+    background: rgb(255, 255, 255);
     /* Hintergrund setzen */
     padding: 10px;
     z-index: 1000;
@@ -529,6 +529,7 @@ body {
     gap: 10px;
     /* Abstand zwischen Buttons */
     opacity: 0.9;
+    border-radius:7px;
 }
 
 
@@ -576,10 +577,10 @@ h3 {
 }
 
 /* Stil für den grünen Plus-Button */
-.dupli-button {
+.dupli-button, .deletedupli-button {
     position: absolute;
     right: 3px;
-    bottom: -18px;
+    bottom: -33px;
     font-size: 19.2px;
     background: #7999aca8;
     color: #fff;
@@ -590,12 +591,13 @@ h3 {
     cursor: pointer;
 }
 
-/* Stil, um den Button auszublenden */
-.dupli-button.hidden {
-    display: none;
+.deletedupli-button {
+     right: 41px;
+    bottom: -33px;
+    background: #9d0303a8;
+
+
 }
-
-
 
 
 
