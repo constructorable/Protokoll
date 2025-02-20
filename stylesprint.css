@@ -268,8 +268,8 @@ select {
 select {
     line-height: 1.11;
     /* min-height: 34px; */
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 
 }
 
@@ -506,8 +506,8 @@ input.dupli {
 .mails {
     width: 240px;
     background-color: #edf2f7;
-    height:1.3 !important;
-    line-height:1.4 !important;
+    height: 1.9 !important;
+    line-height: 1.9 !important;
     border-radius: 5px;
     border: 1px solid #cbcbcb;
     padding-top: 7px;
@@ -541,6 +541,32 @@ input.dupli {
     margin-right: 0px;
     padding-right: 15px;
 }
+
+#schluesselTable th {
+    padding-left: 1px !important;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(1) {
+    padding-left: 0px !important;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2)>input:nth-child(1) {
+    text-align: center;
+}
+
+
 
 .sign02 {
     padding-top: 15px;
@@ -604,7 +630,7 @@ input.dupli {
 .elegant-number-input {
     width: 100px;
     padding-right: 5px;
-    text-align: right;
+    text-align: center;
     font-size: 1rem;
     border-radius: 3px;
     line-height: 1.11;
@@ -613,6 +639,7 @@ input.dupli {
 
 .euro-symbol {
     font-size: 18px;
+    opacity: 1 !important;
 }
 
 /* Tabellenzelle anpassen, damit das Feld genug Platz hat */
@@ -651,68 +678,51 @@ td.no-border-right.text-right {
 /* Hintergrund für das Ladeoverlay */
 /* Hintergrund für das Ladeoverlay */
 #loadingOverlay {
+    display: none; /* Standardmäßig ausgeblendet */
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Dunklerer halbtransparenter Hintergrund */
-    display: flex;
+    width: 90%; /* 90% der Bildschirmbreite */
+    height: 100vh; /* Volle Höhe des Bildschirms */
+    background-color: rgba(0, 0, 0, 0.8); /* Dunkler Hintergrund */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    overflow: hidden;
-    /* Verhindert das Scrollen, falls der Inhalt zu groß wird */
+    z-index: 1000; /* Sicherstellen, dass es über anderen Elementen liegt */
 }
 
-/* Container für die Fortschrittsanzeige */
-#progressContainer {
-    width: 80%;
-    /* Breite des Containers anpassen */
-    max-width: 500px;
-    /* Maximaler Wert für sehr große Bildschirme */
-    background-color: #f3f3f3;
-    padding: 25px;
-    border-radius: 20px;
-    /* Abgerundete Ecken für einen weicheren Look */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    /* Größerer Schatten für mehr Tiefe */
+#loadingOverlay .loading-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: all 0.3s ease-in-out;
-    /* Sanfte Übergänge für den Container */
+    width: 90%; /* Breite des Inhalts innerhalb der Loading-Box */
+    max-width: 800px; /* Maximale Breite des Inhalts */
 }
 
-/* Die Fortschrittsleiste */
 #progressBar {
-    width: 0%;
-    height: 12px;
-    /* Dünnerer Balken für einen moderneren Look */
-    background: linear-gradient(90deg, #5f9f7d, #4caf50);
-    /* Sanfterer Grünton */
-    border-radius: 6px;
-    /* Leicht abgerundete Ecken */
-    transition: width 0.4s ease-out;
-    /* Langsame Veränderung des Fortschritts */
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Weicher innerer Schatten */
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-/* Text unter der Fortschrittsleiste */
-#progressText {
-    margin-top: 15px;
-    font-size: 20px;
-    /* Etwas größerer Text */
-    font-weight: 500;
-    /* Leichte Fettung */
-    color: #333;
-    letter-spacing: 0.5px;
-    /* Etwas mehr Abstand zwischen den Buchstaben */
-    transition: opacity 0.3s ease-in-out;
-    /* Sanfter Übergang für den Text */
+#progressBar .progress {
+    height: 200%;
+    background-color: #76c7c0;
+    border-radius: 10px;
+    width: 0%; /* Startwert */
 }
 
+#closeLoadingOverlay {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 .customUploadButton,
 .imageUpload,
@@ -829,10 +839,67 @@ select {
 }
 
 input {
-    height: 30px !important; /* Höhe des Input-Feldes */
-    padding: 3px 0px 3px 3px !important; /* Oben und unten 10px, links und rechts 12px */
-    box-sizing: border-box !important; /* Stellt sicher, dass das Padding in der Höhe enthalten ist */
-    line-height: 25px !important; /* Normaler Wert für die Zeilenhöhe */
-  /*   font-size:16px !important; */
-  /*   margin-top: 12px !important; */
+    height: 30px !important;
+    /* Höhe des Input-Feldes */
+    padding: 3px 0px 3px 3px !important;
+    /* Oben und unten 10px, links und rechts 12px */
+    box-sizing: border-box !important;
+    /* Stellt sicher, dass das Padding in der Höhe enthalten ist */
+    line-height: 25px !important;
+    /* Normaler Wert für die Zeilenhöhe */
+    /*   font-size:16px !important; */
+    /*   margin-top: 12px !important; */
+}
+
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(2),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(4),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(6) {
+    background: #f1f1f1;
+}
+
+#hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(3) {
+    padding-left: 11px;
+}
+
+input[type="text"],
+textarea,
+select {
+    padding-left: 6px !important;
+}
+
+input[type="number"] {
+    border: 1px solid #ccc !important;
+    /* Schwarzer Rahmen */
+    box-sizing: border-box !important;
+    /* Stellt sicher, dass Padding und Rahmen in der Breite enthalten sind */
+}
+
+#schluesselTable>thead:nth-child(1)>tr:nth-child(1)>th:nth-child(2) {
+    text-align: center;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(3) {
+    padding-left: 0 !important;
+}
+
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2) {
+    padding-left: 0px !important;
+}
+
+.hidden {
+    display: none;
 }
