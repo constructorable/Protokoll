@@ -54,7 +54,7 @@ document.addEventListener("input", function (event) {
     const textWidth = ctx.measureText(text).width;
 
     // Frühzeitige Skalierung (reduziere Schriftgröße bereits 10% früher)
-    const shrinkThreshold = availableWidth * 0.9;
+    const shrinkThreshold = availableWidth * 0.8;
 
     let newFontSize = originalFontSize;
     if (textWidth > shrinkThreshold) {
@@ -62,7 +62,7 @@ document.addEventListener("input", function (event) {
     }
 
     // Mindest- und Maximalschriftgröße festlegen
-    newFontSize = Math.max(10, Math.min(newFontSize, 20));
+    newFontSize = Math.max(10, Math.min(newFontSize, 16));
 
     // Schriftgröße anpassen
     input.style.fontSize = newFontSize + "px";
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
-                    h3.style.color = "red";
+                    h3.style.color = "#c80000";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 if (text === "einziehender Mieter") {
                     h3.textContent = "einziehender Mieter (nicht zutreffend)";
-                    h3.style.color = "red";
+                    h3.style.color = "#c80000";
                     h3.style.borderBottom = "1px solid black";
                     h3.style.paddingBottom = "5px";
                 }
@@ -230,7 +230,7 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 265px;">`;
     vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 150px;">`;
     strasseCell.innerHTML = '<input type="text" class="phones autoscale" style="width: 140px;">';
-    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 300px;">';
+    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 352px;">';
 
     newRow1.appendChild(nameCell);
     newRow1.appendChild(vornameCell);
@@ -369,7 +369,7 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     nameCell.innerHTML = `<input type="text"id="${nameId}" class="autoscale" style="width: 180px;">`;
     vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 110px;">`;
     strasseCell.innerHTML = '<input type="text" class="newstreets autoscale" style="width: 350px;">';
-    plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 220px;">';
+    plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 268px;">';
 
     newRow.appendChild(nameCell);
     newRow.appendChild(vornameCell);
@@ -515,10 +515,10 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
         </select>`;
 
     const anzahlCell = document.createElement('td');
-    anzahlCell.innerHTML = '<input type="number" placeholder="Anzahl" style="width: 100%;">';
+    anzahlCell.innerHTML = '<input type="number" placeholder="" style="width: 100%;">';
 
     const schluesselnummerCell = document.createElement('td');
-    schluesselnummerCell.innerHTML = '<input type="text" placeholder="Schlüsselnummer" class="autoscale" style="width: 98%;">';
+    schluesselnummerCell.innerHTML = '<input type="text" placeholder="" class="autoscale" style="width: 100%;">';
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(anzahlCell);
@@ -554,7 +554,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
             { text: 'Bezeichnung', width: '230px' },
             { text: 'Zählernummer', width: '170px' },
             { text: 'Einbaulage', width: '290px' },
-            { text: 'Zählerstand', width: '140px' }
+            { text: 'Zählerstand', width: '166px' }
         ];
 
         headers.forEach(header => {
@@ -596,7 +596,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
     einbaulageCell.innerHTML = '<input type="text" placeholder="" class="autoscale" style="width: 98%;">';
 
     const zaehlerstandCell = document.createElement('td');
-    zaehlerstandCell.innerHTML = '<input type="text" placeholder="" class="meterstand autoscale" style="width:140px;">';
+    zaehlerstandCell.innerHTML = '<input type="text" placeholder="" class="meterstand autoscale" style="width:166px;">';
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(zaehlernummerCell);
@@ -717,6 +717,8 @@ document.addEventListener("DOMContentLoaded", function () {
 /* Bemerkungszeile duplizieren */
 /* Bemerkungszeile duplizieren */
 /* Bemerkungszeile duplizieren */
+// Funktion zum Duplizieren einer Zeile
+// Funktion zum Duplizieren einer Zeile
 function duplicateRow(button) {
     // Finde die aktuelle Zeile (die Zeile, in der der Button geklickt wurde)
     const row = button.closest('tr');
@@ -730,14 +732,26 @@ function duplicateRow(button) {
         inputField.value = '';
     }
 
-    // Verstecke den Button in der aktuellen Zeile
-    const currentButton = row.querySelector('.dupli-button');
-    if (currentButton) {
-        currentButton.classList.add('hidden');
-    }
+    // Entferne die Markierung der ursprünglichen Zeile (falls vorhanden)
+    newRow.classList.remove('original-row');
 
     // Füge die neue Zeile nach der aktuellen Zeile ein
     row.parentNode.insertBefore(newRow, row.nextSibling);
+}
+
+// Funktion zum Löschen einer Zeile
+function deleteRow(button) {
+    // Finde die aktuelle Zeile (die Zeile, in der der Button geklickt wurde)
+    const row = button.closest('tr');
+
+    // Überprüfe, ob die Zeile die ursprüngliche Zeile ist
+    if (row.classList.contains('original-row')) {
+        alert('Die ursprüngliche Zeile kann nicht gelöscht werden.');
+        return; // Beende die Funktion, ohne die Zeile zu löschen
+    }
+
+    // Entferne die Zeile
+    row.remove();
 }
 
 
@@ -1056,6 +1070,9 @@ function clearSignature(canvasId) {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
 }
+
+
+
 
 
 
