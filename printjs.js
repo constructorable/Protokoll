@@ -1,26 +1,68 @@
-document.getElementById('savePdfButton').addEventListener('click', async function () {
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    loadingOverlay.style.display = 'flex'; // Ladebildschirm anzeigen
+// Funktion zur Überprüfung der Checkboxen (Abnahme/Übergabe)
+function validateCheckboxes() {
+    const abnahmeCheckbox = document.getElementById("abnahme");
+    const uebergabeCheckbox = document.getElementById("uebergabe");
 
-    // Fortschrittsanzeige
+    if (!abnahmeCheckbox.checked && !uebergabeCheckbox.checked) {
+        alert("Bitte wählen Sie mindestens ein Protokoll aus (Abnahme- und / oder Übergabeprotokoll).");
+        return false;
+    }
+
+    return true;
+}
+
+// Funktion zur Überprüfung der Checkboxen in der Tabelle "zentral"
+function validateZentralCheckboxes() {
+    const checkboxes = document.querySelectorAll('#zentral input[type="checkbox"]');
+    let isChecked = false;
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            isChecked = true;
+        }
+    });
+
+    if (!isChecked) {
+        alert("Bitte wählen Sie mindestens eine Option aus (Heizung/Warmwasser).");
+        return false;
+    }
+
+    return true;
+}
+
+// Event-Listener für den "PDF speichern"-Button
+document.getElementById('savePdfButton').addEventListener('click', async function (event) {
+    // Überprüfe die Checkboxen in der Tabelle "zentral"
+    if (!validateZentralCheckboxes()) {
+        event.preventDefault();
+        return;
+    }
+
+    // Überprüfe die Checkboxen für Abnahme/Übergabe
+    if (!validateCheckboxes()) {
+        event.preventDefault();
+        return;
+    }
+
+    // Fortsetzung des bestehenden Codes zur PDF-Generierung
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'flex';
+
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     progressBar.style.width = '0%';
     progressText.textContent = '0% abgeschlossen';
 
-    // Schließen-Button für den Ladebildschirm
     const closeButton = document.getElementById('closeLoadingOverlay');
     closeButton.addEventListener('click', function () {
-        loadingOverlay.style.display = 'none'; // Ladebildschirm ausblenden
+        loadingOverlay.style.display = 'none';
     });
 
-    // Sticky-Container vorübergehend ausblenden
     const stickyContainer = document.querySelector('.sticky-container');
     if (stickyContainer) {
         stickyContainer.style.display = 'none';
     }
 
-    // Rest des Codes bleibt unverändert
     const elements = {
         allgemein: document.querySelector('#zzzallgemein'),
         kueche: document.querySelector('#zzzkueche'),
@@ -43,7 +85,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         console.error("Fehler: Ein oder mehrere erforderliche Elemente wurden nicht gefunden.");
         loadingOverlay.style.display = 'none';
         if (stickyContainer) {
-            stickyContainer.style.display = ''; // Sticky-Container wieder einblenden
+            stickyContainer.style.display = '';
         }
         return;
     }
@@ -185,7 +227,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        // Speichere die ursprünglichen Höhen der Input-Felder
         const inputs = document.querySelectorAll("input");
         const originalHeights = [];
 
@@ -194,11 +235,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             input.style.height = "24px";
         });
 
-        // PDF speichern mit dynamischem Dateinamen
         const strasse = document.getElementById('strasseeinzug').value;
         const datum = document.getElementById('datum').value;
 
-        // Protokolltyp ermitteln
         let protokollTyp = '';
         const isAbnahme = document.getElementById('abnahme').checked;
         const isUebergabe = document.getElementById('uebergabe').checked;
@@ -211,11 +250,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             protokollTyp = 'Übergabeprotokoll';
         }
 
-        // Dateinamen zusammenstellen
-        const fileName = `${strasse}_${datum}_${protokollTyp}.pdf`.replace(/\s+/g, '_'); // Leerzeichen durch Unterstriche ersetzen
+        const fileName = `${strasse}_${datum}_${protokollTyp}.pdf`.replace(/\s+/g, '_');
         pdf.save(fileName);
 
-        // Ursprüngliche Höhen wiederherstellen
         inputs.forEach((input, index) => {
             input.style.height = originalHeights[index];
         });
@@ -232,7 +269,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         loadingOverlay.style.display = 'none';
 
-        // Sticky-Container wieder einblenden
         if (stickyContainer) {
             stickyContainer.style.display = '';
         }
