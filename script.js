@@ -62,7 +62,7 @@ document.addEventListener("input", function (event) {
     }
 
     // Mindest- und Maximalschriftgröße festlegen
-    newFontSize = Math.max(10, Math.min(newFontSize, 44));
+    newFontSize = Math.max(10, Math.min(newFontSize, 16));
 
     // Schriftgröße anpassen
     input.style.fontSize = newFontSize + "px";
@@ -230,7 +230,7 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 265px;">`;
     vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 150px;">`;
     strasseCell.innerHTML = '<input type="text" class="phones autoscale" style="width: 140px;">';
-    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 260px;">';
+    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 250px;">';
 
     newRow1.appendChild(nameCell);
     newRow1.appendChild(vornameCell);
@@ -371,7 +371,7 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 220px;">`;
     strasseCell.innerHTML = '<input type="text" class="newstreets autoscale" style="width: 220px;">';
     plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 230px;">';
-    emailCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 140px;">'; // E-Mail-Eingabefeld
+    emailCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 150px;">'; // E-Mail-Eingabefeld
 
     newRow.appendChild(nameCell);
     newRow.appendChild(strasseCell);
@@ -1163,3 +1163,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
