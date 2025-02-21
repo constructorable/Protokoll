@@ -62,7 +62,7 @@ function sendEmail(fileName, emails, client) {
 }
 
 // Funktion zum Anzeigen des E-Mail-Menüs
-function showEmailMenu(fileName) {
+function showEmailMenu() {
     let validEmails = findValidEmails();
 
     if (validEmails.length === 0) {
@@ -102,22 +102,22 @@ function showEmailMenu(fileName) {
     document.body.appendChild(emailMenu);
 
     document.getElementById('defaultMailClient').addEventListener('click', () => {
-        sendEmail(fileName, validEmails, 'default');
+        sendEmail("Protokoll", validEmails, 'default');
         closeEmailMenu();
     });
 
     document.getElementById('gmail').addEventListener('click', () => {
-        sendEmail(fileName, validEmails, 'gmail');
+        sendEmail("Protokoll", validEmails, 'gmail');
         closeEmailMenu();
     });
 
     document.getElementById('outlook').addEventListener('click', () => {
-        sendEmail(fileName, validEmails, 'outlook');
+        sendEmail("Protokoll", validEmails, 'outlook');
         closeEmailMenu();
     });
 
     document.getElementById('yahoo').addEventListener('click', () => {
-        sendEmail(fileName, validEmails, 'yahoo');
+        sendEmail("Protokoll", validEmails, 'yahoo');
         closeEmailMenu();
     });
 
@@ -157,11 +157,5 @@ function findValidEmails() {
 
 // Event-Listener für den "E-Mail senden"-Button
 document.getElementById('sendEmailButton').addEventListener('click', function () {
-    const fileName = localStorage.getItem('lastGeneratedPdfName');
-    if (!fileName) {
-        alert("Es wurde noch keine PDF-Datei erstellt.");
-        return;
-    }
-
-    showEmailMenu(fileName);
+    showEmailMenu();
 });
