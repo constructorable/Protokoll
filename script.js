@@ -68,7 +68,7 @@ document.addEventListener("input", function (event) {
     input.style.fontSize = newFontSize + "px";
 
     // Höhe immer auf 1.11em setzen
-    input.style.lineHeight = "1.11em"; 
+    input.style.lineHeight = "1.11em";
     input.style.height = "1.11em";
 });
 
@@ -338,11 +338,14 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
 
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
-        const headers = ['Name', 'Vorname', 'neue Straße', 'PLZ / Ort'];
+        const headers = ['Name, Vorname', 'neue Straße', 'PLZ / Ort', 'E-Mail']; // Spalte "Vorname" entfernt
 
         headers.forEach(headerText => {
             const th = document.createElement('th');
             th.textContent = headerText;
+            if (headerText === 'E-Mail') {
+                th.style.width = '118px'; // Breite der E-Mail-Spalte
+            }
             headerRow.appendChild(th);
         });
 
@@ -358,23 +361,22 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
 
     const newRow = document.createElement('tr');
     const nameCell = document.createElement('td');
-    const vornameCell = document.createElement('td');
     const strasseCell = document.createElement('td');
     const plzOrtCell = document.createElement('td');
+    const emailCell = document.createElement('td'); // Neue Zelle für E-Mail
 
     const counter = document.querySelectorAll('.signature-container').length + 1;
     const nameId = `NameAus${counter.toString().padStart(2, '0')}`;
-    const vornameId = `VornameAus${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text"id="${nameId}" class="autoscale" style="width: 180px;">`;
-    vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 110px;">`;
-    strasseCell.innerHTML = '<input type="text" class="newstreets autoscale" style="width: 350px;">';
-    plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 268px;">';
+    nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 220px;">`;
+    strasseCell.innerHTML = '<input type="text" class="newstreets autoscale" style="width: 220px;">';
+    plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 230px;">';
+    emailCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 230px;">'; // E-Mail-Eingabefeld
 
     newRow.appendChild(nameCell);
-    newRow.appendChild(vornameCell);
     newRow.appendChild(strasseCell);
     newRow.appendChild(plzOrtCell);
+    newRow.appendChild(emailCell); // E-Mail-Zelle hinzufügen
 
     table.querySelector('tbody').appendChild(newRow);
 
@@ -414,13 +416,10 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
     initSignatureCanvas(`ausziehender-mieter-signature-${counter}`);
 
     const nameInput = document.getElementById(nameId);
-    const vornameInput = document.getElementById(vornameId);
     const fullNameSpan = document.getElementById(`ausziehender-mieter-fullname-${counter}`);
 
-    nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
-    vornameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
+    nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value));
 });
-
 
 
 
@@ -503,15 +502,22 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
     const bezeichnungCell = document.createElement('td');
     bezeichnungCell.innerHTML = `
         <select style="width: 100%;">
-            <option value="leer"></option>
-            <option value="haustuer">Haustür</option>
-            <option value="wohnung">Wohnung</option>
-            <option value="keller">Keller</option>
-            <option value="dachboden">Dachboden</option>
-            <option value="briefkasten">Briefkasten</option>
-            <option value="abstellraum">Abstellraum</option>
-            <option value="fahrradbereich">Fahrradbereich</option>
-            <option value="sonstige">Sonstige</option>
+                        <option value="leer"></option>
+                        <option value="haustuer">Haustür</option>
+                        <option value="wohnung">Wohnungstür</option>
+                        <option value="wohnung">Haustür inkl. Wohnungstür</option>
+                        <option value="briefkasten">Briefkasten</option>
+                        <option value="keller">Keller</option>
+                        <option value="dachboden">Dachboden</option>
+                        <option value="garage">Garage</option>
+                        <option value="garage">Doppelparkanlage</option>
+                        <option value="fahrradbereich">Fahrradbereich</option>
+                        <option value="abstellraum">Abstellraum</option>
+                        <option value="buero">Büro</option>
+                        <option value="lagerraum">Lagerraum</option>
+                        <option value="muellraum">Müllraum</option>
+                        <option value="sonstige">Sonstige</option>
+            
         </select>`;
 
     const anzahlCell = document.createElement('td');
@@ -835,8 +841,8 @@ function setupImageUpload(uploadButton) {
                         deleteButton.style.fontSize = "12px";
                         deleteButton.style.borderRadius = "15px";
                         deleteButton.style.padding = "3px 7px";
-                 /*        deleteButton.style.paddingTop = "1px";  // Padding oben
-                        deleteButton.style.paddingBottom = "1px";  // Padding unten */
+                        /*        deleteButton.style.paddingTop = "1px";  // Padding oben
+                               deleteButton.style.paddingBottom = "1px";  // Padding unten */
 
 
 
@@ -920,7 +926,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
 function resizeCanvas(canvas, context) {
     const rect = canvas.getBoundingClientRect();
-    
+
     // Unterschrift zwischenspeichern
     const tempImage = canvas.toDataURL();
 
@@ -1072,9 +1078,89 @@ function clearSignature(canvasId) {
 }
 
 
+// Datum automatisch einfügen
+// Datum automatisch einfügen
+// Datum automatisch einfügen
+document.addEventListener("DOMContentLoaded", function() {
+    // Hole das heutige Datum
+    const heute = new Date();
+    
+    // Formatiere das Datum im Format YYYY-MM-DD
+    const jahr = heute.getFullYear();
+    const monat = String(heute.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
+    const tag = String(heute.getDate()).padStart(2, '0');
+    const heutigesDatum = `${jahr}-${monat}-${tag}`;
+    
+    // Setze das heutige Datum in das Datumsfeld
+    document.getElementById("datum").value = heutigesDatum;
+});
 
 
+// prüfen ob es eine gültige E-Mailadrese im Input isFinite
+// prüfen ob es eine gültige E-Mailadrese im Input isFinite
+// prüfen ob es eine gültige E-Mailadrese im Input isFinite
+// Funktion zur Überprüfung der E-Mail-Adresse
+function validateEmail(email) {
+    // Einfache Regex-Überprüfung für E-Mail-Adressen
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
+// Funktion zur Anzeige von Fehlermeldungen
+function showError(inputElement, message) {
+    // Entferne vorhandene Fehlermeldungen
+    const existingError = inputElement.nextElementSibling;
+    if (existingError && existingError.classList.contains('error-message')) {
+        existingError.remove();
+    }
 
+    // Erstelle eine neue Fehlermeldung
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'error-message';
+    errorMessage.style.color = 'red';
+    errorMessage.style.fontSize = '12px';
+    errorMessage.textContent = message;
 
+    // Füge die Fehlermeldung nach dem Eingabefeld ein
+    inputElement.insertAdjacentElement('afterend', errorMessage);
+}
+
+// Funktion zur Entfernung von Fehlermeldungen
+function clearError(inputElement) {
+    const existingError = inputElement.nextElementSibling;
+    if (existingError && existingError.classList.contains('error-message')) {
+        existingError.remove();
+    }
+}
+
+// Warte, bis das DOM vollständig geladen ist
+document.addEventListener("DOMContentLoaded", function() {
+    // Hole das E-Mail-Eingabefeld
+    const emailInput = document.querySelector('.mails.autoscale');
+
+    // Füge Event-Listener für das "input"- und "blur"-Event hinzu
+    if (emailInput) {
+        emailInput.addEventListener('input', function() {
+            const email = emailInput.value.trim(); // Hole den eingegebenen Wert und entferne Leerzeichen
+
+            // Überprüfe, ob die E-Mail-Adresse gültig ist
+            if (email && !validateEmail(email)) {
+                showError(emailInput, "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+            } else {
+                clearError(emailInput); // Entferne die Fehlermeldung, wenn die E-Mail gültig ist
+            }
+        });
+
+        emailInput.addEventListener('blur', function() {
+            const email = emailInput.value.trim(); // Hole den eingegebenen Wert und entferne Leerzeichen
+
+            // Überprüfe, ob die E-Mail-Adresse gültig ist
+            if (email && !validateEmail(email)) {
+                showError(emailInput, "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+            } else {
+                clearError(emailInput); // Entferne die Fehlermeldung, wenn die E-Mail gültig ist
+            }
+        });
+    }
+});
 
