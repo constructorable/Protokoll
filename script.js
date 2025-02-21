@@ -62,7 +62,7 @@ document.addEventListener("input", function (event) {
     }
 
     // Mindest- und Maximalschriftgröße festlegen
-    newFontSize = Math.max(10, Math.min(newFontSize, 16));
+    newFontSize = Math.max(10, Math.min(newFontSize, 24));
 
     // Schriftgröße anpassen
     input.style.fontSize = newFontSize + "px";
