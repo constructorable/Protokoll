@@ -13,6 +13,8 @@
 
     <script src="scriptzimmer.js"></script>
     <script src="printjs.js" defer></script>
+  
+
 </head>
 
 <body>
@@ -38,6 +40,7 @@
 
             <button id="toggleModeButton">Ansicht ändern</button>
             <button id="savePdfButton">Als PDF speichern</button>
+            <button id="sendEmailButton">PDF versenden</button>
 
         </div>
 
@@ -71,17 +74,16 @@
 
                         </td>
 
-                        </tr>
-
-
-
-
                         <tr>
+
+
                             <td style="text-align: left; width: 380px; padding-right:10px;">Objekt / Straße</td>
                             <td colspan="5">
                                 <input id="strasseeinzug" type="text" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale" style="width: 350px;">
+                                <div id="suggestionList"></div> <!-- Vorschlagsliste -->
                             </td>
+
 
 
                             <td style="text-align: right; padding-right: 10px; width: 240px;">Lage / Stockwerk</td>
@@ -99,7 +101,7 @@
                             <!-- PLZ / Ort 1 -->
                             <td style="width: 350px; text-align: left; padding:10px;">PLZ / Ort</td>
                             <td colspan="5">
-                                <input type="text" id=plzeinzug name="bemerkungen"
+                                <input type="text" id="plzeinzug" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale"
                                     style="width: 350px; margin-right:10px;">
                             </td>
@@ -4040,8 +4042,11 @@
 
 
 
-
+    
     <script src="script.js"></script>
+    <script src="immo.js"></script>
+    <script src="mailcheck.js"></script>
+    <script src="mailsend.js"></script>
 
 </body>
 
