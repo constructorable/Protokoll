@@ -57,7 +57,7 @@ select {
     /*  min-height: 24px; */
     /* Setzt eine Mindesthöhe, um Platz zu schaffen */
     font-size: 16px;
-    background-color: #edf2f7;
+    background-color: #fcfcfc;
 }
 
 input[type="radio"] {
@@ -259,7 +259,7 @@ select {
     /*    height: auto; */
     /*    min-height: 24px; */
     font-size: 16px;
-    background-color: #edf2f7;
+    background-color: #fcfcfc;
     margin-right: 5px;
     margin-left: 5px;
 }
@@ -281,15 +281,12 @@ input[type="text"] {
     line-height: 1.11;
     min-width: 300px;
     border-radius: 5px;
-    font-size: 22px;
     font-family: Arial, Helvetica, sans-serif;
     padding-top: 12px;
-
-
     padding-top: 10px;
     padding-bottom: 0px;
     padding-left: 5px;
-    background-color: #edf2f7;
+    background-color: #fcfcfc;
     color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -322,7 +319,7 @@ textarea {
 
 /* Stil für das Input-Feld mit der Klasse "dupli" */
 input.dupli {
-    background-color: #edf2f7 !important;
+    background-color: #fcfcfc !important;
     border: none !important;
     /* Gelber Hintergrund */
     margin: 0 !important;
@@ -503,16 +500,24 @@ input.dupli {
 }
 
 
-.mails {
-    width: 240px;
-    background-color: #edf2f7;
+.mails, .mails2 {
+    font-size:16px !important;
+    background-color: #fcfcfc;
     height: 1.9 !important;
     line-height: 1.9 !important;
     border-radius: 5px;
     border: 1px solid #cbcbcb;
     padding-top: 7px;
     padding-left: 5px;
-    margin-top: 4px;
+    margin-top: 2px;
+}
+
+.mails {
+    width: 357px !important;
+}
+
+.mails2 {
+    width: 250px !important;
 }
 
 
@@ -524,7 +529,7 @@ input.dupli {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2)>input:nth-child(1) {
     width: 100%;
-    background: #edf2f7;
+    background: #fcfcfc;
     border: none;
     border-radius: 5px;
     line-height: 1.11;
@@ -754,7 +759,7 @@ td.no-border-right.text-right {
 }
 
 span {
-    opacity: 0;
+    opacity: 1;
 }
 
 #toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(1) {
@@ -868,6 +873,11 @@ select {
     padding-left: 6px !important;
 }
 
+
+input[type="text"] {
+    font-size: 16px !important;
+}
+
 input[type="number"] {
     border: 1px solid #ccc !important;
     /* Schwarzer Rahmen */
@@ -979,3 +989,6 @@ input[type="number"] {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
+
+
+  
