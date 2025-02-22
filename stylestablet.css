@@ -1,9 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0px;
     background-color: #ffffff;
     color: #333;
     word-wrap: break-word;
+    padding: 0;
+    height: 200vh;
 }
 
 .container {
@@ -18,9 +20,10 @@ table {
     background-color: #ffffff;
     color: #333;
     word-wrap: break-word;
-    /*     border: 1px solid #ccc; */
+    margin-bottom: 22px;
     border: none;
 }
+
 
 p {
     margin-bottom: 1px;
@@ -39,15 +42,21 @@ td {
     border: none;
 }
 
+/* td {
+    padding: 10px;
+    text-align: left;
+} */
+
+
 .rooms td:nth-child(even),
 .room-container td:nth-child(even) {
     background-color: #f1f1f1;
-    /* Heller Grauton */
+
 }
 
 .rooms th:nth-child(even) {
     background-color: #f1f1f1;
-    /* Heller Grauton */
+
 }
 
 th {
@@ -69,45 +78,44 @@ select {
     border-radius: 5px;
     padding-left: 5px;
     padding-bottom: 0px;
-   /*  line-height: 2; */
-    /* Erhöht die Textzeilenhöhe */
+
+
     height: auto;
-    /* Falls eine feste Höhe das Problem verursacht */
+
     min-height: 24px;
-    /* Setzt eine Mindesthöhe, um Platz zu schaffen */
+
     font-size: 22px;
 }
 
-
 textarea {
     font-family: Arial, sans-serif;
-    /* Schriftart festlegen */
+
     min-height: 48px;
-    /* Minimale Höhe */
+
     line-height: 1;
-    /* Zeilenhöhe */
+
     resize: vertical;
-    /* Nur vertikales Vergrößern erlauben */
+
     width: 100%;
-    /* Volle Breite des Containers nutzen */
+
     max-width: 100%;
-    /* Verhindert horizontales Überlaufen */
+
     box-sizing: border-box;
-    /* Padding und Border in der Breite berücksichtigen */
+
     padding: 8px;
-    /* Innenabstand für bessere Benutzerfreundlichkeit */
+
     border: 1px solid #ccc;
-    /* Rand hinzufügen */
+
     border-radius: 4px;
-    /* Abgerundete Ecken */
+
     font-size: 20px;
-    /* Schriftgröße */
+
 }
 
 select {
     padding: 8px;
-    padding-top:1px;
-    padding-bottom:1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 input[type="radio"] {
@@ -158,7 +166,7 @@ input[type="radio"] {
 input[type="radio"]:checked+.radio-label::before,
 input[type="checkbox"]:checked+.checkbox-label::before {
     background-color: #ffffff00;
-    /*  border-color: #000000; */
+
 }
 
 input[type="radio"]:checked+.radio-label::after,
@@ -173,7 +181,6 @@ h3 {
     margin-bottom: 1px;
 
 }
-
 
 h3 {
     font-size: 22px;
@@ -239,39 +246,50 @@ h2 {
     border: 0px;
 }
 
-/* #auszugmieterTable {
-    display:none !important;
-} */
-
 .signature-container {
     display: flex;
     flex-direction: column;
-    /* Stapelt die Kinder-Elemente untereinander */
+
     align-items: center;
-    /* Zentriert alles horizontal */
+
     width: 100%;
-    /* Falls nötig */
+
 }
 
 .signature-box {
     display: block;
-    /* Verhindert das Nebeneinander-Anordnen */
+
     text-align: center;
 }
 
+#datum,
+.mails,
+.mails2 {
 
-#datum {
-  /*   line-height: 2; */
     font-family: Arial, Helvetica, sans-serif;
+    height: auto;
+    min-height: 46px;
+    font-size: 22px;
     padding: 0px;
     padding-top: 0px;
+    padding-left: 5px;
     padding-bottom: 0px;
-    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+/* .mails {
+    padding: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: #fff;
+    background-color: #ffffff;
     color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -280,10 +298,8 @@ h2 {
     height: auto;
     min-height: 24px;
     font-size: 22px;
-}
+} */
 
-/* #addKeyButton, */
-/* #addZaehlerButton, */
 #savePdfButton,
 .signature-clear-btn,
 #uploadImageButton,
@@ -316,108 +332,101 @@ h2 {
 .signature-container {
     display: flex;
     align-items: center;
-    /* Elemente vertikal zentrieren */
+
     gap: 10px;
-    /* Abstand zwischen Label und Signature-Box */
+
     padding: 22px;
 }
 
 .signature-container label {
     width: 100px;
-    /* Einheitliche Breite für Labels */
+
     text-align: left;
-    /* Links ausrichten */
+
     font-weight: bold;
-    /* Optional: Fett für bessere Lesbarkeit */
+
     font-size: 22px;
 }
 
 .signature-box {
     display: flex;
     flex-direction: row-reverse;
-    /* Button nach links, Canvas nach rechts */
+
     align-items: center;
-    /* Vertikale Ausrichtung */
+
     gap: 10px;
-    /* Abstand zwischen Button & Canvas */
+
 }
 
 .signature-box {
     position: relative;
     width: 500px;
-    /* Breite auf 500px setzen */
+
     height: 150px;
-    /* Höhe bleibt bei 150px (oder nach Bedarf anpassen) */
+
 }
 
 .signature-clear-btn {
     background-color: rgb(122, 36, 36);
-    /* Rote Hintergrundfarbe */
+
     color: white;
-    /* Weiße Schrift */
+
     border: none;
-    /* Kein Rand */
+
     padding: 10px 15px;
-    /* Innenabstand */
+
     font-size: 20px;
-    /* Schriftgröße */
+
     cursor: pointer;
-    /* Mauszeiger als Zeiger */
+
     border-radius: 5px;
-    /* Abgerundete Ecken */
+
 }
-
-
-
-
-
-
-
 
 #schluesselTable {
     width: 100%;
-    /* Tabelle nimmt die gesamte Breite des Elterncontainers ein */
+
     border-collapse: collapse;
-    /* Entfernt doppelte Rahmen */
+
     table-layout: fixed;
-    /* Erzwingt eine gleichmäßige Verteilung der Spalten */
+
 }
 
 #schluesselTable th,
 #schluesselTable td {
     width: 36%;
-    /* Jede der drei Spalten erhält exakt ein Drittel der Gesamtbreite */
+
     padding: 11px;
-    /* Beibehaltung des Abstands */
+
     text-align: left;
-    /* Optional: Linksbündige Ausrichtung */
+
 }
 
 #zaehlerTable th,
 #zentral td {
     width: 24%;
-    /* Jede der drei Spalten erhält exakt ein Drittel der Gesamtbreite */
+
     padding: 11px;
-    /* Beibehaltung des Abstands */
+
     text-align: left;
-    /* Optional: Linksbündige Ausrichtung */
+
 }
 
 #zentral td {
     width: 28%;
-    /* Jede der drei Spalten erhält exakt ein Drittel der Gesamtbreite */
+
     padding: 11px;
-    /* Beibehaltung des Abstands */
+
     text-align: left;
-    /* Optional: Linksbündige Ausrichtung */
+
 }
 
 #schluesselTable select,
 #schluesselTable input {
     width: 100%;
-    /* Dropdowns und Eingabefelder füllen ihre Zelle */
+    height: 48px;
     box-sizing: border-box;
-    /* Verhindert, dass Padding die Gesamtbreite verändert */
+
 }
 
 .sign02 {
@@ -437,7 +446,6 @@ h2 {
     padding-left: 3px;
 }
 
-/* Animation für das Ein- und Ausblenden */
 #signtoggle {
     opacity: 1;
     transform: translateY(-10px);
@@ -448,7 +456,6 @@ h2 {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 #savePdfButton,
 #toggleModeButton,
@@ -467,8 +474,6 @@ h2 {
     padding-right: 15px;
     border: none;
 }
-
-
 
 #addeinziehenderMieter,
 #addausziehenderMieter,
@@ -508,35 +513,27 @@ h2 {
     margin-top: 25px;
 }
 
-
 .no-border-right {
     border-right: 1px solid #fff;
 }
 
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 200vh;
-}
 
 .sticky-container {
     position: sticky;
     top: 10px;
-    /* Abstand vom oberen Rand */
+
     background: rgb(255, 255, 255);
-    /* Hintergrund setzen */
+
     padding: 10px;
     z-index: 1000;
-    /* Über anderen Elementen */
+
     display: flex;
     gap: 10px;
-    /* Abstand zwischen Buttons */
-    opacity: 0.9;
-    border-radius:7px;
-}
 
+    opacity: 0.9;
+    border-radius: 7px;
+}
 
 .weissezeilemitbutton {
     background-color: rgb(255, 255, 255)
@@ -545,9 +542,9 @@ body {
 #schluesselTable th,
 #schluesselTable td {
     padding: 2px 5px;
-    /* Innenabstand verkleinern */
+
     height: 25px;
-    /* Höhe der Zellen */
+
     line-height: 20px;
 
 }
@@ -556,33 +553,30 @@ h3 {
     margin-left: 8px;
 }
 
-/* Stile für das Label, um Zeilenumbruch zu verhindern */
 .signature-container label {
     white-space: nowrap;
-    /* Verhindert den Zeilenumbruch */
+
     display: inline-block;
-    /* Stellt sicher, dass das Label korrekt ausgerichtet ist */
+
     margin-right: 10px;
-    /* Optional: Abstand zwischen Label und Unterschriftsfeld */
+
 }
 
-/* Stil für das Container-Element des Input-Felds und Buttons */
 .dupli-container {
     position: relative;
 }
 
-/* Stil für das Input-Feld */
 .dupli {
     width: 100%;
-    /* Volle Breite des Containers */
+
     max-width: 100%;
-    /* Maximale Breite */
+
     font-size: 16px;
     background-color: rgb(232, 237, 246) !important;
 }
 
-/* Stil für den grünen Plus-Button */
-.dupli-button, .deletedupli-button {
+.dupli-button,
+.deletedupli-button {
     position: absolute;
     right: 3px;
     bottom: -33px;
@@ -597,17 +591,11 @@ h3 {
 }
 
 .deletedupli-button {
-     right: 41px;
+    right: 41px;
     bottom: -33px;
     background: #9d0303a8;
 
-
 }
-
-
-
-
-
 
 .customUploadButton {
     display: inline-block;
@@ -615,7 +603,7 @@ h3 {
     font-size: 16px;
     color: white;
     background-color: #768cc0;
-    /* Einfarbiges dezentes Blau */
+
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -626,15 +614,10 @@ h3 {
     margin-bottom: 10px;
 }
 
-
-
 .customUploadButton:active {
     transform: scale(0.96);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
-
-
-
 
 #signature-container {
     margin-top: 20px;
@@ -652,8 +635,6 @@ h3 {
     text-align: center;
 }
 
-
-
 #toggleDiv {
     display: block;
     opacity: 1;
@@ -663,7 +644,6 @@ h3 {
 .uberschrift2 {
     cursor: pointer;
 }
-
 
 #imagePreview01 {
     display: flex;
@@ -701,11 +681,10 @@ h3 {
     justify-content: center;
 }
 
-/* Stile für das bilderzimmer-Div (800 Pixel Breite) */
 .bilderzimmer img {
     width: 800px;
     height: auto;
-    /* Höhe wird automatisch angepasst */
+
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -717,8 +696,6 @@ h3 {
     color: #333;
 }
 
-
-
 .room-container {
     background-color: rgb(220, 236, 220);
     Padding: 10px;
@@ -727,8 +704,6 @@ h3 {
     border-radius: 10px;
 
 }
-
-
 
 .image-preview,
 .large-preview {
@@ -751,14 +726,14 @@ h3 {
     object-fit: cover;
     border: 1px solid black;
     position: relative;
-    border-radius:5px;
+    border-radius: 5px;
 }
 
 .image-container img {
-    /* width: 90px; */
+
     max-height: 100px;
     max-width: 100px;
- /*    height: 70px; */
+
 }
 
 .large-image-container img {
@@ -792,13 +767,11 @@ h3 {
     right: -10px;
 }
 
-
 #large-images-section {
     margin-top: 40px;
     padding: 20px;
     border-top: 2px solid rgb(255, 255, 255);
 }
-
 
 #large-images-container {
     background-color: #f0f0f0;
@@ -826,39 +799,35 @@ h3 {
     left: 96%;
 }
 
-.remark-row > input {
-    font-size: 24px;
+.remark-row>input {
+    font-size: 22px;
     height: 40px;
-  }
-  
-
-
+}
 
 
 .custom-upload-btn {
     background-color: #4CAF50;
-    /* Grüne Hintergrundfarbe */
+
     color: white;
-    /* Weiße Schriftfarbe */
+
     padding: 10px 20px;
-    /* Innenabstand */
+
     border: none;
-    /* Kein Rand */
+
     border-radius: 5px;
-    /* Abgerundete Ecken */
+
     cursor: pointer;
-    /* Zeiger-Cursor beim Darüberfahren */
+
     font-size: 16px;
-    /* Schriftgröße */
+
     transition: background-color 0.3s ease;
-    /* Sanfter Übergang beim Darüberfahren */
+
 }
 
 .custom-upload-btn:hover {
     background-color: #45a049;
-    /* Dunklere Grüntönung beim Darüberfahren */
-}
 
+}
 
 #save-html-button,
 #load-html-button,
@@ -872,32 +841,32 @@ h3 {
     font-size: 16px;
     transition: background-color 0.3s ease;
     background-color: #f0f0f0;
-    /* Dezent graue Hintergrundfarbe */
+
     color: #333;
-    /* Dunkelgraue Schriftfarbe */
+
 }
 
 #save-html-button:hover {
     background-color: #d1e7dd;
-    /* Hellgrün beim Darüberfahren */
+
     color: #0f5132;
 }
 
 #load-html-button:hover {
     background-color: #d2e3f7;
-    /* Hellblau beim Darüberfahren */
+
     color: #084298;
 }
 
 #clear-html-button:hover {
     background-color: #f8d7da;
-    /* Hellrot beim Darüberfahren */
+
     color: #842029;
 }
 
 #reset-inputs-button:hover {
     background-color: #e2e3e5;
-    /* Hellgrau beim Darüberfahren */
+
     color: #41464b;
 }
 
@@ -913,44 +882,6 @@ h3 {
 }
 
 
-.mails {
-
-    padding: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #ffffff;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-bottom: 0px;
-  /*   line-height: 2; */
-    height: auto;
-    min-height: 24px;
-    font-size: 22px;
-
-    /*     line-height: 1;
-    border-radius: 5px; */
-}
-
-
-/* Lade-Spinner */
-/* .spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top: 4px solid #ffffff;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-} */
 
 #zzzallgemein>h2:nth-child(1) {
     font-size: 28px;
@@ -960,41 +891,36 @@ h3 {
     padding-bottom: 12px;
 }
 
-
 .input-euro-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 5px;
     width: 100%;
-    /* Nimmt die volle Breite der Tabellenzelle ein */
+
 }
 
 .elegant-number-input {
     width: 100px;
-    /* Erhöhte Breite für 4-stellige Zahlen */
+
     padding-right: 5px;
     text-align: right;
     font-size: 1rem;
-    /* Lesbare Schriftgröße */
+
 }
 
 .euro-symbol {
     font-size: 22px;
 }
 
-/* Tabellenzelle anpassen, damit das Feld genug Platz hat */
 td.no-border-right.text-right {
     min-width: 130px;
-    /* Mindestbreite für genug Platz */
+
 }
-
-
 
 #progressText {
     display: none;
 }
-
 
 .remark-row {
     height: 32px;
@@ -1039,7 +965,6 @@ td.no-border-right.text-right {
     margin-left: 10px;
 }
 
-
 #hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(3)>label:nth-child(2) {
     margin-left: 11px;
 }
@@ -1048,21 +973,19 @@ td.no-border-right.text-right {
     padding-right: 11px;
 }
 
-
-/* Verwende eine spezifische Klasse (z.B. .fixed-height) */
 input.fixed-height {
     height: 40px;
-    /* Feste Höhe */
+
     line-height: 40px;
-    /* Gleicher Wert, damit der Text zentriert bleibt */
+
     box-sizing: border-box;
-    /* Sorgt dafür, dass Padding/Borders in der Höhe enthalten sind */
+
     padding: 0 10px;
-    /* Horizontaler Innenabstand */
+
     overflow: hidden;
-    /* Falls der Inhalt doch mal etwas herausragen sollte */
+
     white-space: nowrap;
-    /* Verhindert einen Zeilenumbruch */
+
 }
 
 th {
@@ -1070,9 +993,8 @@ th {
     white-space: normal;
 }
 
-
-.fortsetzung{
-    display:none;
+.fortsetzung {
+    display: none;
 }
 
 .custom-upload-button {
@@ -1092,20 +1014,17 @@ th {
     background-color: #0056b3;
 }
 
-
-
-/* Modal-Stil */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);  /* Transparenter Hintergrund */
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;  /* Modal auf oberster Ebene */
+    z-index: 1000;
 }
 
 .modal-content {
@@ -1134,7 +1053,6 @@ th {
     background-color: #45a049;
 }
 
-/* Stil für den Upload-Button */
 .customUploadButton {
     padding: 10px 20px;
     background-color: #778ec1;
@@ -1149,15 +1067,14 @@ th {
     background-color: #3e5b89;
 }
 
-/* style.css */
 #suggestionList {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
-    max-height: 300px; /* Größere Höhe für mehr Einträge */
-    overflow-y: auto; /* Scrollbar, wenn zu viele Einträge vorhanden sind */
-    width: 350px; /* Gleiche Breite wie das Input-Feld */
+    max-height: 300px;
+    overflow-y: auto;
+    width: 350px;
     z-index: 1000;
 }
 
@@ -1170,27 +1087,44 @@ th {
     background-color: #e9e9e9;
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
+/* Stil für die Vorschlagsliste (Lage/Stockwerk) */
+#stockwerkSuggestions {
+    position: absolute;
+    top: 100%; /* Direkt unterhalb des Eingabefelds */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 240px; /* Gleiche Breite wie das Eingabefeld */
 }
 
 
+
+.error-message {
+    color: red;
+    font-size: 15px !important;
+    margin-top: -3px;
+    position: absolute;
+    background-color:#fff2f2;
+    padding:5px;
+    border-radius:5px;
+    box-shadow: 0px 3px 12px 3px #00000063;
+}
 
 select {
 
-    font-size: 16px; 
+    font-size: 22px;
+    height: 48px;
 }
 
-/* Stil für die <option>-Elemente */
 select option {
-    padding: 2px 10px; 
-    line-height: 1.3; 
-    font-size: 16px; 
+    padding: 2px 10px;
+    line-height: 1.3;
+    font-size: 16px;
 }
 
-/* Stil für das E-Mail-Menü */
 #emailMenu {
     position: fixed;
     top: 50%;
@@ -1226,11 +1160,10 @@ select option {
     margin-bottom: 5px;
     font-size: 14px;
     color: #ffffff;
-    border-radius:7px;
-    font-size:16px;
+    border-radius: 7px;
+    font-size: 16px;
 }
 
-/* Allgemeine Stile für alle Buttons */
 #emailMenu button {
     display: block;
     width: 100%;
@@ -1247,12 +1180,142 @@ select option {
     background-color: #4c7fb6;
 }
 
-/* Hover- und Active-Effekte für alle Buttons */
 #emailMenu button:hover {
-    transform: translateY(-2px); /* Leichter "Anheben"-Effekt */
+    transform: translateY(-2px);
 }
 
 #emailMenu button:active {
-    transform: translateY(0); /* Zurücksetzen des "Anheben"-Effekts */
+    transform: translateY(0);
 }
 
+
+
+
+.protart {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+
+    td[colspan="6"] {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+
+    tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+
+    td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 5px 0;
+    }
+
+
+    input[type="text"],
+    input[type="date"] {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+
+    .checkbox-label {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
+
+#einzugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
+#einzugmieterTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1),
+#einzugmieterTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
+#einzugmieterTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(4)>input:nth-child(1) {
+    width: 315px !important;
+}
+
+
+
+#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
+#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1),
+#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
+#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(4)>input:nth-child(1) {
+    width: 204px !important;
+}
+
+
+.input-container {
+    position: relative;
+    display: inherit;
+}
+
+.size-controls {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.size-controls button {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.size-controls button:hover {
+    background-color: #e0e0e0;
+}
+
+.size-controls button:active {
+    transform: scale(0.95);
+}
+
+.size-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#schluesselTable th:nth-child(1),
+#schluesselTable td:nth-child(1) {
+    width: 325px !important;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3)>div:nth-child(1) {
+    width: 500px !important;
+}
+
+#plzeinzug,
+#lageeinzug {
+    margin-right: 0px !important;
+}
