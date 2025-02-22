@@ -1,5 +1,5 @@
 
-/* Version 2025-02-22_09:57... */
+
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
@@ -25,56 +25,90 @@ function toggleMode() {
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
-document.addEventListener("input", function (event) {
-    const input = event.target;
+function addFontControlsToInputs() {
+    // Alle Input-Felder vom Typ "text" und "email" auswählen
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
 
-    // Nur für Elemente mit der Klasse "autoscale"
-    if (!input.classList.contains("autoscale")) return;
+    inputs.forEach(input => {
+        // Prüfen, ob bereits Controls hinzugefügt wurden
+        if (input.parentElement.classList.contains('input-container')) {
+            return; // Überspringen, falls bereits vorhanden
+        }
 
-    // Falls noch nicht gespeichert, merke dir die ursprüngliche Schriftgröße
-    if (!input.dataset.originalFontSize) {
-        const computedStyle = window.getComputedStyle(input);
-        input.dataset.originalFontSize = parseFloat(computedStyle.fontSize);
+        // Container für Input und Buttons erstellen
+        const container = document.createElement('div');
+        container.classList.add('input-container');
+
+        // Buttons für Schriftgrößen-Steuerung erstellen
+        const controls = document.createElement('div');
+        controls.classList.add('size-controls');
+
+        const plusButton = document.createElement('button');
+        plusButton.classList.add('font-plus');
+        plusButton.textContent = '+';
+
+        const minusButton = document.createElement('button');
+        minusButton.classList.add('font-minus');
+        minusButton.textContent = '-';
+
+        // Buttons zum Controls-Container hinzufügen
+        controls.appendChild(plusButton);
+        controls.appendChild(minusButton);
+
+        // Input-Feld in den Container verschieben
+        input.parentNode.insertBefore(container, input);
+        container.appendChild(input);
+        container.appendChild(controls);
+
+        // Schriftgrößen-Steuerung initialisieren
+        initFontControls(input, plusButton, minusButton);
+    });
+}
+// Funktion zur Initialisierung der Schriftgrößen-Steuerung
+function initFontControls(input, plusButton, minusButton) {
+    let fontSize = parseFloat(window.getComputedStyle(input).fontSize);
+    const minSize = 8; // Minimale Schriftgröße
+    const maxSize = 24; // Maximale Schriftgröße
+    const step = 4; // Schrittweite
+
+    // Funktion zur Aktualisierung der Schriftgröße
+    function updateFontSize(newSize) {
+        fontSize = Math.min(Math.max(newSize, minSize), maxSize);
+        input.style.fontSize = `${fontSize}px`;
+
+        // Buttons deaktivieren, wenn Grenzwerte erreicht sind
+        plusButton.disabled = fontSize >= maxSize;
+        minusButton.disabled = fontSize <= minSize;
     }
 
-    const originalFontSize = parseFloat(input.dataset.originalFontSize);
+    // Event-Listener für die Buttons
+    plusButton.addEventListener('click', () => updateFontSize(fontSize + step));
+    minusButton.addEventListener('click', () => updateFontSize(fontSize - step));
 
-    // Verfügbarer Platz im Inputfeld berechnen
-    const computedStyle = window.getComputedStyle(input);
-    const paddingLeft = parseFloat(computedStyle.paddingLeft);
-    const paddingRight = parseFloat(computedStyle.paddingRight);
-    const availableWidth = input.clientWidth - paddingLeft - paddingRight;
+    // Initiale Schriftgröße setzen
+    updateFontSize(fontSize);
+}
+// Funktion zum Beobachten von DOM-Änderungen
+function observeDOMChanges() {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                addFontControlsToInputs(); // Neue Inputs verarbeiten
+            }
+        });
+    });
 
-    // Canvas zur Messung der Textbreite
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    ctx.font = `${computedStyle.fontWeight} ${originalFontSize}px ${computedStyle.fontFamily}`;
-
-    const text = input.value || "";
-    const textWidth = ctx.measureText(text).width;
-
-    // Frühzeitige Skalierung (reduziere Schriftgröße bereits 10% früher)
-    const shrinkThreshold = availableWidth * 0.8;
-
-    let newFontSize = originalFontSize;
-    if (textWidth > shrinkThreshold) {
-        newFontSize = originalFontSize * (shrinkThreshold / textWidth);
-    }
-
-    // Mindest- und Maximalschriftgröße festlegen
-    newFontSize = Math.max(10, Math.min(newFontSize, 16));
-
-    // Schriftgröße anpassen
-    input.style.fontSize = newFontSize + "px";
-
-    // Höhe immer auf 1.11em setzen
-    input.style.lineHeight = "1.11em";
-    input.style.height = "1.11em";
+    // Beobachte das gesamte Dokument auf Änderungen
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+}
+// Initialisierung beim Laden der Seite
+document.addEventListener('DOMContentLoaded', () => {
+    addFontControlsToInputs(); // Vorhandene Inputs verarbeiten
+    observeDOMChanges(); // Zukünftige Inputs beobachten
 });
-
-
-
-
 
 
 
@@ -237,10 +271,8 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     newRow1.appendChild(strasseCell);
     newRow1.appendChild(plzOrtCell);
 
-    // Neue Zeile als erste Zeile im tbody einfügen (also oberhalb der bestehenden)
     const tbody = table.querySelector('tbody');
     tbody.insertBefore(newRow1, tbody.firstChild);
-
 
     const signatureContainer = document.createElement('div');
     signatureContainer.classList.add('signature-container');
@@ -248,7 +280,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
     const signatureBox = document.createElement('div');
     signatureBox.classList.add('signature-box');
-
 
     const clearButton = document.createElement('button');
     clearButton.type = 'button';
@@ -291,26 +322,20 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     let table2 = document.getElementById('einzugmieterTable');
 
     if (table2) {
-        // Überprüfe, ob bereits eine Kopfzeile (thead) vorhanden ist
         if (!table2.querySelector('thead')) {
-            // Erstelle das thead und tr-Element
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
 
-            // Die Überschriften
             const headers = ['Name', 'Vorname', 'Tel.: ', 'E-Mail'];
 
-            // Füge die Überschriften zu der Zeile hinzu
             headers.forEach(headerText => {
                 const th = document.createElement('th');
                 th.textContent = headerText;
                 headerRow.appendChild(th);
             });
 
-            // Füge die headerRow zu thead hinzu
             thead.appendChild(headerRow);
 
-            // Füge das thead zur Tabelle hinzu
             table2.insertBefore(thead, table2.querySelector('tbody'));
         }
     }
@@ -324,101 +349,173 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
 
 
-
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
-let counter = 1;
-document.getElementById('addausziehenderMieter').addEventListener('click', function () {
-    let table = document.getElementById('auszugmieterTable');
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
+document.addEventListener("DOMContentLoaded", function () {
+    let counter = 1;
 
-    if (!table) {
-        table = document.createElement('table');
-        table.id = 'auszugmieterTable';
-
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        const headers = ['Name, Vorname', 'neue Straße', 'PLZ / Ort', 'E-Mail']; // Spalte "Vorname" entfernt
-
-        headers.forEach(headerText => {
-            const th = document.createElement('th');
-            th.textContent = headerText;
-            if (headerText === 'E-Mail') {
-                th.style.width = '118px'; // Breite der E-Mail-Spalte
+    // Funktion zum Löschen der Unterschrift
+    /*     function clearSignature(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (canvas) {
+                const context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height); // Canvas leeren
             }
-            headerRow.appendChild(th);
+        } */
+
+    // Button zum Hinzufügen eines ausziehenden Mieters
+    document.getElementById('addausziehenderMieter').addEventListener('click', function () {
+        let table = document.getElementById('auszugmieterTable');
+
+        // Erstelle die Tabelle, falls sie noch nicht existiert
+        if (!table) {
+            table = document.createElement('table');
+            table.id = 'auszugmieterTable';
+
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const headers = ['Name, Vorname', 'neue Straße', 'PLZ / Ort', 'E-Mail'];
+
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                if (headerText === 'E-Mail') {
+                    th.style.width = '118px'; // Breite der E-Mail-Spalte
+                }
+                headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+
+            const button = document.getElementById('addausziehenderMieter');
+            button.insertAdjacentElement('beforebegin', table);
+        }
+
+        // Neue Zeile für den ausziehenden Mieter erstellen
+        const newRow = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        const strasseCell = document.createElement('td');
+        const plzOrtCell = document.createElement('td');
+        const emailCell = document.createElement('td');
+
+        const counter = document.querySelectorAll('.signature-container').length + 1;
+        const nameId = `NameAus${counter.toString().padStart(2, '0')}`;
+
+        nameCell.innerHTML = `
+            <div class="input-container">
+                <input type="text" id="${nameId}" class="autoscale" style="width: 220px; font-size: 24px;">
+                <div class="size-controls">
+                    <button class="font-plus" disabled="">+</button>
+                    <button class="font-minus">-</button>
+                </div>
+            </div>`;
+        strasseCell.innerHTML = `
+            <div class="input-container">
+                <input type="text" class="newstreets autoscale" style="width: 220px; font-size: 24px;">
+                <div class="size-controls">
+                    <button class="font-plus" disabled="">+</button>
+                    <button class="font-minus">-</button>
+                </div>
+            </div>`;
+        plzOrtCell.innerHTML = `
+            <div class="input-container">
+                <input type="text" class="plzauszug autoscale" style="width: 230px; font-size: 24px;">
+                <div class="size-controls">
+                    <button class="font-plus" disabled="">+</button>
+                    <button class="font-minus">-</button>
+                </div>
+            </div>`;
+        emailCell.innerHTML = `
+            <div class="input-container">
+                <input type="email" class="mails2 autoscale" style="width: 160px; font-size: 24px;">
+                <div class="size-controls">
+                    <button class="font-plus" disabled="">+</button>
+                    <button class="font-minus">-</button>
+                </div>
+            </div>`;
+
+        newRow.appendChild(nameCell);
+        newRow.appendChild(strasseCell);
+        newRow.appendChild(plzOrtCell);
+        newRow.appendChild(emailCell);
+
+        table.querySelector('tbody').appendChild(newRow);
+
+        // Unterschriftenfeld und Namensanzeige erstellen
+        const signatureContainer = document.createElement('div');
+        signatureContainer.classList.add('signature-container');
+        signatureContainer.id = `signature-container-ausziehender-mieter-${counter}`;
+
+        const signatureBox = document.createElement('div');
+        signatureBox.classList.add('signature-box');
+
+        const clearButton = document.createElement('button');
+        clearButton.type = 'button';
+        clearButton.classList.add('signature-clear-btn');
+        clearButton.textContent = 'x';
+        clearButton.onclick = () => clearSignature(`ausziehender-mieter-signature-${counter}`);
+        signatureBox.appendChild(clearButton);
+
+        const canvas = document.createElement('canvas');
+        canvas.id = `ausziehender-mieter-signature-${counter}`;
+        canvas.classList.add('signature-canvas');
+        signatureBox.appendChild(canvas);
+
+        signatureContainer.appendChild(signatureBox);
+
+        // Mieter-Info direkt unter der Signatur-Box platzieren
+        const mieterInfo = document.createElement('div');
+        mieterInfo.id = `ausziehender-mieter-info-${counter}`;
+        mieterInfo.style.marginTop = '10px'; // Abstand anpassen
+        mieterInfo.style.fontWeight = 'bold';
+        mieterInfo.style.textAlign = 'center';
+        mieterInfo.innerHTML = `ausziehender Mieter: <span id="ausziehender-mieter-fullname-${counter}"></span>`;
+
+        signatureContainer.appendChild(mieterInfo);
+
+        // Unterschriftenfeld und Namensanzeige in .signature-content einfügen (nach den einziehenden Mietern)
+        const signatureContent = document.querySelector('.signature-content');
+        if (signatureContent) {
+            // Füge das neue Unterschriftenfeld nach den bestehenden Unterschriftenfeldern ein
+            signatureContent.appendChild(signatureContainer);
+        } else {
+            console.error("Container mit der Klasse '.signature-content' nicht gefunden!");
+        }
+
+        // Signatur-Canvas initialisieren
+        initSignatureCanvas(`ausziehender-mieter-signature-${counter}`);
+
+        // Event-Listener für das Namensfeld
+        const nameInput = document.getElementById(nameId);
+        const fullNameSpan = document.getElementById(`ausziehender-mieter-fullname-${counter}`);
+
+        nameInput.addEventListener('input', () => {
+            const fullName = nameInput.value;
+            updateFullName(fullNameSpan, fullName);
         });
 
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
+        counter++;
+    });
 
-        const tbody = document.createElement('tbody');
-        table.appendChild(tbody);
+    // Funktion, um den Namen unter der Unterschrift anzuzeigen
+    function updateFullName(fullNameSpan, fullName) {
+        // Trenne den Namen in "Name" und "Vorname" basierend auf dem Komma
+        const [name, vorname] = fullName.split(',').map(part => part.trim());
 
-        const button = document.getElementById('addausziehenderMieter');
-        button.insertAdjacentElement('beforebegin', table);
+        // Setze den Namen im Format "Vorname Name"
+        if (vorname && name) {
+            fullNameSpan.textContent = `${vorname} ${name}`;
+        } else {
+            // Falls kein Komma vorhanden ist, zeige den gesamten Namen an
+            fullNameSpan.textContent = fullName;
+        }
     }
-
-    const newRow = document.createElement('tr');
-    const nameCell = document.createElement('td');
-    const strasseCell = document.createElement('td');
-    const plzOrtCell = document.createElement('td');
-    const emailCell = document.createElement('td'); // Neue Zelle für E-Mail
-
-    const counter = document.querySelectorAll('.signature-container').length + 1;
-    const nameId = `NameAus${counter.toString().padStart(2, '0')}`;
-
-    nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 220px;">`;
-    strasseCell.innerHTML = '<input type="text" class="newstreets autoscale" style="width: 220px;">';
-    plzOrtCell.innerHTML = '<input type="text" class="plzauszug autoscale" style="width: 230px;">';
-    emailCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 160px;">'; // E-Mail-Eingabefeld
-
-    newRow.appendChild(nameCell);
-    newRow.appendChild(strasseCell);
-    newRow.appendChild(plzOrtCell);
-    newRow.appendChild(emailCell); // E-Mail-Zelle hinzufügen
-
-    table.querySelector('tbody').appendChild(newRow);
-
-    const signatureContainer = document.createElement('div');
-    signatureContainer.classList.add('signature-container');
-    signatureContainer.id = `signature-container-ausziehender-mieter-${counter}`;
-
-    const signatureBox = document.createElement('div');
-    signatureBox.classList.add('signature-box');
-
-    const clearButton = document.createElement('button');
-    clearButton.type = 'button';
-    clearButton.classList.add('signature-clear-btn');
-    clearButton.textContent = 'x';
-    clearButton.onclick = () => clearSignature(`ausziehender-mieter-signature-${counter}`);
-    signatureBox.appendChild(clearButton);
-
-    const canvas = document.createElement('canvas');
-    canvas.id = `ausziehender-mieter-signature-${counter}`;
-    canvas.classList.add('signature-canvas');
-    signatureBox.appendChild(canvas);
-
-    signatureContainer.appendChild(signatureBox);
-
-    // Mieter-Info direkt unter der Signatur-Box platzieren
-    const mieterInfo = document.createElement('div');
-    mieterInfo.id = `ausziehender-mieter-info-${counter}`;
-    mieterInfo.style.marginTop = '-100px';
-    mieterInfo.style.marginBottom = '100px';
-    mieterInfo.style.fontWeight = 'bold';
-    mieterInfo.style.textAlign = 'center';
-    mieterInfo.innerHTML = `ausziehender Mieter: <span id="ausziehender-mieter-fullname-${counter}"></span>`;
-
-    signatureContainer.appendChild(mieterInfo); // Direkt unter das Signaturfeld
-
-    document.querySelector('.signature-content').insertAdjacentElement('afterend', signatureContainer);
-    initSignatureCanvas(`ausziehender-mieter-signature-${counter}`);
-
-    const nameInput = document.getElementById(nameId);
-    const fullNameSpan = document.getElementById(`ausziehender-mieter-fullname-${counter}`);
-
-    nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value));
 });
 
 
@@ -427,6 +524,36 @@ document.getElementById('addausziehenderMieter').addEventListener('click', funct
 
 
 
+
+
+
+
+
+
+
+// Unterschriftenfeld für Vermieter
+// Unterschriftenfeld für Vermieter
+// Unterschriftenfeld für Vermieter
+window.onload = function () {
+    initSignatureCanvas('vermieter-signature');
+};
+
+
+// Funktion, um den Namen unter der Unterschrift anzuzeigen
+// Funktion, um den Namen unter der Unterschrift anzuzeigen
+// Funktion, um den Namen unter der Unterschrift anzuzeigen
+function updateFullName(fullNameSpan, fullName) {
+    // Trenne den Namen in "Name" und "Vorname" basierend auf dem Komma
+    const [name, vorname] = fullName.split(',').map(part => part.trim());
+
+    // Setze den Namen im Format "Vorname Name"
+    if (vorname && name) {
+        fullNameSpan.textContent = `${vorname} ${name}`;
+    } else {
+        // Falls kein Komma vorhanden ist, zeige den gesamten Namen an
+        fullNameSpan.textContent = fullName;
+    }
+}
 
 
 
@@ -599,7 +726,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
     zaehlernummerCell.innerHTML = '<input type="text" placeholder="" class="metercounter autoscale" style="width:170px;">';
 
     const einbaulageCell = document.createElement('td');
-    einbaulageCell.innerHTML = '<input type="text" placeholder="" class="autoscale" style="width: 98%;">';
+    einbaulageCell.innerHTML = '<input type="text" placeholder="" class="autoscale" style="width: 100%;">';
 
     const zaehlerstandCell = document.createElement('td');
     zaehlerstandCell.innerHTML = '<input type="text" placeholder="" class="meterstand autoscale" style="width:166px;">';
@@ -724,7 +851,6 @@ document.addEventListener("DOMContentLoaded", function () {
 /* Bemerkungszeile duplizieren */
 /* Bemerkungszeile duplizieren */
 // Funktion zum Duplizieren einer Zeile
-// Funktion zum Duplizieren einer Zeile
 function duplicateRow(button) {
     // Finde die aktuelle Zeile (die Zeile, in der der Button geklickt wurde)
     const row = button.closest('tr');
@@ -745,6 +871,9 @@ function duplicateRow(button) {
     row.parentNode.insertBefore(newRow, row.nextSibling);
 }
 
+
+// Funktion zum Löschen einer Zeile
+// Funktion zum Löschen einer Zeile
 // Funktion zum Löschen einer Zeile
 function deleteRow(button) {
     // Finde die aktuelle Zeile (die Zeile, in der der Button geklickt wurde)
@@ -898,16 +1027,21 @@ document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUploa
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 document.addEventListener("DOMContentLoaded", function () {
+    // Funktion zum Aktualisieren der Signaturfelder
     function updateSignFields() {
         document.getElementById("strasseeinzugsign").textContent = document.getElementById("strasseeinzug").value;
         document.getElementById("lageeinzugsign").textContent = document.getElementById("lageeinzug").value;
         document.getElementById("plzeinzugsign").textContent = document.getElementById("plzeinzug").value;
         document.getElementById("datumsign").textContent = document.getElementById("datum").value;
     }
+
+    // Event-Listener für Input-Felder hinzufügen
     document.getElementById("strasseeinzug").addEventListener("input", updateSignFields);
     document.getElementById("lageeinzug").addEventListener("input", updateSignFields);
     document.getElementById("plzeinzug").addEventListener("input", updateSignFields);
     document.getElementById("datum").addEventListener("input", updateSignFields);
+
+    // Beim Laden der Seite sofort die Signaturfelder aktualisieren
     updateSignFields();
 });
 
@@ -955,7 +1089,10 @@ function initSignatureCanvas(canvasId) {
     loadSignature(canvas, context, localStorage.getItem('signature'));
 
     // Beim Ändern der Bildschirmgröße neu skalieren
-    window.addEventListener('resize', () => resizeCanvas(canvas, context));
+    window.addEventListener('resize', () => {
+        resizeCanvas(canvas, context);
+        loadSignature(canvas, context, localStorage.getItem('signature'));
+    });
 
     let isDrawing = false;
     let points = [];
@@ -1026,15 +1163,28 @@ function initSignatureCanvas(canvasId) {
     function loadSignature(canvas, context, imageData) {
         if (!imageData) return;
         const img = new Image();
-        img.onload = () => context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.onload = () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
         img.src = imageData;
     }
-}
 
+    function resizeCanvas(canvas, context) {
+        const width = canvas.offsetWidth;
+        const height = canvas.offsetHeight;
+
+        if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+            loadSignature(canvas, context, localStorage.getItem('signature'));
+        }
+    }
+}
 // Unterschriftenfeld für Vermieter
-window.onload = function () {
+/* window.onload = function () {
     initSignatureCanvas('vermieter-signature');
-};
+}; */
 
 
 // Unterschriften Canvas-Größe dynamisch an Container anpassen
@@ -1052,13 +1202,13 @@ function resizeCanvas(canvas) {
 // Unterschriftenfeld für Vermieter
 // Unterschriftenfeld für Vermieter
 // Unterschriftenfeld für Vermieter
-window.onload = function () {
+/* window.onload = function () {
     initSignatureCanvas('vermieter-signature');
 };
+ */
 
 
-
-// Vorname und Nachname unter die Unterschriftenfelder setzen
+// Vorname und Nachname unter die Unterschriftenfelder setzen xxx
 // Vorname und Nachname unter die Unterschriftenfelder setzen
 // Vorname und Nachname unter die Unterschriftenfelder setzen
 function updateFullName(fullNameSpan, name, vorname) {
@@ -1074,6 +1224,9 @@ function clearSignature(canvasId) {
     if (canvas) {
         const context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
+        console.log(`Signatur auf Canvas mit ID ${canvasId} gelöscht.`);
+    } else {
+        console.error(`Canvas mit der ID ${canvasId} wurde nicht gefunden.`);
     }
 }
 
@@ -1081,16 +1234,16 @@ function clearSignature(canvasId) {
 // Datum automatisch einfügen
 // Datum automatisch einfügen
 // Datum automatisch einfügen
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Hole das heutige Datum
     const heute = new Date();
-    
+
     // Formatiere das Datum im Format YYYY-MM-DD
     const jahr = heute.getFullYear();
     const monat = String(heute.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
     const tag = String(heute.getDate()).padStart(2, '0');
     const heutigesDatum = `${jahr}-${monat}-${tag}`;
-    
+
     // Setze das heutige Datum in das Datumsfeld
     document.getElementById("datum").value = heutigesDatum;
 });
@@ -1099,13 +1252,11 @@ document.addEventListener("DOMContentLoaded", function() {
 // prüfen ob es eine gültige E-Mailadrese im Input isFinite
 // prüfen ob es eine gültige E-Mailadrese im Input isFinite
 // prüfen ob es eine gültige E-Mailadrese im Input isFinite
-// Funktion zur Überprüfung der E-Mail-Adresse
 function validateEmail(email) {
     // Einfache Regex-Überprüfung für E-Mail-Adressen
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-
 // Funktion zur Anzeige von Fehlermeldungen
 function showError(inputElement, message) {
     // Entferne vorhandene Fehlermeldungen
@@ -1124,7 +1275,6 @@ function showError(inputElement, message) {
     // Füge die Fehlermeldung nach dem Eingabefeld ein
     inputElement.insertAdjacentElement('afterend', errorMessage);
 }
-
 // Funktion zur Entfernung von Fehlermeldungen
 function clearError(inputElement) {
     const existingError = inputElement.nextElementSibling;
@@ -1132,34 +1282,33 @@ function clearError(inputElement) {
         existingError.remove();
     }
 }
-
 // Warte, bis das DOM vollständig geladen ist
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Hole das E-Mail-Eingabefeld
     const emailInput = document.querySelector('.mails.autoscale');
 
     // Füge Event-Listener für das "input"- und "blur"-Event hinzu
     if (emailInput) {
-        emailInput.addEventListener('input', function() {
+        emailInput.addEventListener('input', function () {
             const email = emailInput.value.trim(); // Hole den eingegebenen Wert und entferne Leerzeichen
 
             // Überprüfe, ob die E-Mail-Adresse gültig ist
             if (email && !validateEmail(email)) {
-                showError(emailInput, "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-            } else {
+                showError(emailInput, "gültige E-Mail Adresse eingeben");
                 clearError(emailInput); // Entferne die Fehlermeldung, wenn die E-Mail gültig ist
             }
         });
 
-        emailInput.addEventListener('blur', function() {
+        emailInput.addEventListener('blur', function () {
             const email = emailInput.value.trim(); // Hole den eingegebenen Wert und entferne Leerzeichen
 
             // Überprüfe, ob die E-Mail-Adresse gültig ist
             if (email && !validateEmail(email)) {
-                showError(emailInput, "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+                showError(emailInput, "gültige E-Mail Adresse eingeben");
             } else {
                 clearError(emailInput); // Entferne die Fehlermeldung, wenn die E-Mail gültig ist
             }
         });
     }
 });
+
