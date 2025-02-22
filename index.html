@@ -13,7 +13,7 @@
 
     <script src="scriptzimmer.js"></script>
     <script src="printjs.js" defer></script>
-  
+
 
 </head>
 
@@ -38,7 +38,7 @@
 
         <div class="sticky-container">
 
-            <button id="toggleModeButton">Ansicht ändern</button>
+            <button id="toggleModeButton">Ansicht wechseln</button>
             <button id="savePdfButton">Als PDF speichern</button>
             <button id="sendEmailButton">PDF versenden</button>
 
@@ -76,21 +76,22 @@
 
                         <tr>
 
-
+                            <!-- Objekt / Straße -->
                             <td style="text-align: left; width: 380px; padding-right:10px;">Objekt / Straße</td>
                             <td colspan="5">
                                 <input id="strasseeinzug" type="text" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale" style="width: 350px;">
-                                <div id="suggestionList"></div> <!-- Vorschlagsliste -->
+                                <div id="suggestionList"></div>
                             </td>
 
 
-
+                            <!-- Lage / Stockwerk -->
                             <td style="text-align: right; padding-right: 10px; width: 240px;">Lage / Stockwerk</td>
-                            <td colspan="5">
+                            <td colspan="5" style="position: relative;">
                                 <input id="lageeinzug" type="text" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale"
                                     style="width: 240px; margin-right:11px;">
+                                    <div id="stockwerkSuggestions" class="suggestion-list" style="display: none;"></div>
                             </td>
 
                         </tr>
@@ -106,12 +107,7 @@
                                     style="width: 350px; margin-right:10px;">
                             </td>
 
-                            <!--                             <td style="width: 240px; text-align: right; padding-right:10px">Datum</td>
-                            <td colspan="5">
-                                <input type="date" name="datum" id="datum" class="autoscale" style="width: 240px;" required
-                                    value="2025-10-15">
-                            </td> -->
-
+                            <!-- Datum -->
                             <td style="text-align: right; padding-right: 10px; width: 240px;">Datum</td>
                             <td colspan="5">
                                 <input id="datum" type="date" name="bemerkungen" class="testeinzeilig langes-input"
@@ -3460,8 +3456,8 @@
                                     </button>
                                 </div>
                             </td>
-    
-    
+
+
                         </tr>
 
 
@@ -3702,8 +3698,8 @@
                                     </button>
                                 </div>
                             </td>
-    
-    
+
+
                         </tr>
 
 
@@ -3884,8 +3880,8 @@
                                     </button>
                                 </div>
                             </td>
-    
-    
+
+
                         </tr>
 
 
@@ -3968,8 +3964,8 @@
                                     </button>
                                 </div>
                             </td>
-    
-    
+
+
                         </tr>
 
                         <tr>
@@ -4042,11 +4038,12 @@
 
 
 
-    
+
     <script src="script.js"></script>
     <script src="immo.js"></script>
     <script src="mailcheck.js"></script>
     <script src="mailsend.js"></script>
+    <script src="stockwerke.js"></script>
 
 </body>
 
