@@ -1085,13 +1085,13 @@ function initSignatureCanvas(canvasId) {
     // Initiale Größe setzen
     resizeCanvas(canvas, context);
 
-    // Vorhandene Unterschrift aus localStorage laden
-    loadSignature(canvas, context, localStorage.getItem('signature'));
+    // Vorhandene Unterschrift aus localStorage laden (mit canvasId als Schlüssel)
+    loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`));
 
     // Beim Ändern der Bildschirmgröße neu skalieren
     window.addEventListener('resize', () => {
         resizeCanvas(canvas, context);
-        loadSignature(canvas, context, localStorage.getItem('signature'));
+        loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`));
     });
 
     let isDrawing = false;
@@ -1140,7 +1140,7 @@ function initSignatureCanvas(canvasId) {
         context.lineCap = 'round';
         context.lineJoin = 'round';
 
-        saveSignature(canvas); // Unterschrift in localStorage speichern
+        saveSignature(canvas, canvasId); // Unterschrift in localStorage speichern (mit canvasId als Schlüssel)
     }
 
     function stopDrawing() {
@@ -1156,8 +1156,8 @@ function initSignatureCanvas(canvasId) {
         };
     }
 
-    function saveSignature(canvas) {
-        localStorage.setItem('signature', canvas.toDataURL());
+    function saveSignature(canvas, canvasId) {
+        localStorage.setItem(`signature_${canvasId}`, canvas.toDataURL());
     }
 
     function loadSignature(canvas, context, imageData) {
@@ -1177,10 +1177,28 @@ function initSignatureCanvas(canvasId) {
         if (canvas.width !== width || canvas.height !== height) {
             canvas.width = width;
             canvas.height = height;
-            loadSignature(canvas, context, localStorage.getItem('signature'));
+            loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`));
         }
     }
 }
+
+// Funktion zum Löschen der Unterschrift
+function clearSignature(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    localStorage.removeItem(`signature_${canvasId}`);
+}
+
+
+
+
+
+
+
+
+
+
 // Unterschriftenfeld für Vermieter
 /* window.onload = function () {
     initSignatureCanvas('vermieter-signature');
@@ -1311,4 +1329,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
