@@ -25,7 +25,7 @@ function toggleMode() {
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
-function addFontControlsToInputs() {
+/* function addFontControlsToInputs() {
     // Alle Input-Felder vom Typ "text" und "email" auswählen
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
 
@@ -108,9 +108,147 @@ function observeDOMChanges() {
 document.addEventListener('DOMContentLoaded', () => {
     addFontControlsToInputs(); // Vorhandene Inputs verarbeiten
     observeDOMChanges(); // Zukünftige Inputs beobachten
+}); */
+
+// Funktion zum Hinzufügen von Schriftgrößen-Steuerungen zu Input-Feldern
+function addFontControlsToInputs() {
+    // Alle Input-Felder vom Typ "text" und "email" auswählen
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
+
+    inputs.forEach(input => {
+        // Prüfen, ob bereits Controls hinzugefügt wurden
+        if (input.parentElement.classList.contains('input-container')) {
+            // Wenn bereits Controls vorhanden sind, initialisiere die Schriftgrößen-Steuerung
+            const plusButton = input.parentElement.querySelector('.font-plus');
+            const minusButton = input.parentElement.querySelector('.font-minus');
+            if (plusButton && minusButton) {
+                initFontControls(input, plusButton, minusButton);
+            }
+            return; // Überspringen, falls bereits vorhanden
+        }
+
+        // Container für Input und Buttons erstellen
+        const container = document.createElement('div');
+        container.classList.add('input-container');
+
+        // Buttons für Schriftgrößen-Steuerung erstellen
+        const controls = document.createElement('div');
+        controls.classList.add('size-controls');
+
+        const plusButton = document.createElement('button');
+        plusButton.classList.add('font-plus');
+        plusButton.textContent = '+';
+
+        const minusButton = document.createElement('button');
+        minusButton.classList.add('font-minus');
+        minusButton.textContent = '-';
+
+        // Buttons zum Controls-Container hinzufügen
+        controls.appendChild(plusButton);
+        controls.appendChild(minusButton);
+
+        // Input-Feld in den Container verschieben
+        input.parentNode.insertBefore(container, input);
+        container.appendChild(input);
+        container.appendChild(controls);
+
+        // Schriftgrößen-Steuerung initialisieren
+        initFontControls(input, plusButton, minusButton);
+    });
+}
+
+// Funktion zur Initialisierung der Schriftgrößen-Steuerung
+function initFontControls(input, plusButton, minusButton) {
+    let fontSize = parseFloat(window.getComputedStyle(input).fontSize);
+    const minSize = 8; // Minimale Schriftgröße
+    const maxSize = 24; // Maximale Schriftgröße
+    const step = 4; // Schrittweite
+
+    // Funktion zur Aktualisierung der Schriftgröße
+    function updateFontSize(newSize) {
+        fontSize = Math.min(Math.max(newSize, minSize), maxSize);
+        input.style.fontSize = `${fontSize}px`;
+
+        // Buttons deaktivieren, wenn Grenzwerte erreicht sind
+        plusButton.disabled = fontSize >= maxSize;
+        minusButton.disabled = fontSize <= minSize;
+    }
+
+    // Event-Listener für die Buttons
+    plusButton.addEventListener('click', () => updateFontSize(fontSize + step));
+    minusButton.addEventListener('click', () => updateFontSize(fontSize - step));
+
+    // Initiale Schriftgröße setzen
+    updateFontSize(fontSize);
+}
+
+// Funktion zum Beobachten von DOM-Änderungen
+function observeDOMChanges() {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                // Überprüfe, ob neue Input-Felder hinzugefügt wurden
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Suche nach Input-Feldern im hinzugefügten Element
+                        const inputs = node.querySelectorAll('input[type="text"], input[type="email"]');
+                        inputs.forEach(input => {
+                            // Prüfen, ob bereits Controls hinzugefügt wurden
+                            if (!input.parentElement.classList.contains('input-container')) {
+                                // Container für Input und Buttons erstellen
+                                const container = document.createElement('div');
+                                container.classList.add('input-container');
+
+                                // Buttons für Schriftgrößen-Steuerung erstellen
+                                const controls = document.createElement('div');
+                                controls.classList.add('size-controls');
+
+                                const plusButton = document.createElement('button');
+                                plusButton.classList.add('font-plus');
+                                plusButton.textContent = '+';
+
+                                const minusButton = document.createElement('button');
+                                minusButton.classList.add('font-minus');
+                                minusButton.textContent = '-';
+
+                                // Buttons zum Controls-Container hinzufügen
+                                controls.appendChild(plusButton);
+                                controls.appendChild(minusButton);
+
+                                // Input-Feld in den Container verschieben
+                                input.parentNode.insertBefore(container, input);
+                                container.appendChild(input);
+                                container.appendChild(controls);
+
+                                // Schriftgrößen-Steuerung initialisieren
+                                initFontControls(input, plusButton, minusButton);
+                            } else {
+                                // Falls bereits Controls vorhanden sind, initialisiere die Schriftgrößen-Steuerung
+                                const plusButton = input.parentElement.querySelector('.font-plus');
+                                const minusButton = input.parentElement.querySelector('.font-minus');
+                                if (plusButton && minusButton) {
+                                    initFontControls(input, plusButton, minusButton);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    // Beobachte das gesamte Dokument auf Änderungen
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+}
+
+// Initialisierung beim Laden der Seite
+document.addEventListener('DOMContentLoaded', () => {
+    addFontControlsToInputs(); // Vorhandene Inputs verarbeiten
+    observeDOMChanges(); // Zukünftige Inputs beobachten
 });
-
-
 
 
 
@@ -298,9 +436,10 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     // Mieter-Info direkt unter der Signatur-Box platzieren
     const mieterInfo = document.createElement('div');
     mieterInfo.id = `einziehender-mieter-info-${counter}`;
-    mieterInfo.style.marginTop = '5px';
+    mieterInfo.style.marginTop = '-10px';
+    mieterInfo.style.marginLeft = '11px';
     mieterInfo.style.fontWeight = 'bold';
-    mieterInfo.style.textAlign = 'center';
+    mieterInfo.style.textAlign = 'left';
     mieterInfo.innerHTML = `einziehender Mieter: <span id="einziehender-mieter-fullname-${counter}"></span>`;
 
     signatureContainer.appendChild(mieterInfo);
@@ -349,21 +488,12 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
 
 
-/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
-/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
-/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
-/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
+/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
 document.addEventListener("DOMContentLoaded", function () {
     let counter = 1;
-
-    // Funktion zum Löschen der Unterschrift
-    /*     function clearSignature(canvasId) {
-            const canvas = document.getElementById(canvasId);
-            if (canvas) {
-                const context = canvas.getContext('2d');
-                context.clearRect(0, 0, canvas.width, canvas.height); // Canvas leeren
-            }
-        } */
 
     // Button zum Hinzufügen eines ausziehenden Mieters
     document.getElementById('addausziehenderMieter').addEventListener('click', function () {
@@ -472,9 +602,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Mieter-Info direkt unter der Signatur-Box platzieren
         const mieterInfo = document.createElement('div');
         mieterInfo.id = `ausziehender-mieter-info-${counter}`;
-        mieterInfo.style.marginTop = '10px'; // Abstand anpassen
+        mieterInfo.style.marginTop = '-10px';
+        mieterInfo.style.marginLeft = '1px';
         mieterInfo.style.fontWeight = 'bold';
-        mieterInfo.style.textAlign = 'center';
+        mieterInfo.style.textAlign = 'left';
         mieterInfo.innerHTML = `ausziehender Mieter: <span id="ausziehender-mieter-fullname-${counter}"></span>`;
 
         signatureContainer.appendChild(mieterInfo);
@@ -500,6 +631,15 @@ document.addEventListener("DOMContentLoaded", function () {
             updateFullName(fullNameSpan, fullName);
         });
 
+        // Schriftgrößen-Steuerung für die neuen Input-Felder initialisieren
+        const inputContainers = signatureContainer.querySelectorAll('.input-container');
+        inputContainers.forEach(container => {
+            const input = container.querySelector('input');
+            const plusButton = container.querySelector('.font-plus');
+            const minusButton = container.querySelector('.font-minus');
+            initFontControls(input, plusButton, minusButton);
+        });
+
         counter++;
     });
 
@@ -516,8 +656,32 @@ document.addEventListener("DOMContentLoaded", function () {
             fullNameSpan.textContent = fullName;
         }
     }
-});
 
+    // Funktion zur Initialisierung der Schriftgrößen-Steuerung
+    function initFontControls(input, plusButton, minusButton) {
+        let fontSize = parseFloat(window.getComputedStyle(input).fontSize);
+        const minSize = 8; // Minimale Schriftgröße
+        const maxSize = 24; // Maximale Schriftgröße
+        const step = 4; // Schrittweite
+
+        // Funktion zur Aktualisierung der Schriftgröße
+        function updateFontSize(newSize) {
+            fontSize = Math.min(Math.max(newSize, minSize), maxSize);
+            input.style.fontSize = `${fontSize}px`;
+
+            // Buttons deaktivieren, wenn Grenzwerte erreicht sind
+            plusButton.disabled = fontSize >= maxSize;
+            minusButton.disabled = fontSize <= minSize;
+        }
+
+        // Event-Listener für die Buttons
+        plusButton.addEventListener('click', () => updateFontSize(fontSize + step));
+        minusButton.addEventListener('click', () => updateFontSize(fontSize - step));
+
+        // Initiale Schriftgröße setzen
+        updateFontSize(fontSize);
+    }
+});
 
 
 
@@ -970,10 +1134,6 @@ function setupImageUpload(uploadButton) {
                         deleteButton.style.fontSize = "12px";
                         deleteButton.style.borderRadius = "15px";
                         deleteButton.style.padding = "3px 7px";
-                        /*        deleteButton.style.paddingTop = "1px";  // Padding oben
-                               deleteButton.style.paddingBottom = "1px";  // Padding unten */
-
-
 
                         // Löschen-Funktion
                         deleteButton.addEventListener("click", function () {
@@ -990,20 +1150,49 @@ function setupImageUpload(uploadButton) {
                         imgWrapper.appendChild(deleteButton);
                         imagePreview.appendChild(imgWrapper);
 
-                        // Hochauflösendes Bild mit Titel
+                        // Hochauflösendes Bild mit Titel in der gewünschten HTML-Struktur
                         let highResWrapper = document.createElement("div");
-                        let titleElement = document.createElement("h3");
+                        highResWrapper.className = "large-image-wrapperxxx";
+                        /* highResWrapper.id = `large-wrapper-img-${storedImages.length}-${Math.random().toString(36).substr(2, 9)}`; */
+                        highResWrapper.id = `largexxx-wrapperxxx-imgxxx-${storedImages.length}-${Math.random().toString(36).substr(2, 9)}`;
+
+                        let titleElement = document.createElement("p");
                         titleElement.textContent = title;
 
                         let imgHighRes = document.createElement("img");
                         imgHighRes.src = scaledImageSrc;
+                        imgHighRes.style.display = "block";
                         imgHighRes.style.maxWidth = "950px";
                         imgHighRes.style.border = "1px solid #ccc";
                         imgHighRes.style.borderRadius = "5px";
-                        imgHighRes.style.marginBottom = "10px";
+                        imgHighRes.style.margin = "0 auto";
+                        imgHighRes.style.marginBottom = "25px";
+
+                        let deleteButtonHighRes = document.createElement("button");
+                        deleteButtonHighRes.className = "delete-btn";
+                        deleteButtonHighRes.textContent = "X";
+                        deleteButtonHighRes.style.color = "white";
+                        deleteButtonHighRes.style.backgroundColor = "rgb(181, 45, 45)";
+                        deleteButtonHighRes.style.border = "none";
+                        deleteButtonHighRes.style.cursor = "pointer";
+                        deleteButtonHighRes.style.fontSize = "12px";
+                        deleteButtonHighRes.style.borderRadius = "15px";
+                        deleteButtonHighRes.style.padding = "3px 7px";
+
+                        // Löschen-Funktion für das hochauflösende Bild
+                        deleteButtonHighRes.addEventListener("click", function () {
+                            highResWrapper.remove(); // Entfernt das hochauflösende Bild
+                            imgWrapper.remove(); // Entfernt das Miniaturbild
+                            URL.revokeObjectURL(scaledImageSrc); // Gibt den Blob-URL frei
+
+                            // Entferne das Bild aus localStorage
+                            storedImages = storedImages.filter(img => img.imageUrl !== scaledImageSrc);
+                            localStorage.setItem('uploadedImages', JSON.stringify(storedImages));
+                        });
 
                         highResWrapper.appendChild(titleElement);
                         highResWrapper.appendChild(imgHighRes);
+                        highResWrapper.appendChild(deleteButtonHighRes);
                         signContainer.appendChild(highResWrapper);
                     }, 'image/jpeg', 0.7); // Qualität auf 70% setzen
                 };
@@ -1016,6 +1205,7 @@ function setupImageUpload(uploadButton) {
         this.value = "";
     });
 }
+
 document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUpload);
 
 
@@ -1329,3 +1519,64 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+// maximale Zeichenanzeil für Bemerkungszeilen
+// maximale Zeichenanzeil für Bemerkungszeilen
+// maximale Zeichenanzeil für Bemerkungszeilen
+const inputFields = document.querySelectorAll('input.dupli.autoscale');
+inputFields.forEach((input) => {
+    input.setAttribute('maxlength', '105');
+    input.style.fontSize = '14px';
+    input.addEventListener('input', () => {
+        if (input.value.length > 105) {
+            input.value = input.value.slice(0, 105);
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Hinweis, wenn Steie geschlossen oder neu geladen wird.
+// Hinweis, wenn Steie geschlossen oder neu geladen wird.
+// Hinweis, wenn Steie geschlossen oder neu geladen wird.
+let allowUnload = false; // Flag, um die Warnung bei gewolltem Tab-Wechsel zu verhindern
+
+// Warnung beim Verlassen oder Neuladen der Seite
+window.addEventListener('beforeunload', function (event) {
+    if (!allowUnload) {
+        const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
+        event.returnValue = confirmationMessage;
+        return confirmationMessage;
+    }
+});
+
+// Neuer Tab öffnen und die Warnung deaktivieren
+document.getElementById('newTabButton').addEventListener('click', function () {
+    allowUnload = true; // Deaktiviert die Warnung
+    window.open('https://www.google.com', '_blank'); // Öffnet neuen Tab
+    setTimeout(() => { allowUnload = false; }, 1000); // Reaktiviert die Warnung nach 1 Sekunde
+}); 
+
+
+        // Warnung beim Verlassen oder Neuladen der Seite
+        window.addEventListener('beforeunload', function (event) {
+            // Standard-Nachricht für die meisten Browser
+            const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
+      
+            // Ältere Browser erfordern das Setzen von event.returnValue
+            event.returnValue = confirmationMessage;
+      
+            // Die Rückgabe ist für einige Browser erforderlich
+            return confirmationMessage;
+          }); 
