@@ -303,7 +303,8 @@ h2 {
 #savePdfButton,
 .signature-clear-btn,
 #uploadImageButton,
-#sendEmailButton {
+#sendEmailButton,
+#zwischensavefButton {
     padding: 10px 20px;
     background-color: #ceebd1;
     color: #202020;
@@ -321,7 +322,8 @@ h2 {
 
 #savePdfButton,
 #sendEmailButton,
-.signature-clear-btn {
+.signature-clear-btn,
+#zwischensavefButton {
 
     background-color: #ced9eb;
 
@@ -460,14 +462,15 @@ h2 {
 #savePdfButton,
 #toggleModeButton,
 #sendEmailButton,
-#uploadImageButton {
+#uploadImageButton,
+#zwischensafebutton {
     background-color: rgb(105, 130, 187);
     color: #fff;
+
 }
 
-#toggleModeButton {
-    background-color: rgb(105, 130, 187);
-    color: #fff;
+#toggleModeButton,
+#zwischensafebutton {
     font-size: 18px;
     border-radius: 7px;
     padding-left: 15px;
@@ -1090,14 +1093,16 @@ th {
 /* Stil für die Vorschlagsliste (Lage/Stockwerk) */
 #stockwerkSuggestions {
     position: absolute;
-    top: 100%; /* Direkt unterhalb des Eingabefelds */
+    top: 100%;
+    /* Direkt unterhalb des Eingabefelds */
     left: 0;
     background-color: #fff;
     border: 1px solid #ccc;
     max-height: 150px;
     overflow-y: auto;
     z-index: 1000;
-    width: 240px; /* Gleiche Breite wie das Eingabefeld */
+    width: 240px;
+    /* Gleiche Breite wie das Eingabefeld */
 }
 
 
@@ -1107,9 +1112,9 @@ th {
     font-size: 15px !important;
     margin-top: -3px;
     position: absolute;
-    background-color:#fff2f2;
-    padding:5px;
-    border-radius:5px;
+    background-color: #fff2f2;
+    padding: 5px;
+    border-radius: 5px;
     box-shadow: 0px 3px 12px 3px #00000063;
 }
 
@@ -1318,4 +1323,29 @@ input[type="date"] {
 #plzeinzug,
 #lageeinzug {
     margin-right: 0px !important;
+}
+
+
+
+.remark-row:nth-child(3)>div:nth-child(1),
+.remark-row:nth-child(4)>div:nth-child(1),
+.remark-row:nth-child(5)>div:nth-child(1),
+.remark-row:nth-child(6)>div:nth-child(1),
+.remark-row:nth-child(7)>div:nth-child(1) {
+    width: 96% !important;
+}
+
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm07>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm08>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm09>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm10>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm11>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1),
+#zimm12>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1) {
+    width: 47% !important;
 }
