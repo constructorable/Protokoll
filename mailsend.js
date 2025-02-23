@@ -177,4 +177,11 @@ function findValidEmails() {
     }
 
     showEmailMenu(fileName);
-}); */
+});  */
+
+
+// Event-Listener für den "E-Mail senden"-Button
+document.getElementById('sendEmailButton').addEventListener('click', function () {
+    const fileName = localStorage.getItem('lastGeneratedPdfName'); // Diese Zeile kann optional beibehalten werden, falls fileName anderweitig verwendet wird
+    showEmailMenu(fileName);
+});
