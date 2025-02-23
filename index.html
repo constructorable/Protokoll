@@ -25,6 +25,7 @@
     <div class="container">
 
 
+
         <div id="loadingOverlay" style="display: none;">
             <div class="loading-content">
                 <span id="closeLoadingOverlay"
@@ -38,8 +39,12 @@
 
         <div class="sticky-container">
 
+            <button id="newTabButton">Neuen Tab öffnen</button>
             <button id="toggleModeButton">Ansicht wechseln</button>
-            <button id="savePdfButton">Als PDF speichern</button>
+            <!--             <div id="feedbackMessage" style="display: none; color: green; margin-top: 10px;"></div>
+            <button id="saveButton">Zwischenspeichern</button> -->
+            <!--             <button id="loadButton">Vorlage aufrufen</button> -->
+            <button id="savePdfButton">Als PDF speichern</button> 
             <button id="sendEmailButton">PDF versenden</button>
 
         </div>
@@ -91,7 +96,7 @@
                                 <input id="lageeinzug" type="text" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale"
                                     style="width: 240px; margin-right:11px;">
-                                    <div id="stockwerkSuggestions" class="suggestion-list" style="display: none;"></div>
+                                <div id="stockwerkSuggestions" class="suggestion-list" style="display: none;"></div>
                             </td>
 
                         </tr>
@@ -115,6 +120,30 @@
                             </td>
 
                         </tr>
+
+
+                        <tr>
+                            <!-- Mieternummer -->
+                            <td style="width: 350px; text-align: left; padding:10px;">Mieternummer</td>
+                            <td colspan="5">
+                                <input type="text" id="mieterid" name="bemerkungen"
+                                    class="testeinzeilig langes-input autoscale"
+                                    style="width: 350px; margin-right:0px;">
+                            </td>
+
+
+                            <!-- Platzhalter -->
+ <!--                            <td style="text-align: right; padding-right: 10px; width: 240px;"></td>
+                            <td colspan="5">
+                                <input id="leer1" type="text" name="leer" class="testeinzeilig langes-input"
+                                    style="width: 240px; margin-right:11px;">
+                            </td> -->
+
+                        </tr>
+
+
+
+
 
 
                     </table>
@@ -466,11 +495,11 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Weiß</option>
-                                <option value="beige">Beige</option>
-                                <option value="grau">Grau</option>
-                                <option value="bunt">Bunt</option>
-                                <option value="sonstige">Sonstige</option>
+                                <option value="weiß">weiß</option>
+                                <option value="beige">beige</option>
+                                <option value="grau">grau</option>
+                                <option value="bunt">bunt</option>
+                                <option value="sonstige">sonstige</option>
                             </select>
                         </td>
                     </tr>
@@ -565,6 +594,7 @@
                                 <option value="fliesen">Fliesen</option>
                                 <option value="beton">Beton</option>
                                 <option value="teppich">Teppich</option>
+                                <option value="keinboden">kein Bodenbelag</option>
                                 <option value="sonstige">Sonstige</option>
                             </select>
                         </td>
@@ -575,9 +605,9 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Braun</option>
-                                <option value="beige">Schwarz</option>
-                                <option value="grau">Grau</option>
+                                <option value="weiß">braun</option>
+                                <option value="beige">grau</option>
+                                <option value="grau">schwarz</option>
                                 <option value="bunt">Holz</option>
                                 <option value="sonstige">Stein</option>
                                 <option value="sonstige">Sonstige</option>
@@ -1162,11 +1192,11 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Weiß</option>
-                                <option value="beige">Beige</option>
-                                <option value="grau">Grau</option>
-                                <option value="bunt">Bunt</option>
-                                <option value="sonstige">Sonstige</option>
+                                <option value="weiß">weiß</option>
+                                <option value="beige">beige</option>
+                                <option value="grau">grau</option>
+                                <option value="bunt">bunt</option>
+                                <option value="sonstige">sonstige</option>
                             </select>
                         </td>
                     </tr>
@@ -1265,6 +1295,7 @@
                                 <option value="fliesen">Fliesen</option>
                                 <option value="beton">Beton</option>
                                 <option value="teppich">Teppich</option>
+                                <option value="keinboden">kein Bodenbelag</option>
                                 <option value="sonstige">Sonstige</option>
                             </select>
                         </td>
@@ -1275,9 +1306,9 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Braun</option>
-                                <option value="beige">Schwarz</option>
-                                <option value="grau">Grau</option>
+                                <option value="weiß">braun</option>
+                                <option value="beige">grau</option>
+                                <option value="grau">schwarz</option>
                                 <option value="bunt">Holz</option>
                                 <option value="sonstige">Stein</option>
                                 <option value="sonstige">Sonstige</option>
@@ -1959,11 +1990,11 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Weiß</option>
-                                <option value="beige">Beige</option>
-                                <option value="grau">Grau</option>
-                                <option value="bunt">Bunt</option>
-                                <option value="sonstige">Sonstige</option>
+                                <option value="weiß">weiß</option>
+                                <option value="beige">beige</option>
+                                <option value="grau">grau</option>
+                                <option value="bunt">bunt</option>
+                                <option value="sonstige">sonstige</option>
                             </select>
                         </td>
                     </tr>
@@ -2063,6 +2094,7 @@
                                 <option value="fliesen">Fliesen</option>
                                 <option value="beton">Beton</option>
                                 <option value="teppich">Teppich</option>
+                                <option value="keinboden">kein Bodenbelag</option>
                                 <option value="sonstige">Sonstige</option>
                             </select>
                         </td>
@@ -2073,9 +2105,9 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Braun</option>
-                                <option value="beige">Schwarz</option>
-                                <option value="grau">Grau</option>
+                                <option value="weiß">braun</option>
+                                <option value="beige">grau</option>
+                                <option value="grau">schwarz</option>
                                 <option value="bunt">Holz</option>
                                 <option value="sonstige">Stein</option>
                                 <option value="sonstige">Sonstige</option>
@@ -2749,11 +2781,11 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Weiß</option>
-                                <option value="beige">Beige</option>
-                                <option value="grau">Grau</option>
-                                <option value="bunt">Bunt</option>
-                                <option value="sonstige">Sonstige</option>
+                                <option value="weiß">weiß</option>
+                                <option value="beige">beige</option>
+                                <option value="grau">grau</option>
+                                <option value="bunt">bunt</option>
+                                <option value="sonstige">sonstige</option>
                             </select>
                         </td>
                     </tr>
@@ -2829,6 +2861,7 @@
                                 <option value="fliesen">Fliesen</option>
                                 <option value="beton">Beton</option>
                                 <option value="teppich">Teppich</option>
+                                <option value="keinboden">kein Bodenbelag</option>
                                 <option value="sonstige">Sonstige</option>
                             </select>
                         </td>
@@ -2839,9 +2872,9 @@
                         <td colspan="5">
                             <select name="farbe">
                                 <option value="" selected disabled></option>
-                                <option value="weiß">Braun</option>
-                                <option value="beige">Schwarz</option>
-                                <option value="grau">Grau</option>
+                                <option value="weiß">braun</option>
+                                <option value="beige">grau</option>
+                                <option value="grau">schwarz</option>
                                 <option value="bunt">Holz</option>
                                 <option value="sonstige">Stein</option>
                                 <option value="sonstige">Sonstige</option>
@@ -3240,11 +3273,11 @@
                             <td colspan="5">
                                 <select name="farbe">
                                     <option value="" selected disabled></option>
-                                    <option value="weiß">Weiß</option>
-                                    <option value="beige">Beige</option>
-                                    <option value="grau">Grau</option>
-                                    <option value="bunt">Bunt</option>
-                                    <option value="sonstige">Sonstige</option>
+                                    <option value="weiß">weiß</option>
+                                    <option value="beige">beige</option>
+                                    <option value="grau">grau</option>
+                                    <option value="bunt">bunt</option>
+                                    <option value="sonstige">sonstige</option>
                                 </select>
                             </td>
                         </tr>
@@ -3321,6 +3354,7 @@
                                     <option value="fliesen">Fliesen</option>
                                     <option value="beton">Beton</option>
                                     <option value="teppich">Teppich</option>
+                                    <option value="keinboden">kein Bodenbelag</option>
                                     <option value="sonstige">Sonstige</option>
                                 </select>
                             </td>
@@ -3331,9 +3365,9 @@
                             <td colspan="5">
                                 <select name="farbe">
                                     <option value="" selected disabled></option>
-                                    <option value="weiß">Braun</option>
-                                    <option value="beige">Schwarz</option>
-                                    <option value="grau">Grau</option>
+                                    <option value="weiß">braun</option>
+                                    <option value="beige">schwarz</option>
+                                    <option value="grau">grau</option>
                                     <option value="bunt">Holz</option>
                                     <option value="sonstige">Stein</option>
                                     <option value="sonstige">Sonstige</option>
