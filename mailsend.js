@@ -5,25 +5,38 @@ function sendEmail(fileName, emails, client) {
     const lage = document.getElementById('lageeinzug').value;
     const plzOrt = document.getElementById('plzeinzug').value;
     const datum = document.getElementById('datum').value;
+    const mietid = document.getElementById('mieterid').value;
 
     const abnahmeCheckbox = document.getElementById('abnahme').checked ? "Abnahmeprotokoll" : "";
     const uebergabeCheckbox = document.getElementById('uebergabe').checked ? "Übergabeprotokoll" : "";
-    const protokollTyp = `${abnahmeCheckbox} ${uebergabeCheckbox}`.trim();
+
+    let protokollTyp = "";
+
+    // Prüfen, ob beide Checkboxen aktiviert sind
+    if (abnahmeCheckbox && uebergabeCheckbox) {
+        protokollTyp = "Abnahme- und Übergabeprotokoll";
+    } else {
+        // Falls nur eine Checkbox aktiviert ist, den jeweiligen Wert übernehmen
+        protokollTyp = `${abnahmeCheckbox} ${uebergabeCheckbox}`.trim();
+    }
 
     // Betreff der E-Mail
     const subject = encodeURIComponent(
-        `${objekt} - ${plzOrt} - ${protokollTyp} - ${datum}`
+        `${objekt}, ${lage} - ${protokollTyp} / ${mietid}`
     );
+
 
     // E-Mail-Body im gewünschten Format
     const body = encodeURIComponent(
         `Sehr geehrte Damen und Herren,\n` +
-        `anbei senden wir Ihnen die gewünschte PDF-Datei (${protokollTyp}).\n\n` +
+        `anbei erhalten Sie das erstellte Dokument (${protokollTyp}).\n\n` +
         `Objekt / Straße: ${objekt}\n` +
         `PLZ / Ort: ${plzOrt}\n` +
         `Lage / Stockwerk: ${lage}\n` +
+        `Mieternummer: ${mietid}\n` +
         `Datum: ${datum}\n\n` +
-        `Mit freundlichen Grüßen`
+        `Mit freundlichen Grüßen\n\n` +
+        `Sauer Immobilien GmbH`
     );
 
     // Empfänger und CC
@@ -62,7 +75,7 @@ function sendEmail(fileName, emails, client) {
 }
 
 // Funktion zum Anzeigen des E-Mail-Menüs
-function showEmailMenu() {
+function showEmailMenu(fileName) {
     let validEmails = findValidEmails();
 
     if (validEmails.length === 0) {
@@ -102,22 +115,22 @@ function showEmailMenu() {
     document.body.appendChild(emailMenu);
 
     document.getElementById('defaultMailClient').addEventListener('click', () => {
-        sendEmail("Protokoll", validEmails, 'default');
+        sendEmail(fileName, validEmails, 'default');
         closeEmailMenu();
     });
 
     document.getElementById('gmail').addEventListener('click', () => {
-        sendEmail("Protokoll", validEmails, 'gmail');
+        sendEmail(fileName, validEmails, 'gmail');
         closeEmailMenu();
     });
 
     document.getElementById('outlook').addEventListener('click', () => {
-        sendEmail("Protokoll", validEmails, 'outlook');
+        sendEmail(fileName, validEmails, 'outlook');
         closeEmailMenu();
     });
 
     document.getElementById('yahoo').addEventListener('click', () => {
-        sendEmail("Protokoll", validEmails, 'yahoo');
+        sendEmail(fileName, validEmails, 'yahoo');
         closeEmailMenu();
     });
 
@@ -157,5 +170,11 @@ function findValidEmails() {
 
 // Event-Listener für den "E-Mail senden"-Button
 document.getElementById('sendEmailButton').addEventListener('click', function () {
-    showEmailMenu();
+    const fileName = localStorage.getItem('lastGeneratedPdfName');
+    if (!fileName) {
+        alert("Es wurde noch keine PDF-Datei erstellt.");
+        return;
+    }
+
+    showEmailMenu(fileName);
 });
