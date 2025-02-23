@@ -168,8 +168,8 @@ function findValidEmails() {
     return validEmails;
 }
 
-// Event-Listener für den "E-Mail senden"-Button
-document.getElementById('sendEmailButton').addEventListener('click', function () {
+// Event-Listener für den "E-Mail senden"-Button (prüft, ob bereits eine PDF erstellt wurde)
+/* document.getElementById('sendEmailButton').addEventListener('click', function () {
     const fileName = localStorage.getItem('lastGeneratedPdfName');
     if (!fileName) {
         alert("Es wurde noch keine PDF-Datei erstellt.");
@@ -177,4 +177,4 @@ document.getElementById('sendEmailButton').addEventListener('click', function ()
     }
 
     showEmailMenu(fileName);
-});
+}); */
