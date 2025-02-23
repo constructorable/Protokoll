@@ -1,10 +1,23 @@
+// Funktion zum Pürfen, ob Inputfeld Objekt/Straße ausgefüllt wurde
+function validateStrasseeinzug() {
+    const strasseeinzugInput = document.getElementById("strasseeinzug");
+
+    // Prüfe, ob das Feld leer ist oder nur Leerzeichen enthält
+    if (!strasseeinzugInput.value || strasseeinzugInput.value.trim() === "") {
+        alert("Objekt / Straße bitte eingeben.");
+        return false;
+    }
+
+    return true;
+}
+
 // Funktion zur Überprüfung der Checkboxen (Abnahme/Übergabe)
 function validateCheckboxes() {
     const abnahmeCheckbox = document.getElementById("abnahme");
     const uebergabeCheckbox = document.getElementById("uebergabe");
 
     if (!abnahmeCheckbox.checked && !uebergabeCheckbox.checked) {
-        alert("Bitte wählen Sie mindestens ein Protokoll aus (Abnahme- und / oder Übergabeprotokoll).");
+        alert("Bitte mind.s eine Protokollart wählen (Abnahme- und / oder Übergabeprotokoll).");
         return false;
     }
 
@@ -23,7 +36,7 @@ function validateZentralCheckboxes() {
     });
 
     if (!isChecked) {
-        alert("Bitte wählen Sie mindestens eine Option aus (Heizung/Warmwasser).");
+        alert("Bitte Checkboxen für Heizung / Warmwasser zentral oder dezentral auswählen.");
         return false;
     }
 
@@ -32,6 +45,12 @@ function validateZentralCheckboxes() {
 
 // Event-Listener für den "PDF speichern"-Button
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
+    // Überprüfe die Checkboxen in der Tabelle "zentral"
+    if (!validateStrasseeinzug()) {
+        event.preventDefault();
+        return;
+    }
+
     // Überprüfe die Checkboxen in der Tabelle "zentral"
     if (!validateZentralCheckboxes()) {
         event.preventDefault();
