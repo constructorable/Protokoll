@@ -15,16 +15,17 @@ function addRoom() {
     const uploadLabel = document.createElement("label");
     uploadLabel.setAttribute("for", "upload-" + roomId);
     uploadLabel.classList.add("customUploadButton");
-    uploadLabel.textContent = "+ Bilder hinzufügen (Zimmer " + roomCount + ")";
+    uploadLabel.textContent = "+ Bilder hinzufügennnn (Zimmer " + roomCount + ")";
 
-    // Upload-Button mit inkrementeller ID
+    // Upload-Button mit Kamera-Option
     const uploadButton = document.createElement("input");
     uploadButton.setAttribute("type", "file");
     uploadButton.setAttribute("multiple", "true");
     uploadButton.setAttribute("accept", "image/*");
-    uploadButton.setAttribute("id", "upload-" + roomId); // Eindeutige ID für jeden Button
+    uploadButton.setAttribute("id", "upload-" + roomId);
     uploadButton.classList.add("imageUpload");
     uploadButton.setAttribute("hidden", "");
+    uploadButton.setAttribute("capture", ""); // Kamera-Option aktivieren
 
     // Event Listener für den Upload der Bilder
     uploadButton.addEventListener("change", function (event) {
@@ -46,16 +47,6 @@ function addRoom() {
     roomDiv.appendChild(imageSection);
 
     container.appendChild(roomDiv);
-}
-
-function addRemark(roomDiv) {
-    const newRemarkRow = document.createElement("div");
-    newRemarkRow.classList.add("remark-row");
-    newRemarkRow.innerHTML = `
-        <input type="text" name="remark" class="autoscale" placeholder="">
-    `;
-
-    roomDiv.insertBefore(newRemarkRow, roomDiv.querySelector('button.add-remark-btn'));
 }
 
 function handleFileUpload(event, roomId) {
