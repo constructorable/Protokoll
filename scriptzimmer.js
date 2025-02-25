@@ -2,7 +2,7 @@ let roomCount = 0;
 
 function addRoom() {
     roomCount++;
-    const roomId = "zimm" + String(roomCount).padStart(2, '0'); // Erzeugt zimm01, zimm02, zimm03.
+    const roomId = "zimm" + String(roomCount).padStart(2, '0');
     const container = document.getElementById("room-container");
 
     const roomDiv = document.createElement("div");
@@ -10,42 +10,59 @@ function addRoom() {
     roomDiv.setAttribute("id", roomId);
 
     const roomTitle = document.createElement("h3");
+    
+    // Container für die Buttons
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
 
-    // Label für den Upload-Button
-    const uploadLabel = document.createElement("label");
-    uploadLabel.setAttribute("for", "upload-" + roomId);
-    uploadLabel.classList.add("customUploadButton");
-    uploadLabel.textContent = "+ Bilder hinzufügennnn (Zimmer " + roomCount + ")";
+    // Kamera-Button
+    const cameraLabel = document.createElement("label");
+    cameraLabel.setAttribute("for", `camera-${roomId}`);
+    cameraLabel.classList.add("customUploadButton");
+    cameraLabel.textContent = "📷 Foto aufnehmen (Zimmer " + roomCount + ")";
 
-    // Upload-Button mit Kamera-Option
-    const uploadButton = document.createElement("input");
-    uploadButton.setAttribute("type", "file");
-    uploadButton.setAttribute("multiple", "true");
-    uploadButton.setAttribute("accept", "image/*");
-    uploadButton.setAttribute("id", "upload-" + roomId);
-    uploadButton.classList.add("imageUpload");
-    uploadButton.setAttribute("hidden", "");
-    uploadButton.setAttribute("capture", ""); // Kamera-Option aktivieren
+    const cameraInput = document.createElement("input");
+    cameraInput.type = "file";
+    cameraInput.accept = "image/*";
+    cameraInput.id = `camera-${roomId}`;
+    cameraInput.hidden = true;
+    cameraInput.setAttribute("capture", "environment"); // Kamera erzwingen
 
-    // Event Listener für den Upload der Bilder
-    uploadButton.addEventListener("change", function (event) {
-        handleFileUpload(event, roomId);
-    });
+    // Dateiauswahl-Button
+    const fileLabel = document.createElement("label");
+    fileLabel.setAttribute("for", `file-${roomId}`);
+    fileLabel.classList.add("customUploadButton");
+    fileLabel.textContent = "📁 Dateien auswählen (Zimmer " + roomCount + ")";
 
-    // Füge Label und Button zum Zimmer-Div hinzu
-    roomDiv.appendChild(uploadLabel);
-    roomDiv.appendChild(uploadButton);
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.multiple = true;
+    fileInput.id = `file-${roomId}`;
+    fileInput.hidden = true;
 
+    // Event-Listener für beide Inputs
+    const handleUpload = (event) => handleFileUpload(event, roomId);
+    cameraInput.addEventListener("change", handleUpload);
+    fileInput.addEventListener("change", handleUpload);
+
+    // Elemente hinzufügen
+    buttonContainer.appendChild(cameraLabel);
+    buttonContainer.appendChild(cameraInput);
+    buttonContainer.appendChild(fileLabel);
+    buttonContainer.appendChild(fileInput);
+    roomDiv.appendChild(buttonContainer);
+
+    // Bildervorschau
     const imageSection = document.createElement("div");
     imageSection.classList.add("image-preview");
 
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
-    imageContainer.setAttribute("id", "preview-" + roomCount);
+    imageContainer.id = `preview-${roomId}`;
 
     imageSection.appendChild(imageContainer);
     roomDiv.appendChild(imageSection);
-
     container.appendChild(roomDiv);
 }
 
