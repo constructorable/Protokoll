@@ -44,7 +44,7 @@
             <!--             <div id="feedbackMessage" style="display: none; color: green; margin-top: 10px;"></div>
             <button id="saveButton">Zwischenspeichern</button> -->
             <!--             <button id="loadButton">Vorlage aufrufen</button> -->
-            <button id="savePdfButton">Als PDF speichern</button> 
+            <button id="savePdfButton">Als PDF speichern</button>
             <button id="sendEmailButton">PDF versenden</button>
 
         </div>
@@ -93,10 +93,11 @@
                             <!-- Lage / Stockwerk -->
                             <td style="text-align: right; padding-right: 10px; width: 240px;">Lage / Stockwerk</td>
                             <td colspan="5" style="position: relative;">
-                                <input id="lageeinzug" type="text" name="bemerkungen"
-                                    class="testeinzeilig langes-input autoscale"
-                                    style="width: 240px; margin-right:11px;">
-                                <div id="stockwerkSuggestions" class="suggestion-list" style="display: none;"></div>
+                                <input id="lageeinzug2" type="text" name="bemerkungen"
+                                    class="testeinzeilig langes-input autoscale suggestion-input"
+                                    style="width: 240px; margin-right:11px;"
+                                    data-type="stockwerk" data-suggestion-list="stockwerkSuggestions2">
+                                <div id="stockwerkSuggestions2" class="suggestion-list" style="display: none;"></div>
                             </td>
 
                         </tr>
@@ -133,7 +134,7 @@
 
 
                             <!-- Platzhalter -->
- <!--                            <td style="text-align: right; padding-right: 10px; width: 240px;"></td>
+                            <!--                            <td style="text-align: right; padding-right: 10px; width: 240px;"></td>
                             <td colspan="5">
                                 <input id="leer1" type="text" name="leer" class="testeinzeilig langes-input"
                                     style="width: 240px; margin-right:11px;">
@@ -490,19 +491,19 @@
                         </td>
                     </tr>
 
-                    <tr>
+
+
+                   <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
-                            <select name="farbe">
-                                <option value="" selected disabled></option>
-                                <option value="weiß">weiß</option>
-                                <option value="beige">beige</option>
-                                <option value="grau">grau</option>
-                                <option value="bunt">bunt</option>
-                                <option value="sonstige">sonstige</option>
-                            </select>
+                            <input id="farbeInput1" type="text" name="farbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="farbe" data-suggestion-list="farbeSuggestions1">
+                            <div id="farbeSuggestions1" class="suggestion-list"></div>
                         </td>
                     </tr>
+
+
 
                     <tr>
                         <td>Fliesen</td>
@@ -582,39 +583,27 @@
                     </tr>
 
 
+     
+
                     <tr>
                         <td>Fußboden Material</td>
                         <td colspan="5">
-                            <select name="boeden">
-                                <option value="" selected disabled></option>
-                                <option value="parkett">Parkett</option>
-                                <option value="laminat">Laminat</option>
-                                <option value="pvc">PVC</option>
-                                <option value="vinyl">Vinyl</option>
-                                <option value="fliesen">Fliesen</option>
-                                <option value="beton">Beton</option>
-                                <option value="teppich">Teppich</option>
-                                <option value="keinboden">kein Bodenbelag</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenInput1" type="text" name="fussboden"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden" data-suggestion-list="fussbodenSuggestions1">
+                            <div id="fussbodenSuggestions1" class="suggestion-list"></div>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Fußboden Farbe</td>
+                        <td>Fußboden-Farbe</td>
                         <td colspan="5">
-                            <select name="farbe">
-                                <option value="" selected disabled></option>
-                                <option value="weiß">braun</option>
-                                <option value="beige">grau</option>
-                                <option value="grau">schwarz</option>
-                                <option value="bunt">Holz</option>
-                                <option value="sonstige">Stein</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenFarbeInput1" type="text" name="fussbodenFarbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions1">
+                            <div id="fussbodenFarbeSuggestions1" class="suggestion-list"></div>
                         </td>
                     </tr>
-
 
                     <tr>
                         <td>Schränke</td>
@@ -809,7 +798,7 @@
                             <label for="kuehlschrank2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="kuehlschrank3" name="kuehlschrank"
+                            <input type="radio" id="kuehlschrank3" name="kuehlschrank00"
                                 value="Reparatur durch den Mieter">
                             <label for="kuehlschrank3" class="radio-label"></label>
                         </td>
@@ -1187,17 +1176,14 @@
                         </td>
                     </tr>
 
+
                     <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
-                            <select name="farbe">
-                                <option value="" selected disabled></option>
-                                <option value="weiß">weiß</option>
-                                <option value="beige">beige</option>
-                                <option value="grau">grau</option>
-                                <option value="bunt">bunt</option>
-                                <option value="sonstige">sonstige</option>
-                            </select>
+                            <input id="farbeInput2" type="text" name="farbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="farbe" data-suggestion-list="farbeSuggestions2">
+                            <div id="farbeSuggestions2" class="suggestion-list"></div>
                         </td>
                     </tr>
 
@@ -1286,33 +1272,22 @@
                     <tr>
                         <td>Fußboden Material</td>
                         <td colspan="5">
-                            <select name="boeden">
-                                <option value="" selected disabled></option>
-                                <option value="parkett">Parkett</option>
-                                <option value="laminat">Laminat</option>
-                                <option value="pvc">PVC</option>
-                                <option value="vinyl">Vinyl</option>
-                                <option value="fliesen">Fliesen</option>
-                                <option value="beton">Beton</option>
-                                <option value="teppich">Teppich</option>
-                                <option value="keinboden">kein Bodenbelag</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenInput2" type="text" name="fussboden"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden" data-suggestion-list="fussbodenSuggestions2">
+                            <div id="fussbodenSuggestions2" class="suggestion-list"></div>
                         </td>
                     </tr>
 
+
+ 
                     <tr>
-                        <td>Fußboden Farbe</td>
+                        <td>Fußboden-Farbe</td>
                         <td colspan="5">
-                            <select name="farbe">
-                                <option value="" selected disabled></option>
-                                <option value="weiß">braun</option>
-                                <option value="beige">grau</option>
-                                <option value="grau">schwarz</option>
-                                <option value="bunt">Holz</option>
-                                <option value="sonstige">Stein</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenFarbeInput2" type="text" name="fussbodenFarbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions2">
+                            <div id="fussbodenFarbeSuggestions2" class="suggestion-list"></div>
                         </td>
                     </tr>
 
@@ -1985,7 +1960,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+<!--                     <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <select name="farbe">
@@ -1996,6 +1971,16 @@
                                 <option value="bunt">bunt</option>
                                 <option value="sonstige">sonstige</option>
                             </select>
+                        </td>
+                    </tr> -->
+
+                    <tr>
+                        <td>Farbe der Wände</td>
+                        <td colspan="5">
+                            <input id="farbeInput3" type="text" name="farbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="farbe" data-suggestion-list="farbeSuggestions3">
+                            <div id="farbeSuggestions3" class="suggestion-list"></div>
                         </td>
                     </tr>
 
@@ -2085,33 +2070,20 @@
                     <tr>
                         <td>Fußboden Material</td>
                         <td colspan="5">
-                            <select name="boeden">
-                                <option value="" selected disabled></option>
-                                <option value="parkett">Parkett</option>
-                                <option value="laminat">Laminat</option>
-                                <option value="pvc">PVC</option>
-                                <option value="vinyl">Vinyl</option>
-                                <option value="fliesen">Fliesen</option>
-                                <option value="beton">Beton</option>
-                                <option value="teppich">Teppich</option>
-                                <option value="keinboden">kein Bodenbelag</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenInput3" type="text" name="fussboden"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden" data-suggestion-list="fussbodenSuggestions3">
+                            <div id="fussbodenSuggestions3" class="suggestion-list"></div>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Fußboden Farbe</td>
+                        <td>Fußboden-Farbe</td>
                         <td colspan="5">
-                            <select name="farbe">
-                                <option value="" selected disabled></option>
-                                <option value="weiß">braun</option>
-                                <option value="beige">grau</option>
-                                <option value="grau">schwarz</option>
-                                <option value="bunt">Holz</option>
-                                <option value="sonstige">Stein</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenFarbeInput3" type="text" name="fussbodenFarbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions3">
+                            <div id="fussbodenFarbeSuggestions3" class="suggestion-list"></div>
                         </td>
                     </tr>
 
@@ -2776,7 +2748,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+<!--                     <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <select name="farbe">
@@ -2788,8 +2760,18 @@
                                 <option value="sonstige">sonstige</option>
                             </select>
                         </td>
-                    </tr>
+                    </tr> -->
 
+                    
+                    <tr>
+                        <td>Farbe der Wände</td>
+                        <td colspan="5">
+                            <input id="farbeInput4" type="text" name="farbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="farbe" data-suggestion-list="farbeSuggestions4">
+                            <div id="farbeSuggestions4" class="suggestion-list"></div>
+                        </td>
+                    </tr>
 
                     <tr>
                         <td>Heizkörper / Ventile / Rohre</td>
@@ -2852,33 +2834,20 @@
                     <tr>
                         <td>Fußboden Material</td>
                         <td colspan="5">
-                            <select name="boeden">
-                                <option value="" selected disabled></option>
-                                <option value="parkett">Parkett</option>
-                                <option value="laminat">Laminat</option>
-                                <option value="pvc">PVC</option>
-                                <option value="vinyl">Vinyl</option>
-                                <option value="fliesen">Fliesen</option>
-                                <option value="beton">Beton</option>
-                                <option value="teppich">Teppich</option>
-                                <option value="keinboden">kein Bodenbelag</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenInput4" type="text" name="fussboden"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden" data-suggestion-list="fussbodenSuggestions4">
+                            <div id="fussbodenSuggestions4" class="suggestion-list"></div>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Fußboden Farbe</td>
+                        <td>Fußboden-Farbe</td>
                         <td colspan="5">
-                            <select name="farbe">
-                                <option value="" selected disabled></option>
-                                <option value="weiß">braun</option>
-                                <option value="beige">grau</option>
-                                <option value="grau">schwarz</option>
-                                <option value="bunt">Holz</option>
-                                <option value="sonstige">Stein</option>
-                                <option value="sonstige">Sonstige</option>
-                            </select>
+                            <input id="fussbodenFarbeInput4" type="text" name="fussbodenFarbe"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions4">
+                            <div id="fussbodenFarbeSuggestions4" class="suggestion-list"></div>
                         </td>
                     </tr>
 
@@ -3268,7 +3237,7 @@
                             </td>
                         </tr>
 
-                        <tr>
+<!--                         <tr>
                             <td>Farbe der Wände</td>
                             <td colspan="5">
                                 <select name="farbe">
@@ -3279,6 +3248,17 @@
                                     <option value="bunt">bunt</option>
                                     <option value="sonstige">sonstige</option>
                                 </select>
+                            </td>
+                        </tr> -->
+
+
+                        <tr>
+                            <td>Farbe der Wände</td>
+                            <td colspan="5">
+                                <input id="farbeInput5" type="text" name="farbe"
+                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                    data-type="farbe" data-suggestion-list="farbeSuggestions5">
+                                <div id="farbeSuggestions5" class="suggestion-list"></div>
                             </td>
                         </tr>
 
@@ -3345,33 +3325,20 @@
                         <tr>
                             <td>Fußboden Material</td>
                             <td colspan="5">
-                                <select name="boeden">
-                                    <option value="" selected disabled></option>
-                                    <option value="parkett">Parkett</option>
-                                    <option value="laminat">Laminat</option>
-                                    <option value="pvc">PVC</option>
-                                    <option value="vinyl">Vinyl</option>
-                                    <option value="fliesen">Fliesen</option>
-                                    <option value="beton">Beton</option>
-                                    <option value="teppich">Teppich</option>
-                                    <option value="keinboden">kein Bodenbelag</option>
-                                    <option value="sonstige">Sonstige</option>
-                                </select>
+                                <input id="fussbodenInput5" type="text" name="fussboden"
+                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                    data-type="fussboden" data-suggestion-list="fussbodenSuggestions5">
+                                <div id="fussbodenSuggestions5" class="suggestion-list"></div>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Fußboden Farbe</td>
+                            <td>Fußboden-Farbe</td>
                             <td colspan="5">
-                                <select name="farbe">
-                                    <option value="" selected disabled></option>
-                                    <option value="weiß">braun</option>
-                                    <option value="beige">schwarz</option>
-                                    <option value="grau">grau</option>
-                                    <option value="bunt">Holz</option>
-                                    <option value="sonstige">Stein</option>
-                                    <option value="sonstige">Sonstige</option>
-                                </select>
+                                <input id="fussbodenFarbeInput5" type="text" name="fussbodenFarbe"
+                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                    data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions5">
+                                <div id="fussbodenFarbeSuggestions5" class="suggestion-list"></div>
                             </td>
                         </tr>
 
@@ -4042,6 +4009,40 @@
                         Dieses Protokoll erkennen die Unterzeichner an. Es ist Bestandteil des Mieterverhältnisses /
                         Mietvertrags. <br>Info: Für Ummeldungen beim Energieversorger sind die Mieter zuständig!
                         <br><br>
+
+                        <table style="border-bottom:22px solid rgb(255, 255, 255);">
+
+
+
+                            <tr style="margin-left:0;">
+
+                                <!-- erstellt von -->
+                                <td style="text-align: left; width: 290px; padding-right:10px; font-size:18px;">Protokoll ausgefüllt von
+                                </td>
+
+
+                                <td colspan="5">
+                                    <input id="suggestionname1" type="text" name="bemerkungen"
+                                        class="testeinzeilig langes-input autoscale suggestion-input"
+                                        style="width: 250px; font-size:18px; margin-top:11px;" data-type="mitarbeiter"
+                                        data-suggestion-list="suggestionmitarbeiter1">
+                                    <div id="suggestionmitarbeiter1" class="suggestion-list"></div>
+                                </td>
+
+
+                                <!-- Firma -->
+                                <td style="text-align: right; padding-right: 10px; width: 240px; font-size:18px;">Firma</td>
+                                <td colspan="5" style="position: relative;">
+                                    <input id="firmag" type="text" value="Sauer Immobilien GmbH" name="bemerkungen"
+                                        class="testeinzeilig langes-input autoscale"
+                                        style="width: 250px; margin-right:11px; font-size:18px; margin-top:11px;">
+                                </td>
+
+                            </tr>
+
+
+                        </table>
+
                     </div>
 
                     <!-- Vermieter-Unterschriftenfeld in den dynamischen Teil verschoben -->
@@ -4077,7 +4078,7 @@
     <script src="immo.js"></script>
     <script src="mailcheck.js"></script>
     <script src="mailsend.js"></script>
-    <script src="stockwerke.js"></script>
+    <script src="suggestion.js"></script>
 
 </body>
 
