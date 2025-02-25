@@ -1349,3 +1349,86 @@ input[type="date"] {
 #zimm12>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1) {
     width: 47% !important;
 }
+
+
+
+.suggestion-list {
+    border: 1px solid #ccc;
+    /* Rahmen */
+    max-height: 450px;
+    /* Maximale Höhe */
+    overflow-y: auto;
+    /* Scrollbar, falls nötig */
+    width: 240px;
+    /* Breite anpassen */
+    display: none;
+    /* Standardmäßig versteckt */
+    position: absolute;
+    /* Absolute Positionierung */
+    z-index: 1000;
+    /* Hoher Z-Index, um über anderen Elementen zu liegen */
+    background-color: rgb(241, 245, 255);
+    /* Hintergrundfarbe */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Leichter Schatten */
+    margin-top: 5px;
+    /* Abstand zum Input-Feld */
+}
+
+.suggestion-item {
+    padding: 8px;
+    /* Innenabstand */
+    cursor: pointer;
+    /* Zeiger-Cursor */
+    font-size: 24px;
+    /* Schriftgröße */
+    color: #333;
+    /* Schriftfarbe */
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+    /* Hintergrundfarbe beim Hover */
+}
+
+.main-button-container {
+    position: relative;
+}
+
+.main-upload-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background: #778ec1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.choice-menu {
+    position: absolute;
+    top: 100%; /* Menü unter dem Button platzieren */
+    left: 50%; /* Menü horizontal zentrieren */
+    transform: translateX(-50%); /* Menü horizontal zentrieren */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 100;
+    margin-top: 5px; /* Kleiner Abstand zum Button */
+    min-width: 200px;
+    text-align: center; /* Text im Menü zentrieren */
+}
+
+.menu-choice {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-choice:hover {
+    background: #f5f5f5;
+}
