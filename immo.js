@@ -1,7 +1,7 @@
 // immo.js
 
 // Warte, bis das DOM vollständig geladen ist
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Definiere ein Array mit Straßennamen, Postleitzahlen und Orten
     const strassen = [
         { name: "Amalienstr. 38", plz: "90419", ort: "Nürnberg" },
@@ -79,37 +79,48 @@ document.addEventListener("DOMContentLoaded", function() {
         { name: "Willy-Brandt-Platz 10", plz: "90402", ort: "Nürnberg" },
         { name: "Wodanstr. 34", plz: "90461", ort: "Nürnberg" },
         { name: "Zollhof 8", plz: "90443", ort: "Nürnberg" }
-        
+
     ];
+
+
+    function updateSignFields() {
+        document.getElementById("strasseeinzugsign").textContent = document.getElementById("strasseeinzug").value;
+        document.getElementById("plzeinzugsign").textContent = document.getElementById("plzeinzug").value;
+        document.getElementById("lageeinzugsign").textContent = document.getElementById("lageeinzug2").value;
+        document.getElementById("datumsign").textContent = document.getElementById("datum").value;
+    }
+
 
     // Funktion, um Vorschläge basierend auf der Benutzereingabe anzuzeigen
     function showSuggestions(input) {
         const inputValue = input.value.toLowerCase();
-        const suggestions = strassen.filter(strasse => 
+        const suggestions = strassen.filter(strasse =>
             strasse.name.toLowerCase().startsWith(inputValue)
         );
 
-        // Lösche alte Vorschläge
         const suggestionList = document.getElementById("suggestionList");
         suggestionList.innerHTML = "";
 
-        // Zeige neue Vorschläge an
         suggestions.forEach(strasse => {
             const option = document.createElement("div");
             option.textContent = strasse.name;
             option.classList.add("suggestion-item");
             option.addEventListener("click", () => {
-                // Setze den ausgewählten Straßennamen ins Input-Feld
-                input.value = strasse.name;
-                // Setze die Postleitzahl und den Ort ins PLZ-Feld
+                // Setze den ausgewählten Wert in das Input-Feld
+                document.getElementById("strasseeinzug").value = strasse.name;
+
+                // Setze PLZ und Ort in das entsprechende Input-Feld
                 document.getElementById("plzeinzug").value = `${strasse.plz} ${strasse.ort}`;
+
+                // Aktualisiere die Signaturfelder SOFORT
+                updateSignFields();
+
                 // Verstecke die Vorschlagsliste
                 suggestionList.innerHTML = "";
             });
             suggestionList.appendChild(option);
         });
 
-        // Zeige die Vorschlagsliste an, wenn es passende Vorschläge gibt
         if (suggestions.length > 0) {
             suggestionList.style.display = "block";
         } else {
@@ -117,15 +128,34 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Event-Listener für das Input-Feld
-    document.getElementById("strasseeinzug").addEventListener("input", function(event) {
+    // Event-Listener für das Straßen-Input-Feld
+    document.getElementById("strasseeinzug").addEventListener("input", function (event) {
         showSuggestions(event.target);
+        updateSignFields(); // Aktualisiere die Signaturfelder bei jeder Eingabe
+    });
+
+    // Event-Listener für das PLZ/Ort-Input-Feld
+    document.getElementById("plzeinzug").addEventListener("input", function () {
+        updateSignFields(); // Aktualisiere die Signaturfelder bei jeder Eingabe
+    });
+
+    // Event-Listener für das Lage/Stockwerk-Input-Feld
+    document.getElementById("lageeinzug2").addEventListener("input", function () {
+        updateSignFields(); // Aktualisiere die Signaturfelder bei jeder Eingabe
+    });
+
+    // Event-Listener für das Datums-Input-Feld
+    document.getElementById("datum").addEventListener("change", function () {
+        updateSignFields(); // Aktualisiere die Signaturfelder bei Änderung des Datums
     });
 
     // Verstecke die Vorschlagsliste, wenn außerhalb geklickt wird
-    document.addEventListener("click", function(event) {
+    document.addEventListener("click", function (event) {
         if (event.target.id !== "strasseeinzug") {
             document.getElementById("suggestionList").style.display = "none";
         }
     });
+
+    // Initialisiere die Signaturfelder beim Laden der Seite
+    updateSignFields();
 });
