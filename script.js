@@ -1220,16 +1220,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // Funktion zum Aktualisieren der Signaturfelder
     function updateSignFields() {
         document.getElementById("strasseeinzugsign").textContent = document.getElementById("strasseeinzug").value;
-        document.getElementById("lageeinzugsign").textContent = document.getElementById("lageeinzug").value;
+        document.getElementById("lageeinzugsign").textContent = document.getElementById("lageeinzug2").value;
         document.getElementById("plzeinzugsign").textContent = document.getElementById("plzeinzug").value;
         document.getElementById("datumsign").textContent = document.getElementById("datum").value;
     }
 
     // Event-Listener für Input-Felder hinzufügen
     document.getElementById("strasseeinzug").addEventListener("input", updateSignFields);
-    document.getElementById("lageeinzug").addEventListener("input", updateSignFields);
+    document.getElementById("lageeinzug2").addEventListener("input", updateSignFields);
     document.getElementById("plzeinzug").addEventListener("input", updateSignFields);
     document.getElementById("datum").addEventListener("input", updateSignFields);
+
+    // MutationObserver, um programmatische Änderungen zu überwachen
+    const observerConfig = { attributes: true, childList: true, subtree: true };
+
+    const strasseObserver = new MutationObserver(updateSignFields);
+    const lageObserver = new MutationObserver(updateSignFields);
+    const plzObserver = new MutationObserver(updateSignFields);
+    const datumObserver = new MutationObserver(updateSignFields);
+
+    strasseObserver.observe(document.getElementById("strasseeinzug"), observerConfig);
+    lageObserver.observe(document.getElementById("lageeinzug2"), observerConfig);
+    plzObserver.observe(document.getElementById("plzeinzug"), observerConfig);
+    datumObserver.observe(document.getElementById("datum"), observerConfig);
 
     // Beim Laden der Seite sofort die Signaturfelder aktualisieren
     updateSignFields();
@@ -1534,49 +1547,3 @@ inputFields.forEach((input) => {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Hinweis, wenn Steie geschlossen oder neu geladen wird.
-// Hinweis, wenn Steie geschlossen oder neu geladen wird.
-// Hinweis, wenn Steie geschlossen oder neu geladen wird.
-let allowUnload = false; // Flag, um die Warnung bei gewolltem Tab-Wechsel zu verhindern
-
-// Warnung beim Verlassen oder Neuladen der Seite
-window.addEventListener('beforeunload', function (event) {
-    if (!allowUnload) {
-        const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
-        event.returnValue = confirmationMessage;
-        return confirmationMessage;
-    }
-});
-
-// Neuer Tab öffnen und die Warnung deaktivieren
-document.getElementById('newTabButton').addEventListener('click', function () {
-    allowUnload = true; // Deaktiviert die Warnung
-    window.open('https://www.google.com', '_blank'); // Öffnet neuen Tab
-    setTimeout(() => { allowUnload = false; }, 1000); // Reaktiviert die Warnung nach 1 Sekunde
-}); 
-
-
-        // Warnung beim Verlassen oder Neuladen der Seite
-        window.addEventListener('beforeunload', function (event) {
-            // Standard-Nachricht für die meisten Browser
-            const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
-      
-            // Ältere Browser erfordern das Setzen von event.returnValue
-            event.returnValue = confirmationMessage;
-      
-            // Die Rückgabe ist für einige Browser erforderlich
-            return confirmationMessage;
-          }); 
