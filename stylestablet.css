@@ -752,7 +752,7 @@ h3 {
 }
 
 .delete-btn {
-    background-color: red;
+    background-color: rgb(139, 0, 0);
     color: white;
     border: none;
     cursor: pointer;
@@ -761,6 +761,7 @@ h3 {
     position: absolute;
     top: 31.8px;
     right: -9px;
+    border-radius:22px;
 }
 
 .image-preview .image-container .image-wrapper .delete-btn {
