@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Hier können Sie sicher sein, dass das DOM vollständig geladen ist
+});
+
 // Funktion zum Pürfen, ob Inputfeld Objekt/Straße ausgefüllt wurde
 function validateStrasseeinzug() {
     const strasseeinzugInput = document.getElementById("strasseeinzug");
@@ -127,10 +131,11 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         async function renderElementToPDF(element, yOffset = margin) {
             try {
+                await new Promise(resolve => setTimeout(resolve, 100)); // Kurze Verzögerung
                 const canvas = await html2canvas(element, { scale: 1, useCORS: true });
                 const imgData = canvas.toDataURL('image/jpeg', 0.7);
                 const imgHeight = (canvas.height * usableWidth) / canvas.width;
-
+        
                 pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, imgHeight, undefined, 'FAST');
                 return yOffset + imgHeight + margin;
             } catch (error) {
