@@ -9,30 +9,38 @@ function addRoom() {
     roomDiv.classList.add("room-container");
     roomDiv.setAttribute("id", roomId);
 
-    const roomTitle = document.createElement("h3");
-    
-    // Container für die Buttons
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-container");
+    // Haupt-Button Container
+    const mainButtonContainer = document.createElement("div");
+    mainButtonContainer.classList.add("main-button-container");
 
-    // Kamera-Button
-    const cameraLabel = document.createElement("label");
-    cameraLabel.setAttribute("for", `camera-${roomId}`);
-    cameraLabel.classList.add("customUploadButton");
-    cameraLabel.textContent = "📷 Foto aufnehmen (Zimmer " + roomCount + ")";
+    // Haupt-Button
+    const mainButton = document.createElement("button");
+    mainButton.classList.add("main-upload-button");
+    mainButton.innerHTML = "+ Bilder hinzufügen (Zimmer " + roomCount + ")";
+
+    // Auswahlmenü (initial versteckt)
+    const choiceMenu = document.createElement("div");
+    choiceMenu.classList.add("choice-menu");
+    choiceMenu.style.display = "none";
+
+    // Kamera-Option
+    const cameraChoice = document.createElement("label");
+    cameraChoice.setAttribute("for", `camera-${roomId}`);
+    cameraChoice.classList.add("menu-choice");
+    cameraChoice.innerHTML = "📷 Kamera verwenden";
 
     const cameraInput = document.createElement("input");
     cameraInput.type = "file";
     cameraInput.accept = "image/*";
     cameraInput.id = `camera-${roomId}`;
     cameraInput.hidden = true;
-    cameraInput.setAttribute("capture", "environment"); // Kamera erzwingen
+    cameraInput.setAttribute("capture", "environment");
 
-    // Dateiauswahl-Button
-    const fileLabel = document.createElement("label");
-    fileLabel.setAttribute("for", `file-${roomId}`);
-    fileLabel.classList.add("customUploadButton");
-    fileLabel.textContent = "📁 Dateien auswählen (Zimmer " + roomCount + ")";
+    // Datei-Option
+    const fileChoice = document.createElement("label");
+    fileChoice.setAttribute("for", `file-${roomId}`);
+    fileChoice.classList.add("menu-choice");
+    fileChoice.innerHTML = "📁 Dateien auswählen";
 
     const fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -41,19 +49,36 @@ function addRoom() {
     fileInput.id = `file-${roomId}`;
     fileInput.hidden = true;
 
-    // Event-Listener für beide Inputs
-    const handleUpload = (event) => handleFileUpload(event, roomId);
+    // Event-Listener
+    mainButton.addEventListener("click", function (e) {
+        e.stopPropagation();
+        choiceMenu.style.display = choiceMenu.style.display === "none" ? "block" : "none";
+    });
+
+    // Schließe Menü bei Klick außerhalb
+    document.addEventListener("click", function () {
+        choiceMenu.style.display = "none";
+    });
+
+    const handleUpload = (event) => {
+        choiceMenu.style.display = "none";
+        handleFileUpload(event, roomId);
+    };
+
     cameraInput.addEventListener("change", handleUpload);
     fileInput.addEventListener("change", handleUpload);
 
-    // Elemente hinzufügen
-    buttonContainer.appendChild(cameraLabel);
-    buttonContainer.appendChild(cameraInput);
-    buttonContainer.appendChild(fileLabel);
-    buttonContainer.appendChild(fileInput);
-    roomDiv.appendChild(buttonContainer);
+    // Elemente zusammenbauen
+    choiceMenu.appendChild(cameraChoice);
+    choiceMenu.appendChild(cameraInput);
+    choiceMenu.appendChild(fileChoice);
+    choiceMenu.appendChild(fileInput);
 
-    // Bildervorschau
+    mainButtonContainer.appendChild(mainButton);
+    mainButtonContainer.appendChild(choiceMenu);
+    roomDiv.appendChild(mainButtonContainer);
+
+    // Bildervorschau (unverändert)
     const imageSection = document.createElement("div");
     imageSection.classList.add("image-preview");
 
