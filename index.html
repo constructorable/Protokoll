@@ -37,6 +37,7 @@
 
 
 
+
         <div class="sticky-container">
 
             <button id="newTabButton">Neuen Tab öffnen</button>
@@ -49,6 +50,8 @@
 
         </div>
 
+
+
         <div id="dynamic-content">
 
             <!--Allgemein -->
@@ -56,7 +59,13 @@
 
             <div class="allgemein00" id="zzzallgemein">
 
+
+
+        <div id="logo-container">
                 <h2 style="font-size:28px;">Abnahme- / Übergabeprotokoll</h2>
+                <img src="https://raw.githubusercontent.com/constructorable/Protokoll/refs/heads/main/Logo.JPG" alt="Sauer Immobilien Logo">
+            </div>
+
                 <h3 class="uberschrift2">Allgemeine Informationen</h3>
 
                 <div class="allgemein00" id="toggleDiv">
@@ -3779,6 +3788,7 @@
                                 ...verpflichtet sich für die Beseitigung erforderlichen Arbeiten bis zum
                                 <span class="date-input-container">
                                     <input type="date" id="arbeitsdatum" name="arbeitsdatum" class="elegant-date-input">
+                                    <span id="formatted-date"></span> <!-- Hier wird das formatierte Datum angezeigt -->
                                 </span>
                                 auf seine Kosten auszuführen oder ausführen zu lassen oder...
                             </td>
@@ -3846,7 +3856,7 @@
                                 <div class="input-euro-container">
                                     <input type="number" id="pauschalbetrag" name="pauschalbetrag"
                                         class="elegant-number-input" min="0" step="1">
-                                    <span class="euro-symbol">€</span>
+                                    <div class="euro-symbol">€</div>
                                 </div>
                             </td>
 
