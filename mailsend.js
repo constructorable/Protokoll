@@ -2,7 +2,7 @@
 function sendEmail(fileName, emails, client) {
     // Werte aus den Input-Feldern und Checkboxen auslesen
     const objekt = document.getElementById('strasseeinzug').value;
-    const lage = document.getElementById('lageeinzug').value;
+    const lage = document.getElementById('lageeinzug2').value;
     const plzOrt = document.getElementById('plzeinzug').value;
     const datum = document.getElementById('datum').value;
     const mietid = document.getElementById('mieterid').value;
