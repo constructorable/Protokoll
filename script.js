@@ -25,91 +25,6 @@ function toggleMode() {
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
 /* Schriftgrößenänderung */
-/* function addFontControlsToInputs() {
-    // Alle Input-Felder vom Typ "text" und "email" auswählen
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
-
-    inputs.forEach(input => {
-        // Prüfen, ob bereits Controls hinzugefügt wurden
-        if (input.parentElement.classList.contains('input-container')) {
-            return; // Überspringen, falls bereits vorhanden
-        }
-
-        // Container für Input und Buttons erstellen
-        const container = document.createElement('div');
-        container.classList.add('input-container');
-
-        // Buttons für Schriftgrößen-Steuerung erstellen
-        const controls = document.createElement('div');
-        controls.classList.add('size-controls');
-
-        const plusButton = document.createElement('button');
-        plusButton.classList.add('font-plus');
-        plusButton.textContent = '+';
-
-        const minusButton = document.createElement('button');
-        minusButton.classList.add('font-minus');
-        minusButton.textContent = '-';
-
-        // Buttons zum Controls-Container hinzufügen
-        controls.appendChild(plusButton);
-        controls.appendChild(minusButton);
-
-        // Input-Feld in den Container verschieben
-        input.parentNode.insertBefore(container, input);
-        container.appendChild(input);
-        container.appendChild(controls);
-
-        // Schriftgrößen-Steuerung initialisieren
-        initFontControls(input, plusButton, minusButton);
-    });
-}
-// Funktion zur Initialisierung der Schriftgrößen-Steuerung
-function initFontControls(input, plusButton, minusButton) {
-    let fontSize = parseFloat(window.getComputedStyle(input).fontSize);
-    const minSize = 8; // Minimale Schriftgröße
-    const maxSize = 24; // Maximale Schriftgröße
-    const step = 4; // Schrittweite
-
-    // Funktion zur Aktualisierung der Schriftgröße
-    function updateFontSize(newSize) {
-        fontSize = Math.min(Math.max(newSize, minSize), maxSize);
-        input.style.fontSize = `${fontSize}px`;
-
-        // Buttons deaktivieren, wenn Grenzwerte erreicht sind
-        plusButton.disabled = fontSize >= maxSize;
-        minusButton.disabled = fontSize <= minSize;
-    }
-
-    // Event-Listener für die Buttons
-    plusButton.addEventListener('click', () => updateFontSize(fontSize + step));
-    minusButton.addEventListener('click', () => updateFontSize(fontSize - step));
-
-    // Initiale Schriftgröße setzen
-    updateFontSize(fontSize);
-}
-// Funktion zum Beobachten von DOM-Änderungen
-function observeDOMChanges() {
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'childList') {
-                addFontControlsToInputs(); // Neue Inputs verarbeiten
-            }
-        });
-    });
-
-    // Beobachte das gesamte Dokument auf Änderungen
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-    });
-}
-// Initialisierung beim Laden der Seite
-document.addEventListener('DOMContentLoaded', () => {
-    addFontControlsToInputs(); // Vorhandene Inputs verarbeiten
-    observeDOMChanges(); // Zukünftige Inputs beobachten
-}); */
-
 // Funktion zum Hinzufügen von Schriftgrößen-Steuerungen zu Input-Feldern
 function addFontControlsToInputs() {
     // Alle Input-Felder vom Typ "text" und "email" auswählen
@@ -1550,11 +1465,23 @@ inputFields.forEach((input) => {
 
 
 
+// Funktion zum Formatieren des Datums im Feld bei REnovierungsverplfichtung
+// Funktion zum Formatieren des Datums im Feld bei REnovierungsverplfichtung
+// Funktion zum Formatieren des Datums im Feld bei REnovierungsverplfichtung
+function formatDate(inputDate) {
+    const date = new Date(inputDate); // Datumsobjekt erstellen
+    const day = String(date.getDate()).padStart(2, '0'); // Tag (mit führender Null)
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Monat (mit führender Null)
+    const year = date.getFullYear(); // Jahr
+    return `${day}.${month}.${year}`; // Datum im Format DD.MM.YYYY zurückgeben
+}
 
-
-
-
-
+// Event-Listener für das Datums-Input-Feld
+document.getElementById('arbeitsdatum').addEventListener('change', function () {
+    const inputDate = this.value; // Wert des Input-Felds
+    const formattedDate = formatDate(inputDate); // Datum formatieren
+    document.getElementById('formatted-date').textContent = formattedDate; // Formatiertes Datum anzeigen
+});
 
 
 
@@ -1563,7 +1490,7 @@ inputFields.forEach((input) => {
 // Hinweis, wenn Steie geschlossen oder neu geladen wird.
 // Hinweis, wenn Steie geschlossen oder neu geladen wird.
 // Hinweis, wenn Steie geschlossen oder neu geladen wird.
-/* let allowUnload = false;
+let allowUnload = false;
 window.addEventListener('beforeunload', function (event) {
     if (!allowUnload) {
         const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
@@ -1580,4 +1507,4 @@ window.addEventListener('beforeunload', function (event) {
     const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
     event.returnValue = confirmationMessage;
     return confirmationMessage;
-});  */
+}); 
