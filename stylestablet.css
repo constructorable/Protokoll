@@ -761,7 +761,7 @@ h3 {
     position: absolute;
     top: 31.8px;
     right: -9px;
-    border-radius:22px;
+    border-radius: 22px;
 }
 
 .image-preview .image-container .image-wrapper .delete-btn {
@@ -1410,17 +1410,22 @@ input[type="date"] {
 
 .choice-menu {
     position: absolute;
-    top: 100%; /* Menü unter dem Button platzieren */
-    left: 50%; /* Menü horizontal zentrieren */
-    transform: translateX(-50%); /* Menü horizontal zentrieren */
+    top: 100%;
+    /* Menü unter dem Button platzieren */
+    left: 50%;
+    /* Menü horizontal zentrieren */
+    transform: translateX(-50%);
+    /* Menü horizontal zentrieren */
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 100;
-    margin-top: 5px; /* Kleiner Abstand zum Button */
+    margin-top: 5px;
+    /* Kleiner Abstand zum Button */
     min-width: 200px;
-    text-align: center; /* Text im Menü zentrieren */
+    text-align: center;
+    /* Text im Menü zentrieren */
 }
 
 .menu-choice {
@@ -1433,3 +1438,54 @@ input[type="date"] {
 .menu-choice:hover {
     background: #f5f5f5;
 }
+
+/* Stil für das Logo-Container-Div */
+#logo-container {
+    display: flex;
+    /* Aktiviert Flexbox */
+    align-items: center;
+    /* Zentriert die Elemente vertikal */
+    gap: 20px;
+    /* Abstand zwischen den Elementen */
+    justify-content: space-between;
+    background: rgb(255, 255, 255);
+}
+
+#logo-container img {
+    width: 250px;
+    /* Breite des Logos anpassen */
+    height: auto;
+    /* Höhe automatisch anpassen */
+}
+
+#logo-container>h2:nth-child(1) {
+    margin-left: 5px;
+}
+
+#arbeitsdatum {
+    font-size: 20px;
+    font-family: arial;
+  }
+
+  #weitereBemerkungen > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) {
+    background-color:#f1f1f1;
+/*     margin-bottom: 11px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  #weitereBemerkungen > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1) {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  #weitereBemerkungen > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(1) {
+    background-color:#f1f1f1;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  
+  #weitereBemerkungen > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
