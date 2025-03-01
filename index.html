@@ -12,7 +12,7 @@
 
 
     <script src="scriptzimmer.js"></script>
-    <script src="printjs.js" defer></script>
+
 
 
 </head>
@@ -61,16 +61,17 @@
 
 
 
-        <div id="logo-container">
-                <h2 style="font-size:28px;">Abnahme- / Übergabeprotokoll</h2>
-                <img src="https://raw.githubusercontent.com/constructorable/Protokoll/refs/heads/main/Logo.JPG" alt="Sauer Immobilien Logo">
-            </div>
+                <div id="logo-container">
+                    <h2 style="font-size:28px;">Abnahme- / Übergabeprotokoll</h2>
+                    <img src="https://raw.githubusercontent.com/constructorable/Protokoll/refs/heads/main/Logo.JPG"
+                        alt="Sauer Immobilien Logo">
+                </div>
 
                 <h3 class="uberschrift2">Allgemeine Informationen</h3>
 
                 <div class="allgemein00" id="toggleDiv">
 
-                    <div style="border-bottom:22px solid rgb(255, 255, 255);"></div>
+                    <div style="border-bottom:1px solid rgb(255, 255, 255);"></div>
 
                     <table style="border-bottom:22px solid rgb(255, 255, 255);">
 
@@ -88,7 +89,16 @@
 
                         </td>
 
+                        <td colspan="6" style="text-align: center; font-weight: bold;">
+                            <div style="border-bottom: 90px solid rgb(255, 255, 255);"></div>
+
+                        </td>
+
+
+
                         <tr>
+
+
 
                             <!-- Objekt / Straße -->
                             <td style="text-align: left; width: 380px; padding-right:10px;">Objekt / Straße</td>
@@ -104,8 +114,8 @@
                             <td colspan="5" style="position: relative;">
                                 <input id="lageeinzug2" type="text" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale suggestion-input"
-                                    style="width: 240px; margin-right:11px;"
-                                    data-type="stockwerk" data-suggestion-list="stockwerkSuggestions2">
+                                    style="width: 240px; margin-right:11px;" data-type="stockwerk"
+                                    data-suggestion-list="stockwerkSuggestions2">
                                 <div id="stockwerkSuggestions2" class="suggestion-list" style="display: none;"></div>
                             </td>
 
@@ -115,7 +125,7 @@
 
                         <tr>
                             <!-- PLZ / Ort 1 -->
-                            <td style="width: 350px; text-align: left; padding:10px;">PLZ / Ort</td>
+                            <td style="width: 350px;" class="objekt">PLZ / Ort</td>
                             <td colspan="5">
                                 <input type="text" id="plzeinzug" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale"
@@ -305,7 +315,7 @@
                     <tr>
                         <th>allgemeiner Zustand</th>
                         <th>renoviert</th>
-                        <th>neuwertig</th>
+                        <th>neu - wertig</th>
                         <th>geringe Gebrauchs - spuren</th>
                         <th>stärkerer Gebrauchs - spuren</th>
                         <th>nicht renoviert</th>
@@ -502,7 +512,7 @@
 
 
 
-                   <tr>
+                    <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <input id="farbeInput1" type="text" name="farbe"
@@ -592,7 +602,7 @@
                     </tr>
 
 
-     
+
 
                     <tr>
                         <td>Fußboden Material</td>
@@ -903,7 +913,7 @@
                     </tr>
 
                     <tr>
-                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Küche</td>
+                        <td class="commentshead">Bemerkungen Küche</td>
                     </tr>
 
 
@@ -984,7 +994,7 @@
                     <tr>
                         <th>allgemeiner Zustand</th>
                         <th>renoviert</th>
-                        <th>neuwertig</th>
+                        <th>neu - wertig</th>
                         <th>geringe Gebrauchs - spuren</th>
                         <th>stärkerer Gebrauchs - spuren</th>
                         <th>nicht renoviert</th>
@@ -1289,7 +1299,7 @@
                     </tr>
 
 
- 
+
                     <tr>
                         <td>Fußboden-Farbe</td>
                         <td colspan="5">
@@ -1764,7 +1774,7 @@
                     <tr>
                         <th>allgemeiner Zustand</th>
                         <th>renoviert</th>
-                        <th>neuwertig</th>
+                        <th>neu - wertig</th>
                         <th>geringe Gebrauchs - spuren</th>
                         <th>stärkerer Gebrauchs - spuren</th>
                         <th>nicht renoviert</th>
@@ -1969,7 +1979,7 @@
                         </td>
                     </tr>
 
-<!--                     <tr>
+                    <!--                     <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <select name="farbe">
@@ -2571,7 +2581,7 @@
                     <tr>
                         <th>allgemeiner Zustand</th>
                         <th>renoviert</th>
-                        <th>neuwertig</th>
+                        <th>neu - wertig</th>
                         <th>geringe Gebrauchs - spuren</th>
                         <th>stärkerer Gebrauchs - spuren</th>
                         <th>nicht renoviert</th>
@@ -2757,7 +2767,7 @@
                         </td>
                     </tr>
 
-<!--                     <tr>
+                    <!--                     <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <select name="farbe">
@@ -2771,7 +2781,7 @@
                         </td>
                     </tr> -->
 
-                    
+
                     <tr>
                         <td>Farbe der Wände</td>
                         <td colspan="5">
@@ -3041,7 +3051,7 @@
                         <tr>
                             <th>allgemeiner Zustand</th>
                             <th>renoviert</th>
-                            <th>neuwertig</th>
+                            <th>neu - wertig</th>
                             <th>geringe Gebrauchs - spuren</th>
                             <th>stärkerer Gebrauchs - spuren</th>
                             <th>nicht renoviert</th>
@@ -3246,7 +3256,7 @@
                             </td>
                         </tr>
 
-<!--                         <tr>
+                        <!--                         <tr>
                             <td>Farbe der Wände</td>
                             <td colspan="5">
                                 <select name="farbe">
@@ -4020,17 +4030,14 @@
                         Mietvertrags. <br>Info: Für Ummeldungen beim Energieversorger sind die Mieter zuständig!
                         <br><br>
 
-                        <table style="border-bottom:22px solid rgb(255, 255, 255);">
 
 
 
+                        <!--                         <table style="border-bottom:22px solid rgb(255, 255, 255);">
                             <tr style="margin-left:0;">
-
-                                <!-- erstellt von -->
-                                <td style="text-align: left; width: 290px; padding-right:10px; font-size:18px;">Protokoll ausgefüllt von
+                                <td style="text-align: left; width: 290px; padding-right:10px; font-size:18px;">
+                                    Protokoll ausgefüllt von
                                 </td>
-
-
                                 <td colspan="5">
                                     <input id="suggestionname1" type="text" name="bemerkungen"
                                         class="testeinzeilig langes-input autoscale suggestion-input"
@@ -4039,30 +4046,76 @@
                                     <div id="suggestionmitarbeiter1" class="suggestion-list"></div>
                                 </td>
 
-
-                                <!-- Firma -->
-                                <td style="text-align: right; padding-right: 10px; width: 240px; font-size:18px;">Firma</td>
+                                <td style="text-align: right; padding-right: 10px; width: 240px; font-size:18px;">Firma
+                                </td>
                                 <td colspan="5" style="position: relative;">
                                     <input id="firmag" type="text" value="Sauer Immobilien GmbH" name="bemerkungen"
                                         class="testeinzeilig langes-input autoscale"
                                         style="width: 250px; margin-right:11px; font-size:18px; margin-top:11px;">
                                 </td>
-
                             </tr>
-
-
                         </table>
+ -->
+
+                        <table class="custom-table">
+                            <tbody>
+                                <tr>
+                                    <!-- Erstellt von -->
+                                    <td class="label-cell">
+                                        Protokoll ausgefüllt von:
+                                    </td>
+                                    <td class="input-cell">
+                                        <div class="input-container">
+                                            <input id="suggestionname1" type="text" name="bemerkungen"
+                                                class="testeinzeilig langes-input autoscale suggestion-input"
+                                                data-type="mitarbeiter" data-suggestion-list="suggestionmitarbeiter1">
+                                            <div class="size-controls">
+                                                <button class="font-plus">+</button>
+                                                <button class="font-minus">-</button>
+                                            </div>
+                                        </div>
+                                        <div id="suggestionmitarbeiter1" class="suggestion-list"></div>
+                                    </td>
+
+                                    <!-- Firma -->
+                                    <td class="label-cell text-right">
+                                        Firma:
+                                    </td>
+                                    <td class="input-cell">
+                                        <div class="input-container">
+                                            <input id="firmag" type="text" value="Sauer Immobilien GmbH"
+                                                name="bemerkungen" class="testeinzeilig langes-input autoscale">
+                                            <div class="size-controls">
+                                                <button class="font-plus">+</button>
+                                                <button class="font-minus">-</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+
+
+
+
 
                     </div>
 
                     <!-- Vermieter-Unterschriftenfeld in den dynamischen Teil verschoben -->
                     <div class="signature-container">
-                        <label for="vermieter-signature">Vermieter:</label>
+                        <!-- <label class="vermieter" for="vermieter-signature">Vermieter:</label> -->
                         <div class="signature-box">
                             <button type="button" class="signature-clear-btn"
                                 onclick="clearSignature('vermieter-signature')">x</button>
                             <canvas id="vermieter-signature" class="signature-canvas2"></canvas>
                         </div>
+                        <label class="vermieter" for="vermieter-signature">Vermieter:</label>
                     </div>
 
                 </div>
@@ -4089,6 +4142,7 @@
     <script src="mailcheck.js"></script>
     <script src="mailsend.js"></script>
     <script src="suggestion.js"></script>
+    <script src="printjs.js" defer></script>
 
 </body>
 
