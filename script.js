@@ -286,11 +286,17 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
-        const headers = ['Name', 'Vorname', 'Tel.:', 'E-Mail'];
+        const headers = [
+            { text: 'Name', width: '30%' },
+            { text: 'Vorname', width: '25%' },
+            { text: 'Tel.:', width: '20%' },
+            { text: 'E-Mail', width: '25%' }
+        ];
 
-        headers.forEach(headerText => {
+        headers.forEach(header => {
             const th = document.createElement('th');
-            th.textContent = headerText;
+            th.textContent = header.text;
+            th.style.width = header.width;
             headerRow.appendChild(th);
         });
 
@@ -314,10 +320,10 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     const nameId = `NameEin${counter.toString().padStart(2, '0')}`;
     const vornameId = `VornameEin${counter.toString().padStart(2, '0')}`;
 
-    nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale" style="width: 265px;">`;
-    vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale" style="width: 150px;">`;
-    strasseCell.innerHTML = '<input type="text" class="phones autoscale" style="width: 140px;">';
-    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale" style="width: 280px;">';
+    nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale nameeinziehmieter" style="min-width: 1px;">`;
+    vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale vornameeinziehmieter" style="min-width: 1px;">`;
+    strasseCell.innerHTML = '<input type="text" class="phones autoscale teleinziehmieter" style="min-width: 1px;">';
+    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale maileinziehmieter" style="min-width: 1px;">';
 
     newRow1.appendChild(nameCell);
     newRow1.appendChild(vornameCell);
@@ -348,7 +354,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
     signatureContainer.appendChild(signatureBox);
 
-    // Mieter-Info direkt unter der Signatur-Box platzieren
     const mieterInfo = document.createElement('div');
     mieterInfo.id = `einziehender-mieter-info-${counter}`;
     mieterInfo.style.marginTop = '-10px';
@@ -359,7 +364,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 
     signatureContainer.appendChild(mieterInfo);
 
-    // Signaturfeld direkt unter den bestehenden Unterschriftenfeldern einfügen
     const signatureContent = document.querySelector('.signature-content');
     signatureContent.appendChild(signatureContainer);
 
@@ -372,7 +376,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
     nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
     vornameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
 
-    // Überschriftenzeile bei einziehenden Mieter hinzufügen
     let table2 = document.getElementById('einzugmieterTable');
 
     if (table2) {
@@ -380,11 +383,17 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
 
-            const headers = ['Name', 'Vorname', 'Tel.: ', 'E-Mail'];
+            const headers = [
+                { text: 'Name', width: '30%' },
+                { text: 'Vorname', width: '25%' },
+                { text: 'Tel.:', width: '20%' },
+                { text: 'E-Mail', width: '25%' }
+            ];
 
-            headers.forEach(headerText => {
+            headers.forEach(header => {
                 const th = document.createElement('th');
-                th.textContent = headerText;
+                th.textContent = header.text;
+                th.style.width = header.width;
                 headerRow.appendChild(th);
             });
 
@@ -393,7 +402,6 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
             table2.insertBefore(thead, table2.querySelector('tbody'));
         }
     }
-
 });
 
 
@@ -711,7 +719,7 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
                         <option value="leer"></option>
                         <option value="haustuer">Haustür</option>
                         <option value="wohnung">Wohnungstür</option>
-                        <option value="wohnung">Haustür inkl. Wohnungstür</option>
+                        <option value="wohnunghaustuer">Haustür inkl. Wohnungstür</option>
                         <option value="briefkasten">Briefkasten</option>
                         <option value="keller">Keller</option>
                         <option value="dachboden">Dachboden</option>
@@ -871,22 +879,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function addToggleFunctionality(room) {
         const header = room.querySelector("h3");
         const content = room.querySelector("table");
-
+    
         if (header && content) {
-            let arrow = header.querySelector("span");
+            let arrow = header.querySelector("span.arrows00"); // Suche nach einem span mit der Klasse arrows00
             if (!arrow) {
                 arrow = document.createElement("span");
                 arrow.textContent = " ▼";
+                arrow.classList.add("arrows00"); // Füge die Klasse arrows00 hinzu
                 arrow.style.transition = "transform 0.3s ease";
                 header.appendChild(arrow);
             }
-
+    
             content.style.display = "table"; // Räume sollen offen sein
             header.style.cursor = "pointer";
             header.style.display = "flex";
             header.style.justifyContent = "space-between";
             header.style.alignItems = "center";
-
+    
             header.addEventListener("click", function () {
                 toggleRoom(header, content, arrow);
             });
@@ -1132,12 +1141,28 @@ document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUploa
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 document.addEventListener("DOMContentLoaded", function () {
+    // Funktion zum Formatieren des Datums
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+
     // Funktion zum Aktualisieren der Signaturfelder
     function updateSignFields() {
-        document.getElementById("strasseeinzugsign").textContent = document.getElementById("strasseeinzug").value;
-        document.getElementById("lageeinzugsign").textContent = document.getElementById("lageeinzug2").value;
-        document.getElementById("plzeinzugsign").textContent = document.getElementById("plzeinzug").value;
-        document.getElementById("datumsign").textContent = document.getElementById("datum").value;
+        // Werte aus den Input-Feldern holen und ein Komma anhängen
+        const strasse = document.getElementById("strasseeinzug").value + ",";
+        const lage = document.getElementById("lageeinzug2").value + ",";
+        const plz = document.getElementById("plzeinzug").value + ",";
+        const datum = formatDate(document.getElementById("datum").value); // Datum formatieren
+
+        // Werte in die Signaturfelder schreiben
+        document.getElementById("strasseeinzugsign").textContent = strasse;
+        document.getElementById("lageeinzugsign").textContent = lage;
+        document.getElementById("plzeinzugsign").textContent = plz;
+        document.getElementById("datumsign").textContent = datum;
     }
 
     // Event-Listener für Input-Felder hinzufügen
@@ -1204,12 +1229,12 @@ function initSignatureCanvas(canvasId) {
     resizeCanvas(canvas, context);
 
     // Vorhandene Unterschrift aus localStorage laden (mit canvasId als Schlüssel)
-    loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`));
+    /* loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`)); */
 
     // Beim Ändern der Bildschirmgröße neu skalieren
     window.addEventListener('resize', () => {
         resizeCanvas(canvas, context);
-        loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`));
+        /* loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`)); */
     });
 
     let isDrawing = false;
@@ -1258,7 +1283,7 @@ function initSignatureCanvas(canvasId) {
         context.lineCap = 'round';
         context.lineJoin = 'round';
 
-        saveSignature(canvas, canvasId); // Unterschrift in localStorage speichern (mit canvasId als Schlüssel)
+        /* saveSignature(canvas, canvasId); */ // Unterschrift in localStorage speichern (mit canvasId als Schlüssel)
     }
 
     function stopDrawing() {
@@ -1274,9 +1299,9 @@ function initSignatureCanvas(canvasId) {
         };
     }
 
-    function saveSignature(canvas, canvasId) {
+/*     function saveSignature(canvas, canvasId) {
         localStorage.setItem(`signature_${canvasId}`, canvas.toDataURL());
-    }
+    } */
 
     function loadSignature(canvas, context, imageData) {
         if (!imageData) return;
@@ -1295,7 +1320,7 @@ function initSignatureCanvas(canvasId) {
         if (canvas.width !== width || canvas.height !== height) {
             canvas.width = width;
             canvas.height = height;
-            loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`));
+        /*     loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`)); */
         }
     }
 }
@@ -1454,11 +1479,11 @@ document.addEventListener("DOMContentLoaded", function () {
 // maximale Zeichenanzeil für Bemerkungszeilen
 const inputFields = document.querySelectorAll('input.dupli.autoscale');
 inputFields.forEach((input) => {
-    input.setAttribute('maxlength', '105');
-    input.style.fontSize = '14px';
+    input.setAttribute('maxlength', '115');
+    input.style.fontSize = '18px';
     input.addEventListener('input', () => {
-        if (input.value.length > 105) {
-            input.value = input.value.slice(0, 105);
+        if (input.value.length > 115) {
+            input.value = input.value.slice(0, 115);
         }
     });
 });
