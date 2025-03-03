@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Hier können Sie sicher sein, dass das DOM vollständig geladen ist
+
 });
 
-// Funktion zum Pürfen, ob Inputfeld Objekt/Straße ausgefüllt wurde
+
 function validateStrasseeinzug() {
     const strasseeinzugInput = document.getElementById("strasseeinzug");
 
-    // Prüfe, ob das Feld leer ist oder nur Leerzeichen enthält
+
     if (!strasseeinzugInput.value || strasseeinzugInput.value.trim() === "") {
         alert("Objekt / Straße bitte eingeben.");
         return false;
@@ -15,7 +15,7 @@ function validateStrasseeinzug() {
     return true;
 }
 
-// Funktion zur Überprüfung der Checkboxen (Abnahme/Übergabe)
+
 function validateCheckboxes() {
     const abnahmeCheckbox = document.getElementById("abnahme");
     const uebergabeCheckbox = document.getElementById("uebergabe");
@@ -28,7 +28,7 @@ function validateCheckboxes() {
     return true;
 }
 
-// Funktion zur Überprüfung der Checkboxen in der Tabelle "zentral"
+
 function validateZentralCheckboxes() {
     const checkboxes = document.querySelectorAll('#zentral input[type="checkbox"]');
     let isChecked = false;
@@ -133,7 +133,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             try {
                 await new Promise(resolve => setTimeout(resolve, 100)); // Kurze Verzögerung
                 const canvas = await html2canvas(element, { scale: 1, useCORS: true });
-                const imgData = canvas.toDataURL('image/jpeg', 0.7);
+                const imgData = canvas.toDataURL('image/jpeg', 0.6);
                 const imgHeight = (canvas.height * usableWidth) / canvas.width;
         
                 pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, imgHeight, undefined, 'FAST');
@@ -150,6 +150,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             progressText.textContent = `${Math.min(percentage, 100)}% abgeschlossen`;
         }
 
+
         const totalElements = [
             elements.allgemein,
             elements.kueche,
@@ -164,9 +165,10 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             elements.print1,
             elements.stammdupli,
             elements.signtoggle,
-            elements.bilderzimmer ? elements.bilderzimmer.children : [],
-            elements.largeImages
-        ].flat().length;
+            ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []), // Jedes Bild einzeln zählen
+            ...(elements.largeImages ? Array.from(elements.largeImages) : []) // Jedes große Bild einzeln zählen
+        ].length;
+
 
         let currentElement = 0;
 
@@ -233,23 +235,67 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         currentElement++;
         updateProgress(currentElement, totalElements);
 
-        if (elements.bilderzimmer) {
+/*         if (elements.bilderzimmer) {
             for (const child of elements.bilderzimmer.children) {
                 pdf.addPage();
                 await renderElementToPDF(child);
                 currentElement++;
                 updateProgress(currentElement, totalElements);
             }
-        }
+        } */
 
-        if (elements.largeImages.length > 0) {
+            if (elements.bilderzimmer) {
+                const children = Array.from(elements.bilderzimmer.children);
+                for (let i = 0; i < children.length; i += 2) {
+                    pdf.addPage();
+                    const firstImage = children[i];
+                    const secondImage = children[i + 1];
+    
+                    // Render first image
+                    let yOffset = margin;
+                    yOffset = await renderElementToPDF(firstImage, yOffset);
+                    currentElement++;
+                    updateProgress(currentElement, totalElements);
+    
+                    // Render second image if it exists
+                    if (secondImage) {
+                        yOffset = await renderElementToPDF(secondImage, yOffset + 10); // Add some spacing between images
+                        currentElement++;
+                        updateProgress(currentElement, totalElements);
+                    }
+                }
+            }
+
+/*         if (elements.largeImages.length > 0) {
             for (const image of elements.largeImages) {
                 pdf.addPage();
                 await renderElementToPDF(image);
                 currentElement++;
                 updateProgress(currentElement, totalElements);
             }
-        }
+        } */
+
+            if (elements.largeImages.length > 0) {
+                const largeImages = Array.from(elements.largeImages);
+                for (let i = 0; i < largeImages.length; i += 2) {
+                    pdf.addPage();
+                    const firstImage = largeImages[i];
+                    const secondImage = largeImages[i + 1];
+    
+                    // Render first image
+                    let yOffset = margin;
+                    yOffset = await renderElementToPDF(firstImage, yOffset);
+                    currentElement++;
+                    updateProgress(currentElement, totalElements);
+    
+                    // Render second image if it exists
+                    if (secondImage) {
+                        yOffset = await renderElementToPDF(secondImage, yOffset + 10); // Add some spacing between images
+                        currentElement++;
+                        updateProgress(currentElement, totalElements);
+                    }
+                }
+            }
 
         const inputs = document.querySelectorAll("input");
         const originalHeights = [];
