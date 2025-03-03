@@ -1086,7 +1086,9 @@ function setupImageUpload(uploadButton) {
                         let imgHighRes = document.createElement("img");
                         imgHighRes.src = scaledImageSrc;
                         imgHighRes.style.display = "block";
-                        imgHighRes.style.maxWidth = "950px";
+                      /*   imgHighRes.style.maxWidth = "950px"; */
+                      imgHighRes.style.width = "auto";
+                        imgHighRes.style.height = "600px";
                         imgHighRes.style.border = "1px solid #ccc";
                         imgHighRes.style.borderRadius = "5px";
                         imgHighRes.style.margin = "0 auto";
