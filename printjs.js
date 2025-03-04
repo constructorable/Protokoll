@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
 });
 
@@ -15,7 +15,6 @@ function validateStrasseeinzug() {
     return true;
 }
 
-
 function validateCheckboxes() {
     const abnahmeCheckbox = document.getElementById("abnahme");
     const uebergabeCheckbox = document.getElementById("uebergabe");
@@ -27,7 +26,6 @@ function validateCheckboxes() {
 
     return true;
 }
-
 
 function validateZentralCheckboxes() {
     const checkboxes = document.querySelectorAll('#zentral input[type="checkbox"]');
@@ -67,7 +65,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         return;
     }
 
-    // Fortsetzung des bestehenden Codes zur PDF-Generierung
+
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.style.display = 'flex';
 
@@ -134,15 +132,53 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 await new Promise(resolve => setTimeout(resolve, 100)); // Kurze Verzögerung
                 const canvas = await html2canvas(element, { scale: 1, useCORS: true });
                 const imgData = canvas.toDataURL('image/jpeg', 0.6);
-                const imgHeight = (canvas.height * usableWidth) / canvas.width;
+                const imgWidth = canvas.width;
+                const imgHeight = canvas.height;
         
-                pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, imgHeight, undefined, 'FAST');
-                return yOffset + imgHeight + margin;
+                // Verfügbare Höhe auf einer Seite
+                const maxPageHeight = pageHeight - 2 * margin;
+        
+                // Skalierte Höhe basierend auf der verfügbaren Breite
+                let scaledHeight = (imgHeight * usableWidth) / imgWidth;
+        
+                // Überprüfen, ob der Inhalt auf eine Seite passt
+                if (scaledHeight > maxPageHeight) {
+                    // Inhalt ist zu groß, Skalierungsfaktor berechnen
+                    const scaleFactor = maxPageHeight / scaledHeight;
+                    scaledHeight *= scaleFactor; // Skalierte Höhe anpassen
+                    const scaledWidth = usableWidth * scaleFactor; // Skalierte Breite anpassen
+        
+                    // Skalierten Inhalt auf einer Seite rendern
+                    pdf.addImage(
+                        imgData,
+                        'JPEG',
+                        margin + (usableWidth - scaledWidth) / 2, // Zentrieren
+                        yOffset,
+                        scaledWidth,
+                        scaledHeight,
+                        undefined,
+                        'FAST'
+                    );
+                } else {
+                    // Inhalt passt auf eine Seite
+                    pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, scaledHeight, undefined, 'FAST');
+                }
+        
+                return yOffset + scaledHeight + margin;
             } catch (error) {
-                console.warn("Kein Bild gefunden, überspringe dieses Element:", element);
+                console.warn("Fehler beim Rendern des Elements:", element, error);
                 return yOffset;
             }
         }
+
+
+
+
+
+
+
+
+
 
         function updateProgress(current, total) {
             const percentage = Math.round((current / total) * 100);
@@ -165,8 +201,8 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             elements.print1,
             elements.stammdupli,
             elements.signtoggle,
-            ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []), // Jedes Bild einzeln zählen
-            ...(elements.largeImages ? Array.from(elements.largeImages) : []) // Jedes große Bild einzeln zählen
+            ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
+            ...(elements.largeImages ? Array.from(elements.largeImages) : [])
         ].length;
 
 
@@ -235,67 +271,46 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         currentElement++;
         updateProgress(currentElement, totalElements);
 
-/*         if (elements.bilderzimmer) {
-            for (const child of elements.bilderzimmer.children) {
+
+        if (elements.bilderzimmer) {
+            const children = Array.from(elements.bilderzimmer.children);
+            for (let i = 0; i < children.length; i += 2) {
                 pdf.addPage();
-                await renderElementToPDF(child);
+                const firstImage = children[i];
+                const secondImage = children[i + 1];
+
+                let yOffset = margin;
+                yOffset = await renderElementToPDF(firstImage, yOffset);
                 currentElement++;
                 updateProgress(currentElement, totalElements);
-            }
-        } */
 
-            if (elements.bilderzimmer) {
-                const children = Array.from(elements.bilderzimmer.children);
-                for (let i = 0; i < children.length; i += 2) {
-                    pdf.addPage();
-                    const firstImage = children[i];
-                    const secondImage = children[i + 1];
-    
-                    // Render first image
-                    let yOffset = margin;
-                    yOffset = await renderElementToPDF(firstImage, yOffset);
+                if (secondImage) {
+                    yOffset = await renderElementToPDF(secondImage, yOffset + 10);
                     currentElement++;
                     updateProgress(currentElement, totalElements);
-    
-                    // Render second image if it exists
-                    if (secondImage) {
-                        yOffset = await renderElementToPDF(secondImage, yOffset + 10); // Add some spacing between images
-                        currentElement++;
-                        updateProgress(currentElement, totalElements);
-                    }
                 }
             }
+        }
 
-/*         if (elements.largeImages.length > 0) {
-            for (const image of elements.largeImages) {
+        if (elements.largeImages.length > 0) {
+            const largeImages = Array.from(elements.largeImages);
+            for (let i = 0; i < largeImages.length; i += 2) {
                 pdf.addPage();
-                await renderElementToPDF(image);
+                const firstImage = largeImages[i];
+                const secondImage = largeImages[i + 1];
+
+                let yOffset = margin;
+                yOffset = await renderElementToPDF(firstImage, yOffset);
                 currentElement++;
                 updateProgress(currentElement, totalElements);
-            }
-        } */
 
-            if (elements.largeImages.length > 0) {
-                const largeImages = Array.from(elements.largeImages);
-                for (let i = 0; i < largeImages.length; i += 2) {
-                    pdf.addPage();
-                    const firstImage = largeImages[i];
-                    const secondImage = largeImages[i + 1];
-    
-                    // Render first image
-                    let yOffset = margin;
-                    yOffset = await renderElementToPDF(firstImage, yOffset);
+                if (secondImage) {
+                    yOffset = await renderElementToPDF(secondImage, yOffset + 10);
                     currentElement++;
                     updateProgress(currentElement, totalElements);
-    
-                    // Render second image if it exists
-                    if (secondImage) {
-                        yOffset = await renderElementToPDF(secondImage, yOffset + 10); // Add some spacing between images
-                        currentElement++;
-                        updateProgress(currentElement, totalElements);
-                    }
                 }
             }
+        }
 
         const inputs = document.querySelectorAll("input");
         const originalHeights = [];
