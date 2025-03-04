@@ -879,7 +879,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function addToggleFunctionality(room) {
         const header = room.querySelector("h3");
         const content = room.querySelector("table");
-    
+
         if (header && content) {
             let arrow = header.querySelector("span.arrows00"); // Suche nach einem span mit der Klasse arrows00
             if (!arrow) {
@@ -889,13 +889,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 arrow.style.transition = "transform 0.3s ease";
                 header.appendChild(arrow);
             }
-    
+
             content.style.display = "table"; // Räume sollen offen sein
             header.style.cursor = "pointer";
             header.style.display = "flex";
             header.style.justifyContent = "space-between";
             header.style.alignItems = "center";
-    
+
             header.addEventListener("click", function () {
                 toggleRoom(header, content, arrow);
             });
@@ -1086,8 +1086,8 @@ function setupImageUpload(uploadButton) {
                         let imgHighRes = document.createElement("img");
                         imgHighRes.src = scaledImageSrc;
                         imgHighRes.style.display = "block";
-                      /*   imgHighRes.style.maxWidth = "950px"; */
-                      imgHighRes.style.width = "auto";
+                        /*   imgHighRes.style.maxWidth = "950px"; */
+                        imgHighRes.style.width = "auto";
                         imgHighRes.style.height = "600px";
                         imgHighRes.style.border = "1px solid #ccc";
                         imgHighRes.style.borderRadius = "5px";
@@ -1301,9 +1301,9 @@ function initSignatureCanvas(canvasId) {
         };
     }
 
-/*     function saveSignature(canvas, canvasId) {
-        localStorage.setItem(`signature_${canvasId}`, canvas.toDataURL());
-    } */
+    /*     function saveSignature(canvas, canvasId) {
+            localStorage.setItem(`signature_${canvasId}`, canvas.toDataURL());
+        } */
 
     function loadSignature(canvas, context, imageData) {
         if (!imageData) return;
@@ -1322,7 +1322,7 @@ function initSignatureCanvas(canvasId) {
         if (canvas.width !== width || canvas.height !== height) {
             canvas.width = width;
             canvas.height = height;
-        /*     loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`)); */
+            /*     loadSignature(canvas, context, localStorage.getItem(`signature_${canvasId}`)); */
         }
     }
 }
