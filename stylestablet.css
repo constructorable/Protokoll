@@ -1,3 +1,6 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+Version 3.2 */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0px;
@@ -463,14 +466,16 @@ h2 {
 #toggleModeButton,
 #sendEmailButton,
 #uploadImageButton,
-#zwischensafebutton {
+#zwischensafebutton,
+#newTabButton {
     background-color: rgb(105, 130, 187);
     color: #fff;
 
 }
 
 #toggleModeButton,
-#zwischensafebutton {
+#zwischensafebutton,
+#newTabButton {
     font-size: 18px;
     border-radius: 7px;
     padding-left: 15px;
@@ -1317,7 +1322,12 @@ input[type="date"] {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3)>div:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(3)>div:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(3)>div:nth-child(1),
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3)>div:nth-child(1) {
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(3)>div:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(3)>div:nth-child(1)
+{
     width: 500px !important;
 }
 
@@ -1332,7 +1342,12 @@ input[type="date"] {
 .remark-row:nth-child(4)>div:nth-child(1),
 .remark-row:nth-child(5)>div:nth-child(1),
 .remark-row:nth-child(6)>div:nth-child(1),
-.remark-row:nth-child(7)>div:nth-child(1) {
+.remark-row:nth-child(7)>div:nth-child(1),
+.remark-row:nth-child(8)>div:nth-child(1),
+.remark-row:nth-child(9)>div:nth-child(1),
+.remark-row:nth-child(10)>div:nth-child(1),
+.remark-row:nth-child(11)>div:nth-child(1),
+.remark-row:nth-child(12)>div:nth-child(1) {
     width: 96% !important;
 }
 
@@ -1496,14 +1511,42 @@ input[type="date"] {
     display: none;
 }
 
-#schluesselTable > thead:nth-child(1) > tr:nth-child(1) {
+#schluesselTable>thead:nth-child(1)>tr:nth-child(1) {
     border-top: 3px solid #f1f1f1 !important;
     border-bottom: 3px solid #f1f1f1 !important;
-  }
-  
-  #einzugmieterTable > thead:nth-child(1),
-  #auszugmieterTable > thead:nth-child(1),
-  #schluesselTable > thead:nth-child(1)  {
+}
+
+#einzugmieterTable>thead:nth-child(1),
+#auszugmieterTable>thead:nth-child(1),
+#schluesselTable>thead:nth-child(1) {
     border-top: 15px solid #f1f1f1;
-  }
-  
+}
+
+td.label-cell:nth-child(1) {
+    width: 100px !important;
+}
+
+
+.vermieter {
+    position: relative !important;
+    left: -190px !important;
+}
+
+
+#einziehender-mieter-info-2,
+#einziehender-mieter-info-3,
+#einziehender-mieter-info-4,
+#einziehender-mieter-info-5 {
+    position: relative;
+    left: -137px;
+    font-size: 22px;
+}
+
+#ausziehender-mieter-info-3,
+#ausziehender-mieter-info-4,
+#ausziehender-mieter-info-5,
+#ausziehender-mieter-info-6 {
+    position: relative;
+    left: -128px;
+    font-size: 22px;
+}
