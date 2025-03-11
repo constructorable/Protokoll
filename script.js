@@ -1522,7 +1522,7 @@ document.getElementById('arbeitsdatum').addEventListener('change', function () {
 let allowUnload = false;
 window.addEventListener('beforeunload', function (event) {
     if (!allowUnload) {
-        const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
+        const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Alle Eingaben gehen dadurch verloren.';
         event.returnValue = confirmationMessage;
         return confirmationMessage;
     }
@@ -1533,7 +1533,7 @@ document.getElementById('newTabButton').addEventListener('click', function () {
     setTimeout(() => { allowUnload = false; }, 1000);
 });
 window.addEventListener('beforeunload', function (event) {
-    const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Nicht gespeicherte Änderungen gehen möglicherweise verloren.';
+    const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Alle Eingaben gehen dadurch verloren.';
     event.returnValue = confirmationMessage;
     return confirmationMessage;
 }); 
