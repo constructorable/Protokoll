@@ -1,3 +1,6 @@
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
+
 document.addEventListener('DOMContentLoaded', function () {
 
 });
@@ -131,7 +134,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             try {
                 await new Promise(resolve => setTimeout(resolve, 100)); // Kurze Verzögerung
                 const canvas = await html2canvas(element, { scale: 1, useCORS: true });
-                const imgData = canvas.toDataURL('image/jpeg', 0.6);
+                const imgData = canvas.toDataURL('image/jpeg', 0.9);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
         
