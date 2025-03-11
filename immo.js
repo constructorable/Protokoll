@@ -1,3 +1,5 @@
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
 // immo.js
 
 // Warte, bis das DOM vollständig geladen ist
