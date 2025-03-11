@@ -1,3 +1,6 @@
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
+
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
