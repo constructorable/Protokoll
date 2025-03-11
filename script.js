@@ -1,4 +1,6 @@
 
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
 
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
