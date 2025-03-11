@@ -1,3 +1,6 @@
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
+
 // suggestion.js
 
 // Definiere das Array mit den Mitarbeiternamen
