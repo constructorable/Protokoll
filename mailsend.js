@@ -1,3 +1,6 @@
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
+
 // Funktion zum Versenden der E-Mail (ohne Anhang)
 function sendEmail(fileName, emails, client) {
     // Werte aus den Input-Feldern und Checkboxen auslesen
@@ -10,7 +13,8 @@ function sendEmail(fileName, emails, client) {
     const abnahmeCheckbox = document.getElementById('abnahme').checked ? "Abnahmeprotokoll" : "";
     const uebergabeCheckbox = document.getElementById('uebergabe').checked ? "Übergabeprotokoll" : "";
 
-    let protokollTyp = "";
+
+     let protokollTyp = "";
 
     // Prüfen, ob beide Checkboxen aktiviert sind
     if (abnahmeCheckbox && uebergabeCheckbox) {
@@ -25,7 +29,7 @@ function sendEmail(fileName, emails, client) {
         `${objekt}, ${lage} - ${protokollTyp} / ${mietid}`
     );
 
-
+   
     // E-Mail-Body im gewünschten Format
     const body = encodeURIComponent(
         `Sehr geehrte Damen und Herren,\n` +
@@ -36,7 +40,12 @@ function sendEmail(fileName, emails, client) {
         `Mieternummer: ${mietid}\n` +
         `Datum: ${datum}\n\n` +
         `Mit freundlichen Grüßen\n\n` +
-        `Sauer Immobilien GmbH`
+        `Sauer Immobilien GmbH\n\n` +
+        `Königstr. 25- 27\n\n` +
+        `90402 Nürnberg\n\n` +
+        `Tel.: 0911 / 21491-0\n\n` +
+        `E-Mail: hausverwaltung@sauer-immobilien.de`
+
     );
 
     // Empfänger und CC
