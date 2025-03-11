@@ -1,4 +1,7 @@
 
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.2
+
 function initializeSuggestionInputs() {
     document.querySelectorAll(".suggestion-input").forEach(inputField => {
         const suggestionListId = inputField.getAttribute("data-suggestion-list");
@@ -181,7 +184,7 @@ function addRoom() {
             </tr>
 
             <tr>
-                <td>Fenster/Beschläge/Glas</td>
+                <td>Fenster / Beschläge / Glas</td>
                 <td>
                     <input type="radio" id="${roomId}-fenster1" name="${roomId}-fenster" value="in Ordnung">
                     <label for="${roomId}-fenster1" class="radio-label"></label>
@@ -208,7 +211,7 @@ function addRoom() {
             </tr>
 
             <tr>
-                <td>Jalousie/Rolläden/Klappäden</td>
+                <td>Jalousie / Rolläden / Klappäden</td>
                 <td>
                     <input type="radio" id="${roomId}-rollo1" name="${roomId}-rollo" value="in Ordnung">
                     <label for="${roomId}-rollo1" class="radio-label"></label>
@@ -380,7 +383,7 @@ function addRoom() {
 
 
             <tr>
-                <td>Radio-/Fernseh-/Internetdose</td>
+                <td>Radio- / Fernseh- / Internetdose</td>
                 <td>
                     <input type="radio" id="${roomId}-internet1" name="${roomId}-internet" value="in Ordnung">
                     <label for="${roomId}-internet1" class="radio-label"></label>
