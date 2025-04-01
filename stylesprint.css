@@ -1,0 +1,1909 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.23 */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #cacaca;
+    color: #333;
+    word-wrap: break-word;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    color: #333;
+    word-wrap: break-word;
+    border: 0px solid #ccc;
+    border-left: 15px solid white;
+}
+
+th,
+td {
+    /*     border: 0px solid #ddd;
+    border-bottom: 1px solid #ddd; */
+
+    padding: 1px;
+    text-align: left;
+    word-wrap: break-word;
+    line-height: 1.11;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 97%;
+    padding: 0px;
+    /*     margin-top:5px;
+    margin-bottom:5px; */
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    line-height: 1.11;
+    /* Erhöht die Textzeilenhöhe */
+    height: 1.11;
+    /* Falls eine feste Höhe das Problem verursacht */
+    /*  min-height: 24px; */
+    /* Setzt eine Mindesthöhe, um Platz zu schaffen */
+    font-size: 16px;
+    background-color: #fcfcfc;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.radio-label,
+.checkbox-label {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 10px;
+    background-color: #fff;
+    margin: 1px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.radio-label::before,
+.checkbox-label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #8d8d8d;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.radio-label::after,
+.checkbox-label::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: transparent;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+    transition: color 0.3s ease;
+}
+
+input[type="radio"]:checked+.radio-label::before,
+input[type="checkbox"]:checked+.checkbox-label::before {
+    background-color: #fff;
+    /*  border-color: #000000; */
+}
+
+input[type="radio"]:checked+.radio-label::after,
+input[type="checkbox"]:checked+.checkbox-label::after {
+    color: rgb(24, 24, 24);
+    background-color: #fff;
+}
+
+.radio-label,
+.checkbox-label {
+    width: 24px;
+    height: 22px;
+}
+
+h2,
+h3 {
+    color: #444;
+    margin-bottom: 11px;
+}
+
+.bilderzimmer>div h3 {
+    font-weight: 200;
+}
+
+/* .bilderzimmer img {
+    min-width: 800px;
+    height: auto;
+    max-height:900px;
+}
+ */
+
+h2 {
+    margin-bottom: 25px;
+}
+
+.header01 {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: none;
+}
+
+
+
+.allgemein {
+
+    border: 0px;
+}
+
+.rooms {
+    background-color: #c8d8e7;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+/* Sticky Buttons */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 200vh;
+    /* Für Scroll-Test */
+}
+
+.sticky-container {
+    position: sticky;
+    top: 10px;
+    /* Abstand vom oberen Rand */
+    background: white;
+    /* Hintergrund setzen */
+    padding: 10px;
+    z-index: 1000;
+    /* Über anderen Elementen */
+    display: flex;
+    gap: 10px;
+    /* Abstand zwischen Buttons */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#toggleModeButton {
+    background-color: #2764a4;
+    color: white;
+}
+
+#savePdfButton {
+    background-color: #28a745;
+    color: white;
+}
+
+
+/* neu sytle */
+
+.erstezeilekueche {
+    border-top: 25px solid rgb(255, 255, 255);
+    border-bottom: 0px solid rgb(201, 210, 24);
+}
+
+
+
+.uberschrift2 {
+    background-color: #c8d8e7;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.protart {
+    font-size: 24px;
+}
+
+
+/* Allgemeine Stile für Inputs, Textarea und Select */
+input[type="text"],
+textarea,
+select {
+    width: 97%;
+    padding: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    line-height: 1.11;
+    /*    height: auto; */
+    /*    min-height: 24px; */
+    font-size: 16px;
+    background-color: #fcfcfc;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+
+select {
+    line-height: 1.11;
+    /* min-height: 34px; */
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+
+input[type="text"] {
+    padding-top: 7px;
+}
+
+#datum {
+    line-height: 1.11;
+    min-width: 300px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 12px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    background-color: #f3f8ff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    /*   height: auto; */
+    /*     min-height: 24px; */
+    font-size: 16px;
+}
+
+textarea {
+    font-family: arial;
+    font-size: 18px;
+    white-space: pre-wrap;
+    /* Erhält Leerzeichen und Zeilenumbrüche */
+    overflow-wrap: break-word;
+    background-color: #e9f1cd;
+    /*     height: auto; */
+    /*     min-height: 333px; */
+
+}
+
+.dupli {
+    width: 100%;
+    /* Volle Breite des Containers */
+    max-width: 100%;
+    /* Maximale Breite */
+    font-size: 16px !important;
+    border: 0px;
+}
+
+/* Stil für das Input-Feld mit der Klasse "dupli" */
+input.dupli {
+    background-color: #fcfcfc !important;
+    border: none !important;
+    /* Gelber Hintergrund */
+    margin: 0 !important;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+.signature-canvas,
+#vermieter-signature {
+    border: 2px solid #121212;
+    background: #fff;
+    width: 500px;
+    height: 150px;
+}
+
+
+#vermieter-signature {
+    margin-bottom: 25px;
+}
+
+.allgemein00>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(1+2) {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 22px;
+    height: 50px;
+    font-size: 22px;
+}
+
+/*   .allgemein00 > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+  } */
+
+
+/* Stil für den Bild-Container */
+.image-container {
+    display: flex;
+    justify-content: center;
+    /* Zentriert das Bild horizontal */
+    margin: 20px 0;
+    /* Optional: Abstand nach oben und unten */
+}
+
+/* Stil für das Bild selbst */
+.image-container img {
+    max-width: 100%;
+    /* Bild passt sich der Container-Breite an */
+    height: auto;
+    /* Behält das Seitenverhältnis bei */
+}
+
+.room-container {
+    background-color: rgb(220, 236, 220);
+    Padding: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-radius: 10px;
+
+}
+
+/* .imagePreview {
+    display:none;
+}
+ */
+
+.remark-row {
+    background-color: #fff;
+    margin-left: 0px;
+    padding-left: 12px;
+}
+
+#einziehender-mieter-signature-1,
+#einziehender-mieter-signature-2,
+#einziehender-mieter-signature-3,
+#einziehender-mieter-signature-4,
+#einziehender-mieter-signature-5,
+#einziehender-mieter-signature-6,
+#einziehender-mieter-signature-7,
+#einziehender-mieter-signature-8 {
+    Background-color: rgb(255, 255, 255);
+    border: 2px solid green;
+}
+
+#einziehender-mieter-info-1,
+#einziehender-mieter-info-2,
+#einziehender-mieter-info-3,
+#einziehender-mieter-info-4,
+#einziehender-mieter-info-5,
+#einziehender-mieter-info-6,
+#einziehender-mieter-info-7,
+#einziehender-mieter-info-8 {
+    margin-top: -39px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 95px;
+    margin-bottom: 25px;
+}
+
+
+#ausziehender-mieter-info-1,
+#ausziehender-mieter-info-2,
+#ausziehender-mieter-info-3,
+#ausziehender-mieter-info-4,
+#ausziehender-mieter-info-5,
+#ausziehender-mieter-info-6,
+#ausziehender-mieter-info-7,
+#einziehender-mieter-info-8 {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+
+#ausziehender-mieter-signature-1,
+#ausziehender-mieter-signature-2,
+#ausziehender-mieter-signature-3,
+#ausziehender-mieter-signature-4,
+#ausziehender-mieter-signature-5,
+#ausziehender-mieter-signature-6,
+#ausziehender-mieter-signature-7,
+#ausziehender-mieter-signature-8 {
+
+    margin-bottom: 1px;
+}
+
+
+
+
+#ausziehender-mieter-signature-1,
+#ausziehender-mieter-signature-2,
+#ausziehender-mieter-signature-3,
+#ausziehender-mieter-signature-4,
+#ausziehender-mieter-signature-5,
+#ausziehender-mieter-signature-6,
+#ausziehender-mieter-signature-7,
+#ausziehender-mieter-signature-8 {
+
+    Background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(132, 14, 14);
+}
+
+
+.signature-content>div:nth-child(2)>label:nth-child(1) {
+    font-weight: 600;
+}
+
+
+.image-preview,
+.large-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-preview .image-container .image-wrapper .delete-btn {
+    background-color: #cc1313;
+    border-radius: 22px;
+    top: -8px;
+    right: -10px;
+}
+
+.image-container img {
+    width: 90px;
+    height: 90px;
+}
+
+.large-image-container img {
+    height: 600px;
+    display: block;
+    margin: 5px auto;
+    margin-bottom: 25px;
+}
+
+.large-image-wrapper,
+.bilderzimmer>div {
+    border: 3px solid black;
+    margin-top: 25px;
+    padding-left: 10px;
+}
+
+#weitereBemerkungenContainer {
+    margin-top: 35px;
+}
+
+
+#hauptBemerkungenContainer {
+    margin-top: 35px;
+}
+
+#zzzallgemein {
+    padding: 22px;
+    /* 
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black; */
+}
+
+
+.mails,
+.mails2 {
+    font-size: 16px !important;
+    background-color: #f3f8ff;
+    height: 1.9 !important;
+    line-height: 1.9 !important;
+    border-radius: 5px;
+    border: 1px solid #cbcbcb;
+    padding-top: 7px;
+    padding-left: 5px;
+    margin-top: 2px;
+}
+
+.mails {
+    width: 357px !important;
+}
+
+.mails2 {
+    width: 250px !important;
+}
+
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(2)>input:nth-child(1) {
+    width: 100%;
+    background: #fcfcfc;
+    border: none;
+    border-radius: 5px;
+    line-height: 1.11;
+    padding-top: 11px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+#schluesselTable th,
+#schluesselTable td {
+    padding-top: 1px;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding-right: 15px;
+}
+
+#schluesselTable th {
+    padding-left: 1px !important;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1) {
+    padding-left: 0px !important;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(2)>input:nth-child(1) {
+    text-align: center;
+}
+
+
+
+.sign02 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 7px;
+
+}
+
+.zzzpprint1 {
+    border-radius: 7px;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    border-top: 4px solid #ffffff;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.input-euro-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    width: 117%;
+
+    /* Nimmt die volle Breite der Tabellenzelle ein */
+}
+
+.elegant-number-input {
+    width: 100px;
+    padding-right: 5px;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 3px;
+    line-height: 1.11;
+}
+
+
+.euro-symbol {
+    font-size: 18px;
+    opacity: 1 !important;
+}
+
+/* Tabellenzelle anpassen, damit das Feld genug Platz hat */
+td.no-border-right.text-right {
+    min-width: 130px;
+    /* Mindestbreite für genug Platz */
+}
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(3),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(5),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(7) {
+    background-color: #fff;
+}
+
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(4) {
+    background-color: #f1f1f1;
+}
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(6)>td:nth-child(1)>div:nth-child(1)>input:nth-child(1) {
+    width: 100%;
+}
+
+#hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(1)>div:nth-child(1)>input:nth-child(1) {
+    width: 100%;
+}
+
+
+
+
+
+
+/* Hintergrund für das Ladeoverlay */
+/* Hintergrund für das Ladeoverlay */
+/* Hintergrund für das Ladeoverlay */
+/* Hintergrund für das Ladeoverlay */
+/* Hintergrund für das Ladeoverlay */
+#loadingOverlay {
+    display: none;
+    /* Standardmäßig ausgeblendet */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    /* 90% der Bildschirmbreite */
+    height: 100vh;
+    /* Volle Höhe des Bildschirms */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Dunkler Hintergrund */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Sicherstellen, dass es über anderen Elementen liegt */
+}
+
+#loadingOverlay .loading-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    /* Breite des Inhalts innerhalb der Loading-Box */
+    max-width: 800px;
+    /* Maximale Breite des Inhalts */
+}
+
+#progressBar {
+    width: 95%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#progressBar .progress {
+    height: 200%;
+    background-color: #76c7c0;
+    border-radius: 10px;
+    width: 0%;
+    /* Startwert */
+}
+
+#closeLoadingOverlay {
+    margin-top: 5px !important;
+    padding: 3px 3px !important;
+    background-color: #960a0a !important;
+    color: white !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+
+.customUploadButton,
+.imageUpload,
+.imagePreview,
+#file-upload-1,
+#file-upload-2,
+#file-upload-3,
+#file-upload-4,
+#file-upload-5,
+#file-upload-6,
+#file-upload-7,
+#file-upload-8,
+#file-upload-9,
+.image-preview {
+    display: none;
+}
+
+.stammdupli {
+    /*     position: relative;
+    top:-115px !important; */
+    margin-top: 1px !important;
+    margin-bottom: 1px !important;
+    Font-size: 18px !important;
+    line-height: 1.1 !important;
+    margin-left: 15px !important;
+    padding-left: 18px !important;
+}
+
+/* Container für die Werte */
+/* Container für die Werte */
+.stammdupli {
+    margin-top: 10px !important;
+    /* Optional: Abstand nach oben */
+}
+
+/* Überschrift */
+.stammdupli>div[style*="font-weight:bold"] {
+    font-weight: bold !important;
+    font-size: 20px !important;
+    text-decoration: underline !important;
+    display: block !important;
+    /* Überschrift als Blockelement */
+    margin-bottom: 10px !important;
+    /* Abstand zur nächsten Zeile (Werte) */
+}
+
+
+#strasseeinzugsign,
+#plzeinzugsign,
+#lageeinzugsign,
+#datumsign,
+#mieteridsign {
+    display: inline-block !important;
+    margin-right: 10px !important;
+    font-size: 16px !important;
+}
+
+
+.sign02 {
+    margin-bottom: 1px !important;
+}
+
+
+.signature-container {
+    margin-left: 15px;
+}
+
+span {
+    opacity: 1;
+}
+
+#toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(1) {
+    width: 350px;
+    text-align: left;
+    /*! padding:10px; */
+}
+
+#toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1) {
+    width: 300px !important;
+    margin-right: 0px !important;
+
+}
+
+#lageeinzug2 {
+    margin-left: 0px !important;
+    width: 300px !important;
+}
+
+
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dunkler Hintergrund mit Transparenz */
+    backdrop-filter: blur(5px);
+    /* Hintergrund verwischen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+
+
+
+input[type="text"],
+textarea,
+select {
+    margin-left: 0px;
+}
+
+
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(3)>input:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(13)>td:nth-child(3)>input:nth-child(1)
+ {
+    width: 344px !important;
+}
+
+
+
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3)>input:nth-child(1) {
+    width: 266px;
+}
+
+
+.fortsetzung {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 50px;
+}
+
+input {
+    height: 30px !important;
+    /* Höhe des Input-Feldes */
+    padding: 3px 0px 3px 3px !important;
+    /* Oben und unten 10px, links und rechts 12px */
+    box-sizing: border-box !important;
+    /* Stellt sicher, dass das Padding in der Höhe enthalten ist */
+    line-height: 25px !important;
+    /* Normaler Wert für die Zeilenhöhe */
+    /*   font-size:16px !important; */
+    /*   margin-top: 12px !important; */
+}
+
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(2),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(4),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(6) {
+    background: #f1f1f1;
+}
+
+#hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(3) {
+    padding-left: 11px;
+}
+
+input[type="text"],
+textarea,
+select {
+    padding-left: 6px !important;
+}
+
+
+input[type="text"] {
+    font-size: 16px !important;
+}
+
+input[type="number"] {
+    border: 1px solid #ccc !important;
+    /* Schwarzer Rahmen */
+    box-sizing: border-box !important;
+    /* Stellt sicher, dass Padding und Rahmen in der Breite enthalten sind */
+}
+
+#schluesselTable>thead:nth-child(1)>tr:nth-child(1)>th:nth-child(2) {
+    text-align: center;
+}
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(3),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(3) {
+    padding-left: 0 !important;
+}
+
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2)
+{
+    padding-left: 0px !important;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Stil für das E-Mail-Menü */
+#emailMenu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+#emailMenu h3 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+#emailMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+#emailMenu ul li {
+    padding: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+#emailMenu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#emailMenu button:hover {
+    background-color: #45a049;
+}
+
+#emailMenu button#cancel {
+    background-color: #f44336;
+}
+
+#emailMenu button#cancel:hover {
+    background-color: #e53935;
+}
+
+/* Overlay für das Menü */
+#emailMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+
+/* #ausziehender-mieter-info-1,
+#ausziehender-mieter-info-2,
+#ausziehender-mieter-info-3,
+#ausziehender-mieter-info-4 {
+    position: relative !important;
+    top:-52px !important;
+
+} */
+
+
+/* #ausziehender-mieter-signature-1,
+#ausziehender-mieter-signature-2,
+#ausziehender-mieter-signature-3,
+#ausziehender-mieter-signature-4 {
+    margin-top: 22px !important;
+} */
+
+
+.signature-content>div:nth-child(1)>table:nth-child(4) {
+    left: -13px !important;
+}
+
+/* Stil für das Logo-Container-Div */
+/* Stil für das Logo-Container-Div */
+#logo-container {
+    display: flex;
+    /* Aktiviert Flexbox */
+    align-items: center;
+    /* Zentriert die Elemente vertikal */
+    gap: 20px;
+    /* Abstand zwischen den Elementen */
+    justify-content: space-between;
+}
+
+#logo-container img {
+    width: 220px;
+    /* Breite des Logos anpassen */
+    height: auto;
+    /* Höhe automatisch anpassen */
+}
+
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(3),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(3) {
+    padding-right: 10px;
+}
+
+
+#arbeitsdatum {
+
+    display: none;
+}
+
+#formatted-date {
+    font-weight: 600;
+}
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(1) {
+    background-color: #f1f1f1;
+    margin-bottom: 11px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(1) {
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(1) {
+    background-color: #f1f1f1;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(1) {
+    padding-top: 7px;
+    padding-bottom: 11px;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 97%;
+    padding: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    line-height: 1.11;
+    height: auto;
+    min-height: 24px;
+    font-size: 16px;
+    background-color: #f3f8ff;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #f3f8ff !important;
+
+}
+
+/* .commentshead {
+    margin-bottom: 115px !important;
+
+} */
+
+#zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(31)>td:nth-child(1) {
+    font-weight: 600;
+}
+
+
+#zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(31)>td:nth-child(1) {
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+
+/* 
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1)>select:nth-child(1)
+ {
+    padding: 3px !important;
+} */
+
+
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1)>select:nth-child(1),
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(1)>select:nth-child(1) {
+    padding: 3px !important;
+}
+
+
+#toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(1) {
+    width: 350px;
+    text-align: left;
+    padding: 10px;
+    margin-left: 22px;
+}
+
+/*   .objekt{
+    margin-left: 1px !important;
+  } */
+
+#toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(1) {
+    padding: 2px !important;
+
+}
+
+#toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(1) {
+    padding-left: 1px !important;
+}
+
+#zentral>tbody:nth-child(1)>tr:nth-child(1) {
+    height: 25px !important;
+}
+
+
+.container {
+    width: 1000px !important;
+
+}
+
+#einzugmieterTable {
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: separate !important;
+    /* Separate borders für Abstände */
+    border-spacing: 0 !important;
+    /* Kein zusätzlicher Abstand */
+}
+
+#einzugmieterTable th,
+#einzugmieterTable td {
+    box-sizing: border-box !important;
+    padding: 0 3px !important;
+    /* Horizontaler Abstand zwischen Spalten */
+    text-align: left !important;
+}
+
+#einzugmieterTable th:nth-child(1),
+#einzugmieterTable td:nth-child(1) {
+    width: 25% !important;
+}
+
+#einzugmieterTable th:nth-child(2),
+#einzugmieterTable td:nth-child(2) {
+    width: 20% !important;
+}
+
+#einzugmieterTable th:nth-child(3),
+#einzugmieterTable td:nth-child(3) {
+    width: 20% !important;
+}
+
+#einzugmieterTable th:nth-child(4),
+#einzugmieterTable td:nth-child(4) {
+    width: 35% !important;
+}
+
+#einzugmieterTable input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 3px 5px 0px 5px !important;
+    /* padding-bottom: 11px */
+    margin: 3px 0 !important;
+    /* margin-top und margin-bottom: 3px */
+}
+
+#addeinziehenderMieterRow td {
+    text-align: right !important;
+}
+
+.size-controls {
+    display: flex !important;
+    gap: 0 !important;
+    margin-top: 0 !important;
+}
+
+.size-controls button {
+    font-size: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+table {
+    border-left: 11px solid white !important;
+}
+
+#einzugmieterTable>thead:nth-child(1) {
+    height: 25px !important;
+}
+
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1) {
+    padding-bottom: 10px;
+}
+
+
+
+
+/*ausziehender*/
+/*ausziehender*/
+/*ausziehender*/
+
+/* Allgemeine Stile für die Tabelle der ausziehenden Mieter */
+#auszugmieterTable {
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border-left: 0px solid rgb(255, 255, 255) !important;
+}
+
+
+
+#auszugmieterTable>thead:nth-child(1) {
+    height: 25px !important;
+}
+
+#auszugmieterTable th,
+#auszugmieterTable td {
+    box-sizing: border-box !important;
+    padding: 0 3px !important;
+    /* Horizontaler Abstand zwischen Spalten */
+    text-align: left !important;
+}
+
+#auszugmieterTable th:nth-child(1),
+#auszugmieterTable td:nth-child(1) {
+    width: 25% !important;
+    /* Name, Vorname */
+}
+
+#auszugmieterTable th:nth-child(2),
+#auszugmieterTable td:nth-child(2) {
+    width: 25% !important;
+    /* Neue Straße */
+}
+
+#auszugmieterTable th:nth-child(3),
+#auszugmieterTable td:nth-child(3) {
+    width: 20% !important;
+    /* PLZ / Ort */
+}
+
+#auszugmieterTable th:nth-child(4),
+#auszugmieterTable td:nth-child(4) {
+    width: 30% !important;
+    /* E-Mail */
+}
+
+#auszugmieterTable input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 3px 5px 0px 5px !important;
+    /* padding: oben rechts unten links */
+    margin: 3px 0 !important;
+    /* margin-top und margin-bottom: 3px */
+}
+
+#auszugmieterTable .input-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0px !important;
+    /* Abstand zwischen Input und Buttons */
+}
+
+#auszugmieterTable .size-controls {
+    display: flex !important;
+    gap: 5px !important;
+    /* Abstand zwischen den Buttons */
+}
+
+#auszugmieterTable .size-controls button {
+    font-size: 12px !important;
+    padding: 2px 5px !important;
+    /* Button-Padding */
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+/* Stile für den "ausziehenden Mieter hinzufügen"-Button */
+#addausziehenderMieter {
+    margin-top: 10px !important;
+    /* Abstand nach oben */
+    padding: 5px 10px !important;
+    /* Button-Padding */
+    font-size: 14px !important;
+    cursor: pointer !important;
+}
+
+/* Stile für die Zeile des Buttons */
+#addausziehenderMieterRow td {
+    text-align: right !important;
+    background-color: white !important;
+}
+
+
+/* Schlüssel */
+/* Schlüssel */
+/* Schlüssel */
+
+/* Allgemeine Stile für die Schlüsselausgabe-Tabelle */
+#schluesselTable {
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+#schluesselTable>thead:nth-child(1) {
+    height: 25px !important;
+}
+
+#schluesselTable th,
+#schluesselTable td {
+    box-sizing: border-box !important;
+    padding: 0 3px !important;
+    /* Horizontaler Abstand zwischen Spalten */
+    text-align: left !important;
+}
+
+#schluesselTable th:nth-child(1),
+#schluesselTable td:nth-child(1) {
+    width: 30% !important;
+    /* Schlüsselbezeichnung */
+}
+
+#schluesselTable th:nth-child(2),
+#schluesselTable td:nth-child(2) {
+    width: 10% !important;
+    /* Anzahl */
+    text-align: center !important;
+}
+
+#schluesselTable th:nth-child(3),
+#schluesselTable td:nth-child(3) {
+    width: 60% !important;
+    /* Schlüsselnummer / Bemerkung */
+}
+
+#schluesselTable select,
+#schluesselTable input[type="number"],
+#schluesselTable input[type="text"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 3px 5px !important;
+    /* padding: oben/rechts/unten/links */
+    margin: 3px 0 !important;
+    /* margin-top und margin-bottom: 3px */
+}
+
+#schluesselTable .input-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0px !important;
+    /* Abstand zwischen Input und Buttons */
+}
+
+#schluesselTable .size-controls {
+    display: flex !important;
+    gap: 5px !important;
+    /* Abstand zwischen den Buttons */
+}
+
+#schluesselTable .size-controls button {
+    font-size: 12px !important;
+    padding: 2px 5px !important;
+    /* Button-Padding */
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1)>select:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(1)>select:nth-child(1)
+
+
+{
+    padding-left: 5px !important;
+}
+
+
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(5)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2)>input:nth-child(1),
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(2)>input:nth-child(1) {
+    background: #f3f8ff;
+
+}
+
+
+
+#schluesselTable th,
+#schluesselTable td {
+    padding: 0 6px !important;
+    /* Horizontaler Abstand zwischen Spalten */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Zähler
+Zähler
+Zähler */
+
+/* Allgemeine Stile für die Zähler-Tabelle */
+#zaehlerTable {
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+#zaehlerTable>thead:nth-child(1) {
+    height: 25px !important;
+}
+
+#zaehlerTable th,
+#zaehlerTable td {
+    box-sizing: border-box !important;
+    padding: 0 3px !important;
+    /* Horizontaler Abstand zwischen Spalten */
+    text-align: left !important;
+}
+
+#zaehlerTable th:nth-child(1),
+#zaehlerTable td:nth-child(1) {
+    width: 230px !important;
+    /* Bezeichnung */
+}
+
+#zaehlerTable th:nth-child(2),
+#zaehlerTable td:nth-child(2) {
+    width: 170px !important;
+    /* Zählernummer */
+    text-align: center !important;
+    /* Text mittig ausrichten */
+}
+
+#zaehlerTable th:nth-child(3),
+#zaehlerTable td:nth-child(3) {
+    width: 290px !important;
+    /* Einbaulage */
+}
+
+#zaehlerTable th:nth-child(4),
+#zaehlerTable td:nth-child(4) {
+    width: 166px !important;
+    /* Zählerstand */
+}
+
+#zaehlerTable select,
+#zaehlerTable input[type="text"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 3px 5px !important;
+    /* padding: oben/rechts/unten/links */
+    margin: 3px 0 !important;
+    /* margin-top und margin-bottom: 3px */
+}
+
+#zaehlerTable .input-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0px !important;
+    /* Abstand zwischen Input und Buttons */
+}
+
+#zaehlerTable .size-controls {
+    display: flex !important;
+    gap: 5px !important;
+    /* Abstand zwischen den Buttons */
+}
+
+#zaehlerTable .size-controls button {
+    font-size: 12px !important;
+    padding: 2px 5px !important;
+    /* Button-Padding */
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+/* Padding für Select-Elemente in der Zähler-Tabelle */
+#zaehlerTable>tbody:nth-child(2)>tr>td:nth-child(1)>select {
+    padding-left: 5px !important;
+}
+
+#zaehlerTable th:nth-child(2),
+#zaehlerTable td:nth-child(2) {
+    width: 170px !important;
+    /* Zählernummer */
+    text-align: left !important;
+    /* Text mittig ausrichten */
+}
+
+
+
+
+
+
+#zzzkueche>table:nth-child(2)>tbody:nth-child(1),
+#zzzbad>table:nth-child(2)>tbody:nth-child(1),
+#zzzwc>table:nth-child(2)>tbody:nth-child(1),
+#zzzflur>table:nth-child(2)>tbody:nth-child(1),
+#abstell>table:nth-child(2)>tbody:nth-child(1),
+#nebenraum>table:nth-child(2)>tbody:nth-child(1),
+#weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1),
+#hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1) {
+    border-left: 10px solid #fff;
+}
+
+
+.arrows00 {
+    display: none !important;
+}
+
+
+
+
+
+#farbeInput1,
+#farbeInput2,
+#farbeInput3,
+#farbeInput4,
+#farbeInput5,
+#farbeInput6,
+#farbeInput7 {
+    margin-left: 0px !important;
+    width: 98% !important;
+}
+
+#fussbodenInput1,
+#fussbodenInput2,
+#fussbodenInput3,
+#fussbodenInput4,
+#fussbodenInput5,
+#fussbodenInput6,
+#fussbodenInput7 {
+    margin-left: 0px !important;
+    width: 98% !important;
+}
+
+#fussbodenFarbeInput1,
+#fussbodenFarbeInput2,
+#fussbodenFarbeInput3,
+#fussbodenFarbeInput4,
+#fussbodenFarbeInput5,
+#fussbodenFarbeInput6,
+#fussbodenFarbeInput7 {
+    margin-left: 0px !important;
+    width: 98% !important;
+}
+
+
+
+#einziehender-mieter-info-2,
+#einziehender-mieter-info-3,
+#einziehender-mieter-info-4,
+#einziehender-mieter-info-5,
+#einziehender-mieter-info-6 {
+    margin-left: 0px !important;
+
+}
+
+
+.vermieter {
+    margin-bottom: 22px !important;
+    position: relative !important;
+    top: -33px !important;
+    font-weight: 600 !important;
+}
+
+
+#einziehender-mieter-signature-1,
+#einziehender-mieter-signature-2,
+#einziehender-mieter-signature-3,
+#einziehender-mieter-signature-4,
+#einziehender-mieter-signature-5 {
+    width: 500px !important;
+    height: 150px !important;
+}
+
+
+.signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(1) {
+
+    width: 22% !important;
+}
+
+#suggestionname1 {
+    width: 90% !important;
+}
+
+Element .signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2) {
+
+    width: 26% !important;
+}
+
+Element .signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(3) {
+
+    width: 15% !important;
+}
+
+Element .signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1) {
+    width: 95% !important;
+}
+
+.custom-table {
+    margin-bottom: 15px !important;
+}
+
+
+
+
+#einziehender-mieter-info-2 {
+    margin-top: -7px !important;
+}
+
+
+div.remark-row:nth-child(3)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(4)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(5)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(6)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(7)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(8)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(9)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(10)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(11)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(12)>div:nth-child(1)>input:nth-child(1),
+div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
+
+    border: 0px solid;
+    margin-bottom: 2px;
+    margin-left: 0px;
+}
+
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm07>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm08>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm09>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+#zimm10>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1) {
+    padding-bottom: 10px;
+}
+
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm07>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm08>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm09>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+#zimm10>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1) {
+    border-bottom: 30px solid rgb(255, 255, 255) !important;
+    border-top: 15px solid rgb(255, 255, 255) !important;
+}
+
+
+
+
+
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(8),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(9),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(17),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(19) {
+    border-bottom: 15px solid rgb(255, 255, 255) !important;
+}
+
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(8),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(9),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(17),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(19) {
+    border-bottom: 15px solid rgb(255, 255, 255) !important;
+}
+
+
+
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(11),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(14),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(15),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16),
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(19) {
+    border-bottom: 11px solid rgb(255, 255, 255) !important;
+}
+
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(11),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(14),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(15),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16),
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(19) {
+    border-bottom: 11px solid rgb(255, 255, 255) !important;
+}
+
+
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(21) {
+    border-bottom: 33px solid #ffffff !important;
+}
+
+[id^="zimm1"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(21) {
+    border-bottom: 33px solid #ffffff !important;
+}
+
+
+[id^="farbeInput"],
+[id^="fussbodenInput"],
+[id^="fussbodenFarbeInput"] {
+    margin-left: 0px !important;
+    width: 98% !important;
+}
+
+
+.signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(1) {
+    position: relative !important;
+    left: -12px  !important;
+}
+
+
+  

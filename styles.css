@@ -1,0 +1,689 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+// Version 3.23 */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #1e1e1e;
+    color: #bdd5f3;
+    word-wrap: break-word;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2c2c2c;
+    color: #bdd5f3;
+    word-wrap: break-word;
+}
+
+th,
+td {
+    border: 1px solid #555;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #444;
+}
+
+input[type="text"],
+textarea {
+    width: 97%;
+    padding: 8px;
+    background-color: #3a3a3a;
+    color: #bdd5f3;
+    border: 1px solid #666;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.radio-label,
+.checkbox-label {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-color: #444;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.radio-label::before,
+.checkbox-label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid #bdd5f3;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.radio-label::after,
+.checkbox-label::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: transparent;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    transition: color 0.3s ease;
+}
+
+input[type="radio"]:checked+.radio-label::before,
+input[type="checkbox"]:checked+.checkbox-label::before {
+    background-color: #bdd5f3;
+    border-color: #1e1e1e;
+}
+
+input[type="radio"]:checked+.radio-label::after,
+input[type="checkbox"]:checked+.checkbox-label::after {
+    color: #1e1e1e;
+}
+
+h2,
+h3 {
+    color: #bdd5f3;
+}
+
+h3 {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.header01 {
+    text-align: center;
+    font-weight: bold;
+    background-color: #444;
+    padding: 10px;
+    border: none;
+
+}
+
+.bemerkung-textarea {
+    height: 150px;
+    resize: vertical;
+    width: 97%;
+}
+
+select {
+    width: 97%;
+    padding: 8px;
+    background-color: #3a3a3a;
+    color: #bdd5f3;
+    border: 1px solid #666;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 14px;
+}
+
+select option {
+    background-color: #3a3a3a;
+    color: #bdd5f3;
+}
+
+select:focus {
+    border-color: #bdd5f3;
+    outline: none;
+    background-color: #444;
+}
+
+input[type="date"] {
+    width: 97%;
+    /* Gleiche Breite wie die anderen Eingabefelder */
+    padding: 8px;
+    /* Gleiche Innenabstände */
+    background-color: #3a3a3a;
+    /* Dunkelgrauer Hintergrund */
+    color: #bdd5f3;
+    /* Textfarbe */
+    border: 1px solid #666;
+    /* Randfarbe */
+    border-radius: 5px;
+    /* Abgerundete Ecken */
+    font-size: 14px;
+    /* Schriftgröße */
+}
+
+input[type="date"]:focus {
+    border-color: #bdd5f3;
+    /* Farbe des Rahmens im Fokus */
+    outline: none;
+    /* Entfernt die Umrandung */
+    background-color: #444;
+    /* Etwas helleres Grau beim Fokus */
+}
+
+/* Für Tablets und kleinere Bildschirme */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+    }
+
+    table,
+    th,
+    td {
+        font-size: 14px;
+        /* Schriftgröße etwas reduzieren für kleinere Bildschirme */
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        width: 100%;
+        /* Volle Breite nutzen */
+        font-size: 14px;
+        /* Schriftgröße anpassen */
+    }
+
+    .radio-label,
+    .checkbox-label {
+        width: 25px;
+        /* Die Radio-Buttons etwas kleiner machen */
+        height: 18px;
+    }
+
+    .bemerkung-textarea {
+        height: 120px;
+        /* Textbereich verkleinern */
+    }
+
+    .header01 {
+        font-size: 16px;
+        /* Kopfzeile anpassen */
+    }
+}
+
+/* Für kleine Handys */
+@media (max-width: 480px) {
+
+    table,
+    th,
+    td {
+        font-size: 12px;
+        /* Schriftgröße weiter reduzieren */
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        font-size: 12px;
+        /* Schriftgröße weiter anpassen */
+    }
+
+    .radio-label,
+    .checkbox-label {
+        width: 22px;
+        /* Radio-Buttons weiter verkleinern */
+        height: 16px;
+    }
+
+    .bemerkung-textarea {
+        height: 100px;
+        /* Textbereich weiter verkleinern */
+    }
+
+    .header01 {
+        font-size: 14px;
+        /* Kopfzeile kleiner */
+    }
+}
+
+.trennlinie td {
+    height: 35px;
+    /* Höhe der leeren Zeile */
+
+}
+
+.keine-linie {
+    border: none;
+    /* Entfernt alle Ränder */
+    outline: none;
+    /* Entfernt die Umrandung */
+}
+
+
+
+
+
+/* Grundlayout für größere Bildschirme */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Layout für schmale Geräte */
+@media (max-width: 768px) {
+
+    table,
+    tr,
+    td {
+        display: block;
+        width: 100%;
+    }
+
+    td {
+        margin-bottom: 10px;
+        /* Abstand zwischen den Zeilen */
+    }
+
+    td:nth-child(odd) {
+        width: 100%;
+        /* Weitet die linken Spalten auf die volle Breite */
+    }
+}
+
+
+
+
+
+
+/* Grundlayout für größere Bildschirme */
+.checkliste-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td,
+th {
+    padding: 8px;
+    text-align: left;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Layout für schmale Geräte */
+@media (max-width: 768px) {
+
+    .checkliste-table,
+    .checkliste-table tr,
+    .checkliste-table td {
+        display: block;
+        width: 100%;
+    }
+
+    td,
+    th {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    td[colspan="5"] {
+        width: 100%;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="radio"],
+    input[type="checkbox"] {
+        width: 100%;
+    }
+
+    label {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .checkbox-label {
+        display: inline-block;
+        margin-right: 10px;
+    }
+}
+
+/* Fügt sicher, dass die Labels nebeneinander erscheinen */
+input[type="radio"]+.radio-label {
+    display: inline-block;
+    margin-right: 10px;
+    /* Abstand zwischen den Radio-Buttons */
+    cursor: pointer;
+    /* Zeigt den Cursor beim Überfahren der Labels */
+}
+
+.no-border-right {
+    border-right: 1px solid #2c2c2c;
+}
+
+.text-right {
+    text-align: right;
+}
+
+#addKeyButton,
+#addZaehlerButton {
+    padding: 10px 20px;
+    background-color: #345637;
+    color: #bdd5f3;
+    border: 0px solid #666;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: block;
+    /* Wichtig, um den Margin zu ermöglichen */
+    margin-top: 7px;
+    /* Abstand nach oben */
+    margin-left: auto;
+    /* Automatischer Abstand links, um den Button rechts auszurichten */
+    margin-right: 0;
+    /* Optional, wenn du sicherstellen möchtest, dass er ganz rechts ist */
+}
+
+#addKeyButton:hover,
+#addZaehlerButton:hover {
+    background-color: #bdd5f3;
+    color: #1e1e1e;
+}
+
+.rooms,
+.sign02 {
+
+    background-color: #464d50;
+    padding: 3px;
+    margin-top: 25px;
+    border-radius: 11px;
+}
+
+.sign {
+    text-align: right;
+}
+
+.header01 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+
+}
+
+.signature-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.signature-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.signature-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.signature-canvas {
+    border: 2px solid #000;
+    background: #fff;
+    width: 500px;
+    height: 150px;
+}
+
+.signature-clear-btn {
+    margin-top: 5px;
+    padding: 5px 10px;
+    border: none;
+    background: #d9534f;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.signature-clear-btn:hover {
+    background: #c9302c;
+}
+
+.sign02 {
+    margin-top: 55px;
+    margin-bottom: 5px;
+}
+
+.allgemein00 {
+    /*   border: 5px solid white; */
+    border-radius: 11px;
+    background-color: #464d50;
+
+}
+
+.allgemein00>h3:nth-child(1) {
+    background: #464d50;
+    border-radius: 10px;
+    padding: 11px;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+/* Container für das Eingabefeld und das €-Symbol */
+/* Container für das Eingabefeld und das €-Symbol */
+.input-euro-container {
+    display: flex;
+    align-items: center; /* Vertikal zentrieren */
+    gap: 5px; /* Abstand zwischen Eingabefeld und €-Symbol */
+}
+
+/* Stil für das Zahlen-Eingabefeld */
+.elegant-number-input {
+    font-size: 14px;
+    padding: 8px;
+    background-color: #3a3a3a;
+    color: #bdd5f3;
+    border: 1px solid #666;
+    border-radius: 5px;
+    width: 100px; /* Breite des Feldes anpassen */
+    box-sizing: border-box;
+    appearance: textfield; /* Entfernt die Pfeile in modernen Browsern */
+    -moz-appearance: textfield; /* Entfernt die Pfeile in Firefox */
+}
+
+/* Entfernt die Pfeile in Webkit-Browsern (Chrome, Safari, Edge) */
+.elegant-number-input::-webkit-outer-spin-button,
+.elegant-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.elegant-number-input:focus {
+    outline: none;
+    border-color: #bdd5f3;
+    background-color: #444;
+}
+
+/* Stil für das €-Symbol */
+.euro-symbol {
+    font-size: 14px;
+    color: #bdd5f3;
+    font-weight: bold;
+}
+
+/* Stil für den Button */
+.upload-button {
+    background-color: #345637; /* Dunkelgrüner Hintergrund */
+    color: #bdd5f3; /* Textfarbe */
+    border: none; /* Kein Rand */
+    border-radius: 5px; /* Abgerundete Ecken */
+    padding: 10px 20px; /* Innenabstand */
+    font-size: 16px; /* Schriftgröße */
+    cursor: pointer; /* Zeiger-Cursor */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Übergangseffekt */
+}
+
+.upload-button:hover {
+    background-color: #bdd5f3; /* Hintergrundfarbe beim Darüberfahren */
+    color: #1e1e1e; /* Textfarbe beim Darüberfahren */
+}
+
+/* Stil für die Bildanzahl-Anzeige */
+.image-count {
+    color: #bdd5f3; /* Textfarbe */
+    font-size: 14px; /* Schriftgröße */
+    margin-top: 10px; /* Abstand nach oben */
+}
+
+
+
+.image-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+/* Sticky */
+
+       /* Sticky Buttons */
+       .sticky-buttons {
+        position: sticky;
+        top: 0;
+        background-color: white; /* Hintergrundfarbe, damit der Inhalt darunter nicht durchscheint */
+        padding: 10px;
+        z-index: 1000; /* Sicherstellen, dass die Buttons über anderen Inhalten liegen */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten für bessere Sichtbarkeit */
+        display: flex;
+        gap: 10px; /* Abstand zwischen den Buttons */
+    }
+
+    /* Beispiel-Stile für die Buttons */
+    .sticky-buttons button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #28a745;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .sticky-buttons button:hover {
+        background-color: #218838;
+    }
+
+    /* Rest des CSS (z. B. für das Formular) */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+/* Stil für das E-Mail-Menü */
+#emailMenu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+#emailMenu h3 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+#emailMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+#emailMenu ul li {
+    padding: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+#emailMenu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#emailMenu button:hover {
+    background-color: #45a049;
+}
+
+#emailMenu button#cancel {
+    background-color: #f44336;
+}
+
+#emailMenu button#cancel:hover {
+    background-color: #e53935;
+}
+
+/* Overlay für das Menü */
+#emailMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
