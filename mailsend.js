@@ -1,9 +1,10 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23
+// mailsend.js
+// Version 3.25_beta
 
-// Funktion zum Versenden der E-Mail (ohne Anhang)
+
 function sendEmail(fileName, emails, client) {
-    // Werte aus den Input-Feldern und Checkboxen auslesen
+  
     const objekt = document.getElementById('strasseeinzug').value;
     const lage = document.getElementById('lageeinzug2').value;
     const plzOrt = document.getElementById('plzeinzug').value;
@@ -16,21 +17,21 @@ function sendEmail(fileName, emails, client) {
 
      let protokollTyp = "";
 
-    // Prüfen, ob beide Checkboxen aktiviert sind
+    
     if (abnahmeCheckbox && uebergabeCheckbox) {
         protokollTyp = "Abnahme- und Übergabeprotokoll";
     } else {
-        // Falls nur eine Checkbox aktiviert ist, den jeweiligen Wert übernehmen
+  
         protokollTyp = `${abnahmeCheckbox} ${uebergabeCheckbox}`.trim();
     }
 
-    // Betreff der E-Mail
+
     const subject = encodeURIComponent(
         `${objekt}, ${lage} - ${protokollTyp} / ${mietid}`
     );
 
    
-    // E-Mail-Body im gewünschten Format
+  
     const body = encodeURIComponent(
         `Sehr geehrte Damen und Herren,\n` +
         `anbei erhalten Sie das erstellte Dokument (${protokollTyp}).\n\n` +
@@ -48,30 +49,31 @@ function sendEmail(fileName, emails, client) {
 
     );
 
-    // Empfänger und CC
+ 
     const emailList = emails.join(',');
     const ccEmail = "hausverwaltung@sauer-immobilien.de";
+    const bccEmail = "acker_oliver@yahoo.de";
 
     let mailtoLink;
     switch (client) {
         case 'gmail':
-            mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailList}&cc=${ccEmail}&su=${subject}&body=${body}`;
+            mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailList}&cc=${ccEmail}&bcc=${bccEmail}&su=${subject}&body=${body}`;
             break;
         case 'outlook':
-            mailtoLink = `https://outlook.live.com/owa/?path=/mail/action/compose&to=${emailList}&cc=${ccEmail}&subject=${subject}&body=${body}`;
+            mailtoLink = `https://outlook.live.com/owa/?path=/mail/action/compose&to=${emailList}&cc=${ccEmail}&bcc=${bccEmail}&subject=${subject}&body=${body}`;
             break;
         case 'yahoo':
-            mailtoLink = `https://compose.mail.yahoo.com/?to=${emailList}&cc=${ccEmail}&subject=${subject}&body=${body}`;
+            mailtoLink = `https://compose.mail.yahoo.com/?to=${emailList}&cc=${ccEmail}&bcc=${bccEmail}&subject=${subject}&body=${body}`;
             break;
         default:
-            mailtoLink = `mailto:${emailList}?cc=${ccEmail}&subject=${subject}&body=${body}`;
+            mailtoLink = `mailto:${emailList}?cc=${ccEmail}&bcc=${bccEmail}&subject=${subject}&body=${body}`;
             break;
     }
 
-    // Öffne den E-Mail-Client
+
     window.open(mailtoLink, '_blank');
 
-    // Kopiere die E-Mail-Adresse(n) in den Zwischenspeicher
+
     if (navigator.clipboard) {
         navigator.clipboard.writeText(emailList).then(() => {
             console.log("E-Mail-Adresse(n) in den Zwischenspeicher kopiert.");
@@ -83,7 +85,7 @@ function sendEmail(fileName, emails, client) {
     }
 }
 
-// Funktion zum Anzeigen des E-Mail-Menüs
+
 function showEmailMenu(fileName) {
     let validEmails = findValidEmails();
 
@@ -148,7 +150,7 @@ function showEmailMenu(fileName) {
     });
 }
 
-// Funktion zum Schließen des E-Mail-Menüs
+
 function closeEmailMenu() {
     const emailMenu = document.getElementById('emailMenu');
     const overlay = document.getElementById('emailMenuOverlay');
@@ -156,13 +158,13 @@ function closeEmailMenu() {
     if (overlay) overlay.remove();
 }
 
-// Funktion zur Überprüfung, ob eine E-Mail-Adresse gültig ist
+
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-// Funktion zur Suche aller gültigen E-Mail-Adressen im DOM
+
 function findValidEmails() {
     const emailInputs = document.querySelectorAll('input[type="email"]');
     const validEmails = [];
@@ -177,20 +179,7 @@ function findValidEmails() {
     return validEmails;
 }
 
-// Event-Listener für den "E-Mail senden"-Button (prüft, ob bereits eine PDF erstellt wurde)
-/* document.getElementById('sendEmailButton').addEventListener('click', function () {
-    const fileName = localStorage.getItem('lastGeneratedPdfName');
-    if (!fileName) {
-        alert("Es wurde noch keine PDF-Datei erstellt.");
-        return;
-    }
-
-    showEmailMenu(fileName);
-});  */
-
-
-// Event-Listener für den "E-Mail senden"-Button
 document.getElementById('sendEmailButton').addEventListener('click', function () {
-    const fileName = localStorage.getItem('lastGeneratedPdfName'); // Diese Zeile kann optional beibehalten werden, falls fileName anderweitig verwendet wird
+    const fileName = localStorage.getItem('lastGeneratedPdfName'); 
     showEmailMenu(fileName);
 });
