@@ -1,5 +1,6 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23
+// mailcheck.js
+// Version 3.25_beta
 
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
