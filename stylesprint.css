@@ -1,5 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23 */
+// stylesprint.css
+// Version 3.25_beta */
 
 body {
     font-family: Arial, sans-serif;
@@ -756,7 +757,8 @@ td.no-border-right.text-right {
 
 #progressBar .progress {
     height: 200%;
-    background-color: #76c7c0;
+    /* background-color: #76c7c0; */
+    background-color: #ff2797;
     border-radius: 10px;
     width: 0%;
     /* Startwert */
@@ -908,8 +910,7 @@ select {
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(3)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(3)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(3)>input:nth-child(1),
-#zaehlerTable>tbody:nth-child(2)>tr:nth-child(13)>td:nth-child(3)>input:nth-child(1)
- {
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(13)>td:nth-child(3)>input:nth-child(1) {
     width: 344px !important;
 }
 
@@ -998,8 +999,7 @@ input[type="number"] {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(7)>td:nth-child(2),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(2),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(2),
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2)
-{
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2) {
     padding-left: 0px !important;
 }
 
@@ -1542,10 +1542,7 @@ table {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(1)>select:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(1)>select:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1)>select:nth-child(1),
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(1)>select:nth-child(1)
-
-
-{
+#schluesselTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(1)>select:nth-child(1) {
     padding-left: 5px !important;
 }
 
@@ -1902,8 +1899,142 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 
 .signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(1) {
     position: relative !important;
-    left: -12px  !important;
+    left: -12px !important;
+}
+
+/* #progressBar {
+    transition: width 0.3s ease-out, background-color 0.3s ease;
+    will-change: width, background-color;
+}
+
+#progressBar {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: progressGlow 2s infinite alternate;
+}
+
+@keyframes progressGlow {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
+}
+ */
+
+#progressBar {
+    transition:
+        width 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+        background-color 0.7s ease-out,
+        box-shadow 0.6s ease;
+    will-change: width, background-color;
+    background-image: linear-gradient(to right,
+            rgba(255, 255, 255, 0.25) 0%,
+            transparent 20%,
+            transparent 80%,
+            rgba(255, 255, 255, 0.25) 100%);
+    background-blend-mode: soft-light;
+    height: 26px;
+    border-radius: 13px;
+}
+
+/* Natürlicher "Wachstums"-Effekt */
+@keyframes growthPulse {
+    0% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(1.03);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+.progress-growing {
+    animation: growthPulse 1.5s infinite;
+    transform-origin: center bottom;
+}
+
+/* Blattadern-Effekt (optional) */
+#progressBar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(90deg, transparent 65%, rgba(0, 100, 0, 0.1) 70%, transparent 75%),
+        linear-gradient(90deg, transparent 45%, rgba(0, 120, 0, 0.1) 50%, transparent 55%);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.rwm-label {
+    font-size: 16px;
+    text-align: left;
+}
+
+.rwm-input-container {
+    text-align: left;
+}
+
+.rwm-input {
+    width: 20px;
+    font-size: 16px;
+    text-align: center;
+
+
+}
+
+#rwm-count1,
+#rwm-count2,
+#rwm-count3,
+#rwm-countzimm01,
+#rwm-countzimm02,
+#rwm-countzimm03,
+#rwm-countzimm04,
+#rwm-countzimm05,
+#rwm-countzimm06,
+#rwm-countzimm07,
+#rwm-countzimm08,
+#rwm-countzimm09,
+#rwm-countzimm10,
+#rwm-countzimm11 {
+    width: 30px !important;
+    border-radius: 5px;
+}
+
+.commentshead {
+
+    padding-top: 12px;
+    font-weight: 600;
 }
 
 
-  
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm07>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm08>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm09>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm10>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm11>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+#zimm12>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1) {
+    line-height: 1;
+}
+
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1) {
+    line-height: 1;
+}
