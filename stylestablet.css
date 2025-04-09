@@ -1,5 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23 */
+// stylestablet.css
+// Version 3.25_beta */
 
 body {
     font-family: Arial, sans-serif;
@@ -756,6 +757,13 @@ h3 {
     display: inline-block;
 }
 
+.large-image-wrapperxxx {
+    position: relative;
+    /* Wichtig für %-basierte Positionierung */
+    min-height: 300px;
+    /* Beispielwert, anpassen */
+}
+
 .delete-btn {
     background-color: rgb(139, 0, 0);
     color: white;
@@ -769,12 +777,30 @@ h3 {
     border-radius: 22px;
 }
 
+
+
 .image-preview .image-container .image-wrapper .delete-btn {
     background-color: #ac1a1a;
     border-radius: 22px;
-    top: -8px;
-    right: -10px;
+    /*     top: -8px;
+    right: -10px; */
+    /*     top: -93% !important;
+    right: -97% !important; */
+    top: -11% !important;
+    right: -6% !important;
 }
+
+[id^="largexxx-wrapperxxx-imgxxx"] {
+    background-color: #eeeeee !important;
+    padding: 10px !important;
+    margin-bottom: 10px;
+    border-radius: 11px;
+}
+
+
+
+
+
 
 #large-images-section {
     margin-top: 40px;
@@ -1369,41 +1395,27 @@ input[type="date"] {
 
 .suggestion-list {
     border: 1px solid #ccc;
-    /* Rahmen */
     max-height: 450px;
-    /* Maximale Höhe */
     overflow-y: auto;
-    /* Scrollbar, falls nötig */
-    width: 240px;
-    /* Breite anpassen */
+    width: 350px;
     display: none;
-    /* Standardmäßig versteckt */
     position: absolute;
-    /* Absolute Positionierung */
     z-index: 1000;
-    /* Hoher Z-Index, um über anderen Elementen zu liegen */
     background-color: rgb(241, 245, 255);
-    /* Hintergrundfarbe */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Leichter Schatten */
     margin-top: 5px;
-    /* Abstand zum Input-Feld */
 }
 
 .suggestion-item {
     padding: 8px;
-    /* Innenabstand */
     cursor: pointer;
-    /* Zeiger-Cursor */
     font-size: 24px;
-    /* Schriftgröße */
     color: #333;
-    /* Schriftfarbe */
+
 }
 
 .suggestion-item:hover {
     background-color: #f0f0f0;
-    /* Hintergrundfarbe beim Hover */
 }
 
 .main-button-container {
@@ -1412,34 +1424,31 @@ input[type="date"] {
 
 .main-upload-button {
     display: block;
-    margin: 0 auto;
+    margin-left: auto;
     padding: 10px 20px;
     background: #778ec1;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .choice-menu {
     position: absolute;
     top: 100%;
-    /* Menü unter dem Button platzieren */
-    left: 50%;
-    /* Menü horizontal zentrieren */
+    left: 85%;
     transform: translateX(-50%);
-    /* Menü horizontal zentrieren */
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 100;
     margin-top: 5px;
-    /* Kleiner Abstand zum Button */
-    min-width: 200px;
+    min-width: 350px;
     text-align: center;
-    /* Text im Menü zentrieren */
+    font-size: 24px;
+
 }
 
 .menu-choice {
@@ -1447,6 +1456,7 @@ input[type="date"] {
     padding: 10px;
     cursor: pointer;
     color: #333;
+    line-height: 35px;
 }
 
 .menu-choice:hover {
@@ -1716,6 +1726,73 @@ td.label-cell:nth-child(1) {
     margin: 0 2px;
 }
 
+.customUploadButton {
+    display: block;
+    width: 33%;
+    margin-left: auto;
+    margin-top: 35px;
+    font-size: 20px;
+
+}
+
+.newstreets::placeholder {
+    color: red;
+    opacity: 1;
+}
+
+.newstreets::-webkit-input-placeholder {
+    color: red;
+}
+
+.newstreets::-moz-placeholder {
+    color: red;
+    opacity: 1;
+}
+
+.newstreets:-ms-input-placeholder {
+    color: red;
+}
+
+.newstreets:-moz-placeholder {
+    color: red;
+}
+
+.plzauszug::placeholder {
+    color: red;
+    opacity: 1;
+}
+
+.plzauszug::-webkit-input-placeholder {
+    color: red;
+}
+
+.plzauszug::-moz-placeholder {
+    color: red;
+    opacity: 1;
+}
+
+.plzauszug:-ms-input-placeholder {
+    color: red;
+}
+
+.plzauszug:-moz-placeholder {
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Media Query für schmale Bildschirme */
@@ -1805,4 +1882,111 @@ td.label-cell:nth-child(1) {
         top: 1px;
     }
 
+}
+
+
+
+.rwm-label {
+    font-size: 22px;
+    text-align: left;
+}
+
+.rwm-input-container {
+    text-align: left;
+}
+
+.rwm-input {
+    width: 80px;
+    font-size: 22px;
+    text-align: center;
+}
+
+#rwm-count1,
+#rwm-count2,
+#rwm-count3,
+#rwm-countzimm01,
+#rwm-countzimm02,
+#rwm-countzimm03,
+#rwm-countzimm04,
+#rwm-countzimm05,
+#rwm-countzimm06,
+#rwm-countzimm07,
+#rwm-countzimm08,
+#rwm-countzimm09,
+#rwm-countzimm10,
+#rwm-countzimm11 {
+    width: 55px !important;
+    height: 36px !important;
+    border: 1px solid #7e7e7e !important;
+}
+
+.commentshead {
+
+    padding-top: 12px;
+    font-weight: 600;
+}
+
+
+#zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(2),
+#zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(4),
+#zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(6),
+#zzzbad>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zzzbad>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zzzbad>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zzzwc>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zzzwc>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zzzwc>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zzzflur>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zzzflur>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zzzflur>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zimm05>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6),
+#zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(2),
+#zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
+#zimm07>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6) {
+
+
+    background: #fff;
+}
+
+#abstell>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(2),
+#abstell>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(4),
+#abstell>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(6) {
+    background: rgb(255, 255, 255);
+}
+
+
+
+#zzzbad>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3),
+#zzzwc>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3),
+#zzzflur>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3),
+#abstell>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4) {
+    display: table-row;
+    border-bottom: 22px solid white;
+}
+
+
+
+.radio-label[style*="--checked-state: checked"]::before,
+.checkbox-label[style*="--checked-state: checked"]::before {
+    background-color: #ffffff !important;
+    border-color: #4CAF50 !important;
+}
+
+.radio-label[style*="--checked-state: checked"]::after,
+.checkbox-label[style*="--checked-state: checked"]::after {
+    color: rgb(33, 33, 33) !important;
 }
