@@ -1,11 +1,11 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23
+// script.js
+// Version 3.25_beta
 
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
 document.addEventListener("DOMContentLoaded", function () {
-    // Event Listener für den Button hinzufügen
     document.getElementById('toggleModeButton').addEventListener('click', toggleMode);
 });
 function toggleMode() {
@@ -20,147 +20,6 @@ function toggleMode() {
         link.setAttribute("href", "styles.css"); // Dunkler Modus
     }
 }
-
-
-/* Schriftgrößenänderung */
-/* Schriftgrößenänderung */
-/* Schriftgrößenänderung */
-// Funktion zum Hinzufügen von Schriftgrößen-Steuerungen zu Input-Feldern
-/* function addFontControlsToInputs() {
-    // Alle Input-Felder vom Typ "text" und "email" auswählen
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
-
-    inputs.forEach(input => {
-        // Prüfen, ob bereits Controls hinzugefügt wurden
-        if (input.parentElement.classList.contains('input-container')) {
-            // Wenn bereits Controls vorhanden sind, initialisiere die Schriftgrößen-Steuerung
-            const plusButton = input.parentElement.querySelector('.font-plus');
-            const minusButton = input.parentElement.querySelector('.font-minus');
-            if (plusButton && minusButton) {
-                initFontControls(input, plusButton, minusButton);
-            }
-            return; // Überspringen, falls bereits vorhanden
-        }
-
-        // Container für Input und Buttons erstellen
-        const container = document.createElement('div');
-        container.classList.add('input-container');
-
-        // Buttons für Schriftgrößen-Steuerung erstellen
-        const controls = document.createElement('div');
-        controls.classList.add('size-controls');
-
-        const plusButton = document.createElement('button');
-        plusButton.classList.add('font-plus');
-        plusButton.textContent = '+';
-
-        const minusButton = document.createElement('button');
-        minusButton.classList.add('font-minus');
-        minusButton.textContent = '-';
-
-        // Buttons zum Controls-Container hinzufügen
-        controls.appendChild(plusButton);
-        controls.appendChild(minusButton);
-
-        // Input-Feld in den Container verschieben
-        input.parentNode.insertBefore(container, input);
-        container.appendChild(input);
-        container.appendChild(controls);
-
-        // Schriftgrößen-Steuerung initialisieren
-        initFontControls(input, plusButton, minusButton);
-    });
-} */
-// Funktion zur Initialisierung der Schriftgrößen-Steuerung
-/* function initFontControls(input, plusButton, minusButton) {
-    let fontSize = parseFloat(window.getComputedStyle(input).fontSize);
-    const minSize = 8; // Minimale Schriftgröße
-    const maxSize = 24; // Maximale Schriftgröße
-    const step = 4; // Schrittweite
-
-    // Funktion zur Aktualisierung der Schriftgröße
-    function updateFontSize(newSize) {
-        fontSize = Math.min(Math.max(newSize, minSize), maxSize);
-        input.style.fontSize = `${fontSize}px`;
-
-        // Buttons deaktivieren, wenn Grenzwerte erreicht sind
-        plusButton.disabled = fontSize >= maxSize;
-        minusButton.disabled = fontSize <= minSize;
-    }
-
-    // Event-Listener für die Buttons
-    plusButton.addEventListener('click', () => updateFontSize(fontSize + step));
-    minusButton.addEventListener('click', () => updateFontSize(fontSize - step));
-
-    // Initiale Schriftgröße setzen
-    updateFontSize(fontSize);
-} */
-// Funktion zum Beobachten von DOM-Änderungen
-/* function observeDOMChanges() {
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'childList') {
-                // Überprüfe, ob neue Input-Felder hinzugefügt wurden
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === Node.ELEMENT_NODE) {
-                        // Suche nach Input-Feldern im hinzugefügten Element
-                        const inputs = node.querySelectorAll('input[type="text"], input[type="email"]');
-                        inputs.forEach(input => {
-                            // Prüfen, ob bereits Controls hinzugefügt wurden
-                            if (!input.parentElement.classList.contains('input-container')) {
-                                // Container für Input und Buttons erstellen
-                                const container = document.createElement('div');
-                                container.classList.add('input-container');
-
-                                // Buttons für Schriftgrößen-Steuerung erstellen
-                                const controls = document.createElement('div');
-                                controls.classList.add('size-controls');
-
-                                const plusButton = document.createElement('button');
-                                plusButton.classList.add('font-plus');
-                                plusButton.textContent = '+';
-
-                                const minusButton = document.createElement('button');
-                                minusButton.classList.add('font-minus');
-                                minusButton.textContent = '-';
-
-                                // Buttons zum Controls-Container hinzufügen
-                                controls.appendChild(plusButton);
-                                controls.appendChild(minusButton);
-
-                                // Input-Feld in den Container verschieben
-                                input.parentNode.insertBefore(container, input);
-                                container.appendChild(input);
-                                container.appendChild(controls);
-
-                                // Schriftgrößen-Steuerung initialisieren
-                                initFontControls(input, plusButton, minusButton);
-                            } else {
-                                // Falls bereits Controls vorhanden sind, initialisiere die Schriftgrößen-Steuerung
-                                const plusButton = input.parentElement.querySelector('.font-plus');
-                                const minusButton = input.parentElement.querySelector('.font-minus');
-                                if (plusButton && minusButton) {
-                                    initFontControls(input, plusButton, minusButton);
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    });
-
-    // Beobachte das gesamte Dokument auf Änderungen
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-    });
-} */
-// Initialisierung beim Laden der Seite
-/* document.addEventListener('DOMContentLoaded', () => {
-    addFontControlsToInputs(); // Vorhandene Inputs verarbeiten
-    observeDOMChanges(); // Zukünftige Inputs beobachten
-}); */
 
 
 
@@ -299,16 +158,13 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
-/* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
 document.addEventListener("DOMContentLoaded", function () {
     let counter = 1;
 
-    // Button zum Hinzufügen eines ausziehenden Mieters
     document.getElementById('addausziehenderMieter').addEventListener('click', function () {
         let table = document.getElementById('auszugmieterTable');
 
-        // Erstelle die Tabelle, falls sie noch nicht existiert
-        if (!table) {
+         if (!table) {
             table = document.createElement('table');
             table.id = 'auszugmieterTable';
 
@@ -320,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const th = document.createElement('th');
                 th.textContent = headerText;
                 if (headerText === 'E-Mail') {
-                    th.style.width = '118px'; // Breite der E-Mail-Spalte
+                    th.style.width = '118px';
                 }
                 headerRow.appendChild(th);
             });
@@ -335,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
             button.insertAdjacentElement('beforebegin', table);
         }
 
-        // Neue Zeile für den ausziehenden Mieter erstellen
         const newRow = document.createElement('tr');
         const nameCell = document.createElement('td');
         const strasseCell = document.createElement('td');
@@ -373,7 +228,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         table.querySelector('tbody').appendChild(newRow);
 
-        // Unterschriftenfeld und Namensanzeige erstellen
         const signatureContainer = document.createElement('div');
         signatureContainer.classList.add('signature-container');
         signatureContainer.id = `signature-container-ausziehender-mieter-${counter}`;
@@ -395,8 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         signatureContainer.appendChild(signatureBox);
 
-        // Mieter-Info direkt unter der Signatur-Box platzieren
-        const mieterInfo = document.createElement('div');
+         const mieterInfo = document.createElement('div');
         mieterInfo.id = `ausziehender-mieter-info-${counter}`;
         mieterInfo.style.marginTop = '-10px';
         mieterInfo.style.marginLeft = '1px';
@@ -406,19 +259,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         signatureContainer.appendChild(mieterInfo);
 
-        // Unterschriftenfeld und Namensanzeige in .signature-content einfügen (nach den einziehenden Mietern)
         const signatureContent = document.querySelector('.signature-content');
         if (signatureContent) {
-            // Füge das neue Unterschriftenfeld nach den bestehenden Unterschriftenfeldern ein
             signatureContent.appendChild(signatureContainer);
         } else {
             console.error("Container mit der Klasse '.signature-content' nicht gefunden!");
         }
 
-        // Signatur-Canvas initialisieren
         initSignatureCanvas(`ausziehender-mieter-signature-${counter}`);
 
-        // Event-Listener für das Namensfeld
         const nameInput = document.getElementById(nameId);
         const fullNameSpan = document.getElementById(`ausziehender-mieter-fullname-${counter}`);
 
@@ -427,7 +276,6 @@ document.addEventListener("DOMContentLoaded", function () {
             updateFullName(fullNameSpan, fullName);
         });
 
-        // Schriftgrößen-Steuerung für die neuen Input-Felder initialisieren
         const inputContainers = signatureContainer.querySelectorAll('.input-container');
         inputContainers.forEach(container => {
             const input = container.querySelector('input');
@@ -480,33 +328,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
 // Unterschriftenfeld Canvas-Größe dynamisch an Container anpassen (gut für responive Design geeignet)
@@ -523,8 +344,6 @@ function resizeCanvas(canvas, context) {
     // Unterschrift wiederherstellen
     loadSignature(canvas, context, tempImage);
 }
-
-
 
 
 // Unterschriftenfeld: Diese Funktion initialisiert ein Canvas-Element, das als Signaturfeld verwendet werden kann
@@ -611,7 +430,7 @@ function initSignatureCanvas(canvasId) {
     function saveSignatureToLocalStorage(canvas, canvasId) {
         const signatureData = canvas.toDataURL();
 
-         const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 Stunden werden die Unterschriften gespeichert. 
+        const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 Stunden werden die Unterschriften gespeichert. 
         const signatureObject = {
             data: signatureData,
             expiration: expirationTime
@@ -716,60 +535,15 @@ window.onload = function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Bemerkungszeile duplizieren */
 /* Bemerkungszeile duplizieren */
 /* Bemerkungszeile duplizieren */
-// Funktion zum Duplizieren einer Zeile
+
 function duplicateRow(button) {
-    // Finde die aktuelle Zeile (die Zeile, in der der Button geklickt wurde)
     const row = button.closest('tr');
 
-    // Klone die Zeile
     const newRow = row.cloneNode(true);
 
-    // Lösche den Wert im Input-Feld der neuen Zeile
     const inputField = newRow.querySelector('input.dupli');
     if (inputField) {
         inputField.value = '';
@@ -960,56 +734,203 @@ document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUploa
 
 
 
+// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
+// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
+// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
+/* document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
 
+        function formatDate(dateString) {
+            if (!dateString) return "";
 
-// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
-// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
-// Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
+            const date = new Date(dateString);
+
+            // Führende Nullen ergänzen
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
+            const year = date.getFullYear();
+
+            return `${day}.${month}.${year}`;
+        }
+
+        // Verbesserte Update-Funktion
+        function updateSignFields() {
+            const strasse = document.getElementById("strasseeinzug").value + ",";
+            const lage = document.getElementById("lageeinzug2").value + ",";
+            const plz = document.getElementById("plzeinzug").value + ",";
+            const mieterid = document.getElementById("mieterid").value + ",";
+            const datum = formatDate(document.getElementById("datum").value);
+
+            document.getElementById("strasseeinzugsign").textContent = strasse;
+            document.getElementById("lageeinzugsign").textContent = lage;
+            document.getElementById("plzeinzugsign").textContent = plz;
+            document.getElementById("mieteridsign").textContent = mieterid;
+            document.getElementById("datumsign").textContent = datum;
+        }
+
+        // Spezielle Funktion für Mieternummer-Änderungen
+        function handleMieterIdChange() {
+            const mieterIdInput = document.getElementById("mieterid");
+            const fullValue = window.strassen.find(s =>
+                s.mieternummer.startsWith(mieterIdInput.value)
+            )?.mieternummer;
+
+            if (fullValue) {
+                mieterIdInput.value = fullValue;
+            }
+            updateSignFields();
+        }
+
+        // Event-Listener
+        document.getElementById("mieterid").addEventListener("input", function () {
+            setTimeout(handleMieterIdChange, 500);
+        });
+
+        // Standard-Listener für andere Felder
+        document.getElementById("strasseeinzug").addEventListener("input", updateSignFields);
+        document.getElementById("lageeinzug2").addEventListener("input", updateSignFields);
+        document.getElementById("plzeinzug").addEventListener("input", updateSignFields);
+        document.getElementById("datum").addEventListener("input", updateSignFields);
+
+        // MutationObserver für programmatische Änderungen
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.attributeName === 'value') {
+                    updateSignFields();
+                }
+            });
+        });
+
+        // Observer für alle relevanten Felder
+        const fields = ["strasseeinzug", "lageeinzug2", "plzeinzug", "mieterid", "datum"];
+        fields.forEach(id => {
+            observer.observe(document.getElementById(id), {
+                attributes: true,
+                attributeFilter: ['value']
+            });
+        });
+
+        // Initiale Aktualisierung
+        updateSignFields();
+    }, 100); // 100ms Wartezeit für immo.js
+}); */
 
 document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        function formatDate(dateString) {
+            if (!dateString) return "";
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}.${month}.${year}`;
+        }
 
+        // Verbesserte Update-Funktion mit Fehlerbehandlung
+        function updateSignFields() {
+            try {
+                const strasse = document.getElementById("strasseeinzug")?.value + "," || "";
+                const lage = document.getElementById("lageeinzug2")?.value + "," || "";
+                const plz = document.getElementById("plzeinzug")?.value + "," || "";
+                const mieterid = document.getElementById("mieterid")?.value + "," || "";
+                const datum = formatDate(document.getElementById("datum")?.value);
 
-    // Funktion zum Aktualisieren der Signaturfelder
-    function updateSignFields() {
-        // Werte aus den Input-Feldern holen und ein Komma anhängen
-        const strasse = document.getElementById("strasseeinzug").value + ",";
-        const lage = document.getElementById("lageeinzug2").value + ",";
-        const plz = document.getElementById("plzeinzug").value + ",";
-        const mieterid = document.getElementById("mieterid").value + ",";
-        const datum = formatDate(document.getElementById("datum").value); // Datum formatieren
+                // Sicherstellen, dass die Signaturfelder existieren
+                const strasseSign = document.getElementById("strasseeinzugsign");
+                const lageSign = document.getElementById("lageeinzugsign");
+                const plzSign = document.getElementById("plzeinzugsign");
+                const mieteridSign = document.getElementById("mieteridsign");
+                const datumSign = document.getElementById("datumsign");
 
-        // Werte in die Signaturfelder schreiben
-        document.getElementById("strasseeinzugsign").textContent = strasse;
-        document.getElementById("lageeinzugsign").textContent = lage;
-        document.getElementById("plzeinzugsign").textContent = plz;
-        document.getElementById("mieteridsign").textContent = mieterid;
-        document.getElementById("datumsign").textContent = datum;
-    }
+                if (strasseSign) strasseSign.textContent = strasse;
+                if (lageSign) lageSign.textContent = lage;
+                if (plzSign) plzSign.textContent = plz;
+                if (mieteridSign) mieteridSign.textContent = mieterid;
+                if (datumSign) datumSign.textContent = datum;
+            } catch (error) {
+                console.error("Fehler beim Aktualisieren der Signaturfelder:", error);
+            }
+        }
 
-    // Event-Listener für Input-Felder hinzufügen
-    document.getElementById("strasseeinzug").addEventListener("input", updateSignFields);
-    document.getElementById("lageeinzug2").addEventListener("input", updateSignFields);
-    document.getElementById("plzeinzug").addEventListener("input", updateSignFields);
-    document.getElementById("mieterid").addEventListener("input", updateSignFields);
-    document.getElementById("datum").addEventListener("input", updateSignFields);
+        // Verbesserte Mieternummer-Handling
+        function handleMieterIdChange() {
+            try {
+                const mieterIdInput = document.getElementById("mieterid");
+                if (!mieterIdInput || !window.strassen) return;
+                
+                const fullValue = window.strassen.find(s => 
+                    s.mieternummer.startsWith(mieterIdInput.value)
+                )?.mieternummer;
 
-    // MutationObserver, um programmatische Änderungen zu überwachen
-    const observerConfig = { attributes: true, childList: true, subtree: true };
+                if (fullValue) {
+                    mieterIdInput.value = fullValue;
+                }
+                updateSignFields();
+            } catch (error) {
+                console.error("Fehler bei Mieternummer-Update:", error);
+            }
+        }
 
-    const strasseObserver = new MutationObserver(updateSignFields);
-    const lageObserver = new MutationObserver(updateSignFields);
-    const plzObserver = new MutationObserver(updateSignFields);
-    const mieteridObserver = new MutationObserver(updateSignFields);
-    const datumObserver = new MutationObserver(updateSignFields);
+        // Event-Listener mit Debounce
+        function setupEventListeners() {
+            const debounce = (func, delay) => {
+                let timeout;
+                return function() {
+                    const context = this;
+                    const args = arguments;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), delay);
+                };
+            };
 
-    strasseObserver.observe(document.getElementById("strasseeinzug"), observerConfig);
-    lageObserver.observe(document.getElementById("lageeinzug2"), observerConfig);
-    plzObserver.observe(document.getElementById("plzeinzug"), observerConfig);
-    mieteridObserver.observe(document.getElementById("mieterid"), observerConfig);
-    datumObserver.observe(document.getElementById("datum"), observerConfig);
+            const fields = [
+                {id: "mieterid", handler: debounce(handleMieterIdChange, 500)},
+                {id: "strasseeinzug", handler: updateSignFields},
+                {id: "lageeinzug2", handler: updateSignFields},
+                {id: "plzeinzug", handler: updateSignFields},
+                {id: "datum", handler: updateSignFields}
+            ];
 
-    // Beim Laden der Seite sofort die Signaturfelder aktualisieren
-    updateSignFields();
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (element) {
+                    element.addEventListener("input", field.handler);
+                    element.addEventListener("change", updateSignFields);
+                }
+            });
+        }
+
+        // Robustere MutationObserver-Implementierung
+        function setupMutationObserver() {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+                        updateSignFields();
+                    }
+                });
+            });
+
+            const fields = ["strasseeinzug", "lageeinzug2", "plzeinzug", "mieterid", "datum"];
+            fields.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    observer.observe(element, {
+                        attributes: true,
+                        attributeFilter: ['value'],
+                        subtree: true
+                    });
+                }
+            });
+        }
+
+        // Initialisierung
+        setupEventListeners();
+        setupMutationObserver();
+        updateSignFields();
+
+        // Fallback: Regelmäßige Überprüfung (falls nötig)
+        setInterval(updateSignFields, 2000);
+    }, 100);
 });
 
 
@@ -1162,14 +1083,10 @@ window.addEventListener('beforeunload', function (event) {
 // Funktion, um den Namen unter der Unterschrift anzuzeigen
 // Funktion, um den Namen unter der Unterschrift anzuzeigen
 function updateFullName(fullNameSpan, fullName) {
-    // Trenne den Namen in "Name" und "Vorname" basierend auf dem Komma
-    const [name, vorname] = fullName.split(',').map(part => part.trim());
-
-    // Setze den Namen im Format "Vorname Name"
+     const [name, vorname] = fullName.split(',').map(part => part.trim());
     if (vorname && name) {
         fullNameSpan.textContent = `${vorname} ${name}`;
     } else {
-        // Falls kein Komma vorhanden ist, zeige den gesamten Namen an
         fullNameSpan.textContent = fullName;
     }
 }
@@ -1182,15 +1099,12 @@ function updateFullName(fullNameSpan, fullName) {
 document.getElementById('addKeyButton').addEventListener('click', function () {
     const tableContainer = document.getElementById('schluesselTableContainer');
 
-    // Überprüfen, ob die Tabelle bereits existiert
     let table = document.getElementById('schluesselTable');
 
     if (!table) {
-        // Tabelle und den entsprechenden Kopf erstellen
         table = document.createElement('table');
         table.id = 'schluesselTable';
 
-        // CSS für die Tabelle hinzufügen
         const style = document.createElement('style');
         style.textContent = `
             #schluesselTable {
@@ -1272,7 +1186,6 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
     newRow.appendChild(anzahlCell);
     newRow.appendChild(schluesselnummerCell);
 
-    // Zeile in den Tabellenkörper einfügen
     const tbody = table.querySelector('tbody');
     tbody.appendChild(newRow);
 });
@@ -1286,14 +1199,12 @@ document.getElementById('addKeyButton').addEventListener('click', function () {
 document.getElementById('addZaehlerButton').addEventListener('click', function () {
     const tableContainer = document.getElementById('zaehlerTableContainer');
 
-    // Überprüfen, ob die Tabelle bereits existiert
     let table = document.getElementById('zaehlerTable');
 
     if (!table) {
-        // Tabelle und den entsprechenden Kopf erstellen
         table = document.createElement('table');
         table.id = 'zaehlerTable';
-        table.style.width = '100%'; // Breite der Tabelle
+        table.style.width = '100%';
 
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
@@ -1308,7 +1219,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
         headers.forEach(header => {
             const th = document.createElement('th');
             th.textContent = header.text;
-            th.style.width = header.width; // Breite der Überschrift anpassen
+            th.style.width = header.width;
             headerRow.appendChild(th);
         });
 
@@ -1318,11 +1229,9 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
         const tbody = document.createElement('tbody');
         table.appendChild(tbody);
 
-        // Die Tabelle in den DOM einfügen
         tableContainer.appendChild(table);
     }
 
-    // Neue Zeile in den Tabellenkörper hinzufügen
     const newRow = document.createElement('tr');
 
     const bezeichnungCell = document.createElement('td');
@@ -1351,14 +1260,9 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
     newRow.appendChild(einbaulageCell);
     newRow.appendChild(zaehlerstandCell);
 
-    // Zeile in den Tabellenkörper einfügen
     const tbody = table.querySelector('tbody');
     tbody.appendChild(newRow);
 });
-
-
-
-
 
 
 
@@ -1480,7 +1384,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let text = h3.textContent.trim();
 
             if (table) {
-                // Wenn die Tabelle existiert, setze die Überschrift auf den Standardtext
                 if (text === notGivenText) {
                     h3.textContent = headingText;
                     h3.style.color = "black";
@@ -1488,7 +1391,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     h3.style.paddingBottom = "0px";
                 }
             } else {
-                // Wenn die Tabelle nicht existiert, setze die Überschrift auf "nicht angegeben"
                 if (text === headingText) {
                     h3.textContent = notGivenText;
                     h3.style.color = "#c80000";
@@ -1499,11 +1401,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Funktion zur Überprüfung der einziehenden Mieter
     function checkAndUpdateEinziehenderMieter() {
         let found = false;
 
-        // Prüfe, ob ein Element mit der ID, die "NameEin" enthält, vorhanden ist
         for (let i = 1; i <= 99; i++) {
             let element = document.getElementById("NameEin" + String(i).padStart(2, "0"));
             if (element) {
@@ -1512,7 +1412,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Passe die Überschrift basierend auf dem Vorhandensein der Tabelle an
         document.querySelectorAll("h3").forEach(function (h3) {
             let text = h3.textContent.trim();
 
@@ -1534,13 +1433,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Initiale Prüfung beim Laden der Seite
     checkAndUpdateHeading("schluesselTable", "Schlüssel", "Schlüssel (nicht angegeben)");
     checkAndUpdateHeading("auszugmieterTable", "ausziehender Mieter", "ausziehender Mieter (nicht zutreffend)");
     checkAndUpdateHeading("zaehlerTable", "Zähler", "Zähler (nicht angegeben)");
     checkAndUpdateEinziehenderMieter();
 
-    // Event Listener für Buttons
     document.getElementById('addKeyButton').addEventListener('click', function () {
         setTimeout(function () {
             checkAndUpdateHeading("schluesselTable", "Schlüssel", "Schlüssel (nicht angegeben)");
@@ -1569,5 +1466,56 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             checkAndUpdateHeading("zaehlerTable", "Zähler", "Zähler (nicht angegeben)");
         }, 100);
+    });
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const masterRadio = document.getElementById('weitereBemerkungen2');
+    const dependentRadios = [
+        'weitereBemerkungen6', 
+        'weitereBemerkungen9',
+        'nichtZutreffendCheckbox2'
+    ];
+
+    if (!masterRadio) {
+        console.error('Haupt-Radio-Button nicht gefunden');
+        return;
+    }
+
+    masterRadio.addEventListener('click', function() {
+        const isChecked = this.checked;
+        
+        dependentRadios.forEach(id => {
+            const radio = document.getElementById(id);
+            if (radio) {
+                // Setze den Zustand des abhängigen Elements
+                radio.checked = isChecked;
+                
+                // Finde das zugehörige Label
+                const label = document.querySelector(`label[for="${id}"]`) || radio.nextElementSibling;
+                
+                // Aktualisiere die visuelle Darstellung
+                if (label) {
+                    if (isChecked) {
+                        label.classList.add('checked');
+                        label.classList.remove('unchecked');
+                    } else {
+                        label.classList.add('unchecked');
+                        label.classList.remove('checked');
+                    }
+                }
+                
+                // Trigger Events
+                const event = new Event('change', { bubbles: true });
+                radio.dispatchEvent(event);
+            }
+        });
+        
+        console.log(`Master Radio ${isChecked ? 'aktiviert' : 'deaktiviert'}, alle abhängigen Elemente aktualisiert`);
     });
 });
