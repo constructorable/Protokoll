@@ -1,5 +1,6 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23
+// scriptzimmer.js
+// Version 3.25_beta
 
 function initializeSuggestionInputs() {
     document.querySelectorAll(".suggestion-input").forEach(inputField => {
@@ -18,9 +19,9 @@ function initializeSuggestionInputs() {
             case "fussboden":
                 suggestionsArray = fussbodenMaterialien;
                 break;
-            case "fussboden-farbe":
-                suggestionsArray = fussbodenFarben;
-                break;
+            /*             case "fussboden-farbe":
+                            suggestionsArray = fussbodenFarben;
+                            break; */
             case "stockwerk":
                 suggestionsArray = stockwerke;
                 break;
@@ -52,6 +53,7 @@ function addRoom() {
     specialRoomCount++;
     const roomId = "zimm" + String(roomCount).padStart(2, '0');
     const container = document.getElementById("room-container");
+    const roomIdnumber = String(roomCount).padStart(1, '0');
 
     const roomDiv = document.createElement("div");
     roomDiv.classList.add("room-container");
@@ -119,7 +121,7 @@ function addRoom() {
             </tr>
 
 
-            <tr style="border-top:50px solid #fff;">
+            <tr style="border-top:25px solid #fff;">
                 <th>Bereich</th>
                 <th>in Ordnung</th>
                 <th>reparatur - bedürftig</th>
@@ -305,7 +307,7 @@ function addRoom() {
 
 
             <tr>
-                <td>Heizkörper / Ventile / Rohre</td>
+                <td style="padding-bottom: 20px; padding-top:20px">Heizkörper / Ventile / Rohre</td>
                 <td>
                     <input type="radio" id="${roomId}-heizkoerper1" name="${roomId}-heizkoerper" value="in Ordnung">
                     <label for="${roomId}-heizkoerper1" class="radio-label"></label>
@@ -331,6 +333,18 @@ function addRoom() {
                     <label for="${roomId}-heizkoerper5" class="radio-label"></label>
                 </td>
             </tr>
+
+
+                                <tr>
+                        <td>Fußboden Material</td>
+                        <td colspan="5">
+                            <input id="fussbodenInput${specialRoomCount}" type="text" name="fussboden"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                data-type="fussboden" data-suggestion-list="fussbodenSuggestions${specialRoomCount}">
+                            <div id="fussbodenSuggestions${specialRoomCount}" class="suggestion-list"></div>
+                        </td>
+                    </tr>
+
 
             <tr>
                 <td>Fußboden / Leisten</td>
@@ -360,29 +374,13 @@ function addRoom() {
             </tr>
 
 
-                    <tr>
-                        <td>Fußboden Material</td>
-                        <td colspan="5">
-                            <input id="fussbodenInput${specialRoomCount}" type="text" name="fussboden"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                data-type="fussboden" data-suggestion-list="fussbodenSuggestions${specialRoomCount}">
-                            <div id="fussbodenSuggestions${specialRoomCount}" class="suggestion-list"></div>
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td>Fußboden-Farbe</td>
-                        <td colspan="5">
-                            <input id="fussbodenFarbeInput${specialRoomCount}" type="text" name="fussbodenFarbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions${specialRoomCount}">
-                            <div id="fussbodenFarbeSuggestions${specialRoomCount}" class="suggestion-list"></div>
-                        </td>
-                    </tr>
+
+
 
 
             <tr>
-                <td>Radio- / Fernseh- / Internetdose</td>
+                <td style="padding-bottom: 20px; padding-top:20px">Radio- / Fernseh- / Internetdose</td>
                 <td>
                     <input type="radio" id="${roomId}-internet1" name="${roomId}-internet" value="in Ordnung">
                     <label for="${roomId}-internet1" class="radio-label"></label>
@@ -414,7 +412,7 @@ function addRoom() {
 
 
             <tr>
-                <td>Steckdosen / Lichtschalter</td>
+                <td style="padding-bottom: 20px;">Steckdosen / Lichtschalter</td>
                 <td>
                     <input type="radio" id="${roomId}-elektrik1" name="${roomId}-elektrik" value="in Ordnung">
                     <label for="${roomId}-elektrik1" class="radio-label"></label>
@@ -443,38 +441,19 @@ function addRoom() {
             <tr>
 
 
-            <tr>
-                <td>Anzahl der Rauchwarnmelder</td>
-
-                <td class="no-border-right text-right"
-                    style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
-                    0
-                </td>
-                <td>
-                    <input type="radio" id="${roomId}-rwm1" name="${roomId}-rwm" value="${roomId}-rwm">
-                    <label for="${roomId}-rwm1" class="radio-label"></label>
-                </td>
-
-
-                <td class="no-border-right text-right"
-                    style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
-                    1 (oder mehr)
-                </td>
-                <td class="no-border-right">
-                    <input type="radio" id="${roomId}-rwm2" name="${roomId}-rwm" value="${roomId}-rwm">
-                    <label for="${roomId}-rwm2" class="radio-label"></label>
-                </td>
-                <td>
 
 
 
-
-                </td>
-            </tr>
+                    <tr>
+                        <td class="rwm-label">Anzahl der Rauchwarnmelder</td>
+                        <td colspan="4" class="rwm-input-container">
+                            <input type="number" id="rwm-count${roomId}" name="rwm-count" min="1" class="rwm-input">
+                        </td>
+                    </tr>
 
 
             <tr>
-                <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen:</td>
+                <td colspan="6" style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen zu Zimmer ${roomIdnumber}:</td>
             </tr>
     `;
 
@@ -560,7 +539,7 @@ function addRoom() {
     addRemarkButton.classList.add("add-remark-btn");
     addRemarkButton.textContent = "+";
     addRemarkButton.onclick = function () { addRemark(roomDiv); };
-    
+
 
 
     roomDiv.appendChild(roomTitle);
