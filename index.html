@@ -1,5 +1,6 @@
 <!-- Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23 -->
+index.html
+// Version 3.25_beta -->
 
 <!DOCTYPE html>
 <html lang="de">
@@ -12,34 +13,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-
     <script src="scriptzimmer.js"></script>
-
-
 
 </head>
 
 <body>
 
-
-
-
     <div class="container">
-
-
-
         <div id="loadingOverlay" style="display: none;">
             <div class="loading-content">
                 <span id="closeLoadingOverlay"
                     style="cursor: pointer; position: absolute; top: 10px; right: 10px; font-size: 20px;">&times;</span>
-                <div id="progressBar" style="width: 0%; height: 20px; background-color: #4CAF50;"></div>
+                <div id="progressBar" style="width: 0%; height: 20px; background-color: #28a226;"></div>
                 <div id="progressText">0% abgeschlossen</div>
             </div>
         </div>
-
-
-
 
         <div class="sticky-container">
 
@@ -49,16 +37,9 @@
 
         </div>
 
-
-
         <div id="dynamic-content">
 
-            <!--Allgemein -->
-
-
             <div class="allgemein00" id="zzzallgemein">
-
-
 
                 <div id="logo-container">
                     <h2 style="font-size:28px;">Abnahme- / Übergabeprotokoll</h2>
@@ -93,22 +74,15 @@
 
                         </td>
 
-
-
                         <tr>
 
-
-
-                            <!-- Objekt / Straße -->
-                            <td style="text-align: left; width: 380px; padding-right:10px;">Objekt / Straße</td>
+                            <td style="width: 370px; text-align: left; padding:10px;">Mieternummer</td>
                             <td colspan="5">
-                                <input id="strasseeinzug" type="text" name="bemerkungen"
-                                    class="testeinzeilig langes-input autoscale" style="width: 350px;">
-                                <div id="suggestionList"></div>
+                                <input type="text" id="mieterid" name="bemerkungen"
+                                    class="testeinzeilig langes-input autoscale"
+                                    style="width: 370px; margin-right:0px;">
                             </td>
 
-
-                            <!-- Lage / Stockwerk -->
                             <td style="text-align: right; padding-right: 10px; width: 240px;">Lage / Stockwerk</td>
                             <td colspan="5" style="position: relative;">
                                 <input id="lageeinzug2" type="text" name="bemerkungen"
@@ -123,15 +97,13 @@
 
 
                         <tr>
-                            <!-- PLZ / Ort 1 -->
-                            <td style="width: 350px;" class="objekt">PLZ / Ort</td>
+                            <td style="width: 370px;" class="objekt">PLZ / Ort</td>
                             <td colspan="5">
                                 <input type="text" id="plzeinzug" name="bemerkungen"
                                     class="testeinzeilig langes-input autoscale"
-                                    style="width: 350px; margin-right:10px;">
+                                    style="width: 370px; margin-right:10px;">
                             </td>
 
-                            <!-- Datum -->
                             <td style="text-align: right; padding-right: 10px; width: 240px;">Datum</td>
                             <td colspan="5">
                                 <input id="datum" type="date" name="bemerkungen" class="testeinzeilig langes-input"
@@ -141,30 +113,12 @@
                         </tr>
 
 
-                        <tr>
-                            <!-- Mieternummer -->
-                            <td style="width: 350px; text-align: left; padding:10px;">Mieternummer</td>
-                            <td colspan="5">
-                                <input type="text" id="mieterid" name="bemerkungen"
-                                    class="testeinzeilig langes-input autoscale"
-                                    style="width: 350px; margin-right:0px;">
-                            </td>
-
-
-                            <!-- Platzhalter -->
-                            <!--                            <td style="text-align: right; padding-right: 10px; width: 240px;"></td>
-                            <td colspan="5">
-                                <input id="leer1" type="text" name="leer" class="testeinzeilig langes-input"
-                                    style="width: 240px; margin-right:11px;">
-                            </td> -->
-
-                        </tr>
-
-
-
-
-
-
+                        <td style="text-align: left; width: 380px; padding-right:10px;">Objekt / Straße</td>
+                        <td colspan="5">
+                            <input id="strasseeinzug" type="text" name="bemerkungen"
+                                class="testeinzeilig langes-input autoscale" style="width: 370px;">
+                            <div id="suggestionList"></div>
+                        </td>
                     </table>
 
                     <h3>einziehender Mieter</h3>
@@ -284,7 +238,7 @@
                     <tr>
                         <td
                             style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
-                            Küche vorhanden <span style="color:#fff">_</span> </td>
+                            Küche (Raum) vorhanden <span style="color:#fff">_</span> </td>
 
                         <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
                             JA
@@ -515,7 +469,7 @@
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <input id="farbeInput1" type="text" name="farbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="farbe" data-suggestion-list="farbeSuggestions1">
                             <div id="farbeSuggestions1" class="suggestion-list"></div>
                         </td>
@@ -524,7 +478,7 @@
 
 
                     <tr>
-                        <td>Fliesen</td>
+                        <td>Fliesenspiegel</td>
                         <td>
                             <input type="radio" id="fliesen1" name="fliesen" value="in Ordnung">
                             <label for="fliesen1" class="radio-label"></label>
@@ -604,24 +558,15 @@
 
 
                     <tr>
-                        <td>Fußboden Material</td>
+                        <td>Fußboden</td>
                         <td colspan="5">
                             <input id="fussbodenInput1" type="text" name="fussboden"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="fussboden" data-suggestion-list="fussbodenSuggestions1">
                             <div id="fussbodenSuggestions1" class="suggestion-list"></div>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>Fußboden-Farbe</td>
-                        <td colspan="5">
-                            <input id="fussbodenFarbeInput1" type="text" name="fussbodenFarbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions1">
-                            <div id="fussbodenFarbeSuggestions1" class="suggestion-list"></div>
-                        </td>
-                    </tr>
 
                     <tr>
                         <td>Schränke</td>
@@ -756,7 +701,7 @@
                     </tr>
 
                     <tr>
-                        <td>Elektrik</td>
+                        <td>Steckdosen / Lichtschalter</td>
                         <td>
                             <input type="radio" id="elektrik1" name="elektrik" value="in Ordnung">
                             <label for="elektrik1" class="radio-label"></label>
@@ -885,40 +830,17 @@
                         </td>
                     </tr>
 
+
                     <tr>
-                        <td>Anzahl der Rauchwarnmelder</td>
-
-                        <td class="no-border-right  text-right"
-                            style="text-align:right; padding-right:10px; background-color:white;">
-
-                            0
+                        <td class="rwm-label">Anzahl der Rauchwarnmelder</td>
+                        <td colspan="4" class="rwm-input-container">
+                            <input type="number" id="rwm-count1" name="rwm-count" min="1" class="rwm-input">
                         </td>
-                        <td>
-                            <input type="radio" id="rwm1" name="rwm" value="rwm">
-                            <label for="rwm1" class="radio-label"></label>
-                        </td>
-
-
-                        <td class="no-border-right  text-right"
-                            style="text-align:right; padding-right:10px; background-color:white;">
-
-                            1 (oder mehr)
-                        </td>
-                        <td class="no-border-right">
-                            <input type="radio" id="rwm2" name="rwm" value="rwm">
-                            <label for="rwm2" class="radio-label"></label>
-                        </td>
-
                     </tr>
 
                     <tr>
-                        <td class="commentshead">Bemerkungen Küche</td>
+                        <td class="commentshead">Bemerkungen Küche:</td>
                     </tr>
-
-
-
-
-
 
                     <tr class="original-row">
 
@@ -1199,7 +1121,7 @@
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <input id="farbeInput2" type="text" name="farbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="farbe" data-suggestion-list="farbeSuggestions2">
                             <div id="farbeSuggestions2" class="suggestion-list"></div>
                         </td>
@@ -1288,10 +1210,10 @@
 
 
                     <tr>
-                        <td>Fußboden Material</td>
+                        <td>Fußboden</td>
                         <td colspan="5">
                             <input id="fussbodenInput2" type="text" name="fussboden"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="fussboden" data-suggestion-list="fussbodenSuggestions2">
                             <div id="fussbodenSuggestions2" class="suggestion-list"></div>
                         </td>
@@ -1299,15 +1221,7 @@
 
 
 
-                    <tr>
-                        <td>Fußboden-Farbe</td>
-                        <td colspan="5">
-                            <input id="fussbodenFarbeInput2" type="text" name="fussbodenFarbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions2">
-                            <div id="fussbodenFarbeSuggestions2" class="suggestion-list"></div>
-                        </td>
-                    </tr>
+
 
                     <tr>
                         <td>Handwaschbecken</td>
@@ -1511,7 +1425,7 @@
 
 
                     <tr>
-                        <td>Ventilator / Belüftungssiebe</td>
+                        <td>Ventilator</td>
                         <td>
                             <input type="radio" id="bathventi1" name="bathventi" value="in Ordnung">
                             <label for="bathventi1" class="radio-label"></label>
@@ -1533,6 +1447,31 @@
                         <td>
                             <input type="radio" id="bathventi5" name="bathventi" value="nicht vorhanden">
                             <label for="bathventi5" class="radio-label"></label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Belüftungssiebe</td>
+                        <td>
+                            <input type="radio" id="bathsieb1" name="bathsieb" value="in Ordnung">
+                            <label for="bathsieb1" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="bathsieb2" name="bathsieb"
+                                value="reparatur- / renovierungsbedürftig">
+                            <label for="bathsieb2" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="bathsieb3" name="bathsieb00" value="Reparatur durch den Mieter">
+                            <label for="bathsieb3" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="bathsieb4" name="bathsieb00" value="Reparatur durch den Vermieter">
+                            <label for="bathsieb4" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="bathsieb5" name="bathsieb" value="nicht vorhanden">
+                            <label for="bathsieb5" class="radio-label"></label>
                         </td>
                     </tr>
 
@@ -1695,7 +1634,7 @@
 
 
                     <tr>
-                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Bad</td>
+                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Bad:</td>
                     </tr>
 
 
@@ -1996,7 +1935,7 @@
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <input id="farbeInput3" type="text" name="farbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="farbe" data-suggestion-list="farbeSuggestions3">
                             <div id="farbeSuggestions3" class="suggestion-list"></div>
                         </td>
@@ -2086,24 +2025,16 @@
 
 
                     <tr>
-                        <td>Fußboden Material</td>
+                        <td>Fußboden</td>
                         <td colspan="5">
                             <input id="fussbodenInput3" type="text" name="fussboden"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="fussboden" data-suggestion-list="fussbodenSuggestions3">
                             <div id="fussbodenSuggestions3" class="suggestion-list"></div>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>Fußboden-Farbe</td>
-                        <td colspan="5">
-                            <input id="fussbodenFarbeInput3" type="text" name="fussbodenFarbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions3">
-                            <div id="fussbodenFarbeSuggestions3" class="suggestion-list"></div>
-                        </td>
-                    </tr>
+
 
                     <tr>
                         <td>Handwaschbecken</td>
@@ -2311,7 +2242,7 @@
 
 
                     <tr>
-                        <td>Ventilator / Belüftungssiebe</td>
+                        <td>Ventilator</td>
                         <td>
                             <input type="radio" id="guestwcventi1" name="guestwcventi" value="in Ordnung">
                             <label for="guestwcventi1" class="radio-label"></label>
@@ -2334,6 +2265,33 @@
                         <td>
                             <input type="radio" id="guestwcventi5" name="guestwcventi" value="nicht vorhanden">
                             <label for="guestwcventi5" class="radio-label"></label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Belüftungssieb</td>
+                        <td>
+                            <input type="radio" id="guestwcsiebwc1" name="guestwcsiebwc" value="in Ordnung">
+                            <label for="guestwcsiebwc1" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="guestwcsiebwc2" name="guestwcsiebwc"
+                                value="reparatur- / renovierungsbedürftig">
+                            <label for="guestwcsiebwc2" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="guestwcsiebwc3" name="guestwcsiebwc00"
+                                value="Reparatur durch den Mieter">
+                            <label for="guestwcsiebwc3" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="guestwcsiebwc4" name="guestwcsiebwc00"
+                                value="Reparatur durch den Vermieter">
+                            <label for="guestwcsiebwc4" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="guestwcsiebwc5" name="guestwcsiebwc" value="nicht vorhanden">
+                            <label for="guestwcsiebwc5" class="radio-label"></label>
                         </td>
                     </tr>
 
@@ -2504,7 +2462,8 @@
 
 
                     <tr>
-                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Gäste-WC</td>
+                        <td colspan="6" style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen
+                            Gäste-WC:</td>
                     </tr>
 
                     <tr class="original-row">
@@ -2628,7 +2587,7 @@
                     </tr>
 
                     <tr>
-                        <td>Wohnungstür / Zarge / Beschläge</td>
+                        <td style="padding-bottom: 20px;">Wohnungstür / Zarge / Beschläge</td>
                         <td>
                             <input type="radio" id="dieleflurtuere1" name="dieleflurtuere" value="in Ordnung">
                             <label for="dieleflurtuere1" class="radio-label"></label>
@@ -2655,7 +2614,7 @@
                     </tr>
 
                     <tr>
-                        <td>Klingel / Türöffner / Sprechanlage</td>
+                        <td style="padding-bottom: 20px;">Klingel / Türöffner / Sprechanlage</td>
                         <td>
                             <input type="radio" id="dieleflursprecher1" name="dieleflursprecher" value="in Ordnung">
                             <label for="dieleflursprecher1" class="radio-label"></label>
@@ -2685,7 +2644,7 @@
 
 
                     <tr>
-                        <td>Fenster / Beschläge / Glas</td>
+                        <td style="padding-bottom: 20px;">Fenster / Beschläge / Glas</td>
                         <td>
                             <input type="radio" id="dieleflurfenster1" name="dieleflurfenster" value="in Ordnung">
                             <label for="dieleflurfenster1" class="radio-label"></label>
@@ -2785,7 +2744,7 @@
                         <td>Farbe der Wände</td>
                         <td colspan="5">
                             <input id="farbeInput4" type="text" name="farbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="farbe" data-suggestion-list="farbeSuggestions4">
                             <div id="farbeSuggestions4" class="suggestion-list"></div>
                         </td>
@@ -2821,7 +2780,7 @@
                     </tr>
 
                     <tr>
-                        <td>Fußboden</td>
+                        <td >Fußboden</td>
                         <td>
                             <input type="radio" id="dieleflurfussboden1" name="dieleflurfussboden" value="in Ordnung">
                             <label for="dieleflurfussboden1" class="radio-label"></label>
@@ -2853,23 +2812,11 @@
                         <td>Fußboden Material</td>
                         <td colspan="5">
                             <input id="fussbodenInput4" type="text" name="fussboden"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                 data-type="fussboden" data-suggestion-list="fussbodenSuggestions4">
                             <div id="fussbodenSuggestions4" class="suggestion-list"></div>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>Fußboden-Farbe</td>
-                        <td colspan="5">
-                            <input id="fussbodenFarbeInput4" type="text" name="fussbodenFarbe"
-                                class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions4">
-                            <div id="fussbodenFarbeSuggestions4" class="suggestion-list"></div>
-                        </td>
-                    </tr>
-
-
 
                     <tr>
                         <td>Steckdosen / Lichtschalter</td>
@@ -2930,35 +2877,17 @@
 
 
                     <tr>
-                        <td>Anzahl der Rauchwarnmelder</td>
-
-                        <td class="no-border-right text-right"
-                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
-                            0
-                        </td>
-                        <td>
-                            <input type="radio" id="dieleflurrwm1" name="dieleflurrwm" value="dieleflurrwm">
-                            <label for="dieleflurrwm1" class="radio-label"></label>
-                        </td>
-
-
-                        <td class="no-border-right text-right"
-                            style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
-                            1 (oder mehr)
-                        </td>
-                        <td class="no-border-right">
-                            <input type="radio" id="dieleflurrwm2" name="dieleflurrwm" value="dieleflurrwm">
-                            <label for="dieleflurrwm2" class="radio-label"></label>
-                        </td>
-                        <td>
-
-
-
-
+                        <td class="rwm-label">Anzahl der Rauchwarnmelder</td>
+                        <td colspan="4" class="rwm-input-container">
+                            <input type="number" id="rwm-count2" name="rwm-count" min="0" value="0" class="rwm-input">
                         </td>
                     </tr>
+
+
+
                     <tr>
-                        <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Diele / Flur:
+                        <td colspan="6" style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen
+                            Diele / Flur:
                         </td>
                     </tr>
 
@@ -3274,7 +3203,7 @@
                             <td>Farbe der Wände</td>
                             <td colspan="5">
                                 <input id="farbeInput5" type="text" name="farbe"
-                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                     data-type="farbe" data-suggestion-list="farbeSuggestions5">
                                 <div id="farbeSuggestions5" class="suggestion-list"></div>
                             </td>
@@ -3341,25 +3270,14 @@
 
 
                         <tr>
-                            <td>Fußboden Material</td>
+                            <td>Fußboden</td>
                             <td colspan="5">
                                 <input id="fussbodenInput5" type="text" name="fussboden"
-                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
+                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 370px;"
                                     data-type="fussboden" data-suggestion-list="fussbodenSuggestions5">
                                 <div id="fussbodenSuggestions5" class="suggestion-list"></div>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>Fußboden-Farbe</td>
-                            <td colspan="5">
-                                <input id="fussbodenFarbeInput5" type="text" name="fussbodenFarbe"
-                                    class="testeinzeilig langes-input autoscale suggestion-input" style="width: 350px;"
-                                    data-type="fussboden-farbe" data-suggestion-list="fussbodenFarbeSuggestions5">
-                                <div id="fussbodenFarbeSuggestions5" class="suggestion-list"></div>
-                            </td>
-                        </tr>
-
 
                         <tr>
                             <td>Radio-/Fernseh-/Internetdose</td>
@@ -3426,31 +3344,10 @@
 
 
                         <tr>
-                            <td>Anzahl der Rauchwarnmelder</td>
-
-                            <td class="no-border-right text-right"
-                                style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
-                                0
-                            </td>
-                            <td>
-                                <input type="radio" id="abstellrwm1" name="abstellrwm" value="abstellrwm">
-                                <label for="abstellrwm1" class="radio-label"></label>
-                            </td>
-
-
-                            <td class="no-border-right text-right"
-                                style="text-align: right; padding-right:10px; background-color:rgb(255, 255, 255);">
-                                1 (oder mehr)
-                            </td>
-                            <td class="no-border-right">
-                                <input type="radio" id="abstellrwm2" name="abstellrwm" value="abstellrwm">
-                                <label for="abstellrwm2" class="radio-label"></label>
-                            </td>
-                            <td>
-
-
-
-
+                            <td class="rwm-label">Anzahl der Rauchwarnmelder</td>
+                            <td colspan="4" class="rwm-input-container">
+                                <input type="number" id="rwm-count3" name="rwm-count" min="0" value="0"
+                                    class="rwm-input">
                             </td>
                         </tr>
 
@@ -3458,7 +3355,8 @@
 
 
                         <tr>
-                            <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen Abstellraum
+                            <td colspan="6" style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen
+                                Abstellraum:
                             </td>
                         </tr>
 
@@ -3538,7 +3436,7 @@
 
 
 
-                        <tr>
+                        <!--                         <tr>
                             <td
                                 style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
                                 weitere Flächen vorhanden</td>
@@ -3570,7 +3468,7 @@
                             <td class="keine-linie"></td>
 
 
-                        </tr>
+                        </tr> -->
 
 
                         <tr>
@@ -3699,7 +3597,8 @@
 
 
                         <tr>
-                            <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen zu weiteren
+                            <td colspan="6" style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen
+                                zu weiteren
                                 Flächen:</td>
                         </tr>
 
@@ -3756,10 +3655,7 @@
                     <h3>Regelung Mängelbeseitigung</h3>
 
                     <table>
-                        <!-- Erste Zeile -->
                         <tr>
-                            <!-- <td>Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...</td> -->
-
                             <td
                                 style="border-top: 10px solid rgb(255, 255, 255); border-bottom: 5px solid rgb(255, 255, 255);">
                                 Der ausziehende Mieter erkennt die in diesem Protokoll aufgeführten Mängel an und...
@@ -3773,13 +3669,8 @@
                                 <input type="radio" id="weitereBemerkungen1" name="weitereBemerkungen1" value="ja">
                                 <label for="weitereBemerkungen1" class="radio-label"></label>
                             </td>
-                            <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
-                                nicht zutreffend
-                            </td>
-                            <td>
-                                <input type="radio" id="weitereBemerkungen2" name="weitereBemerkungen1" value="nein">
-                                <label for="weitereBemerkungen2" class="radio-label"></label>
-                            </td>
+
+
                             <td class="no-border-right text-right"
                                 style="text-align: right; background-color:#fff; padding-left:40px">
                                 NEIN
@@ -3789,6 +3680,15 @@
                                     value="nichtzutreffend">
                                 <label for="weitereBemerkungen3" class="radio-label"></label>
                             </td>
+
+                            <td class="no-border-right text-right" style="text-align: right; background-color:#fff;">
+                                nicht zutreffend
+                            </td>
+                            <td>
+                                <input type="radio" id="weitereBemerkungen2" name="weitereBemerkungen1" value="nein">
+                                <label for="weitereBemerkungen2" class="radio-label"></label>
+                            </td>
+
                         </tr>
 
                         <!-- Zweite Zeile -->
@@ -3883,7 +3783,7 @@
 
 
                         <tr>
-                            <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen</td>
+                            <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen:</td>
                         </tr>
 
 
@@ -3929,7 +3829,7 @@
 
                     <table>
 
-                        <tr>
+                        <!--                         <tr>
                             <td colspan="2"></td>
                             <td colspan="2" class="no-border-right text-right"
                                 style="background-color:#fff; text-align:right;">
@@ -3948,12 +3848,12 @@
                                     style="padding-right:10px;">
                                 <label for="hauptBemerkungen2" class="radio-label" style="padding-right:20px;"></label>
                             </td>
-                        </tr>
+                        </tr> -->
 
 
                         <tr>
                             <td colspan="5">
-                                ...Dieses Protokoll ist Bestandteil des Mietvertrags (bei Einzug)
+                                Dieses Protokoll ist Bestandteil des Mietvertrags (bei Einzug)
                             </td>
                             <td colspan="1" class="no-border-right text-right"
                                 style="background-color:#fff; text-align:right;">
@@ -3968,7 +3868,7 @@
 
 
                         <tr>
-                            <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen</td>
+                            <td style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen:</td>
                         </tr>
 
                         <tr class="original-row">
