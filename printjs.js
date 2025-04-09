@@ -1,14 +1,13 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
-// Version 3.23
+// print.js
+// Version 3.25_beta
 
 document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
 function validateStrasseeinzug() {
     const strasseeinzugInput = document.getElementById("strasseeinzug");
-
 
     if (!strasseeinzugInput.value || strasseeinzugInput.value.trim() === "") {
         alert("Objekt / Straße bitte eingeben.");
@@ -48,21 +47,18 @@ function validateZentralCheckboxes() {
     return true;
 }
 
-// Event-Listener für den "PDF speichern"-Button
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
-    // Überprüfe die Checkboxen in der Tabelle "zentral"
+
     if (!validateStrasseeinzug()) {
         event.preventDefault();
         return;
     }
 
-    // Überprüfe die Checkboxen in der Tabelle "zentral"
     if (!validateZentralCheckboxes()) {
         event.preventDefault();
         return;
     }
 
-    // Überprüfe die Checkboxen für Abnahme/Übergabe
     if (!validateCheckboxes()) {
         event.preventDefault();
         return;
@@ -71,6 +67,19 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.style.display = 'flex';
+
+
+
+    // NEU: Placeholder ausblenden
+    const inputsWithPlaceholders = document.querySelectorAll('input[placeholder], textarea[placeholder]');
+    const originalPlaceholders = [];
+    inputsWithPlaceholders.forEach(input => {
+        originalPlaceholders.push({
+            element: input,
+            placeholder: input.getAttribute('placeholder')
+        });
+        input.removeAttribute('placeholder');
+    });
 
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
@@ -132,30 +141,26 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         async function renderElementToPDF(element, yOffset = margin) {
             try {
-                await new Promise(resolve => setTimeout(resolve, 100)); // Kurze Verzögerung
+                await new Promise(resolve => setTimeout(resolve, 100));
                 const canvas = await html2canvas(element, { scale: 1, useCORS: true });
                 const imgData = canvas.toDataURL('image/jpeg', 0.9);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
-        
-                // Verfügbare Höhe auf einer Seite
+
                 const maxPageHeight = pageHeight - 2 * margin;
-        
-                // Skalierte Höhe basierend auf der verfügbaren Breite
+
                 let scaledHeight = (imgHeight * usableWidth) / imgWidth;
-        
-                // Überprüfen, ob der Inhalt auf eine Seite passt
+
                 if (scaledHeight > maxPageHeight) {
-                    // Inhalt ist zu groß, Skalierungsfaktor berechnen
+
                     const scaleFactor = maxPageHeight / scaledHeight;
-                    scaledHeight *= scaleFactor; // Skalierte Höhe anpassen
-                    const scaledWidth = usableWidth * scaleFactor; // Skalierte Breite anpassen
-        
-                    // Skalierten Inhalt auf einer Seite rendern
+                    scaledHeight *= scaleFactor;
+                    const scaledWidth = usableWidth * scaleFactor;
+
                     pdf.addImage(
                         imgData,
                         'JPEG',
-                        margin + (usableWidth - scaledWidth) / 2, // Zentrieren
+                        margin + (usableWidth - scaledWidth) / 2,
                         yOffset,
                         scaledWidth,
                         scaledHeight,
@@ -163,10 +168,10 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                         'FAST'
                     );
                 } else {
-                    // Inhalt passt auf eine Seite
+
                     pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, scaledHeight, undefined, 'FAST');
                 }
-        
+
                 return yOffset + scaledHeight + margin;
             } catch (error) {
                 console.warn("Fehler beim Rendern des Elements:", element, error);
@@ -175,19 +180,63 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         }
 
 
+        let targetPercentage = 0;
+        let currentDisplayPercentage = 0;
+        const progressIntervalDuration = 30;
 
+        function updateProgressSmoothly(target) {
+            targetPercentage = target;
 
+            if (!window.progressInterval) {
+                window.progressInterval = setInterval(animateProgress, progressIntervalDuration);
+            }
+        }
 
+        function animateProgress() {
+            if (currentDisplayPercentage < targetPercentage) {
+                currentDisplayPercentage++;
+                progressBar.style.width = `${currentDisplayPercentage}%`;
+                progressText.textContent = `${currentDisplayPercentage}% abgeschlossen`;
 
+                updateProgressColor(currentDisplayPercentage);
+            }
 
+            if (currentDisplayPercentage >= targetPercentage) {
+                clearInterval(window.progressInterval);
+                window.progressInterval = null;
+            }
+        }
+
+        if (currentDisplayPercentage >= 100) {
+            progressBar.classList.add('progress-complete');
+            setTimeout(() => {
+                progressBar.classList.remove('progress-complete');
+            }, 1000);
+        }
+
+        function updateProgressColor(percentage) {
+            if (percentage > 75) {
+                progressBar.style.backgroundColor = '#2E7D32'; // Dunkelgrün (reif)
+                progressBar.style.boxShadow = '0 0 15px rgba(46, 125, 50, 0.6)';
+            } else if (percentage > 50) {
+                progressBar.style.backgroundColor = '#388E3C'; // Mittelgrün (wachsend)
+                progressBar.style.boxShadow = '0 0 12px rgba(56, 142, 60, 0.5)';
+            } else if (percentage > 25) {
+                progressBar.style.backgroundColor = '#4CAF50'; // Frischgrün
+                progressBar.style.boxShadow = '0 0 8px rgba(76, 175, 80, 0.4)';
+            } else {
+                progressBar.style.backgroundColor = '#8BC34A'; // Hellgrün (Keimling)
+                progressBar.style.boxShadow = '0 0 5px rgba(139, 195, 74, 0.3)';
+            }
+        }
 
 
 
         function updateProgress(current, total) {
-            const percentage = Math.round((current / total) * 100);
-            progressBar.style.width = `${Math.min(percentage, 100)}%`;
-            progressText.textContent = `${Math.min(percentage, 100)}% abgeschlossen`;
+            const percentage = Math.min(Math.round((current / total) * 100), 100);
+            updateProgressSmoothly(percentage);
         }
+
 
 
         const totalElements = [
@@ -207,7 +256,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
             ...(elements.largeImages ? Array.from(elements.largeImages) : [])
         ].length;
-
 
         let currentElement = 0;
 
@@ -273,7 +321,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         if (elements.signtoggle) yOffset2 = await renderElementToPDF(elements.signtoggle, yOffset2);
         currentElement++;
         updateProgress(currentElement, totalElements);
-
 
         if (elements.bilderzimmer) {
             const children = Array.from(elements.bilderzimmer.children);
@@ -341,6 +388,11 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         const fileName = `${strasse}_${datum}_${protokollTyp}.pdf`.replace(/\s+/g, '_');
         pdf.save(fileName);
 
+
+
+
+
+
         inputs.forEach((input, index) => {
             input.style.height = originalHeights[index];
         });
@@ -348,11 +400,27 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     } catch (error) {
         console.error("Fehler beim Generieren des PDFs:", error);
     } finally {
+
+        originalPlaceholders.forEach(item => {
+            item.element.setAttribute('placeholder', item.placeholder);
+        });
+
         themeElement.setAttribute("href", currentTheme);
         buttons.forEach(button => button.style.display = '');
 
-        document.querySelectorAll(".imagePreview, .image-preview, .customUploadButton, input[type='file']").forEach(element => {
+        themeElement.setAttribute("href", currentTheme);
+        buttons.forEach(button => button.style.display = '');
+
+        /*         document.querySelectorAll(".imagePreview, .image-preview, .customUploadButton, input[type='file']").forEach(element => {
+                    element.style.display = "inline-block";
+                }); */
+
+        document.querySelectorAll(".customUploadButton").forEach(element => {
             element.style.display = "inline-block";
+        });
+
+        document.querySelectorAll(".imagePreview, .image-preview, input[type='file']").forEach(element => {
+            element.style.display = "none";
         });
 
         loadingOverlay.style.display = 'none';
