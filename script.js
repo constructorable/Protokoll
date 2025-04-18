@@ -1,6 +1,6 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
 // script.js
-// Version 3.25_beta
+// Version 3.26_beta
 
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
@@ -20,6 +20,9 @@ function toggleMode() {
         link.setAttribute("href", "styles.css"); // Dunkler Modus
     }
 }
+
+
+
 
 
 
@@ -164,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('addausziehenderMieter').addEventListener('click', function () {
         let table = document.getElementById('auszugmieterTable');
 
-         if (!table) {
+        if (!table) {
             table = document.createElement('table');
             table.id = 'auszugmieterTable';
 
@@ -249,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         signatureContainer.appendChild(signatureBox);
 
-         const mieterInfo = document.createElement('div');
+        const mieterInfo = document.createElement('div');
         mieterInfo.id = `ausziehender-mieter-info-${counter}`;
         mieterInfo.style.marginTop = '-10px';
         mieterInfo.style.marginLeft = '1px';
@@ -600,8 +603,8 @@ function setupImageUpload(uploadButton) {
                     let ctx = canvas.getContext("2d");
 
                     // Zielgröße für die Skalierung
-                    const maxWidth = 800;
-                    const maxHeight = 800;
+                    const maxWidth = 2500;
+                    const maxHeight = 2500;
                     let width = img.width;
                     let height = img.height;
 
@@ -658,9 +661,9 @@ function setupImageUpload(uploadButton) {
 
                         // Löschen-Funktion
                         deleteButton.addEventListener("click", function () {
-                            imgWrapper.remove(); // Entfernt das Miniaturbild
-                            highResWrapper.remove(); // Entfernt das hochauflösende Bild
-                            URL.revokeObjectURL(scaledImageSrc); // Gibt den Blob-URL frei
+                            imgWrapper.remove(); 
+                            highResWrapper.remove(); 
+                            URL.revokeObjectURL(scaledImageSrc); 
 
                             // Entferne das Bild aus localStorage
                             storedImages = storedImages.filter(img => img.imageUrl !== scaledImageSrc);
@@ -674,7 +677,6 @@ function setupImageUpload(uploadButton) {
                         // Hochauflösendes Bild mit Titel in der gewünschten HTML-Struktur
                         let highResWrapper = document.createElement("div");
                         highResWrapper.className = "large-image-wrapperxxx";
-                        /* highResWrapper.id = `large-wrapper-img-${storedImages.length}-${Math.random().toString(36).substr(2, 9)}`; */
                         highResWrapper.id = `largexxx-wrapperxxx-imgxxx-${storedImages.length}-${Math.random().toString(36).substr(2, 9)}`;
 
                         let titleElement = document.createElement("p");
@@ -683,7 +685,6 @@ function setupImageUpload(uploadButton) {
                         let imgHighRes = document.createElement("img");
                         imgHighRes.src = scaledImageSrc;
                         imgHighRes.style.display = "block";
-                        /*   imgHighRes.style.maxWidth = "950px"; */
                         imgHighRes.style.width = "auto";
                         imgHighRes.style.height = "600px";
                         imgHighRes.style.border = "1px solid #ccc";
@@ -704,9 +705,9 @@ function setupImageUpload(uploadButton) {
 
                         // Löschen-Funktion für das hochauflösende Bild
                         deleteButtonHighRes.addEventListener("click", function () {
-                            highResWrapper.remove(); // Entfernt das hochauflösende Bild
-                            imgWrapper.remove(); // Entfernt das Miniaturbild
-                            URL.revokeObjectURL(scaledImageSrc); // Gibt den Blob-URL frei
+                            highResWrapper.remove();
+                            imgWrapper.remove();
+                            URL.revokeObjectURL(scaledImageSrc);
 
                             // Entferne das Bild aus localStorage
                             storedImages = storedImages.filter(img => img.imageUrl !== scaledImageSrc);
@@ -717,7 +718,7 @@ function setupImageUpload(uploadButton) {
                         highResWrapper.appendChild(imgHighRes);
                         highResWrapper.appendChild(deleteButtonHighRes);
                         signContainer.appendChild(highResWrapper);
-                    }, 'image/jpeg', 0.7); // Qualität auf 70% setzen
+                    }, 'image/jpeg', 0.6); // Qualität auf 75% setzen
                 };
             };
 
@@ -737,83 +738,6 @@ document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUploa
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
-/* document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-
-        function formatDate(dateString) {
-            if (!dateString) return "";
-
-            const date = new Date(dateString);
-
-            // Führende Nullen ergänzen
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
-            const year = date.getFullYear();
-
-            return `${day}.${month}.${year}`;
-        }
-
-        // Verbesserte Update-Funktion
-        function updateSignFields() {
-            const strasse = document.getElementById("strasseeinzug").value + ",";
-            const lage = document.getElementById("lageeinzug2").value + ",";
-            const plz = document.getElementById("plzeinzug").value + ",";
-            const mieterid = document.getElementById("mieterid").value + ",";
-            const datum = formatDate(document.getElementById("datum").value);
-
-            document.getElementById("strasseeinzugsign").textContent = strasse;
-            document.getElementById("lageeinzugsign").textContent = lage;
-            document.getElementById("plzeinzugsign").textContent = plz;
-            document.getElementById("mieteridsign").textContent = mieterid;
-            document.getElementById("datumsign").textContent = datum;
-        }
-
-        // Spezielle Funktion für Mieternummer-Änderungen
-        function handleMieterIdChange() {
-            const mieterIdInput = document.getElementById("mieterid");
-            const fullValue = window.strassen.find(s =>
-                s.mieternummer.startsWith(mieterIdInput.value)
-            )?.mieternummer;
-
-            if (fullValue) {
-                mieterIdInput.value = fullValue;
-            }
-            updateSignFields();
-        }
-
-        // Event-Listener
-        document.getElementById("mieterid").addEventListener("input", function () {
-            setTimeout(handleMieterIdChange, 500);
-        });
-
-        // Standard-Listener für andere Felder
-        document.getElementById("strasseeinzug").addEventListener("input", updateSignFields);
-        document.getElementById("lageeinzug2").addEventListener("input", updateSignFields);
-        document.getElementById("plzeinzug").addEventListener("input", updateSignFields);
-        document.getElementById("datum").addEventListener("input", updateSignFields);
-
-        // MutationObserver für programmatische Änderungen
-        const observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                if (mutation.attributeName === 'value') {
-                    updateSignFields();
-                }
-            });
-        });
-
-        // Observer für alle relevanten Felder
-        const fields = ["strasseeinzug", "lageeinzug2", "plzeinzug", "mieterid", "datum"];
-        fields.forEach(id => {
-            observer.observe(document.getElementById(id), {
-                attributes: true,
-                attributeFilter: ['value']
-            });
-        });
-
-        // Initiale Aktualisierung
-        updateSignFields();
-    }, 100); // 100ms Wartezeit für immo.js
-}); */
 
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
@@ -857,8 +781,8 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 const mieterIdInput = document.getElementById("mieterid");
                 if (!mieterIdInput || !window.strassen) return;
-                
-                const fullValue = window.strassen.find(s => 
+
+                const fullValue = window.strassen.find(s =>
                     s.mieternummer.startsWith(mieterIdInput.value)
                 )?.mieternummer;
 
@@ -875,7 +799,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function setupEventListeners() {
             const debounce = (func, delay) => {
                 let timeout;
-                return function() {
+                return function () {
                     const context = this;
                     const args = arguments;
                     clearTimeout(timeout);
@@ -884,11 +808,11 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             const fields = [
-                {id: "mieterid", handler: debounce(handleMieterIdChange, 500)},
-                {id: "strasseeinzug", handler: updateSignFields},
-                {id: "lageeinzug2", handler: updateSignFields},
-                {id: "plzeinzug", handler: updateSignFields},
-                {id: "datum", handler: updateSignFields}
+                { id: "mieterid", handler: debounce(handleMieterIdChange, 500) },
+                { id: "strasseeinzug", handler: updateSignFields },
+                { id: "lageeinzug2", handler: updateSignFields },
+                { id: "plzeinzug", handler: updateSignFields },
+                { id: "datum", handler: updateSignFields }
             ];
 
             fields.forEach(field => {
@@ -902,8 +826,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Robustere MutationObserver-Implementierung
         function setupMutationObserver() {
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
                     if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
                         updateSignFields();
                     }
@@ -1068,22 +992,24 @@ window.addEventListener('beforeunload', function (event) {
         return confirmationMessage;
     }
 });
-document.getElementById('newTabButton').addEventListener('click', function () {
+/* document.getElementById('newTabButton').addEventListener('click', function () {
     allowUnload = true;
     window.open('https://www.google.com', '_blank');
     setTimeout(() => { allowUnload = false; }, 1000);
-});
+}); */
 window.addEventListener('beforeunload', function (event) {
     const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Alle Eingaben gehen dadurch verloren.';
     event.returnValue = confirmationMessage;
     return confirmationMessage;
 });
 
+
+
 // Funktion, um den Namen unter der Unterschrift anzuzeigen
 // Funktion, um den Namen unter der Unterschrift anzuzeigen
 // Funktion, um den Namen unter der Unterschrift anzuzeigen
 function updateFullName(fullNameSpan, fullName) {
-     const [name, vorname] = fullName.split(',').map(part => part.trim());
+    const [name, vorname] = fullName.split(',').map(part => part.trim());
     if (vorname && name) {
         fullNameSpan.textContent = `${vorname} ${name}`;
     } else {
@@ -1253,7 +1179,8 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
     einbaulageCell.innerHTML = '<input type="text" placeholder="" class="autoscale" style="width: 100%;">';
 
     const zaehlerstandCell = document.createElement('td');
-    zaehlerstandCell.innerHTML = '<input type="text" placeholder="" class="meterstand autoscale" style="width:166px;">';
+    zaehlerstandCell.innerHTML = '<input type="number" placeholder="" class="meterstand autoscale" style="width:166px;">';
+    
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(zaehlernummerCell);
@@ -1316,21 +1243,21 @@ document.addEventListener("DOMContentLoaded", function () {
             let arrow = header.querySelector("span.arrows00"); // Suche nach einem span mit der Klasse arrows00
             if (!arrow) {
                 arrow = document.createElement("span");
-                arrow.textContent = " ▼";
-                arrow.classList.add("arrows00"); // Füge die Klasse arrows00 hinzu
-                arrow.style.transition = "transform 0.3s ease";
-                header.appendChild(arrow);
+                /* arrow.textContent = " ▼"; */
+                /* arrow.classList.add("arrows00"); */
+                /* arrow.style.transition = "transform 0.3s ease"; */
+                /* header.appendChild(arrow); */
             }
 
             content.style.display = "table"; // Räume sollen offen sein
-            header.style.cursor = "pointer";
-            header.style.display = "flex";
+            /* header.style.cursor = "pointer"; */
+/*             header.style.display = "flex";
             header.style.justifyContent = "space-between";
-            header.style.alignItems = "center";
+            header.style.alignItems = "center"; */
 
-            header.addEventListener("click", function () {
+          /*   header.addEventListener("click", function () {
                 toggleRoom(header, content, arrow);
-            });
+            }); */
         }
     }
 
@@ -1371,6 +1298,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateFullName(fullNameSpan, name, vorname) {
     fullNameSpan.textContent = name && vorname ? `${vorname} ${name}` : '';
 }
+
+
 
 /* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
 /* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
@@ -1473,33 +1402,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+/* Abteilung "Regelung Mäneglbeseitigung": wenn die erste radio-Checkbox mit nicht-zutreffend ausgewählt wird werden alle darunterliegenden Radio-Checkboxes ebenfalls mit nicht-zutreffend" ausgefüllt. */
+/* Abteilung "Regelung Mäneglbeseitigung": wenn die erste radio-Checkbox mit nicht-zutreffend ausgewählt wird werden alle darunterliegenden Radio-Checkboxes ebenfalls mit nicht-zutreffend" ausgefüllt. */
+/* Abteilung "Regelung Mäneglbeseitigung": wenn die erste radio-Checkbox mit nicht-zutreffend ausgewählt wird werden alle darunterliegenden Radio-Checkboxes ebenfalls mit nicht-zutreffend" ausgefüllt. */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const masterRadio = document.getElementById('weitereBemerkungen2');
     const dependentRadios = [
-        'weitereBemerkungen6', 
+        'weitereBemerkungen6',
         'weitereBemerkungen9',
         'nichtZutreffendCheckbox2'
     ];
-
     if (!masterRadio) {
         console.error('Haupt-Radio-Button nicht gefunden');
         return;
     }
-
-    masterRadio.addEventListener('click', function() {
+    masterRadio.addEventListener('click', function () {
         const isChecked = this.checked;
-        
         dependentRadios.forEach(id => {
             const radio = document.getElementById(id);
             if (radio) {
-                // Setze den Zustand des abhängigen Elements
                 radio.checked = isChecked;
-                
-                // Finde das zugehörige Label
+
                 const label = document.querySelector(`label[for="${id}"]`) || radio.nextElementSibling;
-                
-                // Aktualisiere die visuelle Darstellung
+
                 if (label) {
                     if (isChecked) {
                         label.classList.add('checked');
@@ -1509,13 +1435,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         label.classList.remove('checked');
                     }
                 }
-                
-                // Trigger Events
                 const event = new Event('change', { bubbles: true });
                 radio.dispatchEvent(event);
             }
         });
-        
         console.log(`Master Radio ${isChecked ? 'aktiviert' : 'deaktiviert'}, alle abhängigen Elemente aktualisiert`);
     });
 });
