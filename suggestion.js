@@ -46,40 +46,40 @@ const farben = [
     "dunkelrot",
     "karminrot",
     "weinrot",
-    
+
     // Grün
     "grün",
     "hellgrün",
     "dunkelgrün",
     "waldgrün",
     "apfelgrün",
-    
+
     // Braun
     "braun",
     "hellbraun",
     "dunkelbraun",
     "kakao",
     "mahagoni",
-    
+
     // Grau (Ergänzung zu vorhandenen)
     "mittelgrau",
     "steingrau",
     "silbergrau",
-    
+
     // Lila
     "lila",
     "helllila",
     "dunkellila",
     "flieder",
     "lavendel",
-    
+
     // Rosa
     "rosa",
     "hellrosa",
     "dunkelrosa",
     "puderrosa",
     "altrosa",
-    
+
     // Gelb
     "gelb",
     "hellgelb",
@@ -183,14 +183,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Funktion, um Vorschläge basierend auf der Benutzereingabe anzuzeigen
     function showSuggestions(input, suggestionsArray, suggestionList) {
         const inputValue = input.value.toLowerCase();
-        
+
         // Suche nach Teilstrings in allen Einträgen
-        const suggestions = suggestionsArray.filter(item => 
+        const suggestions = suggestionsArray.filter(item =>
             item.toLowerCase().includes(inputValue)
         );
-    
+
         suggestionList.innerHTML = "";
-    
+
         suggestions.forEach(item => {
             const option = document.createElement("div");
             option.textContent = item;
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             suggestionList.appendChild(option);
         });
-    
+
         if (suggestions.length > 0) {
             suggestionList.style.display = "block";
         } else {
@@ -266,9 +266,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 case "fussboden-farbe":
                     suggestionsArray = fussbodenFarben;
                     break;
-/*                 case "stockwerk":
-                    suggestionsArray = stockwerke;
-                    break; */
+                /*                 case "stockwerk":
+                                    suggestionsArray = stockwerke;
+                                    break; */
                 default:
                     console.warn(`Unbekannter Datentyp: ${dataType}`);
                     return;
@@ -277,7 +277,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showSuggestions(target, suggestionsArray, suggestionList);
         }
     });
-
 
     document.addEventListener("focus", function (event) {
         const target = event.target;
@@ -341,16 +340,16 @@ document.addEventListener("DOMContentLoaded", function () {
 // Autovervollständigung für Lage der Zimmer
 // Autovervollständigung für Lage der Zimmer
 // suggestion.js - mit Teilstring-Matching
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Observer für dynamisch hinzugefügte Elemente
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            mutation.addedNodes.forEach(function(node) {
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            mutation.addedNodes.forEach(function (node) {
                 if (node.nodeType === 1) { // Nur Elementknoten prüfen
-                    const inputs = node.querySelectorAll ? 
+                    const inputs = node.querySelectorAll ?
                         node.querySelectorAll('input[name="bezeich-lage"]') : [];
                     inputs.forEach(initAutocomplete);
-                    
+
                     // Falls das Input-Feld selbst hinzugefügt wurde
                     if (node.tagName === 'INPUT' && node.name === 'bezeich-lage') {
                         initAutocomplete(node);
@@ -392,13 +391,15 @@ function initAutocomplete(input) {
         'vorne (straßenseitig)',
         'hinten (straßenseitig)',
         'mitte (straßenseitig)',
+        'straßenseitig',
+        'hofseitig',
         'Wohnzimmer',
         'Arbeitszimmer',
         'Kinderzimmer',
         'Schlafzimmer',
         'Abstellraum',
         'Esszimmer',
-        'Hobbyraum'  
+        'Hobbyraum'
     ];
 
     let activeIndex = -1;
@@ -408,7 +409,7 @@ function initAutocomplete(input) {
     const dropdown = document.createElement('div');
     dropdown.className = 'suggestion-dropdown';
     dropdown.style.display = 'none';
-    
+
     // Positionierung relativ zum Input-Feld
     function positionDropdown() {
         const rect = input.getBoundingClientRect();
@@ -417,28 +418,28 @@ function initAutocomplete(input) {
         dropdown.style.top = `${rect.bottom + window.scrollY}px`;
         dropdown.style.width = `${rect.width}px`;
     }
-    
+
     document.body.appendChild(dropdown);
 
     // Input Event Handler mit Teilstring-Suche
-    input.addEventListener('input', function(e) {
+    input.addEventListener('input', function (e) {
         const value = e.target.value.toLowerCase();
         dropdown.innerHTML = '';
         activeIndex = -1;
-        
+
         if (value.length === 0) {
             dropdown.style.display = 'none';
             return;
         }
 
         // Angepasste Filterung für Teilstrings
-        currentSuggestions = suggestions.filter(item => 
+        currentSuggestions = suggestions.filter(item =>
             item.toLowerCase().includes(value)
         );
 
         if (currentSuggestions.length > 0) {
             positionDropdown();
-            
+
             // Sortierung: Begriffe die mit dem Suchtext beginnen kommen zuerst
             currentSuggestions.sort((a, b) => {
                 const aStartsWith = a.toLowerCase().startsWith(value) ? 0 : 1;
@@ -448,19 +449,19 @@ function initAutocomplete(input) {
 
             currentSuggestions.forEach((item, index) => {
                 const suggestionItem = document.createElement('div');
-                
+
                 // Markiere den gefundenen Teilstring im Vorschlag
                 const matchIndex = item.toLowerCase().indexOf(value);
                 if (matchIndex >= 0) {
                     const before = item.substring(0, matchIndex);
                     const match = item.substring(matchIndex, matchIndex + value.length);
                     const after = item.substring(matchIndex + value.length);
-                    
+
                     suggestionItem.innerHTML = `${before}${match}${after}`;
                 } else {
                     suggestionItem.textContent = item;
                 }
-                
+
                 suggestionItem.className = 'suggestion-item';
                 suggestionItem.addEventListener('click', () => {
                     input.value = item;
@@ -475,9 +476,9 @@ function initAutocomplete(input) {
     });
 
     // Tastatursteuerung (wie zuvor)
-    input.addEventListener('keydown', function(e) {
+    input.addEventListener('keydown', function (e) {
         const items = dropdown.querySelectorAll('.suggestion-item');
-        
+
         if (e.key === 'ArrowDown') {
             e.preventDefault();
             activeIndex = (activeIndex + 1) % currentSuggestions.length;
@@ -504,7 +505,7 @@ function initAutocomplete(input) {
     }
 
     // Verstecke Dropdown bei Klick außerhalb oder Blur
-    input.addEventListener('blur', function() {
+    input.addEventListener('blur', function () {
         setTimeout(() => {
             if (!dropdown.contains(document.activeElement)) {
                 dropdown.style.display = 'none';
