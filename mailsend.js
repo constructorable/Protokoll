@@ -1,6 +1,6 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
 // mailsend.js
-// Version 3.25_beta
+// Version 3.30_beta
 
 
 function sendEmail(fileName, emails, client) {
@@ -58,12 +58,6 @@ function sendEmail(fileName, emails, client) {
         case 'gmail':
             mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailList}&cc=${ccEmail}&su=${subject}&body=${body}`;
             break;
-        case 'outlook':
-            mailtoLink = `https://outlook.live.com/owa/?path=/mail/action/compose&to=${emailList}&cc=${ccEmail}&subject=${subject}&body=${body}`;
-            break;
-        case 'yahoo':
-            mailtoLink = `https://compose.mail.yahoo.com/?to=${emailList}&cc=${ccEmail}&subject=${subject}&body=${body}`;
-            break;
         default:
             mailtoLink = `mailto:${emailList}?cc=${ccEmail}&subject=${subject}&body=${body}`;
             break;
@@ -91,13 +85,13 @@ function showEmailMenu(fileName) {
     let validEmails = findValidEmails();
 
     if (validEmails.length === 0) {
-        const userResponse = confirm("Keine gültigen E-Mail-Adressen gefunden. Möchten Sie eine E-Mail-Adresse eingeben?");
+        const userResponse = confirm("Keine gültigen E-Mail-Adressen gefunden.");
         if (userResponse) {
             const emailInput = prompt("Bitte geben Sie eine gültige E-Mail-Adresse ein:");
             if (emailInput && validateEmail(emailInput)) {
                 validEmails.push(emailInput);
             } else {
-                alert("Die eingegebene E-Mail-Adresse ist ungültig.");
+                alert("ungültige Mailadresse");
                 return;
             }
         } else {
@@ -134,16 +128,6 @@ function showEmailMenu(fileName) {
 
     document.getElementById('gmail').addEventListener('click', () => {
         sendEmail(fileName, validEmails, 'gmail');
-        closeEmailMenu();
-    });
-
-    document.getElementById('outlook').addEventListener('click', () => {
-        sendEmail(fileName, validEmails, 'outlook');
-        closeEmailMenu();
-    });
-
-    document.getElementById('yahoo').addEventListener('click', () => {
-        sendEmail(fileName, validEmails, 'yahoo');
         closeEmailMenu();
     });
 
