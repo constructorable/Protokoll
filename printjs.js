@@ -24,7 +24,7 @@ function validateCheckboxes() {
     const uebergabeCheckbox = document.getElementById("uebergabe");
 
     if (!abnahmeCheckbox.checked && !uebergabeCheckbox.checked) {
-        alert("Bitte mind.s eine Protokollart wählen (Abnahme- und / oder Übergabeprotokoll).");
+        alert("Bitte mind. eine Protokollart wählen (Abnahme- und / oder Übergabeprotokoll).");
         return false;
     }
 
@@ -62,7 +62,8 @@ function validateNumberInputs() {
         input.classList.remove("input-error");
 
         if (value === "") {
-            alert(`Feld darf nicht leer sein: "${input.placeholder || input.className || 'Zählerstand'}"`);
+           /*  alert(`Feld darf nicht leer sein: "${input.placeholder || input.className || 'Zählerstand'}"`); */
+           alert(`Bitte gültigen Zählerstand eingeben`);
             input.classList.add("input-error");
             input.focus();
             allValid = false;
@@ -331,7 +332,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             elements.weitereBemerkungen,
             elements.hauptBemerkungen,
             elements.print1,
-            elements.stammdupli,
+           /*  elements.stammdupli, */
             elements.signtoggle,
             ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
             ...(elements.largeImages ? Array.from(elements.largeImages) : [])
@@ -397,7 +398,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         pdf.addPage();
         let yOffset2 = margin;
         if (elements.print1) yOffset2 = await renderElementToPDF(elements.print1, yOffset2);
-        if (elements.stammdupli) yOffset2 = await renderElementToPDF(elements.stammdupli, yOffset2);
+        /* if (elements.stammdupli) yOffset2 = await renderElementToPDF(elements.stammdupli, yOffset2); */
         if (elements.signtoggle) yOffset2 = await renderElementToPDF(elements.signtoggle, yOffset2);
         currentElement++;
         updateProgress(currentElement, totalElements);
