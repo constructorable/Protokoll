@@ -1,6 +1,8 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
 // print.js
-// Version 3.25_beta
+// Version 3.26_beta
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -47,8 +49,72 @@ function validateZentralCheckboxes() {
     return true;
 }
 
-document.getElementById('savePdfButton').addEventListener('click', async function (event) {
 
+
+function validateNumberInputs() {
+    const numberInputs = document.querySelectorAll('input.meterstand.autoscale[type="number"]');
+    let allValid = true;
+
+    numberInputs.forEach(input => {
+        let value = input.value.trim();
+
+        // Entferne vorherige Fehleranzeige
+        input.classList.remove("input-error");
+
+        if (value === "") {
+            alert(`Feld darf nicht leer sein: "${input.placeholder || input.className || 'Zählerstand'}"`);
+            input.classList.add("input-error");
+            input.focus();
+            allValid = false;
+            return;
+        }
+
+        value = value.replace(",", ".");
+
+        const decimalPoints = (value.match(/\./g) || []).length;
+        if (decimalPoints > 1) {
+            alert(`Ungültiges Zahlenformat im Feld: "${input.placeholder || input.className}". Bitte geben Sie eine gültige Dezimalzahl ein (z.B. 234,456).`);
+            input.classList.add("input-error");
+            input.focus();
+            allValid = false;
+            return;
+        }
+
+        const numberValue = Number(value);
+
+        if (isNaN(numberValue)) {
+            alert(`Bitte gültige Zahl eingeben im Feld: "${input.placeholder || input.className || 'Zählerstand'}"`);
+            input.classList.add("input-error");
+            input.focus();
+            allValid = false;
+            return;
+        }
+
+        if (numberValue < 0.000001) {
+            alert(`Der Wert muss mindestens 0,000001 betragen im Feld: "${input.placeholder || input.className || 'Zählerstand'}"`);
+            input.classList.add("input-error");
+            input.focus();
+            allValid = false;
+            return;
+        }
+
+        // gültig → normalisieren und ggf. Fehlerklasse entfernen
+        input.value = numberValue;
+        input.classList.remove("input-error");
+    });
+
+    return allValid;
+}
+
+
+
+
+
+
+
+
+
+document.getElementById('savePdfButton').addEventListener('click', async function (event) {
     if (!validateStrasseeinzug()) {
         event.preventDefault();
         return;
@@ -60,6 +126,11 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     }
 
     if (!validateCheckboxes()) {
+        event.preventDefault();
+        return;
+    }
+
+    if (!validateNumberInputs()) {
         event.preventDefault();
         return;
     }
@@ -142,8 +213,17 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         async function renderElementToPDF(element, yOffset = margin) {
             try {
                 await new Promise(resolve => setTimeout(resolve, 100));
-                const canvas = await html2canvas(element, { scale: 1, useCORS: true });
-                const imgData = canvas.toDataURL('image/jpeg', 0.9);
+
+                const canvas = await html2canvas(element, {
+                    scale: 2, // Erhöhen Sie diesen Wert für höhere Auflösung
+                    useCORS: true,
+                    logging: false,
+                    allowTaint: true,
+                    letterRendering: true
+                });
+
+
+                const imgData = canvas.toDataURL('image/jpeg', 0.6);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
 
@@ -169,7 +249,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                     );
                 } else {
 
-                    pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, scaledHeight, undefined, 'FAST');
+                    pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, scaledHeight, undefined, 'SLOW');
                 }
 
                 return yOffset + scaledHeight + margin;
@@ -430,3 +510,26 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         }
     }
 });
+
+
+
+
+
+// Beispiel: Funktion in printjs.js gibt ein Promise zurück
+function processData() {
+    return new Promise((resolve) => {
+        // Deine Logik hier...
+        resolve(); // Aufruf, wenn fertig
+    });
+}
+
+// Hauptfunktion, die alles ausführt
+async function runAllPrintJSFunctions() {
+    await processData();
+    await otherFunction();
+    // ... alle anderen Funktionen
+
+    // Custom Event auslösen, wenn alles fertig ist
+    document.dispatchEvent(new CustomEvent('printJSFinished'));
+}
+
