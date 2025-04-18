@@ -23,118 +23,19 @@ function toggleMode() {
 
 
 
-
-
-
 /* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 /* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 /* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
-let counterEinziehender = 1;
-document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
-    let table = document.getElementById('einzugmieterTable');
-    if (!table) {
-        table = document.createElement('table');
-        table.id = 'einzugmieterTable';
+document.addEventListener("DOMContentLoaded", function () {
+    let counterEinziehender = 1;
 
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        const headers = [
-            { text: 'Name', width: '30%' },
-            { text: 'Vorname', width: '25%' },
-            { text: 'Tel.:', width: '20%' },
-            { text: 'E-Mail', width: '25%' }
-        ];
+    document.getElementById('addeinziehenderMieter').addEventListener('click', function () {
+        let table = document.getElementById('einzugmieterTable');
 
-        headers.forEach(header => {
-            const th = document.createElement('th');
-            th.textContent = header.text;
-            th.style.width = header.width;
-            headerRow.appendChild(th);
-        });
-
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
-
-        const tbody = document.createElement('tbody');
-        table.appendChild(tbody);
-
-        const button = document.getElementById('addeinziehenderMieter');
-        button.insertAdjacentElement('beforebegin', table);
-    }
-
-    const newRow1 = document.createElement('tr');
-    const nameCell = document.createElement('td');
-    const vornameCell = document.createElement('td');
-    const strasseCell = document.createElement('td');
-    const plzOrtCell = document.createElement('td');
-
-    const counter = document.querySelectorAll('.signature-container').length + 1;
-    const nameId = `NameEin${counter.toString().padStart(2, '0')}`;
-    const vornameId = `VornameEin${counter.toString().padStart(2, '0')}`;
-
-    nameCell.innerHTML = `<input type="text" id="${nameId}" class="autoscale nameeinziehmieter" style="min-width: 1px;" placeholder="Nachname einziehender Mieter">`;
-    vornameCell.innerHTML = `<input type="text" id="${vornameId}" class="autoscale vornameeinziehmieter" style="min-width: 1px;" placeholder="Vorname">`;
-    strasseCell.innerHTML = '<input type="text" class="phones autoscale teleinziehmieter" style="min-width: 1px;" placeholder="Telefon">';
-    plzOrtCell.innerHTML = '<input type="email" class="mails autoscale maileinziehmieter" style="min-width: 1px;" placeholder="E-Mail">';
-
-    newRow1.appendChild(nameCell);
-    newRow1.appendChild(vornameCell);
-    newRow1.appendChild(strasseCell);
-    newRow1.appendChild(plzOrtCell);
-
-    const tbody = table.querySelector('tbody');
-    tbody.insertBefore(newRow1, tbody.firstChild);
-
-    const signatureContainer = document.createElement('div');
-    signatureContainer.classList.add('signature-container');
-    signatureContainer.id = `signature-container-einziehender-mieter-${counter}`;
-
-    const signatureBox = document.createElement('div');
-    signatureBox.classList.add('signature-box');
-
-    const clearButton = document.createElement('button');
-    clearButton.type = 'button';
-    clearButton.classList.add('signature-clear-btn');
-    clearButton.textContent = 'x';
-    clearButton.onclick = () => clearSignature(`einziehender-mieter-signature-${counter}`);
-    signatureBox.appendChild(clearButton);
-
-    const canvas = document.createElement('canvas');
-    canvas.id = `einziehender-mieter-signature-${counter}`;
-    canvas.classList.add('signature-canvas3');
-    signatureBox.appendChild(canvas);
-
-    signatureContainer.appendChild(signatureBox);
-
-    const mieterInfo = document.createElement('div');
-    mieterInfo.id = `einziehender-mieter-info-${counter}`;
-    mieterInfo.style.marginTop = '-10px';
-    mieterInfo.style.marginLeft = '11px';
-    mieterInfo.style.fontWeight = 'bold';
-    mieterInfo.style.textAlign = 'left';
-    mieterInfo.innerHTML = `einziehender Mieter: <span id="einziehender-mieter-fullname-${counter}"></span>`;
-
-    signatureContainer.appendChild(mieterInfo);
-
-    const signatureContent = document.querySelector('.signature-content');
-    signatureContent.appendChild(signatureContainer);
-
-    initSignatureCanvas(`einziehender-mieter-signature-${counter}`);
-
-    const nameInput = document.getElementById(nameId);
-    const vornameInput = document.getElementById(vornameId);
-    const fullNameSpan = document.getElementById(`einziehender-mieter-fullname-${counter}`);
-
-    nameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
-    vornameInput.addEventListener('input', () => updateFullName(fullNameSpan, nameInput.value, vornameInput.value));
-
-    let table2 = document.getElementById('einzugmieterTable');
-
-    if (table2) {
-        if (!table2.querySelector('thead')) {
+        // Tabellen-Header nur einmal erstellen
+        if (!table.querySelector('thead')) {
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
-
             const headers = [
                 { text: 'Name', width: '30%' },
                 { text: 'Vorname', width: '25%' },
@@ -150,12 +51,106 @@ document.getElementById('addeinziehenderMieter').addEventListener('click', funct
             });
 
             thead.appendChild(headerRow);
+            table.appendChild(thead);
 
-            table2.insertBefore(thead, table2.querySelector('tbody'));
+            const tbody = document.createElement('tbody');
+            table.appendChild(tbody);
         }
+
+        // Neue Zeile erstellen
+        const newRow = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        const vornameCell = document.createElement('td');
+        const telefonCell = document.createElement('td');
+        const emailCell = document.createElement('td');
+
+        const counter = document.querySelectorAll('.signature-container').length + 1;
+        const nameId = `NameEin${counter.toString().padStart(2, '0')}`;
+        const vornameId = `VornameEin${counter.toString().padStart(2, '0')}`;
+
+        nameCell.innerHTML = `
+        <input type="text" id="${nameId}" class="autoscale nameeinziehmieter" 
+               style="min-width: 1px;" placeholder="Nachname einziehender Mieter">`;
+        vornameCell.innerHTML = `
+        <input type="text" id="${vornameId}" class="autoscale vornameeinziehmieter" 
+               style="min-width: 1px;" placeholder="Vorname">`;
+        telefonCell.innerHTML = `
+        <input type="text" class="phones autoscale teleinziehmieter" 
+               style="min-width: 1px;" placeholder="Telefon">`;
+        emailCell.innerHTML = `
+        <input type="email" class="mails autoscale maileinziehmieter" 
+               style="min-width: 1px;" placeholder="E-Mail">`;
+
+        newRow.appendChild(nameCell);
+        newRow.appendChild(vornameCell);
+        newRow.appendChild(telefonCell);
+        newRow.appendChild(emailCell);
+
+        // Zeile am ENDE der Tabelle einfügen
+        table.querySelector('tbody').appendChild(newRow);
+
+        // Signatur-Container erstellen
+        const signatureContainer = document.createElement('div');
+        signatureContainer.classList.add('signature-container');
+        signatureContainer.id = `signature-container-einziehender-mieter-${counter}`;
+
+        const signatureBox = document.createElement('div');
+        signatureBox.classList.add('signature-box');
+
+        const clearButton = document.createElement('button');
+        clearButton.type = 'button';
+        clearButton.classList.add('signature-clear-btn');
+        clearButton.textContent = 'x';
+        clearButton.onclick = () => clearSignature(`einziehender-mieter-signature-${counter}`);
+        signatureBox.appendChild(clearButton);
+
+        const canvas = document.createElement('canvas');
+        canvas.id = `einziehender-mieter-signature-${counter}`;
+        canvas.classList.add('signature-canvas3');
+        signatureBox.appendChild(canvas);
+
+        signatureContainer.appendChild(signatureBox);
+
+        const mieterInfo = document.createElement('div');
+        mieterInfo.id = `einziehender-mieter-info-${counter}`;
+        mieterInfo.style.marginTop = '-10px';
+        mieterInfo.style.marginLeft = '11px';
+        mieterInfo.style.fontWeight = 'bold';
+        mieterInfo.style.textAlign = 'left';
+        mieterInfo.innerHTML = `einziehender Mieter: <span id="einziehender-mieter-fullname-${counter}"></span>`;
+
+        signatureContainer.appendChild(mieterInfo);
+
+        // Signatur-Container einfügen
+        const signatureContent = document.querySelector('.signature-content');
+        if (signatureContent) {
+            signatureContent.appendChild(signatureContainer);
+        }
+
+        // Signatur-Canvas initialisieren
+        initSignatureCanvas(`einziehender-mieter-signature-${counter}`);
+
+        // Event-Listener für Namensaktualisierung
+        const nameInput = document.getElementById(nameId);
+        const vornameInput = document.getElementById(vornameId);
+        const fullNameSpan = document.getElementById(`einziehender-mieter-fullname-${counter}`);
+
+        nameInput.addEventListener('input', () => {
+            updateFullName(fullNameSpan, nameInput.value, vornameInput.value);
+        });
+
+        vornameInput.addEventListener('input', () => {
+            updateFullName(fullNameSpan, nameInput.value, vornameInput.value);
+        });
+
+        counterEinziehender++;
+    });
+
+    // Hilfsfunktion für Namen unter Unterschrift
+    function updateFullName(fullNameSpan, lastName, firstName) {
+        fullNameSpan.textContent = `${firstName || ''} ${lastName || ''}`.trim();
     }
 });
-
 
 
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
@@ -661,9 +656,9 @@ function setupImageUpload(uploadButton) {
 
                         // Löschen-Funktion
                         deleteButton.addEventListener("click", function () {
-                            imgWrapper.remove(); 
-                            highResWrapper.remove(); 
-                            URL.revokeObjectURL(scaledImageSrc); 
+                            imgWrapper.remove();
+                            highResWrapper.remove();
+                            URL.revokeObjectURL(scaledImageSrc);
 
                             // Entferne das Bild aus localStorage
                             storedImages = storedImages.filter(img => img.imageUrl !== scaledImageSrc);
@@ -853,8 +848,8 @@ document.addEventListener("DOMContentLoaded", function () {
         updateSignFields();
 
         // Fallback: Regelmäßige Überprüfung (falls nötig)
-        setInterval(updateSignFields, 2000);
-    }, 100);
+        setInterval(updateSignFields, 60000);
+    }, 60000);
 });
 
 
@@ -1180,7 +1175,7 @@ document.getElementById('addZaehlerButton').addEventListener('click', function (
 
     const zaehlerstandCell = document.createElement('td');
     zaehlerstandCell.innerHTML = '<input type="number" placeholder="" class="meterstand autoscale" style="width:166px;">';
-    
+
 
     newRow.appendChild(bezeichnungCell);
     newRow.appendChild(zaehlernummerCell);
@@ -1251,13 +1246,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             content.style.display = "table"; // Räume sollen offen sein
             /* header.style.cursor = "pointer"; */
-/*             header.style.display = "flex";
-            header.style.justifyContent = "space-between";
-            header.style.alignItems = "center"; */
+            /*             header.style.display = "flex";
+                        header.style.justifyContent = "space-between";
+                        header.style.alignItems = "center"; */
 
-          /*   header.addEventListener("click", function () {
-                toggleRoom(header, content, arrow);
-            }); */
+            /*   header.addEventListener("click", function () {
+                  toggleRoom(header, content, arrow);
+              }); */
         }
     }
 
