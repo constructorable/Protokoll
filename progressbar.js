@@ -3,11 +3,12 @@ let progressBar;
 let progressText;
 let animationInterval;
 const phases = [
-    { duration: 10000, target: 70 },   
-    { duration: 9000, target: 21 },   
-    { duration: 30000, target: 6 },
-    { duration: 30000, target: 2 },
-    { duration: 45000, target: 1 }  
+    { duration: 15000, target: 30 },
+    { duration: 15000, target: 25 },
+    { duration: 15000, target: 20 },
+    { duration: 20000, target: 15 },
+    { duration: 25000, target: 9 },
+    { duration: 50000, target: 1 }  
 ];
 
 function initializeProgressBar() {
