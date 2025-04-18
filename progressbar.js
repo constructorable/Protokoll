@@ -1,4 +1,4 @@
-// progressbar.js - Finale optimierte Version
+// progressbar.js - Mit integrierter Zeit-Anzeige
 let progressBar;
 let progressText;
 let animationInterval;
@@ -8,7 +8,7 @@ const phases = [
     { duration: 15000, target: 20 },
     { duration: 20000, target: 15 },
     { duration: 25000, target: 9 },
-    { duration: 50000, target: 1 }  
+    { duration: 50000, target: 1 } 
 ];
 
 function initializeProgressBar() {
@@ -17,7 +17,7 @@ function initializeProgressBar() {
     
     // Reset Zustand
     progressBar.style.width = '0%';
-    progressText.textContent = '0% abgeschlossen';
+    progressText.innerHTML = '0% <span class="time-display">(0s)</span>';
     progressBar.style.backgroundColor = '#8BC34A';
     progressBar.style.boxShadow = '0 0 5px rgba(139, 195, 74, 0.3)';
     progressBar.classList.remove('progress-complete');
@@ -29,6 +29,8 @@ function initializeProgressBar() {
     
     animationInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
+        const seconds = Math.floor(elapsed / 1000);
+        
         let totalDuration = 0;
         let percentage = 0;
         
@@ -45,7 +47,7 @@ function initializeProgressBar() {
         
         if (percentage !== lastPercentage) {
             lastPercentage = percentage;
-            updateProgressDisplay(percentage);
+            updateProgressDisplay(percentage, seconds);
             
             if (percentage >= 100) {
                 clearInterval(animationInterval);
@@ -55,10 +57,10 @@ function initializeProgressBar() {
     }, 30);
 }
 
-function updateProgressDisplay(percentage) {
+function updateProgressDisplay(percentage, seconds) {
     const rounded = Math.round(percentage);
     progressBar.style.width = `${percentage}%`;
-    progressText.textContent = `${rounded}% abgeschlossen`;
+    progressText.innerHTML = `${rounded}% <span class="time-display">(${seconds} Sekunden)</span>`;
     
     if (percentage > 75) {
         progressBar.style.backgroundColor = '#2E7D32';
@@ -71,6 +73,7 @@ function updateProgressDisplay(percentage) {
 
 function completeProgressBar() {
     clearInterval(animationInterval);
-    updateProgressDisplay(100);
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    progressText.innerHTML = `100% <span class="time-display">(${elapsed} Sekunden)</span>`;
     progressBar.classList.add('progress-complete');
 }
