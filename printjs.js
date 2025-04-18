@@ -103,7 +103,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                     letterRendering: true
                 });
 
-                const imgData = canvas.toDataURL('image/jpeg', 0.4);
+                const imgData = canvas.toDataURL('image/jpeg', 0.5);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
 
