@@ -1,9 +1,3 @@
-// Copyright - Oliver Acker, acker_oliver@yahoo.de
-// print.js
-// Version 3.26_beta
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
 
 });
@@ -49,8 +43,6 @@ function validateZentralCheckboxes() {
     return true;
 }
 
-
-
 function validateNumberInputs() {
     const numberInputs = document.querySelectorAll('input.meterstand.autoscale[type="number"]');
     let allValid = true;
@@ -58,12 +50,11 @@ function validateNumberInputs() {
     numberInputs.forEach(input => {
         let value = input.value.trim();
 
-        // Entferne vorherige Fehleranzeige
         input.classList.remove("input-error");
 
         if (value === "") {
-           /*  alert(`Feld darf nicht leer sein: "${input.placeholder || input.className || 'Zählerstand'}"`); */
-           alert(`Bitte gültigen Zählerstand eingeben`);
+
+            alert(`Bitte gültigen Zählerstand eingeben`);
             input.classList.add("input-error");
             input.focus();
             allValid = false;
@@ -99,21 +90,12 @@ function validateNumberInputs() {
             return;
         }
 
-        // gültig → normalisieren und ggf. Fehlerklasse entfernen
         input.value = numberValue;
         input.classList.remove("input-error");
     });
 
     return allValid;
 }
-
-
-
-
-
-
-
-
 
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
     if (!validateStrasseeinzug()) {
@@ -136,13 +118,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         return;
     }
 
-
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.style.display = 'flex';
 
-
-
-    // NEU: Placeholder ausblenden
     const inputsWithPlaceholders = document.querySelectorAll('input[placeholder], textarea[placeholder]');
     const originalPlaceholders = [];
     inputsWithPlaceholders.forEach(input => {
@@ -216,13 +194,12 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 await new Promise(resolve => setTimeout(resolve, 100));
 
                 const canvas = await html2canvas(element, {
-                    scale: 2, // Erhöhen Sie diesen Wert für höhere Auflösung
+                    scale: 2,
                     useCORS: true,
                     logging: false,
                     allowTaint: true,
                     letterRendering: true
                 });
-
 
                 const imgData = canvas.toDataURL('image/jpeg', 0.6);
                 const imgWidth = canvas.width;
@@ -260,7 +237,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-
         let targetPercentage = 0;
         let currentDisplayPercentage = 0;
         const progressIntervalDuration = 30;
@@ -297,28 +273,24 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         function updateProgressColor(percentage) {
             if (percentage > 75) {
-                progressBar.style.backgroundColor = '#2E7D32'; // Dunkelgrün (reif)
+                progressBar.style.backgroundColor = '#2E7D32';
                 progressBar.style.boxShadow = '0 0 15px rgba(46, 125, 50, 0.6)';
             } else if (percentage > 50) {
-                progressBar.style.backgroundColor = '#388E3C'; // Mittelgrün (wachsend)
+                progressBar.style.backgroundColor = '#388E3C';
                 progressBar.style.boxShadow = '0 0 12px rgba(56, 142, 60, 0.5)';
             } else if (percentage > 25) {
-                progressBar.style.backgroundColor = '#4CAF50'; // Frischgrün
+                progressBar.style.backgroundColor = '#4CAF50';
                 progressBar.style.boxShadow = '0 0 8px rgba(76, 175, 80, 0.4)';
             } else {
-                progressBar.style.backgroundColor = '#8BC34A'; // Hellgrün (Keimling)
+                progressBar.style.backgroundColor = '#8BC34A';
                 progressBar.style.boxShadow = '0 0 5px rgba(139, 195, 74, 0.3)';
             }
         }
-
-
 
         function updateProgress(current, total) {
             const percentage = Math.min(Math.round((current / total) * 100), 100);
             updateProgressSmoothly(percentage);
         }
-
-
 
         const totalElements = [
             elements.allgemein,
@@ -332,7 +304,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             elements.weitereBemerkungen,
             elements.hauptBemerkungen,
             elements.print1,
-           /*  elements.stammdupli, */
+
             elements.signtoggle,
             ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
             ...(elements.largeImages ? Array.from(elements.largeImages) : [])
@@ -398,7 +370,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         pdf.addPage();
         let yOffset2 = margin;
         if (elements.print1) yOffset2 = await renderElementToPDF(elements.print1, yOffset2);
-        /* if (elements.stammdupli) yOffset2 = await renderElementToPDF(elements.stammdupli, yOffset2); */
+
         if (elements.signtoggle) yOffset2 = await renderElementToPDF(elements.signtoggle, yOffset2);
         currentElement++;
         updateProgress(currentElement, totalElements);
@@ -452,7 +424,17 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         });
 
         const strasse = document.getElementById('strasseeinzug').value;
-        const datum = document.getElementById('datum').value;
+        const now = new Date();
+
+        const datumZeit = now.toLocaleString('de-DE', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
 
         let protokollTyp = '';
         const isAbnahme = document.getElementById('abnahme').checked;
@@ -466,13 +448,8 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             protokollTyp = 'Übergabeprotokoll';
         }
 
-        const fileName = `${strasse}_${datum}_${protokollTyp}.pdf`.replace(/\s+/g, '_');
+        const fileName = `${strasse}_${datumZeit}_${protokollTyp}.pdf`.replace(/\s+/g, '_');
         pdf.save(fileName);
-
-
-
-
-
 
         inputs.forEach((input, index) => {
             input.style.height = originalHeights[index];
@@ -492,10 +469,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         themeElement.setAttribute("href", currentTheme);
         buttons.forEach(button => button.style.display = '');
 
-        /*         document.querySelectorAll(".imagePreview, .image-preview, .customUploadButton, input[type='file']").forEach(element => {
-                    element.style.display = "inline-block";
-                }); */
-
         document.querySelectorAll(".customUploadButton").forEach(element => {
             element.style.display = "inline-block";
         });
@@ -512,25 +485,16 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     }
 });
 
-
-
-
-
-// Beispiel: Funktion in printjs.js gibt ein Promise zurück
 function processData() {
     return new Promise((resolve) => {
-        // Deine Logik hier...
-        resolve(); // Aufruf, wenn fertig
+
+        resolve();
     });
 }
 
-// Hauptfunktion, die alles ausführt
 async function runAllPrintJSFunctions() {
     await processData();
     await otherFunction();
-    // ... alle anderen Funktionen
 
-    // Custom Event auslösen, wenn alles fertig ist
     document.dispatchEvent(new CustomEvent('printJSFinished'));
 }
-
