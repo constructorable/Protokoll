@@ -1,101 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-
 });
-
-function validateStrasseeinzug() {
-    const strasseeinzugInput = document.getElementById("strasseeinzug");
-
-    if (!strasseeinzugInput.value || strasseeinzugInput.value.trim() === "") {
-        alert("Objekt / Straße bitte eingeben.");
-        return false;
-    }
-
-    return true;
-}
-
-function validateCheckboxes() {
-    const abnahmeCheckbox = document.getElementById("abnahme");
-    const uebergabeCheckbox = document.getElementById("uebergabe");
-
-    if (!abnahmeCheckbox.checked && !uebergabeCheckbox.checked) {
-        alert("Bitte mind. eine Protokollart wählen (Abnahme- und / oder Übergabeprotokoll).");
-        return false;
-    }
-
-    return true;
-}
-
-function validateZentralCheckboxes() {
-    const checkboxes = document.querySelectorAll('#zentral input[type="checkbox"]');
-    let isChecked = false;
-
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            isChecked = true;
-        }
-    });
-
-    if (!isChecked) {
-        alert("Bitte Checkboxen für Heizung / Warmwasser zentral oder dezentral auswählen.");
-        return false;
-    }
-
-    return true;
-}
-
-function validateNumberInputs() {
-    const numberInputs = document.querySelectorAll('input.meterstand.autoscale[type="number"]');
-    let allValid = true;
-
-    numberInputs.forEach(input => {
-        let value = input.value.trim();
-
-        input.classList.remove("input-error");
-
-        if (value === "") {
-
-            alert(`Bitte gültigen Zählerstand eingeben`);
-            input.classList.add("input-error");
-            input.focus();
-            allValid = false;
-            return;
-        }
-
-        value = value.replace(",", ".");
-
-        const decimalPoints = (value.match(/\./g) || []).length;
-        if (decimalPoints > 1) {
-            alert(`Ungültiges Zahlenformat im Feld: "${input.placeholder || input.className}". Bitte geben Sie eine gültige Dezimalzahl ein (z.B. 234,456).`);
-            input.classList.add("input-error");
-            input.focus();
-            allValid = false;
-            return;
-        }
-
-        const numberValue = Number(value);
-
-        if (isNaN(numberValue)) {
-            alert(`Bitte gültige Zahl eingeben im Feld: "${input.placeholder || input.className || 'Zählerstand'}"`);
-            input.classList.add("input-error");
-            input.focus();
-            allValid = false;
-            return;
-        }
-
-        if (numberValue < 0.000001) {
-            alert(`Der Wert muss mindestens 0,000001 betragen im Feld: "${input.placeholder || input.className || 'Zählerstand'}"`);
-            input.classList.add("input-error");
-            input.focus();
-            allValid = false;
-            return;
-        }
-
-        input.value = numberValue;
-        input.classList.remove("input-error");
-    });
-
-    return allValid;
-}
 
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
     if (!validateStrasseeinzug()) {
@@ -118,6 +22,8 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         return;
     }
 
+    initializeProgressBar();
+
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.style.display = 'flex';
 
@@ -131,10 +37,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         input.removeAttribute('placeholder');
     });
 
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    progressBar.style.width = '0%';
-    progressText.textContent = '0% abgeschlossen';
 
     const closeButton = document.getElementById('closeLoadingOverlay');
     closeButton.addEventListener('click', function () {
@@ -237,61 +139,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        let targetPercentage = 0;
-        let currentDisplayPercentage = 0;
-        const progressIntervalDuration = 30;
-
-        function updateProgressSmoothly(target) {
-            targetPercentage = target;
-
-            if (!window.progressInterval) {
-                window.progressInterval = setInterval(animateProgress, progressIntervalDuration);
-            }
-        }
-
-        function animateProgress() {
-            if (currentDisplayPercentage < targetPercentage) {
-                currentDisplayPercentage++;
-                progressBar.style.width = `${currentDisplayPercentage}%`;
-                progressText.textContent = `${currentDisplayPercentage}% abgeschlossen`;
-
-                updateProgressColor(currentDisplayPercentage);
-            }
-
-            if (currentDisplayPercentage >= targetPercentage) {
-                clearInterval(window.progressInterval);
-                window.progressInterval = null;
-            }
-        }
-
-        if (currentDisplayPercentage >= 100) {
-            progressBar.classList.add('progress-complete');
-            setTimeout(() => {
-                progressBar.classList.remove('progress-complete');
-            }, 1000);
-        }
-
-        function updateProgressColor(percentage) {
-            if (percentage > 75) {
-                progressBar.style.backgroundColor = '#2E7D32';
-                progressBar.style.boxShadow = '0 0 15px rgba(46, 125, 50, 0.6)';
-            } else if (percentage > 50) {
-                progressBar.style.backgroundColor = '#388E3C';
-                progressBar.style.boxShadow = '0 0 12px rgba(56, 142, 60, 0.5)';
-            } else if (percentage > 25) {
-                progressBar.style.backgroundColor = '#4CAF50';
-                progressBar.style.boxShadow = '0 0 8px rgba(76, 175, 80, 0.4)';
-            } else {
-                progressBar.style.backgroundColor = '#8BC34A';
-                progressBar.style.boxShadow = '0 0 5px rgba(139, 195, 74, 0.3)';
-            }
-        }
-
-        function updateProgress(current, total) {
-            const percentage = Math.min(Math.round((current / total) * 100), 100);
-            updateProgressSmoothly(percentage);
-        }
-
         const totalElements = [
             elements.allgemein,
             elements.kueche,
@@ -314,7 +161,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         await renderElementToPDF(elements.allgemein);
         currentElement++;
-        updateProgress(currentElement, totalElements);
+
+
+
 
         const neinElements = [];
         if (document.querySelector('#kitch2')?.checked) neinElements.push(elements.kueche);
@@ -336,7 +185,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 pdf.addPage();
                 await renderElementToPDF(room.element);
                 currentElement++;
-                updateProgress(currentElement, totalElements);
+
+
+
             }
         }
 
@@ -345,7 +196,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 pdf.addPage();
                 await renderElementToPDF(room);
                 currentElement++;
-                updateProgress(currentElement, totalElements);
+
+
+
             }
         }
 
@@ -355,7 +208,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             for (const element of neinElements) {
                 yOffset = await renderElementToPDF(element, yOffset);
                 currentElement++;
-                updateProgress(currentElement, totalElements);
+
+
+
             }
         }
 
@@ -365,7 +220,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         if (elements.weitereBemerkungen) yOffset = await renderElementToPDF(elements.weitereBemerkungen, yOffset);
         if (elements.hauptBemerkungen) yOffset = await renderElementToPDF(elements.hauptBemerkungen, yOffset);
         currentElement++;
-        updateProgress(currentElement, totalElements);
+
+
+
 
         pdf.addPage();
         let yOffset2 = margin;
@@ -373,7 +230,9 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         if (elements.signtoggle) yOffset2 = await renderElementToPDF(elements.signtoggle, yOffset2);
         currentElement++;
-        updateProgress(currentElement, totalElements);
+
+
+
 
         if (elements.bilderzimmer) {
             const children = Array.from(elements.bilderzimmer.children);
@@ -385,12 +244,16 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 let yOffset = margin;
                 yOffset = await renderElementToPDF(firstImage, yOffset);
                 currentElement++;
-                updateProgress(currentElement, totalElements);
+
+
+
 
                 if (secondImage) {
                     yOffset = await renderElementToPDF(secondImage, yOffset + 10);
                     currentElement++;
-                    updateProgress(currentElement, totalElements);
+
+
+
                 }
             }
         }
@@ -405,12 +268,15 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 let yOffset = margin;
                 yOffset = await renderElementToPDF(firstImage, yOffset);
                 currentElement++;
-                updateProgress(currentElement, totalElements);
+
+
 
                 if (secondImage) {
                     yOffset = await renderElementToPDF(secondImage, yOffset + 10);
                     currentElement++;
-                    updateProgress(currentElement, totalElements);
+
+
+
                 }
             }
         }
@@ -484,17 +350,3 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         }
     }
 });
-
-function processData() {
-    return new Promise((resolve) => {
-
-        resolve();
-    });
-}
-
-async function runAllPrintJSFunctions() {
-    await processData();
-    await otherFunction();
-
-    document.dispatchEvent(new CustomEvent('printJSFinished'));
-}
