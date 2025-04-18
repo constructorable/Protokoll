@@ -230,7 +230,7 @@ index.html
 
 
             <!--Küche -->
-                       <div class="rooms" id="zzzkueche">
+            <div class="rooms" id="zzzkueche">
                 <h3>Küche</h3>
 
                 <table>
@@ -277,23 +277,23 @@ index.html
                     <tr>
                         <td></td>
                         <td>
-                            <input type="radio" id="zus01" name="zus" value="reno">
+                            <input type="radio" id="zus01" name="zus">
                             <label for="zus01" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zus02" name="zus" value="neuwe">
+                            <input type="radio" id="zus02" name="zus">
                             <label for="zus02" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zus03" name="zus" value="geringe">
+                            <input type="radio" id="zus03" name="zus">
                             <label for="zus03" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zus04" name="zus" value="staerkere">
+                            <input type="radio" id="zus04" name="zus">
                             <label for="zus04" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zus05" name="zus" value="nichtreno">
+                            <input type="radio" id="zus05" name="zus">
                             <label for="zus05" class="radio-label"></label>
                         </td>
                     </tr>
@@ -312,37 +312,87 @@ index.html
                     </tr>
 
 
-                    <tr>
+                    <!--                     <tr>
                         <th>Bereich</th>
                         <th>in Ordnung</th>
                         <th>repa. - bedürftig</th>
                         <th>Reparatur durch den Mieter</th>
                         <th>Reparatur durch den Vermieter</th>
                         <th>nicht vor handen</th>
+                    </tr> -->
+
+                    <tr>
+                        <th>Bereich</th>
+                        <th>in Ordnung</th>
+                        <th>geringe Gebrauchs - spuren</th>
+                        <th>repa. - bedürftig</th>
+                        <th>Reparatur durch den Mieter oder Vermieter</th>
+                        <th>nicht vor handen</th>
                     </tr>
 
                     <tr>
                         <td>Tür / Zarge / Beschläge</td>
-                        <td>
-                            <input type="radio" id="tuere1" name="tuere" value="in Ordnung">
+
+                        <!--                         <td>
+                            <input type="radio" id="tuere1" name="tuere">
                             <label for="tuere1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="tuere2" name="tuere" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="tuere2" name="tuere">
                             <label for="tuere2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="tuere3" name="tuere0000" value="Reparatur durch den Mieter">
+                            <input type="radio" id="tuere3" name="tuere0000">
                             <label for="tuere3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="tuere4" name="tuere0000" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="tuere4" name="tuere0000">
                             <label for="tuere4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="tuere5" name="tuere" value="nicht vorhanden">
+                            <input type="radio" id="tuere5" name="tuere">
+                            <label for="tuere5" class="radio-label"></label>
+                        </td> -->
+
+                        <td>
+                            <input type="radio" id="tuere1" name="tuere">
+                            <label for="tuere1" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="tuere2" name="tuere" value="geringe Gebrauchs - spuren">
+                            <label for="tuere2" class="radio-label"></label>
+                        </td>
+                        <td>
+                            <input type="radio" id="tuere3" name="tuere">
+                            <label for="tuere3" class="radio-label"></label>
+                        </td>
+                        <!--                         <td>
+                            <input type="radio" id="tuere3" name="tuere0000" value="Reparatur durch den Mieter oder Vermieter">
+                            <label for="tuere3" class="radio-label"></label>
+                        </td> -->
+
+                        <!--                         <td>
+                            <select id="tuere-option" name="tuere-option" class="dropdown-style">
+                                <option value="">-</option>
+                                <option value="Mieter">Mieter</option>
+                                <option value="Vermieter">Vermieter</option>
+                                <option value="in Klärung">in Klärung</option>
+                            </select>
+                        </td> -->
+
+                        <td><select class="dropdown-style">
+                                <option>-</option>
+                                <option>Mieter</option>
+                                <option>Vermieter</option>
+                                <option>in Klärung</option>
+                            </select></td>
+
+
+                        <td>
+                            <input type="radio" id="tuere5" name="tuere">
                             <label for="tuere5" class="radio-label"></label>
                         </td>
+
                     </tr>
 
 
@@ -370,48 +420,55 @@ index.html
 
                     <tr>
                         <td>Fenster / Beschläge / Glas</td>
-                        <td>
-                            <input type="radio" id="fenster1" name="fenster" value="in Ordnung">
+                                               <td>
+                            <input type="radio" id="fenster1" name="fenster">
                             <label for="fenster1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fenster2" name="fenster" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="fenster2" name="fenster">
                             <label for="fenster2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fenster3" name="fenster0000" value="Reparatur durch den Mieter">
+                            <input type="radio" id="fenster3" name="fenster0000">
                             <label for="fenster3" class="radio-label"></label>
                         </td>
-                        <td>
-                            <input type="radio" id="fenster4" name="fenster0000" value="Reparatur durch den Vermieter">
+<!--                         <td>
+                            <input type="radio" id="fenster4" name="fenster0000">
                             <label for="fenster4" class="radio-label"></label>
-                        </td>
+                        </td> -->
+                        <td><select class="dropdown-style">
+                            <option>-</option>
+                            <option>Mieter</option>
+                            <option>Vermieter</option>
+                            <option>in Klärung</option>
+                        </select></td>
                         <td>
-                            <input type="radio" id="fenster5" name="fenster" value="nicht vorhanden">
+                            <input type="radio" id="fenster5" name="fenster">
                             <label for="fenster5" class="radio-label"></label>
                         </td>
                     </tr>
 
+
                     <tr>
                         <td>Jalousie / Rolläden / Klappläden</td>
                         <td>
-                            <input type="radio" id="rollo1" name="rollo" value="in Ordnung">
+                            <input type="radio" id="rollo1" name="rollo">
                             <label for="rollo1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="rollo2" name="rollo" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="rollo2" name="rollo">
                             <label for="rollo2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="rollo3" name="rollo00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="rollo3" name="rollo00">
                             <label for="rollo3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="rollo4" name="rollo00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="rollo4" name="rollo00">
                             <label for="rollo4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="rollo5" name="rollo" value="nicht vorhanden">
+                            <input type="radio" id="rollo5" name="rollo">
                             <label for="rollo5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -419,23 +476,23 @@ index.html
                     <tr>
                         <td>Decke</td>
                         <td>
-                            <input type="radio" id="decke1" name="decke" value="in Ordnung">
+                            <input type="radio" id="decke1" name="decke">
                             <label for="decke1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="decke2" name="decke" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="decke2" name="decke">
                             <label for="decke2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="decke3" name="decke00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="decke3" name="decke00">
                             <label for="decke3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="decke4" name="decke00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="decke4" name="decke00">
                             <label for="decke4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="decke5" name="decke" value="nicht vorhanden">
+                            <input type="radio" id="decke5" name="decke">
                             <label for="decke5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -443,23 +500,23 @@ index.html
                     <tr>
                         <td>Wände / Tapeten</td>
                         <td>
-                            <input type="radio" id="waende1" name="waende" value="in Ordnung">
+                            <input type="radio" id="waende1" name="waende">
                             <label for="waende1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="waende2" name="waende" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="waende2" name="waende">
                             <label for="waende2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="waende3" name="waende00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="waende3" name="waende00">
                             <label for="waende3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="waende4" name="waende00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="waende4" name="waende00">
                             <label for="waende4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="waende5" name="waende" value="nicht vorhanden">
+                            <input type="radio" id="waende5" name="waende">
                             <label for="waende5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -481,23 +538,23 @@ index.html
                     <tr>
                         <td>Fliesenspiegel</td>
                         <td>
-                            <input type="radio" id="fliesen1" name="fliesen" value="in Ordnung">
+                            <input type="radio" id="fliesen1" name="fliesen">
                             <label for="fliesen1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fliesen2" name="fliesen" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="fliesen2" name="fliesen">
                             <label for="fliesen2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fliesen3" name="fliesen00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="fliesen3" name="fliesen00">
                             <label for="fliesen3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fliesen4" name="fliesen00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="fliesen4" name="fliesen00">
                             <label for="fliesen4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fliesen5" name="fliesen" value="nicht vorhanden">
+                            <input type="radio" id="fliesen5" name="fliesen">
                             <label for="fliesen5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -505,26 +562,26 @@ index.html
                     <tr>
                         <td>Heizkörper / Ventile / Rohre</td>
                         <td>
-                            <input type="radio" id="heizkoerper1" name="heizkoerper" value="in Ordnung">
+                            <input type="radio" id="heizkoerper1" name="heizkoerper">
                             <label for="heizkoerper1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="heizkoerper2" name="heizkoerper"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="heizkoerper2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="heizkoerper3" name="heizkoerper00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="heizkoerper3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="heizkoerper4" name="heizkoerper"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="heizkoerper4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="heizkoerper5" name="heizkoerper" value="nicht vorhanden">
+                            <input type="radio" id="heizkoerper5" name="heizkoerper">
                             <label for="heizkoerper5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -532,25 +589,25 @@ index.html
                     <tr>
                         <td>Fußboden / Sockelleisten</td>
                         <td>
-                            <input type="radio" id="fussboden1" name="fussboden" value="in Ordnung">
+                            <input type="radio" id="fussboden1" name="fussboden">
                             <label for="fussboden1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="fussboden2" name="fussboden"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="fussboden2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fussboden3" name="fussboden00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="fussboden3" name="fussboden00">
                             <label for="fussboden3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="fussboden4" name="fussboden00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="fussboden4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="fussboden5" name="fussboden" value="nicht vorhanden">
+                            <input type="radio" id="fussboden5" name="fussboden">
                             <label for="fussboden5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -572,25 +629,25 @@ index.html
                     <tr>
                         <td>Schränke</td>
                         <td>
-                            <input type="radio" id="schraenke1" name="schraenke" value="in Ordnung">
+                            <input type="radio" id="schraenke1" name="schraenke">
                             <label for="schraenke1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="schraenke2" name="schraenke"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="schraenke2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="schraenke3" name="schraenke00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="schraenke3" name="schraenke00">
                             <label for="schraenke3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="schraenke4" name="schraenke00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="schraenke4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="schraenke5" name="schraenke" value="nicht vorhanden">
+                            <input type="radio" id="schraenke5" name="schraenke">
                             <label for="schraenke5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -598,26 +655,26 @@ index.html
                     <tr>
                         <td>Arbeitsplatte</td>
                         <td>
-                            <input type="radio" id="arbeitsplatte1" name="arbeitsplatte" value="in Ordnung">
+                            <input type="radio" id="arbeitsplatte1" name="arbeitsplatte">
                             <label for="arbeitsplatte1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="arbeitsplatte2" name="arbeitsplatte"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="arbeitsplatte2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="arbeitsplatte3" name="arbeitsplatte00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="arbeitsplatte3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="arbeitsplatte4" name="arbeitsplatte0000"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="arbeitsplatte4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="arbeitsplatte5" name="arbeitsplatte" value="nicht vorhanden">
+                            <input type="radio" id="arbeitsplatte5" name="arbeitsplatte">
                             <label for="arbeitsplatte5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -626,23 +683,23 @@ index.html
                     <tr>
                         <td>Spüle</td>
                         <td>
-                            <input type="radio" id="spuele1" name="spuele" value="in Ordnung">
+                            <input type="radio" id="spuele1" name="spuele">
                             <label for="spuele1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="spuele2" name="spuele" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="spuele2" name="spuele">
                             <label for="spuele2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="spuele3" name="spuele00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="spuele3" name="spuele00">
                             <label for="spuele3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="spuele4" name="spuele00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="spuele4" name="spuele00">
                             <label for="spuele4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="spuele5" name="spuele" value="nicht vorhanden">
+                            <input type="radio" id="spuele5" name="spuele">
                             <label for="spuele5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -650,24 +707,24 @@ index.html
                     <tr>
                         <td>Zapfhahn</td>
                         <td>
-                            <input type="radio" id="zapfhahn1" name="zapfhahn" value="in Ordnung">
+                            <input type="radio" id="zapfhahn1" name="zapfhahn">
                             <label for="zapfhahn1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="zapfhahn2" name="zapfhahn"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="zapfhahn2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zapfhahn3" name="zapfhahn00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="zapfhahn3" name="zapfhahn00">
                             <label for="zapfhahn3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zapfhahn4" name="zapfhahn00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="zapfhahn4" name="zapfhahn00">
                             <label for="zapfhahn4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="zapfhahn5" name="zapfhahn" value="nicht vorhanden">
+                            <input type="radio" id="zapfhahn5" name="zapfhahn">
                             <label for="zapfhahn5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -676,27 +733,27 @@ index.html
                         <td>Waschmaschinen anschluss</td>
                         <td>
                             <input type="radio" id="waschmaschinenanschluss1" name="waschmaschinenanschluss"
-                                value="in Ordnung">
+                               >
                             <label for="waschmaschinenanschluss1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="waschmaschinenanschluss2" name="waschmaschinenanschluss"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="waschmaschinenanschluss2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="waschmaschinenanschluss3" name="waschmaschinenanschluss00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="waschmaschinenanschluss3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="waschmaschinenanschluss4" name="waschmaschinenanschluss00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="waschmaschinenanschluss4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="waschmaschinenanschluss5" name="waschmaschinenanschluss"
-                                value="nicht vorhanden">
+                               >
                             <label for="waschmaschinenanschluss5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -704,24 +761,24 @@ index.html
                     <tr>
                         <td>Steckdosen / Lichtschalter</td>
                         <td>
-                            <input type="radio" id="elektrik1" name="elektrik" value="in Ordnung">
+                            <input type="radio" id="elektrik1" name="elektrik">
                             <label for="elektrik1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="elektrik2" name="elektrik"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="elektrik2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="elektrik3" name="elektrik00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="elektrik3" name="elektrik00">
                             <label for="elektrik3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="elektrik4" name="elektrik00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="elektrik4" name="elektrik00">
                             <label for="elektrik4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="elektrik5" name="elektrik" value="nicht vorhanden">
+                            <input type="radio" id="elektrik5" name="elektrik">
                             <label for="elektrik5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -729,23 +786,23 @@ index.html
                     <tr>
                         <td>Herd</td>
                         <td>
-                            <input type="radio" id="herd1" name="herd" value="in Ordnung">
+                            <input type="radio" id="herd1" name="herd">
                             <label for="herd1" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="herd2" name="herd" value="reparatur- / renovierungsbedürftig">
+                            <input type="radio" id="herd2" name="herd">
                             <label for="herd2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="herd3" name="herd00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="herd3" name="herd00">
                             <label for="herd3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="herd4" name="herd00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="herd4" name="herd00">
                             <label for="herd4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="herd5" name="herd" value="nicht vorhanden">
+                            <input type="radio" id="herd5" name="herd">
                             <label for="herd5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -753,26 +810,26 @@ index.html
                     <tr>
                         <td>Kühlschrank</td>
                         <td>
-                            <input type="radio" id="kuehlschrank1" name="kuehlschrank" value="in Ordnung">
+                            <input type="radio" id="kuehlschrank1" name="kuehlschrank">
                             <label for="kuehlschrank1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="kuehlschrank2" name="kuehlschrank"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="kuehlschrank2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="kuehlschrank3" name="kuehlschrank00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="kuehlschrank3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="kuehlschrank4" name="kuehlschrank00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="kuehlschrank4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="kuehlschrank5" name="kuehlschrank" value="nicht vorhanden">
+                            <input type="radio" id="kuehlschrank5" name="kuehlschrank">
                             <label for="kuehlschrank5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -780,27 +837,27 @@ index.html
                     <tr>
                         <td>Warmwasserbereiter</td>
                         <td>
-                            <input type="radio" id="warmwasserbereiter1" name="warmwasserbereiter" value="in Ordnung">
+                            <input type="radio" id="warmwasserbereiter1" name="warmwasserbereiter">
                             <label for="warmwasserbereiter1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="warmwasserbereiter2" name="warmwasserbereiter"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="warmwasserbereiter2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="warmwasserbereiter3" name="warmwasserbereiter00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="warmwasserbereiter3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="warmwasserbereiter4" name="warmwasserbereiter00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="warmwasserbereiter4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="warmwasserbereiter5" name="warmwasserbereiter"
-                                value="nicht vorhanden">
+                               >
                             <label for="warmwasserbereiter5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -808,25 +865,25 @@ index.html
                     <tr>
                         <td>Heiztherme</td>
                         <td>
-                            <input type="radio" id="heiztherme1" name="heiztherme" value="in Ordnung">
+                            <input type="radio" id="heiztherme1" name="heiztherme">
                             <label for="heiztherme1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="heiztherme2" name="heiztherme"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="heiztherme2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="heiztherme3" name="heiztherme00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="heiztherme3" name="heiztherme00">
                             <label for="heiztherme3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="heiztherme4" name="heiztherme"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="heiztherme4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="heiztherme5" name="heiztherme" value="nicht vorhanden">
+                            <input type="radio" id="heiztherme5" name="heiztherme">
                             <label for="heiztherme5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -933,23 +990,23 @@ index.html
                     <tr>
                         <td></td>
                         <td>
-                            <input type="radio" id="bathzus01" name="bathzus" value="reno">
+                            <input type="radio" id="bathzus01" name="bathzus">
                             <label for="bathzus01" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathzus02" name="bathzus" value="neuwe">
+                            <input type="radio" id="bathzus02" name="bathzus">
                             <label for="bathzus02" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathzus03" name="bathzus" value="geringe">
+                            <input type="radio" id="bathzus03" name="bathzus">
                             <label for="bathzus03" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathzus04" name="bathzus" value="staerkere">
+                            <input type="radio" id="bathzus04" name="bathzus">
                             <label for="bathzus04" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathzus05" name="bathzus" value="nichtreno">
+                            <input type="radio" id="bathzus05" name="bathzus">
                             <label for="bathzus05" class="radio-label"></label>
                         </td>
 
@@ -974,25 +1031,25 @@ index.html
                     <tr>
                         <td>Tür / Zarge / Beschläge</td>
                         <td>
-                            <input type="radio" id="bathtuere1" name="bathtuere" value="in Ordnung">
+                            <input type="radio" id="bathtuere1" name="bathtuere">
                             <label for="bathtuere1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathtuere2" name="bathtuere"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathtuere2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtuere3" name="bathtuere00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathtuere3" name="bathtuere00">
                             <label for="bathtuere3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathtuere4" name="bathtuere00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathtuere4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtuere5" name="bathtuere" value="nicht vorhanden">
+                            <input type="radio" id="bathtuere5" name="bathtuere">
                             <label for="bathtuere5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1023,26 +1080,26 @@ index.html
                     <tr>
                         <td>Fenster / Beschläge / Glas</td>
                         <td>
-                            <input type="radio" id="bathfenster1" name="bathfenster" value="in Ordnung">
+                            <input type="radio" id="bathfenster1" name="bathfenster">
                             <label for="bathfenster1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfenster2" name="bathfenster"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathfenster2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfenster3" name="bathfenster00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathfenster3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfenster4" name="bathfenster"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathfenster4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathfenster5" name="bathfenster" value="nicht vorhanden">
+                            <input type="radio" id="bathfenster5" name="bathfenster">
                             <label for="bathfenster5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1050,25 +1107,25 @@ index.html
                     <tr>
                         <td>Jalousie / Rolläden / Klappläden</td>
                         <td>
-                            <input type="radio" id="bathrollo1" name="bathrollo" value="in Ordnung">
+                            <input type="radio" id="bathrollo1" name="bathrollo">
                             <label for="bathrollo1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathrollo2" name="bathrollo"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathrollo2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathrollo3" name="bathrollo00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathrollo3" name="bathrollo00">
                             <label for="bathrollo3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathrollo4" name="bathrollo00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathrollo4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathrollo5" name="bathrollo" value="nicht vorhanden">
+                            <input type="radio" id="bathrollo5" name="bathrollo">
                             <label for="bathrollo5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1076,25 +1133,25 @@ index.html
                     <tr>
                         <td>Decke</td>
                         <td>
-                            <input type="radio" id="bathdecke1" name="bathdecke" value="in Ordnung">
+                            <input type="radio" id="bathdecke1" name="bathdecke">
                             <label for="bathdecke1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathdecke2" name="bathdecke"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathdecke2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathdecke3" name="bathdecke00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathdecke3" name="bathdecke00">
                             <label for="bathdecke3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathdecke4" name="bathdecke00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathdecke4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathdecke5" name="bathdecke" value="nicht vorhanden">
+                            <input type="radio" id="bathdecke5" name="bathdecke">
                             <label for="bathdecke5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1102,25 +1159,25 @@ index.html
                     <tr>
                         <td>Wände / Tapeten</td>
                         <td>
-                            <input type="radio" id="bathwaende1" name="bathwaende" value="in Ordnung">
+                            <input type="radio" id="bathwaende1" name="bathwaende">
                             <label for="bathwaende1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathwaende2" name="bathwaende"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathwaende2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwaende3" name="bathwaende00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathwaende3" name="bathwaende00">
                             <label for="bathwaende3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathwaende4" name="bathwaende"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathwaende4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathwaende5" name="bathwaende" value="nicht vorhanden">
+                            <input type="radio" id="bathwaende5" name="bathwaende">
                             <label for="bathwaende5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1139,26 +1196,26 @@ index.html
                     <tr>
                         <td>Fliesen</td>
                         <td>
-                            <input type="radio" id="bathfliesen1" name="bathfliesen" value="in Ordnung">
+                            <input type="radio" id="bathfliesen1" name="bathfliesen">
                             <label for="bathfliesen1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfliesen2" name="bathfliesen"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathfliesen2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfliesen3" name="bathfliesen00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathfliesen3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfliesen4" name="bathfliesen"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathfliesen4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathfliesen5" name="bathfliesen" value="nicht vorhanden">
+                            <input type="radio" id="bathfliesen5" name="bathfliesen">
                             <label for="bathfliesen5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1166,26 +1223,26 @@ index.html
                     <tr>
                         <td>Heizkörper / Ventile / Rohre</td>
                         <td>
-                            <input type="radio" id="bathheizkoerper1" name="bathheizkoerper" value="in Ordnung">
+                            <input type="radio" id="bathheizkoerper1" name="bathheizkoerper">
                             <label for="bathheizkoerper1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathheizkoerper2" name="bathheizkoerper"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathheizkoerper2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathheizkoerper3" name="bathheizkoerper00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathheizkoerper3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathheizkoerper4" name="bathheizkoerper00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathheizkoerper4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathheizkoerper5" name="bathheizkoerper" value="nicht vorhanden">
+                            <input type="radio" id="bathheizkoerper5" name="bathheizkoerper">
                             <label for="bathheizkoerper5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1193,26 +1250,26 @@ index.html
                     <tr>
                         <td>Fußboden</td>
                         <td>
-                            <input type="radio" id="bathfussboden1" name="bathfussboden" value="in Ordnung">
+                            <input type="radio" id="bathfussboden1" name="bathfussboden">
                             <label for="bathfussboden1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfussboden2" name="bathfussboden"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathfussboden2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfussboden3" name="bathfussboden"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathfussboden3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathfussboden4" name="bathfussboden00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathfussboden4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathfussboden5" name="bathfussboden" value="nicht vorhanden">
+                            <input type="radio" id="bathfussboden5" name="bathfussboden">
                             <label for="bathfussboden5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1235,26 +1292,26 @@ index.html
                     <tr>
                         <td>Handwaschbecken</td>
                         <td>
-                            <input type="radio" id="bathzapfhahn1" name="bathzapfhahn" value="in Ordnung">
+                            <input type="radio" id="bathzapfhahn1" name="bathzapfhahn">
                             <label for="bathzapfhahn1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathzapfhahn2" name="bathzapfhahn"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathzapfhahn2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathzapfhahn3" name="bathzapfhahn"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathzapfhahn3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathzapfhahn4" name="bathzapfhahn00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathzapfhahn4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathzapfhahn5" name="bathzapfhahn" value="nicht vorhanden">
+                            <input type="radio" id="bathzapfhahn5" name="bathzapfhahn">
                             <label for="bathzapfhahn5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1263,26 +1320,26 @@ index.html
                     <tr>
                         <td>Armaturen</td>
                         <td>
-                            <input type="radio" id="bathzapfhahnxx1" name="bathzapfhahnxx" value="in Ordnung">
+                            <input type="radio" id="bathzapfhahnxx1" name="bathzapfhahnxx">
                             <label for="bathzapfhahnxx1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathzapfhahnxx2" name="bathzapfhahnxx"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathzapfhahnxx2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathzapfhahnxx3" name="bathzapfhahnxx00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathzapfhahnxx3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathzapfhahnxx4" name="bathzapfhahnxx00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathzapfhahnxx4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathzapfhahnxx5" name="bathzapfhahnxx" value="nicht vorhanden">
+                            <input type="radio" id="bathzapfhahnxx5" name="bathzapfhahnxx">
                             <label for="bathzapfhahnxx5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1293,27 +1350,27 @@ index.html
 
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss1_xx"
-                                name="bath_waschmaschinenanschluss_xx" value="in Ordnung">
+                                name="bath_waschmaschinenanschluss_xx">
                             <label for="bath_waschmaschinenanschluss1_xx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss2_xx"
-                                name="bath_waschmaschinenanschluss_xx" value="reparatur- / renovierungsbedürftig">
+                                name="bath_waschmaschinenanschluss_xx">
                             <label for="bath_waschmaschinenanschluss2_xx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss3_xx"
-                                name="bath_waschmaschinenanschluss_x2" value="Reparatur durch den Mieter">
+                                name="bath_waschmaschinenanschluss_x2">
                             <label for="bath_waschmaschinenanschluss3_xx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss4_xx"
-                                name="bath_waschmaschinenanschluss_x2" value="Reparatur durch den Vermieter">
+                                name="bath_waschmaschinenanschluss_x2">
                             <label for="bath_waschmaschinenanschluss4_xx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss5_xx"
-                                name="bath_waschmaschinenanschluss_xx" value="nicht vorhanden">
+                                name="bath_waschmaschinenanschluss_xx">
                             <label for="bath_waschmaschinenanschluss5_xx" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1321,25 +1378,25 @@ index.html
                     <tr>
                         <td>WC-Sitz, Spüler usw.</td>
                         <td>
-                            <input type="radio" id="bath_wc1_xx" name="bath_wc_xx" value="in Ordnung">
+                            <input type="radio" id="bath_wc1_xx" name="bath_wc_xx">
                             <label for="bath_wc1_xx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_wc2_xx" name="bath_wc_xx"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bath_wc2_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bath_wc3_xx" name="bath_wc_xx1" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bath_wc3_xx" name="bath_wc_xx1">
                             <label for="bath_wc3_xx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_wc4_xx" name="bath_wc_xx1"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bath_wc4_xx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bath_wc5_xx" name="bath_wc_xx" value="nicht vorhanden">
+                            <input type="radio" id="bath_wc5_xx" name="bath_wc_xx">
                             <label for="bath_wc5_xx" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1347,26 +1404,26 @@ index.html
                     <tr>
                         <td>Steckdosen / Lichtschalter</td>
                         <td>
-                            <input type="radio" id="bathelektrik1" name="bathelektrik" value="in Ordnung">
+                            <input type="radio" id="bathelektrik1" name="bathelektrik">
                             <label for="bathelektrik1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathelektrik2" name="bathelektrik"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathelektrik2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathelektrik3" name="bathelektrik"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathelektrik3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathelektrik4" name="bathelektrik00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathelektrik4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathelektrik5" name="bathelektrik" value="nicht vorhanden">
+                            <input type="radio" id="bathelektrik5" name="bathelektrik">
                             <label for="bathelektrik5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1380,27 +1437,27 @@ index.html
                         <td>Warmwasserbereiter</td>
                         <td>
                             <input type="radio" id="bathwarmwasserbereiter1" name="bathwarmwasserbereiter"
-                                value="in Ordnung">
+                               >
                             <label for="bathwarmwasserbereiter1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathwarmwasserbereiter2" name="bathwarmwasserbereiter"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathwarmwasserbereiter2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathwarmwasserbereiter3" name="bathwarmwasserbereiter00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathwarmwasserbereiter3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathwarmwasserbereiter4" name="bathwarmwasserbereiter00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathwarmwasserbereiter4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathwarmwasserbereiter5" name="bathwarmwasserbereiter"
-                                value="nicht vorhanden">
+                               >
                             <label for="bathwarmwasserbereiter5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1408,26 +1465,26 @@ index.html
                     <tr>
                         <td>Heiztherme</td>
                         <td>
-                            <input type="radio" id="bathheiztherme1" name="bathheiztherme" value="in Ordnung">
+                            <input type="radio" id="bathheiztherme1" name="bathheiztherme">
                             <label for="bathheiztherme1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathheiztherme2" name="bathheiztherme"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathheiztherme2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathheiztherme3" name="bathheiztherme00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bathheiztherme3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathheiztherme4" name="bathheiztherme00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathheiztherme4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathheiztherme5" name="bathheiztherme" value="nicht vorhanden">
+                            <input type="radio" id="bathheiztherme5" name="bathheiztherme">
                             <label for="bathheiztherme5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1436,25 +1493,25 @@ index.html
                     <tr>
                         <td>Ventilator</td>
                         <td>
-                            <input type="radio" id="bathventi1" name="bathventi" value="in Ordnung">
+                            <input type="radio" id="bathventi1" name="bathventi">
                             <label for="bathventi1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathventi2" name="bathventi"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathventi2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathventi3" name="bathventi00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathventi3" name="bathventi00">
                             <label for="bathventi3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathventi4" name="bathventi00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathventi4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathventi5" name="bathventi" value="nicht vorhanden">
+                            <input type="radio" id="bathventi5" name="bathventi">
                             <label for="bathventi5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1462,24 +1519,24 @@ index.html
                     <tr>
                         <td>Belüftungssiebe</td>
                         <td>
-                            <input type="radio" id="bathsieb1" name="bathsieb" value="in Ordnung">
+                            <input type="radio" id="bathsieb1" name="bathsieb">
                             <label for="bathsieb1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathsieb2" name="bathsieb"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathsieb2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathsieb3" name="bathsieb00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathsieb3" name="bathsieb00">
                             <label for="bathsieb3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathsieb4" name="bathsieb00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="bathsieb4" name="bathsieb00">
                             <label for="bathsieb4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathsieb5" name="bathsieb" value="nicht vorhanden">
+                            <input type="radio" id="bathsieb5" name="bathsieb">
                             <label for="bathsieb5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1487,25 +1544,25 @@ index.html
                     <tr>
                         <td>Spiegel / Konsole</td>
                         <td>
-                            <input type="radio" id="bathmirrow1" name="bathmirrow" value="in Ordnung">
+                            <input type="radio" id="bathmirrow1" name="bathmirrow">
                             <label for="bathmirrow1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathmirrow2" name="bathmirrow"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathmirrow2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathmirrow3" name="bathmirrow00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathmirrow3" name="bathmirrow00">
                             <label for="bathmirrow3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathmirrow4" name="bathmirrow"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathmirrow4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathmirrow5" name="bathmirrow" value="nicht vorhanden">
+                            <input type="radio" id="bathmirrow5" name="bathmirrow">
                             <label for="bathmirrow5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1513,25 +1570,25 @@ index.html
                     <tr>
                         <td>Handtuchhalter</td>
                         <td>
-                            <input type="radio" id="bathtowel1" name="bathtowel" value="in Ordnung">
+                            <input type="radio" id="bathtowel1" name="bathtowel">
                             <label for="bathtowel1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathtowel2" name="bathtowel"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathtowel2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtowel3" name="bathtowel00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathtowel3" name="bathtowel00">
                             <label for="bathtowel3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathtowel4" name="bathtowel00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathtowel4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtowel5" name="bathtowel" value="nicht vorhanden">
+                            <input type="radio" id="bathtowel5" name="bathtowel">
                             <label for="bathtowel5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1540,25 +1597,25 @@ index.html
                     <tr>
                         <td>Toilettenpapierhalter</td>
                         <td>
-                            <input type="radio" id="bathpaper1" name="bathpaper" value="in Ordnung">
+                            <input type="radio" id="bathpaper1" name="bathpaper">
                             <label for="bathpaper1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathpaper2" name="bathpaper"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathpaper2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathpaper3" name="bathpaper00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathpaper3" name="bathpaper00">
                             <label for="bathpaper3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathpaper4" name="bathpaper00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathpaper4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathpaper5" name="bathpaper" value="nicht vorhanden">
+                            <input type="radio" id="bathpaper5" name="bathpaper">
                             <label for="bathpaper5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1566,24 +1623,24 @@ index.html
                     <tr>
                         <td>Badewanne</td>
                         <td>
-                            <input type="radio" id="bathtube1" name="bathtube" value="in Ordnung">
+                            <input type="radio" id="bathtube1" name="bathtube">
                             <label for="bathtube1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathtube2" name="bathtube"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathtube2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtube3" name="bathtube00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathtube3" name="bathtube00">
                             <label for="bathtube3" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtube4" name="bathtube00" value="Reparatur durch den Vermieter">
+                            <input type="radio" id="bathtube4" name="bathtube00">
                             <label for="bathtube4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathtube5" name="bathtube" value="nicht vorhanden">
+                            <input type="radio" id="bathtube5" name="bathtube">
                             <label for="bathtube5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1591,25 +1648,25 @@ index.html
                     <tr>
                         <td>Duschbecken</td>
                         <td>
-                            <input type="radio" id="bathshower1" name="bathshower" value="in Ordnung">
+                            <input type="radio" id="bathshower1" name="bathshower">
                             <label for="bathshower1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathshower2" name="bathshower"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathshower2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathshower3" name="bathshower00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathshower3" name="bathshower00">
                             <label for="bathshower3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathshower4" name="bathshower"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathshower4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathshower5" name="bathshower" value="nicht vorhanden">
+                            <input type="radio" id="bathshower5" name="bathshower">
                             <label for="bathshower5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1617,25 +1674,25 @@ index.html
                     <tr>
                         <td>Wannenbatterie / Brause</td>
                         <td>
-                            <input type="radio" id="bathbrause1" name="bathbrause" value="in Ordnung">
+                            <input type="radio" id="bathbrause1" name="bathbrause">
                             <label for="bathbrause1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathbrause2" name="bathbrause"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bathbrause2" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathbrause3" name="bathbrause00" value="Reparatur durch den Mieter">
+                            <input type="radio" id="bathbrause3" name="bathbrause00">
                             <label for="bathbrause3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bathbrause4" name="bathbrause"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bathbrause4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bathbrause5" name="bathbrause" value="nicht vorhanden">
+                            <input type="radio" id="bathbrause5" name="bathbrause">
                             <label for="bathbrause5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1730,23 +1787,23 @@ index.html
                     <tr>
                         <td></td>
                         <td>
-                            <input type="radio" id="guestwczus01" name="guestwczus" value="reno">
+                            <input type="radio" id="guestwczus01" name="guestwczus">
                             <label for="guestwczus01" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwczus02" name="guestwczus" value="neuwe">
+                            <input type="radio" id="guestwczus02" name="guestwczus">
                             <label for="guestwczus02" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwczus03" name="guestwczus" value="geringe">
+                            <input type="radio" id="guestwczus03" name="guestwczus">
                             <label for="guestwczus03" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwczus04" name="guestwczus" value="staerkere">
+                            <input type="radio" id="guestwczus04" name="guestwczus">
                             <label for="guestwczus04" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwczus05" name="guestwczus" value="nichtreno">
+                            <input type="radio" id="guestwczus05" name="guestwczus">
                             <label for="guestwczus05" class="radio-label"></label>
                         </td>
 
@@ -1771,26 +1828,26 @@ index.html
                     <tr>
                         <td>Tür / Zarge / Beschläge</td>
                         <td>
-                            <input type="radio" id="guestwctuere1" name="guestwctuere" value="in Ordnung">
+                            <input type="radio" id="guestwctuere1" name="guestwctuere">
                             <label for="guestwctuere1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctuere2" name="guestwctuere"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwctuere2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctuere3" name="guestwctuere00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwctuere3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctuere4" name="guestwctuere00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwctuere4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwctuere5" name="guestwctuere" value="nicht vorhanden">
+                            <input type="radio" id="guestwctuere5" name="guestwctuere">
                             <label for="guestwctuere5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1821,26 +1878,26 @@ index.html
                     <tr>
                         <td>Fenster / Beschläge / Glas</td>
                         <td>
-                            <input type="radio" id="guestwcfenster1" name="guestwcfenster" value="in Ordnung">
+                            <input type="radio" id="guestwcfenster1" name="guestwcfenster">
                             <label for="guestwcfenster1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfenster2" name="guestwcfenster"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcfenster2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfenster3" name="guestwcfenster00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcfenster3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfenster4" name="guestwcfenster00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcfenster4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcfenster5" name="guestwcfenster" value="nicht vorhanden">
+                            <input type="radio" id="guestwcfenster5" name="guestwcfenster">
                             <label for="guestwcfenster5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1848,26 +1905,26 @@ index.html
                     <tr>
                         <td>Jalousie / Rolläden / Klappläden</td>
                         <td>
-                            <input type="radio" id="guestwcrollo1" name="guestwcrollo" value="in Ordnung">
+                            <input type="radio" id="guestwcrollo1" name="guestwcrollo">
                             <label for="guestwcrollo1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcrollo2" name="guestwcrollo"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcrollo2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcrollo3" name="guestwcrollo00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcrollo3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcrollo4" name="guestwcrollo00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcrollo4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcrollo5" name="guestwcrollo" value="nicht vorhanden">
+                            <input type="radio" id="guestwcrollo5" name="guestwcrollo">
                             <label for="guestwcrollo5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1875,26 +1932,26 @@ index.html
                     <tr>
                         <td>Decke</td>
                         <td>
-                            <input type="radio" id="guestwcdecke1" name="guestwcdecke" value="in Ordnung">
+                            <input type="radio" id="guestwcdecke1" name="guestwcdecke">
                             <label for="guestwcdecke1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcdecke2" name="guestwcdecke"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcdecke2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcdecke3" name="guestwcdecke00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcdecke3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcdecke4" name="guestwcdecke00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcdecke4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcdecke5" name="guestwcdecke" value="nicht vorhanden">
+                            <input type="radio" id="guestwcdecke5" name="guestwcdecke">
                             <label for="guestwcdecke5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1902,26 +1959,26 @@ index.html
                     <tr>
                         <td>Wände / Tapeten</td>
                         <td>
-                            <input type="radio" id="guestwcwaende1" name="guestwcwaende" value="in Ordnung">
+                            <input type="radio" id="guestwcwaende1" name="guestwcwaende">
                             <label for="guestwcwaende1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwaende2" name="guestwcwaende"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcwaende2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwaende3" name="guestwcwaende00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcwaende3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwaende4" name="guestwcwaende00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcwaende4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcwaende5" name="guestwcwaende" value="nicht vorhanden">
+                            <input type="radio" id="guestwcwaende5" name="guestwcwaende">
                             <label for="guestwcwaende5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1953,26 +2010,26 @@ index.html
                     <tr>
                         <td>Fliesen</td>
                         <td>
-                            <input type="radio" id="guestwcfliesen1" name="guestwcfliesen" value="in Ordnung">
+                            <input type="radio" id="guestwcfliesen1" name="guestwcfliesen">
                             <label for="guestwcfliesen1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfliesen2" name="guestwcfliesen"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcfliesen2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfliesen3" name="guestwcfliesen00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcfliesen3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfliesen4" name="guestwcfliesen00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcfliesen4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcfliesen5" name="guestwcfliesen" value="nicht vorhanden">
+                            <input type="radio" id="guestwcfliesen5" name="guestwcfliesen">
                             <label for="guestwcfliesen5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -1980,27 +2037,27 @@ index.html
                     <tr>
                         <td>Heizkörper / Ventile / Rohre</td>
                         <td>
-                            <input type="radio" id="guestwcheizkoerper1" name="guestwcheizkoerper" value="in Ordnung">
+                            <input type="radio" id="guestwcheizkoerper1" name="guestwcheizkoerper">
                             <label for="guestwcheizkoerper1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheizkoerper2" name="guestwcheizkoerper"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcheizkoerper2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheizkoerper3" name="guestwcheizkoerper00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcheizkoerper3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheizkoerper4" name="guestwcheizkoerper00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcheizkoerper4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheizkoerper5" name="guestwcheizkoerper"
-                                value="nicht vorhanden">
+                               >
                             <label for="guestwcheizkoerper5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2008,26 +2065,26 @@ index.html
                     <tr>
                         <td>Fußboden</td>
                         <td>
-                            <input type="radio" id="guestwcfussboden1" name="guestwcfussboden" value="in Ordnung">
+                            <input type="radio" id="guestwcfussboden1" name="guestwcfussboden">
                             <label for="guestwcfussboden1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfussboden2" name="guestwcfussboden"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcfussboden2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfussboden3" name="guestwcfussboden00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcfussboden3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcfussboden4" name="guestwcfussboden00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcfussboden4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcfussboden5" name="guestwcfussboden" value="nicht vorhanden">
+                            <input type="radio" id="guestwcfussboden5" name="guestwcfussboden">
                             <label for="guestwcfussboden5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2048,26 +2105,26 @@ index.html
                     <tr>
                         <td>Handwaschbecken</td>
                         <td>
-                            <input type="radio" id="guestwczapfhahn1" name="guestwczapfhahn" value="in Ordnung">
+                            <input type="radio" id="guestwczapfhahn1" name="guestwczapfhahn">
                             <label for="guestwczapfhahn1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahn2" name="guestwczapfhahn"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwczapfhahn2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahn3" name="guestwczapfhahn00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwczapfhahn3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahn4" name="guestwczapfhahn00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwczapfhahn4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwczapfhahn5" name="guestwczapfhahn" value="nicht vorhanden">
+                            <input type="radio" id="guestwczapfhahn5" name="guestwczapfhahn">
                             <label for="guestwczapfhahn5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2076,27 +2133,27 @@ index.html
                     <tr>
                         <td>Armaturen</td>
                         <td>
-                            <input type="radio" id="guestwczapfhahnxx1" name="guestwczapfhahnxx" value="in Ordnung">
+                            <input type="radio" id="guestwczapfhahnxx1" name="guestwczapfhahnxx">
                             <label for="guestwczapfhahnxx1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahnxx2" name="guestwczapfhahnxx"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwczapfhahnxx2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahnxx3" name="guestwczapfhahnxx00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwczapfhahnxx3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahnxx4" name="guestwczapfhahnxx00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwczapfhahnxx4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwczapfhahnxx5" name="guestwczapfhahnxx"
-                                value="nicht vorhanden">
+                               >
                             <label for="guestwczapfhahnxx5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2107,27 +2164,27 @@ index.html
 
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss1_xxx"
-                                name="bath_waschmaschinenanschluss_xxx2" value="in Ordnung">
+                                name="bath_waschmaschinenanschluss_xxx2">
                             <label for="bath_waschmaschinenanschluss1_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss2_xxx"
-                                name="bath_waschmaschinenanschluss_xxx2" value="reparatur- / renovierungsbedürftig">
+                                name="bath_waschmaschinenanschluss_xxx2">
                             <label for="bath_waschmaschinenanschluss2_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss3_xxx"
-                                name="bath_waschmaschinenanschluss_xx3" value="Reparatur durch den Mieter">
+                                name="bath_waschmaschinenanschluss_xx3">
                             <label for="bath_waschmaschinenanschluss3_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss4_xxx"
-                                name="bath_waschmaschinenanschluss_xx3" value="Reparatur durch den Vermieter">
+                                name="bath_waschmaschinenanschluss_xx3">
                             <label for="bath_waschmaschinenanschluss4_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_waschmaschinenanschluss5_xxx"
-                                name="bath_waschmaschinenanschluss_xxx2" value="nicht vorhanden">
+                                name="bath_waschmaschinenanschluss_xxx2">
                             <label for="bath_waschmaschinenanschluss5_xxx" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2135,26 +2192,26 @@ index.html
                     <tr>
                         <td>WC-Sitz, Spüler usw.</td>
                         <td>
-                            <input type="radio" id="bath_wc1_xxx" name="bath_wc_xxx" value="in Ordnung">
+                            <input type="radio" id="bath_wc1_xxx" name="bath_wc_xxx">
                             <label for="bath_wc1_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_wc2_xxx" name="bath_wc_xxx"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="bath_wc2_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_wc3_xxx" name="bath_wc_xxx1"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="bath_wc3_xxx" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="bath_wc4_xxx" name="bath_wc_xxx1"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="bath_wc4_xxx" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="bath_wc5_xxx" name="bath_wc_xxx" value="nicht vorhanden">
+                            <input type="radio" id="bath_wc5_xxx" name="bath_wc_xxx">
                             <label for="bath_wc5_xxx" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2162,26 +2219,26 @@ index.html
                     <tr>
                         <td>Steckdosen / Lichtschalter</td>
                         <td>
-                            <input type="radio" id="guestwcelektrik1" name="guestwcelektrik" value="in Ordnung">
+                            <input type="radio" id="guestwcelektrik1" name="guestwcelektrik">
                             <label for="guestwcelektrik1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcelektrik2" name="guestwcelektrik"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcelektrik2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcelektrik3" name="guestwcelektrik00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcelektrik3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcelektrik4" name="guestwcelektrik00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcelektrik4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcelektrik5" name="guestwcelektrik" value="nicht vorhanden">
+                            <input type="radio" id="guestwcelektrik5" name="guestwcelektrik">
                             <label for="guestwcelektrik5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2196,27 +2253,27 @@ index.html
                         <td>Warmwasserbereiter</td>
                         <td>
                             <input type="radio" id="guestwcwarmwasserbereiter1" name="guestwcwarmwasserbereiter"
-                                value="in Ordnung">
+                               >
                             <label for="guestwcwarmwasserbereiter1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwarmwasserbereiter2" name="guestwcwarmwasserbereiter"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcwarmwasserbereiter2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwarmwasserbereiter3" name="guestwcwarmwasserbereiter00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcwarmwasserbereiter3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwarmwasserbereiter4" name="guestwcwarmwasserbereiter00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcwarmwasserbereiter4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcwarmwasserbereiter5" name="guestwcwarmwasserbereiter"
-                                value="nicht vorhanden">
+                               >
                             <label for="guestwcwarmwasserbereiter5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2224,27 +2281,27 @@ index.html
                     <tr>
                         <td>Heiztherme</td>
                         <td>
-                            <input type="radio" id="guestwcheiztherme1" name="guestwcheiztherme" value="in Ordnung">
+                            <input type="radio" id="guestwcheiztherme1" name="guestwcheiztherme">
                             <label for="guestwcheiztherme1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheiztherme2" name="guestwcheiztherme"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcheiztherme2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheiztherme3" name="guestwcheiztherme00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcheiztherme3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheiztherme4" name="guestwcheiztherme00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcheiztherme4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcheiztherme5" name="guestwcheiztherme"
-                                value="nicht vorhanden">
+                               >
                             <label for="guestwcheiztherme5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2253,26 +2310,26 @@ index.html
                     <tr>
                         <td>Ventilator</td>
                         <td>
-                            <input type="radio" id="guestwcventi1" name="guestwcventi" value="in Ordnung">
+                            <input type="radio" id="guestwcventi1" name="guestwcventi">
                             <label for="guestwcventi1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcventi2" name="guestwcventi"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcventi2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcventi3" name="guestwcventi00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcventi3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcventi4" name="guestwcventi00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcventi4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcventi5" name="guestwcventi" value="nicht vorhanden">
+                            <input type="radio" id="guestwcventi5" name="guestwcventi">
                             <label for="guestwcventi5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2280,26 +2337,26 @@ index.html
                     <tr>
                         <td>Belüftungssieb</td>
                         <td>
-                            <input type="radio" id="guestwcsiebwc1" name="guestwcsiebwc" value="in Ordnung">
+                            <input type="radio" id="guestwcsiebwc1" name="guestwcsiebwc">
                             <label for="guestwcsiebwc1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcsiebwc2" name="guestwcsiebwc"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcsiebwc2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcsiebwc3" name="guestwcsiebwc00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcsiebwc3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcsiebwc4" name="guestwcsiebwc00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcsiebwc4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcsiebwc5" name="guestwcsiebwc" value="nicht vorhanden">
+                            <input type="radio" id="guestwcsiebwc5" name="guestwcsiebwc">
                             <label for="guestwcsiebwc5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2307,26 +2364,26 @@ index.html
                     <tr>
                         <td>Spiegel / Konsole</td>
                         <td>
-                            <input type="radio" id="guestwcmirrow1" name="guestwcmirrow" value="in Ordnung">
+                            <input type="radio" id="guestwcmirrow1" name="guestwcmirrow">
                             <label for="guestwcmirrow1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcmirrow2" name="guestwcmirrow"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcmirrow2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcmirrow3" name="guestwcmirrow00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcmirrow3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcmirrow4" name="guestwcmirrow00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcmirrow4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcmirrow5" name="guestwcmirrow" value="nicht vorhanden">
+                            <input type="radio" id="guestwcmirrow5" name="guestwcmirrow">
                             <label for="guestwcmirrow5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2334,26 +2391,26 @@ index.html
                     <tr>
                         <td>Handtuchhalter</td>
                         <td>
-                            <input type="radio" id="guestwctowel1" name="guestwctowel" value="in Ordnung">
+                            <input type="radio" id="guestwctowel1" name="guestwctowel">
                             <label for="guestwctowel1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctowel2" name="guestwctowel"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwctowel2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctowel3" name="guestwctowel00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwctowel3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctowel4" name="guestwctowel00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwctowel4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwctowel5" name="guestwctowel" value="nicht vorhanden">
+                            <input type="radio" id="guestwctowel5" name="guestwctowel">
                             <label for="guestwctowel5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2362,26 +2419,26 @@ index.html
                     <tr>
                         <td>Toilettenpapierhalter</td>
                         <td>
-                            <input type="radio" id="guestwcpaper1" name="guestwcpaper" value="in Ordnung">
+                            <input type="radio" id="guestwcpaper1" name="guestwcpaper">
                             <label for="guestwcpaper1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcpaper2" name="guestwcpaper"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcpaper2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcpaper3" name="guestwcpaper00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcpaper3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcpaper4" name="guestwcpaper00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcpaper4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcpaper5" name="guestwcpaper" value="nicht vorhanden">
+                            <input type="radio" id="guestwcpaper5" name="guestwcpaper">
                             <label for="guestwcpaper5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2389,26 +2446,26 @@ index.html
                     <tr>
                         <td>Badewanne</td>
                         <td>
-                            <input type="radio" id="guestwctube1" name="guestwctube" value="in Ordnung">
+                            <input type="radio" id="guestwctube1" name="guestwctube">
                             <label for="guestwctube1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctube2" name="guestwctube"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwctube2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctube3" name="guestwctube00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwctube3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwctube4" name="guestwctube00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwctube4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwctube5" name="guestwctube" value="nicht vorhanden">
+                            <input type="radio" id="guestwctube5" name="guestwctube">
                             <label for="guestwctube5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2416,26 +2473,26 @@ index.html
                     <tr>
                         <td>Duschbecken</td>
                         <td>
-                            <input type="radio" id="guestwcshower1" name="guestwcshower" value="in Ordnung">
+                            <input type="radio" id="guestwcshower1" name="guestwcshower">
                             <label for="guestwcshower1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcshower2" name="guestwcshower"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcshower2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcshower3" name="guestwcshower00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcshower3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcshower4" name="guestwcshower00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcshower4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcshower5" name="guestwcshower" value="nicht vorhanden">
+                            <input type="radio" id="guestwcshower5" name="guestwcshower">
                             <label for="guestwcshower5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2444,26 +2501,26 @@ index.html
                     <tr>
                         <td>Wannenbatterie / Brause</td>
                         <td>
-                            <input type="radio" id="guestwcbrause1" name="guestwcbrause" value="in Ordnung">
+                            <input type="radio" id="guestwcbrause1" name="guestwcbrause">
                             <label for="guestwcbrause1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcbrause2" name="guestwcbrause"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="guestwcbrause2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcbrause3" name="guestwcbrause00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="guestwcbrause3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="guestwcbrause4" name="guestwcbrause00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="guestwcbrause4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="guestwcbrause5" name="guestwcbrause" value="nicht vorhanden">
+                            <input type="radio" id="guestwcbrause5" name="guestwcbrause">
                             <label for="guestwcbrause5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2557,23 +2614,23 @@ index.html
                     <tr>
                         <td></td>
                         <td>
-                            <input type="radio" id="dieleflurzus01" name="dieleflurzus" value="reno">
+                            <input type="radio" id="dieleflurzus01" name="dieleflurzus">
                             <label for="dieleflurzus01" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurzus02" name="dieleflurzus" value="neuwe">
+                            <input type="radio" id="dieleflurzus02" name="dieleflurzus">
                             <label for="dieleflurzus02" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurzus03" name="dieleflurzus" value="geringe">
+                            <input type="radio" id="dieleflurzus03" name="dieleflurzus">
                             <label for="dieleflurzus03" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurzus04" name="dieleflurzus" value="staerkere">
+                            <input type="radio" id="dieleflurzus04" name="dieleflurzus">
                             <label for="dieleflurzus04" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurzus05" name="dieleflurzus" value="nichtreno">
+                            <input type="radio" id="dieleflurzus05" name="dieleflurzus">
                             <label for="dieleflurzus05" class="radio-label"></label>
                         </td>
 
@@ -2598,26 +2655,26 @@ index.html
                     <tr>
                         <td style="padding-bottom: 20px;">Wohnungstür / Zarge / Beschläge</td>
                         <td>
-                            <input type="radio" id="dieleflurtuere1" name="dieleflurtuere" value="in Ordnung">
+                            <input type="radio" id="dieleflurtuere1" name="dieleflurtuere">
                             <label for="dieleflurtuere1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurtuere2" name="dieleflurtuere"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurtuere2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurtuere3" name="dieleflurtuere00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurtuere3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurtuere4" name="dieleflurtuere00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurtuere4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurtuere5" name="dieleflurtuere" value="nicht vorhanden">
+                            <input type="radio" id="dieleflurtuere5" name="dieleflurtuere">
                             <label for="dieleflurtuere5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2625,27 +2682,27 @@ index.html
                     <tr>
                         <td style="padding-bottom: 20px;">Klingel / Türöffner / Sprechanlage</td>
                         <td>
-                            <input type="radio" id="dieleflursprecher1" name="dieleflursprecher" value="in Ordnung">
+                            <input type="radio" id="dieleflursprecher1" name="dieleflursprecher">
                             <label for="dieleflursprecher1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflursprecher2" name="dieleflursprecher"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflursprecher2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflursprecher3" name="dieleflursprecher00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflursprecher3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflursprecher4" name="dieleflursprecher00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflursprecher4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflursprecher5" name="dieleflursprecher"
-                                value="nicht vorhanden">
+                               >
                             <label for="dieleflursprecher5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2655,26 +2712,26 @@ index.html
                     <tr>
                         <td style="padding-bottom: 20px;">Fenster / Beschläge / Glas</td>
                         <td>
-                            <input type="radio" id="dieleflurfenster1" name="dieleflurfenster" value="in Ordnung">
+                            <input type="radio" id="dieleflurfenster1" name="dieleflurfenster">
                             <label for="dieleflurfenster1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfenster2" name="dieleflurfenster"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurfenster2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfenster3" name="dieleflurfenster00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurfenster3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfenster4" name="dieleflurfenster00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurfenster4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurfenster5" name="dieleflurfenster" value="nicht vorhanden">
+                            <input type="radio" id="dieleflurfenster5" name="dieleflurfenster">
                             <label for="dieleflurfenster5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2683,26 +2740,26 @@ index.html
                     <tr>
                         <td>Decke</td>
                         <td>
-                            <input type="radio" id="dieleflurdecke1" name="dieleflurdecke" value="in Ordnung">
+                            <input type="radio" id="dieleflurdecke1" name="dieleflurdecke">
                             <label for="dieleflurdecke1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurdecke2" name="dieleflurdecke"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurdecke2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurdecke3" name="dieleflurdecke00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurdecke3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurdecke4" name="dieleflurdecke00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurdecke4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurdecke5" name="dieleflurdecke" value="nicht vorhanden">
+                            <input type="radio" id="dieleflurdecke5" name="dieleflurdecke">
                             <label for="dieleflurdecke5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2710,26 +2767,26 @@ index.html
                     <tr>
                         <td>Wände / Tapeten</td>
                         <td>
-                            <input type="radio" id="dieleflurwaende1" name="dieleflurwaende" value="in Ordnung">
+                            <input type="radio" id="dieleflurwaende1" name="dieleflurwaende">
                             <label for="dieleflurwaende1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurwaende2" name="dieleflurwaende"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurwaende2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurwaende3" name="dieleflurwaende00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurwaende3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurwaende4" name="dieleflurwaende00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurwaende4" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurwaende5" name="dieleflurwaende" value="nicht vorhanden">
+                            <input type="radio" id="dieleflurwaende5" name="dieleflurwaende">
                             <label for="dieleflurwaende5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2763,27 +2820,27 @@ index.html
                         <td>Heizkörper / Ventile / Rohre</td>
                         <td>
                             <input type="radio" id="dieleflurheizkoerper1" name="dieleflurheizkoerper"
-                                value="in Ordnung">
+                               >
                             <label for="dieleflurheizkoerper1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurheizkoerper2" name="dieleflurheizkoerper"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurheizkoerper2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurheizkoerper3" name="dieleflurheizkoerper00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurheizkoerper3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurheizkoerper4" name="dieleflurheizkoerper00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurheizkoerper4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurheizkoerper5" name="dieleflurheizkoerper"
-                                value="nicht vorhanden">
+                               >
                             <label for="dieleflurheizkoerper5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2791,27 +2848,27 @@ index.html
                     <tr>
                         <td>Fußboden</td>
                         <td>
-                            <input type="radio" id="dieleflurfussboden1" name="dieleflurfussboden" value="in Ordnung">
+                            <input type="radio" id="dieleflurfussboden1" name="dieleflurfussboden">
                             <label for="dieleflurfussboden1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfussboden2" name="dieleflurfussboden"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurfussboden2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfussboden3" name="dieleflurfussboden00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurfussboden3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfussboden4" name="dieleflurfussboden00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurfussboden4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurfussboden5" name="dieleflurfussboden"
-                                value="nicht vorhanden">
+                               >
                             <label for="dieleflurfussboden5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2830,27 +2887,27 @@ index.html
                     <tr>
                         <td>Steckdosen / Lichtschalter</td>
                         <td>
-                            <input type="radio" id="dieleflurelektrik1" name="dieleflurelektrik" value="in Ordnung">
+                            <input type="radio" id="dieleflurelektrik1" name="dieleflurelektrik">
                             <label for="dieleflurelektrik1" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurelektrik2" name="dieleflurelektrik"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurelektrik2" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurelektrik3" name="dieleflurelektrik00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurelektrik3" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurelektrik4" name="dieleflurelektrik00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurelektrik4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurelektrik5" name="dieleflurelektrik"
-                                value="nicht vorhanden">
+                               >
                             <label for="dieleflurelektrik5" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2858,26 +2915,26 @@ index.html
                     <tr>
                         <td>Abstellschrank</td>
                         <td>
-                            <input type="radio" id="dieleflurabstell4" name="dieleflurabstell" value="in Ordnung">
+                            <input type="radio" id="dieleflurabstell4" name="dieleflurabstell">
                             <label for="dieleflurabstell4" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurabstell5" name="dieleflurabstell"
-                                value="reparatur- / renovierungsbedürftig">
+                               >
                             <label for="dieleflurabstell5" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurabstell6" name="dieleflurabstell00"
-                                value="Reparatur durch den Mieter">
+                               >
                             <label for="dieleflurabstell6" class="radio-label"></label>
                         </td>
                         <td>
                             <input type="radio" id="dieleflurabstell7" name="dieleflurabstell00"
-                                value="Reparatur durch den Vermieter">
+                               >
                             <label for="dieleflurabstell7" class="radio-label"></label>
                         </td>
                         <td>
-                            <input type="radio" id="dieleflurabstell8" name="dieleflurabstell" value="nicht vorhanden">
+                            <input type="radio" id="dieleflurabstell8" name="dieleflurabstell">
                             <label for="dieleflurabstell8" class="radio-label"></label>
                         </td>
                     </tr>
@@ -2997,23 +3054,23 @@ index.html
                         <tr>
                             <td></td>
                             <td>
-                                <input type="radio" id="abstellzus01" name="abstellzus" value="reno">
+                                <input type="radio" id="abstellzus01" name="abstellzus">
                                 <label for="abstellzus01" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellzus02" name="abstellzus" value="neuwe">
+                                <input type="radio" id="abstellzus02" name="abstellzus">
                                 <label for="abstellzus02" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellzus03" name="abstellzus" value="geringe">
+                                <input type="radio" id="abstellzus03" name="abstellzus">
                                 <label for="abstellzus03" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellzus04" name="abstellzus" value="staerkere">
+                                <input type="radio" id="abstellzus04" name="abstellzus">
                                 <label for="abstellzus04" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellzus05" name="abstellzus" value="nichtreno">
+                                <input type="radio" id="abstellzus05" name="abstellzus">
                                 <label for="abstellzus05" class="radio-label"></label>
                             </td>
 
@@ -3038,26 +3095,26 @@ index.html
                         <tr>
                             <td>Tür / Zarge / Beschläge</td>
                             <td>
-                                <input type="radio" id="abstelltuere1" name="abstelltuere" value="in Ordnung">
+                                <input type="radio" id="abstelltuere1" name="abstelltuere">
                                 <label for="abstelltuere1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstelltuere2" name="abstelltuere"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstelltuere2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstelltuere3" name="abstelltuere00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstelltuere3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstelltuere4" name="abstelltuere00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstelltuere4" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstelltuere5" name="abstelltuere" value="nicht vorhanden">
+                                <input type="radio" id="abstelltuere5" name="abstelltuere">
                                 <label for="abstelltuere5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3088,26 +3145,26 @@ index.html
                         <tr>
                             <td>Fenster / Beschläge / Glas</td>
                             <td>
-                                <input type="radio" id="abstellfenster1" name="abstellfenster" value="in Ordnung">
+                                <input type="radio" id="abstellfenster1" name="abstellfenster">
                                 <label for="abstellfenster1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfenster2" name="abstellfenster"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellfenster2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfenster3" name="abstellfenster00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellfenster3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfenster4" name="abstellfenster00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellfenster4" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellfenster5" name="abstellfenster" value="nicht vorhanden">
+                                <input type="radio" id="abstellfenster5" name="abstellfenster">
                                 <label for="abstellfenster5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3115,26 +3172,26 @@ index.html
                         <tr>
                             <td>Jalousie / Rolläden / Klappläden</td>
                             <td>
-                                <input type="radio" id="abstellrollo1" name="abstellrollo" value="in Ordnung">
+                                <input type="radio" id="abstellrollo1" name="abstellrollo">
                                 <label for="abstellrollo1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellrollo2" name="abstellrollo"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellrollo2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellrollo3" name="abstellrollo00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellrollo3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellrollo4" name="abstellrollo00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellrollo4" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellrollo5" name="abstellrollo" value="nicht vorhanden">
+                                <input type="radio" id="abstellrollo5" name="abstellrollo">
                                 <label for="abstellrollo5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3142,26 +3199,26 @@ index.html
                         <tr>
                             <td>Decke</td>
                             <td>
-                                <input type="radio" id="abstelldecke1" name="abstelldecke" value="in Ordnung">
+                                <input type="radio" id="abstelldecke1" name="abstelldecke">
                                 <label for="abstelldecke1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstelldecke2" name="abstelldecke"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstelldecke2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstelldecke3" name="abstelldecke00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstelldecke3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstelldecke4" name="abstelldecke00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstelldecke4" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstelldecke5" name="abstelldecke" value="nicht vorhanden">
+                                <input type="radio" id="abstelldecke5" name="abstelldecke">
                                 <label for="abstelldecke5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3169,26 +3226,26 @@ index.html
                         <tr>
                             <td>Wände / Tapeten</td>
                             <td>
-                                <input type="radio" id="abstellwaende1" name="abstellwaende" value="in Ordnung">
+                                <input type="radio" id="abstellwaende1" name="abstellwaende">
                                 <label for="abstellwaende1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellwaende2" name="abstellwaende"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellwaende2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellwaende3" name="abstellwaende00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellwaende3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellwaende4" name="abstellwaende00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellwaende4" class="radio-label"></label>
                             </td>
                             <td>
-                                <input type="radio" id="abstellwaende5" name="abstellwaende" value="nicht vorhanden">
+                                <input type="radio" id="abstellwaende5" name="abstellwaende">
                                 <label for="abstellwaende5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3224,27 +3281,27 @@ index.html
                             <td>Heizkörper / Ventile / Rohre</td>
                             <td>
                                 <input type="radio" id="abstellheizkoerper1" name="abstellheizkoerper"
-                                    value="in Ordnung">
+                                   >
                                 <label for="abstellheizkoerper1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellheizkoerper2" name="abstellheizkoerper"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellheizkoerper2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellheizkoerper3" name="abstellheizkoerper00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellheizkoerper3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellheizkoerper4" name="abstellheizkoerper00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellheizkoerper4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellheizkoerper5" name="abstellheizkoerper"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="abstellheizkoerper5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3252,27 +3309,27 @@ index.html
                         <tr>
                             <td>Fußboden / Leisten</td>
                             <td>
-                                <input type="radio" id="abstellfussboden1" name="abstellfussboden" value="in Ordnung">
+                                <input type="radio" id="abstellfussboden1" name="abstellfussboden">
                                 <label for="abstellfussboden1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfussboden2" name="abstellfussboden"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellfussboden2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfussboden3" name="abstellfussboden00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellfussboden3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfussboden4" name="abstellfussboden00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellfussboden4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellfussboden5" name="abstellfussboden"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="abstellfussboden5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3291,27 +3348,27 @@ index.html
                         <tr>
                             <td>Radio-/Fernseh-/Internetdose</td>
                             <td>
-                                <input type="radio" id="abstellinternet1" name="abstellinternet" value="in Ordnung">
+                                <input type="radio" id="abstellinternet1" name="abstellinternet">
                                 <label for="abstellinternet1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellinternet2" name="abstellinternet"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellinternet2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellinternet3" name="abstellinternet00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellinternet3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellinternet4" name="abstellinternet00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellinternet4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellinternet5" name="abstellinternet"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="abstellinternet5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3324,27 +3381,27 @@ index.html
                         <tr>
                             <td>Steckdosen / Lichtschalter</td>
                             <td>
-                                <input type="radio" id="abstellelektrik1" name="abstellelektrik" value="in Ordnung">
+                                <input type="radio" id="abstellelektrik1" name="abstellelektrik">
                                 <label for="abstellelektrik1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellelektrik2" name="abstellelektrik"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="abstellelektrik2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellelektrik3" name="abstellelektrik00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="abstellelektrik3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellelektrik4" name="abstellelektrik00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="abstellelektrik4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="abstellelektrik5" name="abstellelektrik"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="abstellelektrik5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3492,27 +3549,27 @@ index.html
                         <tr>
                             <td>Balkon / Terrasse / Loggia</td>
                             <td>
-                                <input type="radio" id="nebenraumbalkon1" name="nebenraumbalkon" value="in Ordnung">
+                                <input type="radio" id="nebenraumbalkon1" name="nebenraumbalkon">
                                 <label for="nebenraumbalkon1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumbalkon2" name="nebenraumbalkon"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="nebenraumbalkon2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumbalkon3" name="nebenraumbalkon00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="nebenraumbalkon3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumbalkon4" name="nebenraumbalkon00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="nebenraumbalkon4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumbalkon5" name="nebenraumbalkon"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="nebenraumbalkon5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3522,27 +3579,27 @@ index.html
                         <tr>
                             <td>Keller</td>
                             <td>
-                                <input type="radio" id="nebenraumkeller1" name="nebenraumkeller" value="in Ordnung">
+                                <input type="radio" id="nebenraumkeller1" name="nebenraumkeller">
                                 <label for="nebenraumkeller1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumkeller2" name="nebenraumkeller"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="nebenraumkeller2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumkeller3" name="nebenraumkeller00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="nebenraumkeller3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumkeller4" name="nebenraumkeller00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="nebenraumkeller4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumkeller5" name="nebenraumkeller"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="nebenraumkeller5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3551,27 +3608,27 @@ index.html
                             <td>Dachboden</td>
                             <td>
                                 <input type="radio" id="nebenraumdachboden1" name="nebenraumdachboden"
-                                    value="in Ordnung">
+                                   >
                                 <label for="nebenraumdachboden1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumdachboden2" name="nebenraumdachboden"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="nebenraumdachboden2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumdachboden3" name="nebenraumdachboden00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="nebenraumdachboden3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumdachboden4" name="nebenraumdachboden00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="nebenraumdachboden4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumdachboden5" name="nebenraumdachboden"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="nebenraumdachboden5" class="radio-label"></label>
                             </td>
                         </tr>
@@ -3579,27 +3636,27 @@ index.html
                         <tr>
                             <td>Garage / Stellplatz</td>
                             <td>
-                                <input type="radio" id="nebenraumgarage1" name="nebenraumgarage" value="in Ordnung">
+                                <input type="radio" id="nebenraumgarage1" name="nebenraumgarage">
                                 <label for="nebenraumgarage1" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumgarage2" name="nebenraumgarage"
-                                    value="reparatur- / renovierungsbedürftig">
+                                   >
                                 <label for="nebenraumgarage2" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumgarage3" name="nebenraumgarage00"
-                                    value="Reparatur durch den Mieter">
+                                   >
                                 <label for="nebenraumgarage3" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumgarage4" name="nebenraumgarage00"
-                                    value="Reparatur durch den Vermieter">
+                                   >
                                 <label for="nebenraumgarage4" class="radio-label"></label>
                             </td>
                             <td>
                                 <input type="radio" id="nebenraumgarage5" name="nebenraumgarage"
-                                    value="nicht vorhanden">
+                                   >
                                 <label for="nebenraumgarage5" class="radio-label"></label>
                             </td>
                         </tr>
