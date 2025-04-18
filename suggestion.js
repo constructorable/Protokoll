@@ -1,10 +1,3 @@
-// Copyright - Oliver Acker, acker_oliver@yahoo.de
-// suggestion.js
-// Version 3.25_beta
-
-// suggestion.js
-
-// Definiere das Array mit den Mitarbeiternamen
 const mitarbeiternamen = [
     "Christian Adler",
     "Oliver Acker",
@@ -14,73 +7,65 @@ const mitarbeiternamen = [
     "Darius Andörfer"
 ];
 
-// Definiere das Array mit den Farben
 const farben = [
 
     "weiß",
     "beige",
-    "grau",        // Wird unten erweitert
-    "hellgrau",    // Wird unten erweitert
+    "grau",        
+    "hellgrau",    
     "anthrazit",
     "creme",
     "elfenbein",
     "taubenblau",
     "hellblau",
     "dunkelblau",
-    "mintgrün",    // Wird unten ergänzt
-    "pastellrosa", // Wird unten ergänzt
+    "mintgrün",    
+    "pastellrosa", 
     "sand",
     "terrakotta",
-    "olivgrün",    // Wird unten ergänzt
+    "olivgrün",    
     "taupe",
     "vanille",
     "himmelblau",
-    "lachs",       // Wird unten ergänzt
-    "moosgrün",    // Wird unten ergänzt
-    "zitronengelb",// Wird unten ergänzt
+    "lachs",       
+    "moosgrün",    
+    "zitronengelb",
     "sonstige",
 
-    // Rot
     "rot",
     "hellrot",
     "dunkelrot",
     "karminrot",
     "weinrot",
 
-    // Grün
     "grün",
     "hellgrün",
     "dunkelgrün",
     "waldgrün",
     "apfelgrün",
 
-    // Braun
     "braun",
     "hellbraun",
     "dunkelbraun",
     "kakao",
     "mahagoni",
 
-    // Grau (Ergänzung zu vorhandenen)
     "mittelgrau",
     "steingrau",
     "silbergrau",
 
-    // Lila
     "lila",
     "helllila",
     "dunkellila",
     "flieder",
     "lavendel",
 
-    // Rosa
     "rosa",
     "hellrosa",
     "dunkelrosa",
     "puderrosa",
     "altrosa",
 
-    // Gelb
     "gelb",
     "hellgelb",
     "dunkelgelb",
@@ -88,7 +73,6 @@ const farben = [
     "goldgelb"
 ];
 
-// Definiere das Array mit den Fußbodenmaterialien
 const fussbodenMaterialien = [
     "Holz - Parkett",
     "Holz - Parkett, Eiche",
@@ -169,9 +153,8 @@ const fussbodenFarben = [
     "sonstige"
 ];
 
-// Warte, bis das DOM vollständig geladen ist
 document.addEventListener("DOMContentLoaded", function () {
-    // Funktion zum Aktualisieren der Signaturfelder
+
     function updateSignFields() {
         document.getElementById("strasseeinzugsign").textContent = document.getElementById("strasseeinzug").value;
         document.getElementById("lageeinzugsign").textContent = document.getElementById("lageeinzug2").value;
@@ -179,12 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("datumsign").textContent = document.getElementById("datum").value;
     }
 
-
-    // Funktion, um Vorschläge basierend auf der Benutzereingabe anzuzeigen
     function showSuggestions(input, suggestionsArray, suggestionList) {
         const inputValue = input.value.toLowerCase();
 
-        // Suche nach Teilstrings in allen Einträgen
         const suggestions = suggestionsArray.filter(item =>
             item.toLowerCase().includes(inputValue)
         );
@@ -210,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Funktion, um alle Vorschläge anzuzeigen (beim Fokus auf das Input-Feld)
     function showAllSuggestions(inputField, suggestionsArray, suggestionList) {
         suggestionList.innerHTML = "";
 
@@ -219,9 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
             option.textContent = item;
             option.classList.add("suggestion-item");
             option.addEventListener("click", () => {
-                inputField.value = item; // Setze den ausgewählten Wert in das Input-Feld
-                suggestionList.innerHTML = ""; // Leere die Vorschlagsliste
-                updateSignFields(); // Aktualisiere die Signaturfelder SOFORT
+                inputField.value = item; 
+                suggestionList.innerHTML = ""; 
+                updateSignFields(); 
             });
             suggestionList.appendChild(option);
         });
@@ -229,22 +208,18 @@ document.addEventListener("DOMContentLoaded", function () {
         suggestionList.style.display = "block";
     }
 
-    // Funktion, um Event-Listener für Input-Felder zu registrieren
     function setupInputField(inputField, suggestionsArray, suggestionListId) {
         const suggestionList = document.getElementById(suggestionListId);
 
-        // Zeige alle Vorschläge an, wenn das Input-Feld den Fokus erhält
         inputField.addEventListener("focus", function () {
             showAllSuggestions(inputField, suggestionsArray, suggestionList);
         });
 
-        // Zeige gefilterte Vorschläge an, während der Benutzer tippt
         inputField.addEventListener("input", function (event) {
             showSuggestions(event.target, suggestionsArray, suggestionList);
         });
     }
 
-    // Event-Listener für alle Input-Felder mit der Klasse "suggestion-input"
     document.addEventListener("input", function (event) {
         const target = event.target;
         if (target.classList.contains("suggestion-input")) {
@@ -266,9 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 case "fussboden-farbe":
                     suggestionsArray = fussbodenFarben;
                     break;
-                /*                 case "stockwerk":
-                                    suggestionsArray = stockwerke;
-                                    break; */
+
                 default:
                     console.warn(`Unbekannter Datentyp: ${dataType}`);
                     return;
@@ -311,10 +284,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, true);
 
-
     document.addEventListener("click", function (event) {
         const target = event.target;
-        // Prüfe, ob target ein Element ist und classList hat
+
         if (target && target.classList && !target.classList.contains("suggestion-input")) {
             document.querySelectorAll(".suggestion-list").forEach(list => {
                 list.style.display = "none";
@@ -322,35 +294,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Initialisiere die Signaturfelder beim Laden der Seite
     updateSignFields();
 });
 
-
-
-
-
-
-
-
-
-
-
-// Autovervollständigung für Lage der Zimmer
-// Autovervollständigung für Lage der Zimmer
-// Autovervollständigung für Lage der Zimmer
-// suggestion.js - mit Teilstring-Matching
 document.addEventListener('DOMContentLoaded', function () {
-    // Observer für dynamisch hinzugefügte Elemente
+
     const observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             mutation.addedNodes.forEach(function (node) {
-                if (node.nodeType === 1) { // Nur Elementknoten prüfen
+                if (node.nodeType === 1) { 
                     const inputs = node.querySelectorAll ?
                         node.querySelectorAll('input[name="bezeich-lage"]') : [];
                     inputs.forEach(initAutocomplete);
 
-                    // Falls das Input-Feld selbst hinzugefügt wurde
                     if (node.tagName === 'INPUT' && node.name === 'bezeich-lage') {
                         initAutocomplete(node);
                     }
@@ -359,22 +315,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Observer für das gesamte Dokument starten
     observer.observe(document.body, {
         childList: true,
         subtree: true
     });
 
-    // Bereits vorhandene Input-Felder initialisieren
     document.querySelectorAll('input[name="bezeich-lage"]').forEach(initAutocomplete);
 });
 
 function initAutocomplete(input) {
-    // Vermeide doppelte Initialisierung
+
     if (input.dataset.autocompleteInit) return;
     input.dataset.autocompleteInit = 'true';
 
-    /* const suggestions = ['links', 'rechts', 'hinten']; */
     const suggestions = [
         'links',
         'rechts',
@@ -405,12 +358,10 @@ function initAutocomplete(input) {
     let activeIndex = -1;
     let currentSuggestions = [];
 
-    // Erstelle Dropdown-Container
     const dropdown = document.createElement('div');
     dropdown.className = 'suggestion-dropdown';
     dropdown.style.display = 'none';
 
-    // Positionierung relativ zum Input-Feld
     function positionDropdown() {
         const rect = input.getBoundingClientRect();
         dropdown.style.position = 'absolute';
@@ -421,7 +372,6 @@ function initAutocomplete(input) {
 
     document.body.appendChild(dropdown);
 
-    // Input Event Handler mit Teilstring-Suche
     input.addEventListener('input', function (e) {
         const value = e.target.value.toLowerCase();
         dropdown.innerHTML = '';
@@ -432,7 +382,6 @@ function initAutocomplete(input) {
             return;
         }
 
-        // Angepasste Filterung für Teilstrings
         currentSuggestions = suggestions.filter(item =>
             item.toLowerCase().includes(value)
         );
@@ -440,7 +389,6 @@ function initAutocomplete(input) {
         if (currentSuggestions.length > 0) {
             positionDropdown();
 
-            // Sortierung: Begriffe die mit dem Suchtext beginnen kommen zuerst
             currentSuggestions.sort((a, b) => {
                 const aStartsWith = a.toLowerCase().startsWith(value) ? 0 : 1;
                 const bStartsWith = b.toLowerCase().startsWith(value) ? 0 : 1;
@@ -450,7 +398,6 @@ function initAutocomplete(input) {
             currentSuggestions.forEach((item, index) => {
                 const suggestionItem = document.createElement('div');
 
-                // Markiere den gefundenen Teilstring im Vorschlag
                 const matchIndex = item.toLowerCase().indexOf(value);
                 if (matchIndex >= 0) {
                     const before = item.substring(0, matchIndex);
@@ -475,7 +422,6 @@ function initAutocomplete(input) {
         }
     });
 
-    // Tastatursteuerung (wie zuvor)
     input.addEventListener('keydown', function (e) {
         const items = dropdown.querySelectorAll('.suggestion-item');
 
@@ -504,7 +450,6 @@ function initAutocomplete(input) {
         }
     }
 
-    // Verstecke Dropdown bei Klick außerhalb oder Blur
     input.addEventListener('blur', function () {
         setTimeout(() => {
             if (!dropdown.contains(document.activeElement)) {
@@ -513,7 +458,6 @@ function initAutocomplete(input) {
         }, 200);
     });
 
-    // CSS (wie zuvor)
     if (!document.getElementById('suggestion-styles')) {
         const style = document.createElement('style');
         style.id = 'suggestion-styles';
