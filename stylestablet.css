@@ -1162,7 +1162,7 @@ select option {
     font-size: 16px;
 }
 
-#emailMenu {
+/* #emailMenu {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -1170,16 +1170,34 @@ select option {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 111px 555px rgba(0, 0, 0, 0.75);
     z-index: 1000;
     width: 90%;
-    max-width: 400px;
+    max-width: 600px;
     text-align: center;
+    min-height: 500px;
+}
+ */
+
+#emailMenu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 #emailMenu h3 {
     margin: 0 0 15px;
-    font-size: 18px;
+    font-size: 22px;
     color: #333;
 }
 
@@ -1191,14 +1209,13 @@ select option {
 
 #emailMenu ul li {
     padding: 8px;
-    background-color: #4f8842;
-    border: 1px solid #ddd;
+    background-color: #ffffff;
     border-radius: 5px;
     margin-bottom: 5px;
     font-size: 14px;
-    color: #ffffff;
+    color: #343434;
     border-radius: 7px;
-    font-size: 16px;
+    font-size: 22px;
 }
 
 #emailMenu button {
@@ -1206,7 +1223,7 @@ select option {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: bold;
     color: #fff;
     border: none;
@@ -1215,6 +1232,7 @@ select option {
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #4c7fb6;
+    min-height: 69px;
 }
 
 #emailMenu button:hover {
@@ -1225,6 +1243,9 @@ select option {
     transform: translateY(0);
 }
 
+#emailMenu>h3:nth-child(3) {
+    margin-top: 70px !important;
+}
 
 
 
@@ -1990,3 +2011,39 @@ td.label-cell:nth-child(1) {
 .checkbox-label[style*="--checked-state: checked"]::after {
     color: rgb(33, 33, 33) !important;
 }
+
+#cancel {
+    background-color: rgb(198, 24, 24) !important;
+}
+
+input.input-error {
+    border: 2px solid red !important;
+    background-color: #ffecec;
+}
+
+.pdf-hinweis {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #fff3cd;
+    color: #574100;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    min-height: 100px;
+    font-size: 24px;
+    padding-top: 11px;
+    font-weight: 600;
+}
+
+
+
+
+/* Responsive Anpassungen */
+@media (max-width: 999px) {
+    #emailMenu {
+        width: 95%;
+        padding: 20px 15px;
+    }
+}
+
