@@ -1,7 +1,3 @@
-/* Copyright - Oliver Acker, acker_oliver@yahoo.de
-// stylestablet.css
-// Version 3.25_beta */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0px;
@@ -28,7 +24,6 @@ table {
     border: none;
 }
 
-
 p {
     margin-bottom: 1px;
 }
@@ -45,12 +40,6 @@ td {
     line-height: 1.1;
     border: none;
 }
-
-/* td {
-    padding: 10px;
-    text-align: left;
-} */
-
 
 .rooms td:nth-child(even),
 .room-container td:nth-child(even) {
@@ -82,7 +71,6 @@ select {
     border-radius: 5px;
     padding-left: 5px;
     padding-bottom: 0px;
-
 
     height: auto;
 
@@ -211,12 +199,14 @@ h2 {
 }
 
 .sign {
-    background-color: #ffd7d7;
     border-radius: 11px;
     padding-right: 5px;
     padding-left: 5px;
-    background-color: rgb(246, 246, 246);
-    border: 7px solid rgb(255, 228, 228);
+    border: 7px solid #fff1a5;
+    border-top-width: 7px;
+    border-top-style: solid;
+    border-top-color: rgb(255, 241, 165);
+    border-top: none;
 }
 
 .signature-canvas {
@@ -286,23 +276,6 @@ h2 {
     border-radius: 5px;
 
 }
-
-/* .mails {
-    padding: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #ffffff;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-bottom: 0px;
-    height: auto;
-    min-height: 24px;
-    font-size: 22px;
-} */
 
 #savePdfButton,
 .signature-clear-btn,
@@ -437,7 +410,7 @@ h2 {
 
 .sign02 {
     background: transparent;
-    background: #ffe3db;
+    background: #fff1a5;
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 10px;
@@ -452,15 +425,41 @@ h2 {
     padding-left: 3px;
 }
 
+#zzzprint1 {
+    background-color: #fff1a5 !important;
+}
+
 #signtoggle {
     opacity: 1;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    padding-top: 22px;
 }
 
 #signtoggle.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+#stammdupli {
+    padding-left: 15px;
+    font-size: 22px;
+}
+
+.hint {
+    font-size: 22px !important;
+}
+
+.signature-content>div:nth-child(2) {
+    font-size: 22px !important;
+}
+
+td.label-cell:nth-child(1) {
+    padding-left: 0px !important;
+}
+
+.custom-table {
+    margin-top: 60px;
 }
 
 #savePdfButton,
@@ -510,6 +509,15 @@ h2 {
 
 }
 
+#addKeyButton,
+#addZaehlerButton,
+#duplicateBtn {
+    padding-right: 15px;
+    padding-left: 15px;
+
+}
+
+
 #duplicateBtn {
     padding-right: 20px;
     padding-left: 10px;
@@ -526,23 +534,24 @@ h2 {
     border-right: 1px solid #fff;
 }
 
-
-
 .sticky-container {
     position: sticky;
     top: 10px;
-
-    background: rgb(255, 255, 255);
-
+        background: rgb(255, 255, 255);
     padding: 10px;
     z-index: 1000;
 
-    display: flex;
+    display: inline-flex;
     gap: 10px;
 
     opacity: 0.9;
     border-radius: 7px;
 }
+
+#savePdfButton {
+    background-color: #a63636;
+  }
+  
 
 .weissezeilemitbutton {
     background-color: rgb(255, 255, 255)
@@ -759,9 +768,9 @@ h3 {
 
 .large-image-wrapperxxx {
     position: relative;
-    /* Wichtig für %-basierte Positionierung */
+
     min-height: 300px;
-    /* Beispielwert, anpassen */
+
 }
 
 .delete-btn {
@@ -777,15 +786,10 @@ h3 {
     border-radius: 22px;
 }
 
-
-
 .image-preview .image-container .image-wrapper .delete-btn {
     background-color: #ac1a1a;
     border-radius: 22px;
-    /*     top: -8px;
-    right: -10px; */
-    /*     top: -93% !important;
-    right: -97% !important; */
+
     top: -11% !important;
     right: -6% !important;
 }
@@ -797,11 +801,6 @@ h3 {
     border-radius: 11px;
 }
 
-
-
-
-
-
 #large-images-section {
     margin-top: 40px;
     padding: 20px;
@@ -809,10 +808,15 @@ h3 {
 }
 
 #large-images-container {
-    background-color: #f0f0f0;
     padding: 15px;
     margin-top: 25px;
     border-radius: 11px;
+}
+
+#toggleModeButton {
+    background: #fff;
+    color: #cbcbcb;
+    cursor: pointer;
 }
 
 .add-remark-btn {
@@ -838,7 +842,6 @@ h3 {
     font-size: 22px;
     height: 40px;
 }
-
 
 .custom-upload-btn {
     background-color: #4CAF50;
@@ -916,8 +919,6 @@ h3 {
 
 }
 
-
-
 #zzzallgemein>h2:nth-child(1) {
     font-size: 28px;
     padding-left: 7px;
@@ -990,14 +991,6 @@ td.no-border-right.text-right {
 .remark-row {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.stammdupli {
-    margin-top: 12px;
-    margin-bottom: 30px;
-    Font-size: 18px;
-    line-height: 1.5;
-    margin-left: 10px;
 }
 
 #hauptBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(3)>label:nth-child(2) {
@@ -1122,11 +1115,10 @@ th {
     background-color: #e9e9e9;
 }
 
-/* Stil für die Vorschlagsliste (Lage/Stockwerk) */
 #stockwerkSuggestions {
     position: absolute;
     top: 100%;
-    /* Direkt unterhalb des Eingabefelds */
+
     left: 0;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -1134,10 +1126,8 @@ th {
     overflow-y: auto;
     z-index: 1000;
     width: 240px;
-    /* Gleiche Breite wie das Eingabefeld */
+
 }
-
-
 
 .error-message {
     color: red;
@@ -1161,23 +1151,6 @@ select option {
     line-height: 1.3;
     font-size: 16px;
 }
-
-/* #emailMenu {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 111px 555px rgba(0, 0, 0, 0.75);
-    z-index: 1000;
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-    min-height: 500px;
-}
- */
 
 #emailMenu {
     position: fixed;
@@ -1247,8 +1220,6 @@ select option {
     margin-top: 70px !important;
 }
 
-
-
 .protart {
     font-size: 1.2em;
     margin-bottom: 10px;
@@ -1261,44 +1232,6 @@ input[type="date"] {
     box-sizing: border-box;
 }
 
-@media (max-width: 640px) {
-
-    td[colspan="6"] {
-        display: block;
-        text-align: center;
-        width: 100%;
-    }
-
-
-    tr {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-    }
-
-
-    td {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 5px 0;
-    }
-
-
-    input[type="text"],
-    input[type="date"] {
-        width: 100%;
-        margin: 5px 0;
-    }
-
-
-    .checkbox-label {
-        display: block;
-        margin-top: 10px;
-    }
-}
-
-
 #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
 #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1),
 #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
@@ -1306,15 +1239,12 @@ input[type="date"] {
     width: 100% !important;
 }
 
-
-
 #auszugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
 #auszugmieterTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1),
 #auszugmieterTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
 #auszugmieterTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(4)>input:nth-child(1) {
     width: 204px !important;
 }
-
 
 .input-container {
     position: relative;
@@ -1382,8 +1312,6 @@ input[type="date"] {
     margin-right: 0px !important;
 }
 
-
-
 .remark-row:nth-child(3)>div:nth-child(1),
 .remark-row:nth-child(4)>div:nth-child(1),
 .remark-row:nth-child(5)>div:nth-child(1),
@@ -1411,8 +1339,6 @@ input[type="date"] {
 #zimm12>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(2)>div:nth-child(1) {
     width: 47% !important;
 }
-
-
 
 .suggestion-list {
     border: 1px solid #ccc;
@@ -1484,23 +1410,22 @@ input[type="date"] {
     background: #f5f5f5;
 }
 
-/* Stil für das Logo-Container-Div */
 #logo-container {
     display: flex;
-    /* Aktiviert Flexbox */
+
     align-items: center;
-    /* Zentriert die Elemente vertikal */
+
     gap: 20px;
-    /* Abstand zwischen den Elementen */
+
     justify-content: space-between;
     background: rgb(255, 255, 255);
 }
 
 #logo-container img {
     width: 250px;
-    /* Breite des Logos anpassen */
+
     height: auto;
-    /* Höhe automatisch anpassen */
+
 }
 
 #logo-container>h2:nth-child(1) {
@@ -1510,11 +1435,13 @@ input[type="date"] {
 #arbeitsdatum {
     font-size: 20px;
     font-family: arial;
+    border-radius: 5px;
+    border: 1px solid #b3b3b3;
 }
 
 #weitereBemerkungen>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(1) {
     background-color: #f1f1f1;
-    /*     margin-bottom: 11px; */
+
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -1535,6 +1462,9 @@ input[type="date"] {
     padding-bottom: 11px;
 }
 
+#weitereBemerkungen {
+    background: #fd9797;
+}
 
 #toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
 #toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(2)>div:nth-child(1)>div:nth-child(2) {
@@ -1556,12 +1486,10 @@ td.label-cell:nth-child(1) {
     width: 100px !important;
 }
 
-
 .vermieter {
     position: relative !important;
     left: -190px !important;
 }
-
 
 #einziehender-mieter-info-2,
 #einziehender-mieter-info-3,
@@ -1581,11 +1509,6 @@ td.label-cell:nth-child(1) {
     font-size: 22px;
 }
 
-
-
-
-
-/* Grundlegende Stile für die Tabelle */
 #einzugmieterTable {
     width: 100%;
     border-collapse: collapse;
@@ -1595,110 +1518,19 @@ td.label-cell:nth-child(1) {
 #einzugmieterTable td {
     padding: 8px;
     text-align: left;
-    border: 1px solid #ddd;
+    border: none;
 }
 
 #einzugmieterTable th {
     background-color: #f2f2f2;
 }
 
-/* Stile für die Eingabefelder */
 #einzugmieterTable input {
     width: 100%;
     box-sizing: border-box;
     font-size: 16px;
 }
 
-/* Media Query für schmale Bildschirme */
-@media screen and (max-width: 1200px) {
-
-    /* Tabelle in ein flexbox-Layout umwandeln */
-    #einzugmieterTable,
-    #einzugmieterTable thead,
-    #einzugmieterTable tbody {
-        display: block;
-    }
-
-    /* Zeilen als flex-container mit wrap */
-    #einzugmieterTable tr {
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid #ccc;
-        border-bottom: 11px solid rgb(240, 240, 240);
-        margin-bottom: 10px;
-    }
-
-    /* Zellen auf 50% Breite setzen für 2 pro Zeile */
-    #einzugmieterTable td {
-        flex: 0 0 50%;
-        box-sizing: border-box;
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 1%;
-        padding-right: 1%;
-    }
-
-    /* Überschriften ausblenden */
-    #einzugmieterTable thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    /* Labels anpassen */
-    #einzugmieterTable td:before {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        content: attr(data-label);
-    }
-
-    /* Inputfelder anpassen */
-    #einzugmieterTable input {
-        width: 100% !important;
-        font-size: 22px;
-    }
-
-    /* Button für das Hinzufügen eines neuen Mieters anpassen */
-    #addeinziehenderMieter {
-        width: 100%;
-        padding: 10px;
-        font-size: 22px;
-    }
-
-    /* Die Zeile mit dem Hinzufügen-Button soll volle Breite haben */
-    #addeinziehenderMieterRow {
-        display: block;
-    }
-
-    #addeinziehenderMieterRow td {
-        flex: 0 0 100%;
-    }
-
-    /* Error-Message anpassen */
-    .error-message {
-        margin-top: 73px;
-    }
-
-    /* Spezifische Styles für die Size-Controls beibehalten */
-    #einzugmieterTable>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
-    #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
-    #einzugmieterTable>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
-    #einzugmieterTable>tbody:nth-child(4)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
-    #einzugmieterTable>tbody:nth-child(5)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2) {
-        margin-top: -1px;
-    }
-}
-
-
-
-
-
-/* Grundlegende Stile für die Tabelle */
 #auszugmieterTable,
 #NameAus01,
 #NameAus02,
@@ -1723,7 +1555,6 @@ td.label-cell:nth-child(1) {
     background-color: #f2f2f2;
 }
 
-/* Stile für die Eingabefelder */
 #auszugmieterTable .input-container {
     display: flex;
     align-items: center;
@@ -1770,10 +1601,6 @@ td.label-cell:nth-child(1) {
     opacity: 1;
 }
 
-.newstreets:-ms-input-placeholder {
-    color: red;
-}
-
 .newstreets:-moz-placeholder {
     color: red;
 }
@@ -1800,112 +1627,13 @@ td.label-cell:nth-child(1) {
     color: red;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Media Query für schmale Bildschirme */
-@media screen and (max-width: 1200px) {
-
-    /* Tabelle in ein Block-Layout umwandeln, aber mit flexbox für Zeilen */
-    #auszugmieterTable,
-    #auszugmieterTable thead,
-    #auszugmieterTable tbody {
-        display: block;
-    }
-
-    /* Zeilen als flex-container mit wrap */
-    #auszugmieterTable tr {
-        display: flex;
-        flex-wrap: wrap;
-        border: 0px solid #ccc;
-        margin-bottom: 10px;
-        border-bottom: 11px solid rgb(240, 240, 240);
-    }
-
-    /* Zellen auf 50% Breite setzen für 2 pro Zeile */
-    #auszugmieterTable td {
-        flex: 0 0 50%;
-        box-sizing: border-box;
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 1%;
-        padding-right: 1%;
-    }
-
-    /* Überschriften ausblenden */
-    #auszugmieterTable thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    #auszugmieterTable td:before {
-        /* Bezeichnungen für die Felder hinzufügen */
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        width: 5%;
-        padding-right: 10px;
-        white-space: nowrap;
-        content: attr(data-label);
-    }
-
-    /* Inputfelder anpassen */
-    #auszugmieterTable input {
-        width: 100% !important;
-        font-size: 22px;
-        padding: 5px 5px 5px 5px;
-    }
-
-    /* Spezielle Klassen anpassen */
-    .newstreets,
-    .plzauszug,
-    .mails2 {
-        width: 100% !important;
-    }
-
-    /* Button für das Hinzufügen eines neuen Mieters anpassen */
-    #addausziehenderMieter {
-        width: 100%;
-        padding: 10px;
-        font-size: 22px;
-    }
-
-    /* Die Zeile mit dem Hinzufügen-Button soll volle Breite haben */
-    #addeinziehenderMieterRow {
-        display: block;
-    }
-
-    #addeinziehenderMieterRow td {
-        flex: 0 0 100%;
-    }
-
-    #auszugmieterTable input {
-        padding: 8px 5px 8px 5px;
-    }
-
-    .error-message {
-        position: absolute;
-        top: 1px;
-    }
-
+.meterstand {
+    height: 44px !important;
 }
 
-
+#pauschalbetrag {
+    height: 48px;
+}
 
 .rwm-label {
     font-size: 22px;
@@ -1947,7 +1675,6 @@ td.label-cell:nth-child(1) {
     font-weight: 600;
 }
 
-
 #zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(2),
 #zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(4),
 #zzzkueche>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4)>td:nth-child(6),
@@ -1979,7 +1706,6 @@ td.label-cell:nth-child(1) {
 #zimm06>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(4),
 #zimm07>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(6) {
 
-
     background: #fff;
 }
 
@@ -1989,8 +1715,6 @@ td.label-cell:nth-child(1) {
     background: rgb(255, 255, 255);
 }
 
-
-
 #zzzbad>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3),
 #zzzwc>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3),
 #zzzflur>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3),
@@ -1998,8 +1722,6 @@ td.label-cell:nth-child(1) {
     display: table-row;
     border-bottom: 22px solid white;
 }
-
-
 
 .radio-label[style*="--checked-state: checked"]::before,
 .checkbox-label[style*="--checked-state: checked"]::before {
@@ -2036,10 +1758,39 @@ input.input-error {
     font-weight: 600;
 }
 
+@media (max-width: 640px) {
 
+    td[colspan="6"] {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
 
+    tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
 
-/* Responsive Anpassungen */
+    td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 5px 0;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .checkbox-label {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
 @media (max-width: 999px) {
     #emailMenu {
         width: 95%;
@@ -2047,3 +1798,207 @@ input.input-error {
     }
 }
 
+
+@media screen and (max-width: 1200px) {
+
+    #einzugmieterTable,
+    #einzugmieterTable thead,
+    #einzugmieterTable tbody {
+        display: block;
+    }
+
+    #zentral>tbody:nth-child(1)>tr:nth-child(1)>th:nth-child(1) {
+        width: 22% !important;
+    }
+
+    #zentral>tbody:nth-child(1)>tr:nth-child(2)>td:nth-child(1) {
+        width: 22% !important;
+    }
+
+    #einzugmieterTable tr {
+        display: flex;
+        flex-wrap: wrap;
+        border: none;
+        border-bottom: 11px solid rgb(240, 240, 240);
+        margin-bottom: 10px;
+    }
+
+    #einzugmieterTable td,
+    #einzugmieterTable th {
+        flex: 0 0 50%;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: none;
+        position: relative;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-bottom: 1px;
+    }
+
+    #einzugmieterTable thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #einzugmieterTable td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+    }
+
+    #einzugmieterTable input {
+        width: 100% !important;
+        font-size: 22px;
+    }
+
+    #addeinziehenderMieter {
+        width: 100%;
+        padding: 10px;
+        font-size: 22px;
+    }
+
+    #addeinziehenderMieterRow {
+        display: block;
+    }
+
+    #addeinziehenderMieterRow td {
+        flex: 0 0 100%;
+    }
+
+    .error-message {
+        margin-top: 73px;
+    }
+
+    #einzugmieterTable>tbody:nth-child(1)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
+    #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
+    #einzugmieterTable>tbody:nth-child(3)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
+    #einzugmieterTable>tbody:nth-child(4)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2),
+    #einzugmieterTable>tbody:nth-child(5)>tr:nth-child(1)>td:nth-child(4)>div:nth-child(1)>div:nth-child(2) {
+        margin-top: -1px;
+    }
+
+    #auszugmieterTable,
+    #auszugmieterTable thead,
+    #auszugmieterTable tbody {
+        display: block;
+    }
+
+    #auszugmieterTable tr {
+        display: flex;
+        flex-wrap: wrap;
+        border: 0px solid #ccc;
+        margin-bottom: 10px;
+        border-bottom: 11px solid rgb(240, 240, 240);
+    }
+
+    #auszugmieterTable td {
+        flex: 0 0 50%;
+        box-sizing: border-box;
+        border: none;
+        position: relative;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-bottom: 1px !important;
+    }
+
+    #auszugmieterTable thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #auszugmieterTable td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 5%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+    }
+
+    #auszugmieterTable input {
+        width: 100% !important;
+        font-size: 22px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .newstreets,
+    .plzauszug,
+    .mails2 {
+        width: 100% !important;
+    }
+
+    #addausziehenderMieter {
+        width: 100%;
+        padding: 10px;
+        font-size: 22px;
+    }
+
+    #addeinziehenderMieterRow {
+        display: block;
+    }
+
+    #addeinziehenderMieterRow td {
+        flex: 0 0 100%;
+    }
+
+    #auszugmieterTable input {
+        padding: 8px 5px 8px 5px;
+        margin-bottom: 1px;
+    }
+
+    .error-message {
+        position: absolute;
+        top: 1px;
+    }
+
+}
+
+
+
+.haus {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 8px;
+}
+
+.haus i {
+    font-size: 28px;
+    /* Sollte der Größe der Überschrift entsprechen */
+}
+
+.fa-user:before {
+    content: "\f007";
+    margin-right: 5px !important;
+}
+
+.fa-tachometer-alt,
+.fa-key {
+    margin-right: 5px !important;
+}
+
+.fa-home {
+    font-size: 25px !important;
+}
+
+.fa-door-open {
+    margin-right: 12px !important;
+    margin-top: 15px !important;
+}
+
+.fa-file-pdf:before,
+.fa-mail-bulk:before {
+    margin-right: 12px !important;
+}
+
+/* #toggleDiv > h3:nth-child(3) {
+    display: none;
+  } */
+  
