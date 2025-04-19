@@ -1,6 +1,85 @@
 document.addEventListener('DOMContentLoaded', function () {
 });
 
+// Hilfsfunktionen an den Anfang stellen
+function prepareDOMForPDF() {
+    const changes = [];
+
+    // Verstecke unnötige Elemente
+    document.querySelectorAll('.no-print').forEach(el => {
+        changes.push({
+            element: el,
+            property: 'style.display',
+            original: el.style.display
+        });
+        el.style.display = 'none';
+    });
+
+    // Vereinfache komplexe CSS-Animationen
+    document.querySelectorAll('*').forEach(el => {
+        changes.push({
+            element: el,
+            property: 'style.animation',
+            original: el.style.animation
+        });
+        el.style.animation = 'none';
+    });
+
+    return changes;
+}
+
+function restoreDOM(changes) {
+    changes.forEach(change => {
+        change.element.style[change.property] = change.original;
+    });
+}
+
+async function preloadImages() {
+    const images = document.querySelectorAll('img');
+    const promises = Array.from(images).map(img => {
+        if (img.complete) return Promise.resolve();
+        
+        return new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve; // Auch bei Fehlern fortfahren
+        });
+    });
+    
+    await Promise.all(promises);
+}
+
+async function renderElementsInParallel(elements) {
+    const promises = elements.map(element =>
+        html2canvas(element, {
+            scale: 1,
+            useCORS: true,
+            logging: false,
+            allowTaint: true,
+            letterRendering: true
+        })
+    );
+    return await Promise.all(promises);
+}
+
+/* function updateProgress(current, total) {
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const percentage = Math.round((current / total) * 100);
+
+    progressBar.style.width = `${percentage}%`;
+    progressText.textContent = `Fortschritt: ${percentage}%`;
+
+    // Farbwechsel basierend auf Fortschritt
+    if (percentage < 30) {
+        progressBar.style.backgroundColor = '#ff4d4d';
+    } else if (percentage < 70) {
+        progressBar.style.backgroundColor = '#ffcc00';
+    } else {
+        progressBar.style.backgroundColor = '#4CAF50';
+    }
+} */
+
+// Hauptfunktion
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
     if (!validateStrasseeinzug()) {
         event.preventDefault();
@@ -36,7 +115,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         });
         input.removeAttribute('placeholder');
     });
-
 
     const closeButton = document.getElementById('closeLoadingOverlay');
     closeButton.addEventListener('click', function () {
@@ -82,6 +160,10 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.style.display = 'none');
 
+    // DOM vorbereiten
+    const domChanges = prepareDOMForPDF();
+    await preloadImages();
+
     try {
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF('p', 'mm', 'a4');
@@ -93,26 +175,22 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         async function renderElementToPDF(element, yOffset = margin) {
             try {
-                await new Promise(resolve => setTimeout(resolve, 100));
-
                 const canvas = await html2canvas(element, {
-                    scale: 2,
+                    scale: 1, // Reduzierte Skalierung für bessere Performance
                     useCORS: true,
                     logging: false,
                     allowTaint: true,
                     letterRendering: true
                 });
 
-                const imgData = canvas.toDataURL('image/jpeg', 0.5);
+                const imgData = canvas.toDataURL('image/jpeg', 0.7); // Reduzierte Qualität
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
 
                 const maxPageHeight = pageHeight - 2 * margin;
-
                 let scaledHeight = (imgHeight * usableWidth) / imgWidth;
 
                 if (scaledHeight > maxPageHeight) {
-
                     const scaleFactor = maxPageHeight / scaledHeight;
                     scaledHeight *= scaleFactor;
                     const scaledWidth = usableWidth * scaleFactor;
@@ -128,7 +206,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                         'FAST'
                     );
                 } else {
-
                     pdf.addImage(imgData, 'JPEG', margin, yOffset, usableWidth, scaledHeight, undefined, 'SLOW');
                 }
 
@@ -151,7 +228,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             elements.weitereBemerkungen,
             elements.hauptBemerkungen,
             elements.print1,
-
             elements.signtoggle,
             ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
             ...(elements.largeImages ? Array.from(elements.largeImages) : [])
@@ -159,19 +235,12 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         let currentElement = 0;
 
+        // Erste Seite
         await renderElementToPDF(elements.allgemein);
         currentElement++;
+        window.updateProgress(currentElement, totalElements);
 
-
-
-
-        const neinElements = [];
-        if (document.querySelector('#kitch2')?.checked) neinElements.push(elements.kueche);
-        if (document.querySelector('#bath2')?.checked) neinElements.push(elements.bad);
-        if (document.querySelector('#guestwc2')?.checked) neinElements.push(elements.wc);
-        if (document.querySelector('#dieleflur2')?.checked) neinElements.push(elements.flur);
-        if (document.querySelector('#abstell2')?.checked) neinElements.push(elements.abstellraum);
-
+        // Räume rendern
         const roomsToRender = [
             { condition: !document.querySelector('#kitch2')?.checked, element: elements.kueche },
             { condition: !document.querySelector('#bath2')?.checked, element: elements.bad },
@@ -185,22 +254,27 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 pdf.addPage();
                 await renderElementToPDF(room.element);
                 currentElement++;
-
-
-
+                window.updateProgress(currentElement, totalElements);
             }
         }
 
+        // Weitere Räume
         if (elements.roomContainers.length > 0) {
             for (const room of elements.roomContainers) {
                 pdf.addPage();
                 await renderElementToPDF(room);
                 currentElement++;
-
-
-
+                window.updateProgress(currentElement, totalElements);
             }
         }
+
+        // "Nein"-Elemente
+        const neinElements = [];
+        if (document.querySelector('#kitch2')?.checked) neinElements.push(elements.kueche);
+        if (document.querySelector('#bath2')?.checked) neinElements.push(elements.bad);
+        if (document.querySelector('#guestwc2')?.checked) neinElements.push(elements.wc);
+        if (document.querySelector('#dieleflur2')?.checked) neinElements.push(elements.flur);
+        if (document.querySelector('#abstell2')?.checked) neinElements.push(elements.abstellraum);
 
         if (neinElements.length > 0) {
             pdf.addPage();
@@ -208,32 +282,28 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             for (const element of neinElements) {
                 yOffset = await renderElementToPDF(element, yOffset);
                 currentElement++;
-
-
-
+                window.updateProgress(currentElement, totalElements);
             }
         }
 
+        // Bemerkungen
         pdf.addPage();
         let yOffset = margin;
         if (elements.nebenraum) yOffset = await renderElementToPDF(elements.nebenraum, yOffset);
         if (elements.weitereBemerkungen) yOffset = await renderElementToPDF(elements.weitereBemerkungen, yOffset);
         if (elements.hauptBemerkungen) yOffset = await renderElementToPDF(elements.hauptBemerkungen, yOffset);
         currentElement++;
+        window.updateProgress(currentElement, totalElements);
 
-
-
-
+        // Unterschriften und Druck
         pdf.addPage();
         let yOffset2 = margin;
         if (elements.print1) yOffset2 = await renderElementToPDF(elements.print1, yOffset2);
-
         if (elements.signtoggle) yOffset2 = await renderElementToPDF(elements.signtoggle, yOffset2);
         currentElement++;
+        window.updateProgress(currentElement, totalElements);
 
-
-
-
+        // Bilder
         if (elements.bilderzimmer) {
             const children = Array.from(elements.bilderzimmer.children);
             for (let i = 0; i < children.length; i += 2) {
@@ -244,20 +314,17 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 let yOffset = margin;
                 yOffset = await renderElementToPDF(firstImage, yOffset);
                 currentElement++;
-
-
-
+                window.updateProgress(currentElement, totalElements);
 
                 if (secondImage) {
                     yOffset = await renderElementToPDF(secondImage, yOffset + 10);
                     currentElement++;
-
-
-
+                    window.updateProgress(currentElement, totalElements);
                 }
             }
         }
 
+        // Große Bilder
         if (elements.largeImages.length > 0) {
             const largeImages = Array.from(elements.largeImages);
             for (let i = 0; i < largeImages.length; i += 2) {
@@ -268,30 +335,27 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 let yOffset = margin;
                 yOffset = await renderElementToPDF(firstImage, yOffset);
                 currentElement++;
-
-
+                window.updateProgress(currentElement, totalElements);
 
                 if (secondImage) {
                     yOffset = await renderElementToPDF(secondImage, yOffset + 10);
                     currentElement++;
-
-
-
+                    window.updateProgress(currentElement, totalElements);
                 }
             }
         }
 
+        // Input-Höhen zurücksetzen
         const inputs = document.querySelectorAll("input");
         const originalHeights = [];
-
         inputs.forEach(input => {
             originalHeights.push(input.style.height);
             input.style.height = "24px";
         });
 
+        // PDF speichern
         const strasse = document.getElementById('strasseeinzug').value;
         const now = new Date();
-
         const datumZeit = now.toLocaleString('de-DE', {
             day: '2-digit',
             month: '2-digit',
@@ -324,13 +388,12 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     } catch (error) {
         console.error("Fehler beim Generieren des PDFs:", error);
     } finally {
-
+        // Aufräumen
+        restoreDOM(domChanges);
+        
         originalPlaceholders.forEach(item => {
             item.element.setAttribute('placeholder', item.placeholder);
         });
-
-        themeElement.setAttribute("href", currentTheme);
-        buttons.forEach(button => button.style.display = '');
 
         themeElement.setAttribute("href", currentTheme);
         buttons.forEach(button => button.style.display = '');
