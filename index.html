@@ -10,7 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    
     <script src="scriptzimmer.js"></script>
+    <script src="pictopdf.js"></script>
 </head>
 
 <body>
@@ -25,7 +28,12 @@
         </div>
 
 
-        <div class="sticky-container"> <button id="savePdfButton"><i class="fas fa-file-pdf"></i>PDF erstellen</button>
+        <div class="sticky-container">
+            
+            <button id="pictopdfButton" class="pdf-button"><i class="fas fa-images"></i>Bilder zu PDF</button>
+            <button id="savePdfButton"><i class="fas fa-file-pdf"></i>Protokoll erstellen</button>
+
+            
 
             <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
 
@@ -2893,142 +2901,6 @@
             <div id="nebenraumContainer">
                 <div class="rooms" id="nebenraum">
                     <h3>weitere Flächen</h3>
-
-
-
-
-
-
-                    <!--         <table>
-                        <tr>
-                            <th>Bereich</th>
-                            <th>in Ordnung</th>
-                            <th>geringe Gebrauchs - spuren</th>
-                            <th>repa. - bedürftig</th>
-                            <th>Reparatur durch den Mieter oder Vermieter</th>
-                            <th>nicht vor handen</th>
-                        </tr>
-                        <tr>
-                            <td>Balkon / Terrasse / Loggia</td>
-                            <td>
-                                <input type="radio" id="nebenraumbalkon1" name="nebenraumbalkon">
-                                <label for="nebenraumbalkon1" class="radio-label"></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="nebenraumbalkon2" name="nebenraumbalkon">
-                                <label for="nebenraumbalkon2" class="radio-label"></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="nebenraumbalkon3" name="nebenraumbalkon00">
-                                <label for="nebenraumbalkon3" class="radio-label"></label>
-                            </td>
-                            <td><select class="dropdown-style">
-                                <option>-</option>
-                                <option>Mieter</option>
-                                <option>Vermieter</option>
-                                <option>in Klärung</option>
-                            </select></td>
-                            <td>
-                                <input type="radio" id="nebenraumbalkon5" name="nebenraumbalkon">
-                                <label for="nebenraumbalkon5" class="radio-label"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Keller</td>
-                            <td>
-                                <input type="radio" id="nebenraumkeller1" name="nebenraumkeller">
-                                <label for="nebenraumkeller1" class="radio-label"></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="nebenraumkeller2" name="nebenraumkeller">
-                                <label for="nebenraumkeller2" class="radio-label"></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="nebenraumkeller3" name="nebenraumkeller00">
-                                <label for="nebenraumkeller3" class="radio-label"></label>
-                            </td>
-                            <td><select class="dropdown-style">
-                                <option>-</option>
-                                <option>Mieter</option>
-                                <option>Vermieter</option>
-                                <option>in Klärung</option>
-                            </select></td>
-                            <td>
-                                <input type="radio" id="nebenraumkeller5" name="nebenraumkeller">
-                                <label for="nebenraumkeller5" class="radio-label"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dachboden</td>
-                            <td>
-                                <input type="radio" id="nebenraumdachboden1" name="nebenraumdachboden">
-                                <label for="nebenraumdachboden1" class="radio-label"></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="nebenraumdachboden2" name="nebenraumdachboden">
-                                <label for="nebenraumdachboden2" class="radio-label"></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="nebenraumdachboden3" name="nebenraumdachboden00">
-                                <label for="nebenraumdachboden3" class="radio-label"></label>
-                            </td>
-                            <td><select class="dropdown-style">
-                                <option>-</option>
-                                <option>Mieter</option>
-                                <option>Vermieter</option>
-                                <option>in Klärung</option>
-                            </select></td>
-                            <td>
-                                <input type="radio" id="nebenraumdachboden5" name="nebenraumdachboden">
-                                <label for="nebenraumdachboden5" class="radio-label"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                               <tr>
-                            <td>Garage/Stellplatz
-                            <td><input type=radio id=nrg1 name=nrg><label for=nrg1 class=radio-label>
-                            <td><input type=radio id=nrg2 name=nrg><label for=nrg2 class=radio-label>
-                            <td><input type=radio id=nrg3 name=nrg00><label for=nrg3 class=radio-label>
-                                <td><select class="dropdown-style">
-                                    <option>-</option>
-                                    <option>Mieter</option>
-                                    <option>Vermieter</option>
-                                    <option>in Klärung</option>
-                                </select></td>
-                            <td><input type=radio id=nrg5 name=nrg><label for=nrg5 class=radio-label>
-                        </tr>
-
-
-                        <tr>
-                            <td colspan="6" style="vertical-align: top; font-weight:600; padding-top:15px;">Bemerkungen
-                                zu weiteren
-                                Flächen:</td>
-                        </tr>
-                        <tr class="original-row">
-                            <td colspan="6">
-                                <div class="dupli-container">
-                                    <input type="text" class="dupli autoscale" placeholder="">
-                                    <button class="dupli-button" onclick="duplicateRow(this)">
-                                        +
-                                    </button>
-                                    <button class="deletedupli-button" onclick="deleteRow(this)">
-                                        -
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="6" style="text-align: center; padding-top: 20px;">
-                                <label for="uploadweitereflaechen" class="customUploadButton">+ Bilder hinzufügen
-                                    (weitere
-                                    Flächen)</label>
-                                <input type="file" id="uploadweitereflaechen" class="imageUpload"
-                                    data-title="Weitere Flächen" multiple hidden>
-                                <div class="imagePreview"></div>
-                                <div class="highResImagePreview"></div>
-                            </td>
-                        </tr>
-                    </table> -->
 
                     <table>
                         <tr>
