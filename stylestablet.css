@@ -281,7 +281,8 @@ h2 {
 .signature-clear-btn,
 #uploadImageButton,
 #sendEmailButton,
-#zwischensavefButton {
+#zwischensavefButton,
+#pictopdfButton {
     padding: 10px 20px;
     background-color: #ceebd1;
     color: #202020;
@@ -300,12 +301,21 @@ h2 {
 #savePdfButton,
 #sendEmailButton,
 .signature-clear-btn,
-#zwischensavefButton {
-
+#zwischensavefButton,
+#pictopdfButton {
     background-color: #ced9eb;
-
     font-size: 20px;
+}
 
+#savePdfButton,
+#toggleModeButton,
+#sendEmailButton,
+#uploadImageButton,
+#zwischensafebutton,
+#newTabButton,
+#pictopdfButton {
+    background-color: rgb(105, 130, 187);
+    color: #fff;
 }
 
 .signature-container {
@@ -462,16 +472,7 @@ td.label-cell:nth-child(1) {
     margin-top: 60px;
 }
 
-#savePdfButton,
-#toggleModeButton,
-#sendEmailButton,
-#uploadImageButton,
-#zwischensafebutton,
-#newTabButton {
-    background-color: rgb(105, 130, 187);
-    color: #fff;
 
-}
 
 #toggleModeButton,
 #zwischensafebutton,
@@ -793,7 +794,7 @@ h3 {
 }
 
 [id^="largexxx-wrapperxxx-imgxxx"] {
-    background-color: #eeeeee !important;
+    background-color: #ffffff !important;
     padding: 10px !important;
     margin-bottom: 10px;
     border-radius: 11px;
@@ -1989,6 +1990,13 @@ input.input-error {
 }
 
 .fa-file-pdf:before,
-.fa-mail-bulk:before {
+.fa-mail-bulk:before,
+.fa-images:before {
     margin-right: 12px !important;
+}
+
+.time-display {
+    color: #666;
+    font-size: 0.8em;
+    margin-left: 5px;
 }
