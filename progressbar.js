@@ -15,6 +15,9 @@ function initializeProgressBar() {
     progressBar = document.getElementById('progressBar');
     progressText = document.getElementById('progressText');
     
+    // Schriftgröße auf 22px setzen
+    progressText.style.fontSize = '22px';
+    
     // Reset Zustand
     progressBar.style.width = '0%';
     progressText.innerHTML = '0% <span class="time-display">(0s)</span>';
@@ -61,6 +64,7 @@ function updateProgressDisplay(percentage, seconds) {
     const rounded = Math.round(percentage);
     progressBar.style.width = `${percentage}%`;
     progressText.innerHTML = `${rounded}% <span class="time-display">(${seconds} Sekunden)</span>`;
+    progressText.style.fontSize = '22px'; // Schriftgröße auch beim Update setzen
     
     if (percentage > 75) {
         progressBar.style.backgroundColor = '#2E7D32';
@@ -75,5 +79,6 @@ function completeProgressBar() {
     clearInterval(animationInterval);
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
     progressText.innerHTML = `100% <span class="time-display">(${elapsed} Sekunden)</span>`;
+    progressText.style.fontSize = '22px'; // Schriftgröße auch beim Abschluss setzen
     progressBar.classList.add('progress-complete');
 }
