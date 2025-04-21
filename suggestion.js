@@ -105,6 +105,11 @@ const fussbodenMaterialien = [
     "Fliesen - grün",
     "Fliesen - terrakotta",
     "Teppich",
+    "Teppich - grau",
+    "Teppich - blau",
+    "Teppich - beige",
+    "Teppich - schwarz",
+    "Teppich - gemustert",
     "Vinyl",
     "Vinyl - Optik Buche",
     "Vinyl - Optik Esche",
@@ -131,8 +136,6 @@ const fussbodenMaterialien = [
     "Terrazzo",
     "Zement",
     "Kunststoff",
-    "Gummi",
-    "Keramik",
     "sonstiger Bodenbelag"
 ];
 
