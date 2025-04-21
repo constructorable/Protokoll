@@ -19,7 +19,6 @@ function initializeSuggestionInputs() {
             case "fussboden":
                 suggestionsArray = fussbodenMaterialien;
                 break;
-
             case "stockwerk":
                 suggestionsArray = stockwerke;
                 break;
@@ -45,10 +44,21 @@ document.addEventListener("DOMContentLoaded", function () {
 let roomCount = 0;
 let specialRoomCount = 7;
 
+
+function getRandomLetters(length = 3) {
+    const letters = "abcdefghijklmnopqrstuvwxyz";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+        result += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+    return result;
+}
+
 function addRoom() {
     roomCount++;
     specialRoomCount++;
     const roomId = "zimm" + String(roomCount).padStart(2, '0');
+    const roomsuf3 = getRandomLetters();
     const container = document.getElementById("room-container");
     const roomIdnumber = String(roomCount).padStart(1, '0');
 
@@ -61,7 +71,7 @@ function addRoom() {
 <tr>
     <td>Bezeichnung / Lage</td>
     <td colspan="5" style="background-color:#fff;">
-        <input type="text" name="bezeich-lage">
+        <input type="text" id="dupli-lage-${roomId}" name="bezeich-lage">
     </td>
 </tr>
 
@@ -131,7 +141,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-tuere3" name="${roomId}-tuere00">
         <label for="${roomId}-tuere3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}tuer" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -145,7 +155,7 @@ function addRoom() {
 
 <tr>
     <td>Schlüssel vorhanden</td>
-                        <td colspan="2"><select class="dropdown-style2">
+                        <td colspan="2"><select id="protokollart${roomId}a" id="protokollart${roomId}key" class="dropdown-style2">
                                 <option>-</option>
                                 <option>ja</option>
                                 <option>nein</option>
@@ -166,7 +176,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-fenster3" name="${roomId}-fenster00">
         <label for="${roomId}-fenster3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}glas" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -192,7 +202,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-rollo3" name="${roomId}-rollo00">
         <label for="${roomId}-rollo3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}rollo" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -218,7 +228,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-decke3" name="${roomId}-decke00">
         <label for="${roomId}-decke3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}decke" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -244,7 +254,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-waende3" name="${roomId}-waende00">
         <label for="${roomId}-waende3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}wand" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -280,7 +290,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-heizkoerper3" name="${roomId}-heizkoerper00">
         <label for="${roomId}-heizkoerper3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}farb" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -316,7 +326,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-fussboden3" name="${roomId}-fussboden00">
         <label for="${roomId}-fussboden3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}fussb" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -342,7 +352,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-internet3" name="${roomId}-internet00">
         <label for="${roomId}-internet3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}fuss2" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -370,7 +380,7 @@ function addRoom() {
         <input type="radio" id="${roomId}-elektrik3" name="${roomId}-elektrik00">
         <label for="${roomId}-elektrik3" class="radio-label"></label>
     </td>
-    <td><select class="dropdown-style2">
+    <td><select id="protokollart${roomId}dose" class="dropdown-style2">
             <option>-</option>
             <option>Mieter</option>
             <option>Vermieter</option>
@@ -463,7 +473,7 @@ function addRoom() {
     const remarkSection = document.createElement("div");
     remarkSection.classList.add("remark-row");
     remarkSection.innerHTML = `
-        <input type="text" name="remark" class="autoscale" placeholder="">
+        <input type="text" name="remark" id="dupli${roomId}-zeile1" class="autoscale" placeholder=""> 
     `;
 
     const addRemarkButton = document.createElement("button");
@@ -489,7 +499,7 @@ function addRoom() {
     container.appendChild(roomDiv);
 }
 
-function addRemark(roomDiv) {
+/* function addRemark(roomDiv) {
     const newRemarkRow = document.createElement("div");
     newRemarkRow.classList.add("remark-row");
     newRemarkRow.innerHTML = `
@@ -497,15 +507,83 @@ function addRemark(roomDiv) {
     `;
 
     roomDiv.insertBefore(newRemarkRow, roomDiv.querySelector('button.add-remark-btn'));
+} */
+
+    function addRemark(roomDiv) {
+        const newRemarkRow = document.createElement("div");
+        newRemarkRow.classList.add("remark-row");
+    
+        // Hole die Raum-ID, z. B. "zimm01"
+        const roomId = roomDiv.id;
+    
+        // Finde bereits vorhandene Zeilen für diesen Raum
+        const existingInputs = roomDiv.querySelectorAll(`input[id^="dupli${roomId}-zeile"]`);
+    
+        // Neue Zeilennummer (beginnt bei 2)
+        const newLineNumber = existingInputs.length + 2; // erste Zeile wäre 2, danach 3 usw.
+    
+        // Neue eindeutige ID
+        const newId = `dupli${roomId}-zeile${newLineNumber}`;
+    
+        newRemarkRow.innerHTML = `
+            <input type="text" id="${newId}" name="remark" class="autoscale dupli" placeholder="">
+        `;
+    
+        // Neue Bemerkungszeile vor dem "Hinzufügen"-Button einfügen
+        const addButton = roomDiv.querySelector('button.add-remark-btn');
+        roomDiv.insertBefore(newRemarkRow, addButton);
+    }
+    
+
+    
+async function compressImage(file) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Maximale Größe für Komprimierung
+                const maxWidth = 3000;
+                const maxHeight = 3000;
+                let width = img.width;
+                let height = img.height;
+
+                // Skalieren wenn nötig
+                if (width > maxWidth || height > maxHeight) {
+                    const ratio = Math.min(maxWidth / width, maxHeight / height);
+                    width = width * ratio;
+                    height = height * ratio;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Qualität auf 70% reduzieren
+                canvas.toBlob((blob) => {
+                    resolve(new File([blob], file.name, {
+                        type: 'image/jpeg',
+                        lastModified: Date.now()
+                    }));
+                }, 'image/jpeg', 0.7);
+            };
+        };
+        reader.readAsDataURL(file);
+    });
 }
 
-function handleFileUpload(event, roomId) {
+async function handleFileUpload(event, roomId) {
     const previewDiv = document.getElementById("preview-" + roomId);
 
     let largeRoomImages = document.getElementById("large-preview-" + roomId);
     if (!largeRoomImages) {
         const largeImageContainer = document.getElementById("large-images-container");
         const largeRoomTitle = document.createElement("h3");
+        largeRoomTitle.textContent = "Zimmer " + roomCount;
         largeImageContainer.appendChild(largeRoomTitle);
 
         largeRoomImages = document.createElement("div");
@@ -516,65 +594,75 @@ function handleFileUpload(event, roomId) {
 
     const files = event.target.files;
     for (let file of files) {
-        const imgId = "img-" + roomId + "-" + Math.random().toString(36).substr(2, 9);
-        const imgUrl = URL.createObjectURL(file); 
+        try {
+            // Bild komprimieren
+            const compressedFile = await compressImage(file);
+            const imgUrl = URL.createObjectURL(compressedFile);
+            const imgId = "img-" + roomId + "-" + Math.random().toString(36).substr(2, 9);
 
-        const smallImageWrapper = document.createElement("div");
-        smallImageWrapper.setAttribute("id", "wrapper-" + imgId);
-        smallImageWrapper.classList.add("image-wrapper");
+            // Vorschaubild erstellen
+            const smallImageWrapper = document.createElement("div");
+            smallImageWrapper.setAttribute("id", "wrapper-" + imgId);
+            smallImageWrapper.classList.add("image-wrapper");
 
-        const imgSmall = document.createElement("img");
-        imgSmall.setAttribute("src", imgUrl);
+            const imgSmall = document.createElement("img");
+            imgSmall.setAttribute("src", imgUrl);
+            imgSmall.style.maxWidth = "100px";
+            imgSmall.style.maxHeight = "100px";
 
-        const deleteBtnSmall = document.createElement("button");
-        deleteBtnSmall.textContent = "X";
-        deleteBtnSmall.classList.add("delete-btn");
-        deleteBtnSmall.onclick = function () {
-            deleteImage(imgId, imgUrl);
-        };
+            const deleteBtnSmall = document.createElement("button");
+            deleteBtnSmall.textContent = "X";
+            deleteBtnSmall.classList.add("delete-btn");
+            deleteBtnSmall.onclick = function () {
+                deleteImage(imgId, imgUrl);
+            };
 
-        smallImageWrapper.appendChild(imgSmall);
-        smallImageWrapper.appendChild(deleteBtnSmall);
-        previewDiv.appendChild(smallImageWrapper);
+            smallImageWrapper.appendChild(imgSmall);
+            smallImageWrapper.appendChild(deleteBtnSmall);
+            previewDiv.appendChild(smallImageWrapper);
 
-        const imageWrapper = document.createElement("div");
-        imageWrapper.classList.add("large-image-wrapper");
-        imageWrapper.setAttribute("id", "large-wrapper-" + imgId);
+            // Großes Bild erstellen
+            const imageWrapper = document.createElement("div");
+            imageWrapper.classList.add("large-image-wrapper");
+            imageWrapper.setAttribute("id", "large-wrapper-" + imgId);
 
-        const label = document.createElement("p");
-        label.textContent = "Zimmer " + roomCount;
+            const label = document.createElement("p");
+            label.textContent = "Zimmer " + roomCount;
 
-        const imgLarge = document.createElement("img");
-        imgLarge.setAttribute("src", imgUrl);
+            const imgLarge = document.createElement("img");
+            imgLarge.setAttribute("src", imgUrl);
+            imgLarge.style.maxHeight = "600px";
+            imgLarge.style.width = "auto";
 
-        const deleteBtnLarge = document.createElement("button");
-        deleteBtnLarge.textContent = "X";
-        deleteBtnLarge.classList.add("delete-btn");
-        deleteBtnLarge.onclick = function () {
-            deleteImage(imgId, imgUrl);
-        };
+            const deleteBtnLarge = document.createElement("button");
+            deleteBtnLarge.textContent = "X";
+            deleteBtnLarge.classList.add("delete-btn");
+            deleteBtnLarge.onclick = function () {
+                deleteImage(imgId, imgUrl);
+            };
 
-        imageWrapper.appendChild(label);
-        imageWrapper.appendChild(imgLarge);
-        imageWrapper.appendChild(deleteBtnLarge);
-        largeRoomImages.appendChild(imageWrapper);
-    }
+            imageWrapper.appendChild(label);
+            imageWrapper.appendChild(imgLarge);
+            imageWrapper.appendChild(deleteBtnLarge);
+            largeRoomImages.appendChild(imageWrapper);
 
-    function deleteImage(imgId, imgUrl) {
-        const smallImageWrapper = document.getElementById("wrapper-" + imgId);
-        const largeImageWrapper = document.getElementById("large-wrapper-" + imgId);
+        } catch (error) {
+            console.error("Fehler bei der Bildverarbeitung:", error);
+            // Fallback: Originalbild verwenden
+            const imgUrl = URL.createObjectURL(file);
+            const imgId = "img-" + roomId + "-" + Math.random().toString(36).substr(2, 9);
 
-        if (smallImageWrapper) smallImageWrapper.remove();
-        if (largeImageWrapper) largeImageWrapper.remove();
-
-        URL.revokeObjectURL(imgUrl);
+            // ... (Original-Code für Bildanzeige hier einfügen)
+        }
     }
 }
 
-function deleteImage(imgId) {
+function deleteImage(imgId, imgUrl) {
     const smallImageWrapper = document.getElementById("wrapper-" + imgId);
     const largeImageWrapper = document.getElementById("large-wrapper-" + imgId);
 
     if (smallImageWrapper) smallImageWrapper.remove();
     if (largeImageWrapper) largeImageWrapper.remove();
+
+    URL.revokeObjectURL(imgUrl);
 }
