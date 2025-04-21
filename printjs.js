@@ -1,27 +1,45 @@
 document.addEventListener('DOMContentLoaded', function () {
 });
 
-// Hilfsfunktionen an den Anfang stellen
+const checkboxState = storeCheckboxState();
+
+
+function storeCheckboxState() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+    const states = [];
+    checkboxes.forEach(checkbox => {
+        states.push({
+            id: checkbox.id,
+            checked: checkbox.checked,
+            type: checkbox.type
+        });
+    });
+    return states;
+}
+
+function restoreCheckboxState(states) {
+    states.forEach(state => {
+        const checkbox = document.getElementById(state.id);
+        if (checkbox) {
+            checkbox.checked = state.checked;
+        }
+    });
+}
+
+
+// Vorbereitung: DOM manipulieren & Originalwerte speichern
 function prepareDOMForPDF() {
     const changes = [];
 
-    // Verstecke unnötige Elemente
-    document.querySelectorAll('.no-print').forEach(el => {
-        changes.push({
-            element: el,
-            property: 'style.display',
-            original: el.style.display
-        });
+    // Buttons, Animations, bestimmte Klassen ausblenden
+    document.querySelectorAll('.no-print, button').forEach(el => {
+        changes.push({ element: el, property: 'display', original: el.style.display });
         el.style.display = 'none';
     });
 
-    // Vereinfache komplexe CSS-Animationen
+    // Alle Animationen entfernen
     document.querySelectorAll('*').forEach(el => {
-        changes.push({
-            element: el,
-            property: 'style.animation',
-            original: el.style.animation
-        });
+        changes.push({ element: el, property: 'animation', original: el.style.animation });
         el.style.animation = 'none';
     });
 
@@ -29,8 +47,8 @@ function prepareDOMForPDF() {
 }
 
 function restoreDOM(changes) {
-    changes.forEach(change => {
-        change.element.style[change.property] = change.original;
+    changes.forEach(({ element, property, original }) => {
+        element.style[property] = original;
     });
 }
 
@@ -38,13 +56,13 @@ async function preloadImages() {
     const images = document.querySelectorAll('img');
     const promises = Array.from(images).map(img => {
         if (img.complete) return Promise.resolve();
-        
+
         return new Promise((resolve) => {
             img.onload = resolve;
-            img.onerror = resolve; // Auch bei Fehlern fortfahren
+            img.onerror = resolve;
         });
     });
-    
+
     await Promise.all(promises);
 }
 
@@ -61,45 +79,272 @@ async function renderElementsInParallel(elements) {
     return await Promise.all(promises);
 }
 
-/* function updateProgress(current, total) {
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const percentage = Math.round((current / total) * 100);
 
-    progressBar.style.width = `${percentage}%`;
-    progressText.textContent = `Fortschritt: ${percentage}%`;
+/* document.getElementById('savePdfButton').addEventListener('click', async function (event) {
+    if (!validateStrasseeinzug() || !validateZentralCheckboxes() || !validateCheckboxes() || !validateNumberInputs()) {
+        event.preventDefault();
+        return;
+    } */
 
-    // Farbwechsel basierend auf Fortschritt
-    if (percentage < 30) {
-        progressBar.style.backgroundColor = '#ff4d4d';
-    } else if (percentage < 70) {
-        progressBar.style.backgroundColor = '#ffcc00';
-    } else {
-        progressBar.style.backgroundColor = '#4CAF50';
-    }
-} */
-
-// Hauptfunktion
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
-    if (!validateStrasseeinzug()) {
+    if (!validateStrasseeinzug() || !validateNumberInputs()) {
         event.preventDefault();
         return;
     }
 
-    if (!validateZentralCheckboxes()) {
-        event.preventDefault();
-        return;
+
+    // Bestätigungsdialog für Bilder anzeigen
+    // Funktion gibt ein Promise zurück, das true (mit Bildern), false (ohne) oder null (abbrechen) zurückgibt
+
+    const bilderVorhanden =
+        document.querySelector('.bilderzimmer')?.children.length > 0 ||
+        document.querySelectorAll('[id^="large-wrapper-img"]').length > 0;
+
+    let includeImages = false;
+
+    // 2. Modal anzeigen, falls Bilder vorhanden
+    if (bilderVorhanden) {
+        includeImages = await showImageModal();
+
+        if (includeImages === null) {
+            // Benutzer hat abgebrochen
+            return;
+        }
+    }
+    exportPDF(includeImages);
+
+
+
+
+
+
+
+
+
+
+
+    let domChanges = []; // Stelle sicher, dass domChanges immer existiert
+
+    async function exportPDF(includeImages) {
+        if (exportInProgress) {
+            console.log("Ein Export läuft bereits.");
+            return;
+        }
+        exportInProgress = true;
+        const domChanges = prepareDOMForPDF();
+        const progressBarContainer = document.getElementById('progress-bar');
+        progressBarContainer.style.display = 'block';
+
+
+        const bar = new ProgressBar.Line(progressBarContainer, {
+            strokeWidth: 4,
+            easing: 'easeInOut',
+            duration: 1400,
+            color: '#FFEA82',
+            trailColor: '#eee',
+            trailWidth: 1,
+            svgStyle: { width: '100%', height: '100%' },
+            text: {
+                style: {
+                    color: '#999',
+                    position: 'absolute',
+                    right: '0',
+                    top: '30px',
+                    padding: 0,
+                    margin: 0,
+                    transform: null,
+                },
+                autoStyleContainer: false,
+            },
+            from: { color: '#FFEA82' },
+            to: { color: '#ED6A5A' },
+            step: (state, bar) => {
+                bar.setText(Math.round(bar.value() * 100) + ' %');
+            },
+
+        });
+
+        bar.animate(1.0, async function () {
+            try {
+                if (includeImages) {
+                    await printJS({
+                        printable: 'printable',
+                        type: 'html',
+                        style: '@page { size: auto;  margin: 20mm; }',
+                        targetStyles: ['*'],
+                        scanStyles: false,
+                    });
+                } else {
+                    const printableElement = document.getElementById('printable').cloneNode(true);
+                    const images = printableElement.querySelectorAll('img');
+                    images.forEach(img => img.remove());
+
+                    const printContainer = document.createElement('div');
+                    printContainer.appendChild(printableElement);
+                    document.body.appendChild(printContainer);
+
+                    await printJS({
+                        printable: printContainer.innerHTML,
+                        type: 'raw-html',
+                        style: '@page { size: auto;  margin: 20mm; }',
+                        scanStyles: false,
+                    });
+
+                    document.body.removeChild(printContainer);
+                }
+            } catch (error) {
+                console.error("Fehler beim PDF-Export:", error);
+            } finally {
+
+                restoreCheckboxState(checkboxState);
+
+                progressBarContainer.style.display = 'none';
+                progressBarContainer.innerHTML = ''; // Fortschrittsbalken zurücksetzen
+                restoreDOM(domChanges); // 🌟 DOM zurücksetzen
+                exportInProgress = false;
+            }
+        });
+
+
+
+        try {
+            // Vorab das aktuelle Theme speichern
+            const currentTheme = themeElement.getAttribute("href");
+
+            // Überprüfen, ob Bilder vorhanden sind, bevor das Modal angezeigt wird
+            const bilderVorhanden = checkForImages();
+
+            if (bilderVorhanden) {
+                // Zeige Modal und frage, ob Bilder inkludiert werden sollen
+                const includeImages = await showImageModal();
+
+                // Wenn der Benutzer den Export abbricht (null zurückgibt), gehe zurück
+                if (includeImages === null) {
+                    themeElement.setAttribute("href", currentTheme);
+                    restoreDOM(domChanges); // Ursprungszustand wiederherstellen
+                    return; // Abbruch des Vorgangs
+                }
+
+                // Wenn Bilder enthalten sein sollen, DOM ändern
+                domChanges = prepareDOMForPDF(); // DOM-Änderungen speichern
+
+                // Exportiere das PDF
+                const pdf = await generatePDF(domChanges, includeImages);
+                savePDF(pdf);
+
+                // Nach dem Export das Theme zurücksetzen
+                themeElement.setAttribute("href", currentTheme);
+            }
+
+        } catch (error) {
+            console.error("Fehler beim PDF-Export:", error);
+        } finally {
+            // Sicherstellen, dass beim Abbruch der Zustand immer zurückgesetzt wird
+            restoreDOM(domChanges); // Ursprungszustand wiederherstellen
+            themeElement.setAttribute("href", currentTheme); // Theme zurücksetzen
+        }
     }
 
-    if (!validateCheckboxes()) {
-        event.preventDefault();
-        return;
+    // Funktion, um DOM für den PDF-Export vorzubereiten
+    function prepareDOMForPDF() {
+        // Beispiel: Änderungen am DOM durchführen und zurückgeben
+        const changes = []; // Array für Änderungen
+        // Speichern, welche Elemente geändert wurden
+        changes.push(...document.querySelectorAll('.important-element'));
+        // Weitere Modifikationen hier, falls nötig
+        return changes;
     }
 
-    if (!validateNumberInputs()) {
-        event.preventDefault();
-        return;
+    // Funktion, um den DOM-Zustand wiederherzustellen
+    function restoreDOM(changes) {
+        // Stelle sicher, dass alle Änderungen zurückgesetzt werden
+        changes.forEach(element => {
+            // Beispiel: Rücksetzen von Attributen oder Styles
+            element.style = ""; // Beispiel für das Zurücksetzen von Styles
+        });
     }
+
+    // Funktion zum Überprüfen, ob Bilder vorhanden sind
+    function checkForImages() {
+        return document.querySelectorAll('img').length > 0;
+    }
+
+    // Funktion zum Anzeigen des Bild-Dialogs
+    function showImageModal() {
+        return new Promise((resolve) => {
+            const modal = document.getElementById('imageModal');
+            const withImagesBtn = document.getElementById('withImagesBtn');
+            const withoutImagesBtn = document.getElementById('withoutImagesBtn');
+            const cancelModalBtn = document.getElementById('cancelModalBtn');
+
+            modal.style.display = 'flex'; // Modal sichtbar machen
+
+            // Cleanup-Funktion, um Modal zu schließen und Event Listener zu entfernen
+            function closeModal() {
+                modal.style.display = 'none';
+                withImagesBtn.removeEventListener('click', onWithImages);
+                withoutImagesBtn.removeEventListener('click', onWithoutImages);
+                cancelModalBtn.removeEventListener('click', onCancel);
+            }
+
+            function onWithImages() {
+                closeModal();
+                resolve(true); // mit Bildern
+            }
+
+            function onWithoutImages() {
+                closeModal();
+                resolve(false); // ohne Bilder
+            }
+
+            function onCancel() {
+                closeModal();
+                resolve(null); // abgebrochen
+            }
+
+            withImagesBtn.addEventListener('click', onWithImages);
+            withoutImagesBtn.addEventListener('click', onWithoutImages);
+            cancelModalBtn.addEventListener('click', onCancel);
+        });
+    }
+
+
+    // Funktion zur PDF-Erstellung (Beispiel)
+    async function generatePDF(domChanges, includeImages) {
+        // Hier wird das PDF erstellt, basierend auf den DOM-Änderungen und der Option für Bilder
+        const pdf = {}; // Beispiel-PDF-Objekt
+        return pdf;
+    }
+
+    // Funktion zum Speichern des PDFs (Beispiel)
+    function savePDF(pdf) {
+        console.log("PDF wurde gespeichert", pdf);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     initializeProgressBar();
 
@@ -138,8 +383,8 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         weitereBemerkungen: document.querySelector('#weitereBemerkungenContainer'),
         hauptBemerkungen: document.querySelector('#hauptBemerkungenContainer'),
         signtoggle: document.querySelector('#signtoggle'),
-        bilderzimmer: document.querySelector('.bilderzimmer'),
-        largeImages: document.querySelectorAll('[id^="large-wrapper-img"]'),
+        bilderzimmer: includeImages ? document.querySelector('.bilderzimmer') : null,
+        largeImages: includeImages ? document.querySelectorAll('[id^="large-wrapper-img"]') : [],
         print1: document.querySelector('#zzzprint1'),
         stammdupli: document.querySelector('.stammdupli')
     };
@@ -160,9 +405,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.style.display = 'none');
 
-    // DOM vorbereiten
-    const domChanges = prepareDOMForPDF();
-    await preloadImages();
+
 
     try {
         const { jsPDF } = window.jspdf;
@@ -175,15 +418,29 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         async function renderElementToPDF(element, yOffset = margin) {
             try {
+                // Temporär Bilder ausblenden wenn keine Bilder gewünscht
+                if (!includeImages) {
+                    element.querySelectorAll('img').forEach(img => {
+                        img.style.display = 'none';
+                    });
+                }
+
                 const canvas = await html2canvas(element, {
-                    scale: 1, // Reduzierte Skalierung für bessere Performance
+                    scale: 2,
                     useCORS: true,
                     logging: false,
                     allowTaint: true,
                     letterRendering: true
                 });
 
-                const imgData = canvas.toDataURL('image/jpeg', 0.7); // Reduzierte Qualität
+                // Originalzustand wiederherstellen
+                if (!includeImages) {
+                    element.querySelectorAll('img').forEach(img => {
+                        img.style.display = '';
+                    });
+                }
+
+                const imgData = canvas.toDataURL('image/jpeg', 0.7);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
 
@@ -229,18 +486,16 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             elements.hauptBemerkungen,
             elements.print1,
             elements.signtoggle,
-            ...(elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
-            ...(elements.largeImages ? Array.from(elements.largeImages) : [])
+            ...(includeImages && elements.bilderzimmer ? Array.from(elements.bilderzimmer.children) : []),
+            ...(includeImages ? Array.from(elements.largeImages) : [])
         ].length;
 
         let currentElement = 0;
 
-        // Erste Seite
         await renderElementToPDF(elements.allgemein);
         currentElement++;
         window.updateProgress(currentElement, totalElements);
 
-        // Räume rendern
         const roomsToRender = [
             { condition: !document.querySelector('#kitch2')?.checked, element: elements.kueche },
             { condition: !document.querySelector('#bath2')?.checked, element: elements.bad },
@@ -258,7 +513,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        // Weitere Räume
         if (elements.roomContainers.length > 0) {
             for (const room of elements.roomContainers) {
                 pdf.addPage();
@@ -268,7 +522,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        // "Nein"-Elemente
         const neinElements = [];
         if (document.querySelector('#kitch2')?.checked) neinElements.push(elements.kueche);
         if (document.querySelector('#bath2')?.checked) neinElements.push(elements.bad);
@@ -286,7 +539,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        // Bemerkungen
         pdf.addPage();
         let yOffset = margin;
         if (elements.nebenraum) yOffset = await renderElementToPDF(elements.nebenraum, yOffset);
@@ -295,7 +547,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         currentElement++;
         window.updateProgress(currentElement, totalElements);
 
-        // Unterschriften und Druck
         pdf.addPage();
         let yOffset2 = margin;
         if (elements.print1) yOffset2 = await renderElementToPDF(elements.print1, yOffset2);
@@ -303,8 +554,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         currentElement++;
         window.updateProgress(currentElement, totalElements);
 
-        // Bilder
-        if (elements.bilderzimmer) {
+        if (includeImages && elements.bilderzimmer) {
             const children = Array.from(elements.bilderzimmer.children);
             for (let i = 0; i < children.length; i += 2) {
                 pdf.addPage();
@@ -324,8 +574,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        // Große Bilder
-        if (elements.largeImages.length > 0) {
+        if (includeImages && elements.largeImages.length > 0) {
             const largeImages = Array.from(elements.largeImages);
             for (let i = 0; i < largeImages.length; i += 2) {
                 pdf.addPage();
@@ -345,7 +594,6 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             }
         }
 
-        // Input-Höhen zurücksetzen
         const inputs = document.querySelectorAll("input");
         const originalHeights = [];
         inputs.forEach(input => {
@@ -353,32 +601,52 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             input.style.height = "24px";
         });
 
-        // PDF speichern
-        const strasse = document.getElementById('strasseeinzug').value;
-        const now = new Date();
-        const datumZeit = now.toLocaleString('de-DE', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
-
-        let protokollTyp = '';
-        const isAbnahme = document.getElementById('abnahme').checked;
-        const isUebergabe = document.getElementById('uebergabe').checked;
-
-        if (isAbnahme && isUebergabe) {
-            protokollTyp = 'Abnahme- und Übergabeprotokoll';
-        } else if (isAbnahme) {
-            protokollTyp = 'Abnahmeprotokoll';
-        } else if (isUebergabe) {
-            protokollTyp = 'Übergabeprotokoll';
+        function generateFileName() {
+            const strasse = document.getElementById('strasseeinzug').value;
+            const now = new Date();
+            const datumZeit = now.toLocaleString('de-DE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
+        
+            // Protokollart aus Dropdown auslesen
+            const protokollDropdown = document.querySelector('.dropdown-style');
+            let protokollTyp = protokollDropdown ? protokollDropdown.value : '';
+            
+            // Fallback für alte Checkbox-Logik (falls noch benötigt)
+            if (!protokollTyp) {
+                const isAbnahme = document.getElementById('abn01')?.checked || false;
+                const isUebergabe = document.getElementById('ueb01')?.checked || false;
+        
+                if (isAbnahme && isUebergabe) {
+                    protokollTyp = 'Abnahme- und Übergabeprotokoll';
+                } else if (isAbnahme) {
+                    protokollTyp = 'Abnahmeprotokoll';
+                } else if (isUebergabe) {
+                    protokollTyp = 'Übergabeprotokoll';
+                }
+            }
+        
+            // Sonderzeichen und Leerzeichen ersetzen
+            const cleanStrasse = strasse.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+            const cleanProtokollTyp = protokollTyp.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+        
+            // Dateiname zusammenbauen
+            let fileName = `${cleanStrasse}_${datumZeit}`;
+            if (cleanProtokollTyp && cleanProtokollTyp !== '-') {
+                fileName += `_${cleanProtokollTyp}`;
+            }
+            fileName += '.pdf';
+        
+            return fileName;
         }
 
-        const fileName = `${strasse}_${datumZeit}_${protokollTyp}.pdf`.replace(/\s+/g, '_');
+        const fileName = generateFileName();
         pdf.save(fileName);
 
         inputs.forEach((input, index) => {
@@ -388,28 +656,27 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
     } catch (error) {
         console.error("Fehler beim Generieren des PDFs:", error);
     } finally {
-        // Aufräumen
+        // DOM-Zustand wiederherstellen
         restoreDOM(domChanges);
-        
+
+        // Platzhalter wiederherstellen
         originalPlaceholders.forEach(item => {
             item.element.setAttribute('placeholder', item.placeholder);
         });
 
+        // Ursprüngliches Theme wiederherstellen
         themeElement.setAttribute("href", currentTheme);
+
+        // Buttons wieder anzeigen
         buttons.forEach(button => button.style.display = '');
 
-        document.querySelectorAll(".customUploadButton").forEach(element => {
-            element.style.display = "inline-block";
-        });
+        // Sticky-Leiste wieder anzeigen
+        if (stickyContainer) stickyContainer.style.display = '';
 
-        document.querySelectorAll(".imagePreview, .image-preview, input[type='file']").forEach(element => {
-            element.style.display = "none";
-        });
-
+        // Overlay schließen
         loadingOverlay.style.display = 'none';
 
-        if (stickyContainer) {
-            stickyContainer.style.display = '';
-        }
     }
 });
+
+
