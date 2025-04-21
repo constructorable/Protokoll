@@ -1857,6 +1857,95 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
     margin-left: 8px;
 }
 
-#toggleDiv > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(4) {
+#toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(4) {
     border-top: 4px solid white;
-  }
+}
+
+.abort-progress-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    /* Z-index erhöht */
+}
+
+.abort-progress-modal-content {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    max-width: 90%;
+}
+
+.zentral-container {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Innere Tabelle */
+.zentral-inner-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+/* Heizung Label-Zelle */
+.label-cellheiz {
+    width: 10%;
+    padding: 8px 15px 8px 5px;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Heizung Input-Zelle */
+.input-cellheizinput {
+    width: 40%;
+    padding: 5px 10px;
+    padding-top: 22px;
+}
+
+/* Warmwasser Label-Zelle */
+.label-cellwarm {
+    width: 10%;
+    padding: 8px 15px 8px 5px;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #333;
+    padding-left: 50px;
+}
+
+/* Warmwasser Input-Zelle */
+.input-cellwarminput {
+    width: 40%;
+    padding: 5px 10px;
+    /* padding-top: 5px; */
+}
+
+.input-cellheizinput,
+.input-cellwarminput {
+    padding-top: 10px !important;
+
+}
+
+#protokollart2,
+#protokollart3 {
+    background-color: #f3f8ff !important;
+    padding:5px !important;
+    border: 1px solid rgb(176, 176, 176) !important;
+    padding-left: 5px !important;
+
+}
