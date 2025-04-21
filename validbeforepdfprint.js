@@ -9,7 +9,7 @@ function validateStrasseeinzug() {
     return true;
 }
 
-function validateCheckboxes() {
+/* function validateCheckboxes() {
     const abnahmeCheckbox = document.getElementById("abnahme");
     const uebergabeCheckbox = document.getElementById("uebergabe");
 
@@ -19,9 +19,9 @@ function validateCheckboxes() {
     }
 
     return true;
-}
+} */
 
-function validateZentralCheckboxes() {
+/* function validateZentralCheckboxes() {
     const checkboxes = document.querySelectorAll('#zentral input[type="checkbox"]');
     let isChecked = false;
 
@@ -37,7 +37,7 @@ function validateZentralCheckboxes() {
     }
 
     return true;
-}
+} */
 
 function validateNumberInputs() {
     const numberInputs = document.querySelectorAll('input.meterstand.autoscale[type="number"]');
