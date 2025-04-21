@@ -10,6 +10,9 @@ function initializeProgressBar() {
     progressBar = document.getElementById('progressBar');
     progressText = document.getElementById('progressText');
     
+    document.getElementById('loadingOverlay').style.display = 'block';
+    document.getElementById('closeLoadingOverlay').style.display = 'block';
+
     // Reset Zustand
     progressBar.style.width = '0%';
     progressText.innerHTML = '0% <span class="time-display">(0s)</span>';
@@ -79,3 +82,26 @@ function completeProgressBar() {
     progressBar.style.boxShadow = '0 0 20px rgba(46, 125, 50, 0.7)';
     progressBar.classList.add('progress-complete');
 }
+
+// Close-Button Funktion
+document.getElementById('closeLoadingOverlay').addEventListener('click', () => {
+    // 1. Lade-Overlay ausblenden
+    document.getElementById('loadingOverlay').style.display = 'none';
+
+    // 2. Fortschrittsanzeige zurücksetzen
+    progressBar.style.width = '0%';
+    progressText.innerHTML = '0% <span class="time-display">(0s)</span>';
+    clearInterval(animationInterval);
+
+    // 3. Close-Button verstecken
+    document.getElementById('closeLoadingOverlay').style.display = 'none';
+
+    // 4. Abbruch-Modal sofort anzeigen
+    const abortModal = document.getElementById('abortProgressModal');
+    abortModal.style.display = 'flex';  // Modal wird direkt angezeigt
+
+    // 5. Nach 3 Sekunden automatisch Modal ausblenden
+    setTimeout(() => {
+        abortModal.style.display = 'none';  // Nach 3 Sekunden Modal ausblenden
+    }, 3000);
+});
