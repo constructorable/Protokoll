@@ -9,37 +9,9 @@ function validateStrasseeinzug() {
     return true;
 }
 
-/* function validateCheckboxes() {
-    const abnahmeCheckbox = document.getElementById("abnahme");
-    const uebergabeCheckbox = document.getElementById("uebergabe");
 
-    if (!abnahmeCheckbox.checked && !uebergabeCheckbox.checked) {
-        alert("Bitte mind. eine Protokollart wählen (Abnahme- und / oder Übergabeprotokoll).");
-        return false;
-    }
 
-    return true;
-} */
-
-/* function validateZentralCheckboxes() {
-    const checkboxes = document.querySelectorAll('#zentral input[type="checkbox"]');
-    let isChecked = false;
-
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            isChecked = true;
-        }
-    });
-
-    if (!isChecked) {
-        alert("Bitte Checkboxen für Heizung / Warmwasser zentral oder dezentral auswählen.");
-        return false;
-    }
-
-    return true;
-} */
-
-function validateNumberInputs() {
+/* function validateNumberInputs() {
     const numberInputs = document.querySelectorAll('input.meterstand.autoscale[type="number"]');
     let allValid = true;
 
@@ -91,6 +63,10 @@ function validateNumberInputs() {
 
     return allValid;
 }
+ */
+
+
+
 
 function processData() {
     return new Promise((resolve) => {
