@@ -82,6 +82,8 @@
 <input type="file" id="importFileInput" accept=".protokoll,.json" style="display: none;">
 <button id="importPortableBtn" class="btn" onclick="document.getElementById('importFileInput').click()">Portable Version importieren</button>
 
+<button id="toggleModeButton">Ansicht wechseln (nur für Entwickler)</button>
+
 
           </div>
 
@@ -121,10 +123,6 @@
                                         <option>Abnahme- &amp; Übergabeprotokoll (Ein- und Auszug)</option>
                                     </select></td>
 
-
-                                <!--                                 <td colspan="6" style="text-align: center; font-weight: bold;">
-                                    <div style="border-bottom: 90px solid rgb(255, 255, 255);"></div>
-                                </td> -->
                             </tr>
                             <tr>
                                 <td style="width: 370px; text-align: left;">Mieternummer</td>
@@ -236,10 +234,34 @@
 
 
 
-                    <h3> <i class="fas fa-fire"></i>
+<!--                     <h3>
+                    <i class="fas fa-fire"></i>Heizung zentral oder dezentral / <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
+                    </h3> -->
 
-                        Heizung zentral oder dezentral / <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
-                    </h3>
+
+
+                    <table id="zentral11" class="zentral-inner-table">
+                        <tbody>
+                            <tr>
+                                <!-- Heizung -->
+                                <td class="label-cellheiz1">                    <h3>
+                                    <i class="fas fa-fire"></i>Heizung zentral oder dezentral</h3></td>
+                                
+                                
+                                    <td class="separator"></td>
+
+                                <!-- Warmwasser -->
+                                <td class="label-cellheiz1">                    <h3>
+                                    <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral</h3></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+
                     <table id="zentralTable" class="zentral-container">
                     </table>
                     <table id="zentral" class="zentral-inner-table">
@@ -269,8 +291,7 @@
                     </table>
 
 
-                    <div class="fortsetzung">Fortsetzung auf nächster Seite</div>
-                </div>
+                     </div>
             </div>
             <div class="rooms" id="zzzkueche">
                 <h3>Küche</h3>
@@ -3394,7 +3415,7 @@
         </div>
         <div class="bilderzimmer"></div>
         <div id="large-images-container"></div>
-        <button id="toggleModeButton">Ansicht wechseln (nur für Entwickler)</button>
+        
     </div>
     <script src="script.js"></script>
     <script src="immo.js"></script>
