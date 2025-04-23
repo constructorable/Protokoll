@@ -1,5 +1,7 @@
 // Alle Daten aus dem Formular sammeln
 
+// Export-Funktion an den Anfang stellen
+
 
 function getFormData() {
     const data = {};
@@ -33,10 +35,38 @@ function getFormData() {
         data[key] = select.value;
     });
 
-
-
     return data;
 }
+
+function exportCurrentSaveAsText() {
+    const select = document.getElementById("loadSelect");
+    const selectedName = select?.value;
+    if (!selectedName) {
+        alert("Bitte zuerst eine gespeicherte Version auswählen.");
+        return;
+    }
+
+    const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+    const currentData = allSaves[selectedName];
+
+    if (!currentData) {
+        alert("Keine Daten gefunden.");
+        return;
+    }
+
+    const jsonText = JSON.stringify(currentData, null, 2);
+    const blob = new Blob([jsonText], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${selectedName}_daten.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
 
 const saveAsTextBtn = document.getElementById("saveasText");
 if (saveAsTextBtn) {
@@ -186,7 +216,7 @@ function deleteSelectedSave() {
             delete allSaves[selectedName];
             localStorage.setItem("saves", JSON.stringify(allSaves));
             updateSaveList();
-            alert(`"${selectedName}" wurde gelöscht.`);
+            
         }
 
     } else if (choice === "2") {
@@ -212,6 +242,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const deleteBtn = document.getElementById("deleteButton");
     if (deleteBtn) deleteBtn.addEventListener("click", deleteSelectedSave);
+
+    const exportPortableBtn = document.getElementById("exportPortableBtn");
+    if (exportPortableBtn) exportPortableBtn.addEventListener("click", exportPortableSave);
 });
 
 
@@ -245,32 +278,69 @@ function saveMieterDaten() {
     localStorage.setItem("einziehendeMieter", JSON.stringify(mieterdaten));
 }
 
-function exportCurrentSaveAsText() {
-    const select = document.getElementById("loadSelect");
-    const selectedName = select?.value;
-    if (!selectedName) {
-        alert("Bitte zuerst eine gespeicherte Version auswählen.");
-        return;
-    }
+function exportPortableSave() {
+    const data = getFormData();
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const fileName = `Protokoll_${timestamp}.protokoll`;
+    
+    // Metadaten hinzufügen
+    const portableData = {
+        version: 1,
+        created: new Date().toISOString(),
+        browser: navigator.userAgent,
+        data: data
+    };
 
-    const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
-    const currentData = allSaves[selectedName];
-
-    if (!currentData) {
-        alert("Keine Daten gefunden.");
-        return;
-    }
-
-    const jsonText = JSON.stringify(currentData, null, 2); // schön formatiert
-    const blob = new Blob([jsonText], { type: "text/plain;charset=utf-8" });
+    const jsonText = JSON.stringify(portableData, null, 2);
+    const blob = new Blob([jsonText], { type: "application/json" });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${selectedName}_daten.txt`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
 }
+
+function importPortableSave(file) {
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        try {
+            const portableData = JSON.parse(e.target.result);
+            
+            // Version prüfen
+            if (!portableData.version || portableData.version > 1) {
+                throw new Error("Nicht unterstütztes Dateiformat");
+            }
+            
+            // Daten ins Formular laden
+            setFormData(portableData.data);
+            
+            // Erfolgsmeldung
+            alert("Protokoll erfolgreich importiert!");
+            
+        } catch (error) {
+            console.error("Import fehlgeschlagen:", error);
+            alert("Fehler beim Import: " + error.message);
+        }
+    };
+    
+    reader.onerror = function() {
+        alert("Fehler beim Lesen der Datei");
+    };
+    
+    reader.readAsText(file);
+}
+
+// Event-Handler für Datei-Upload
+document.getElementById('importFileInput')?.addEventListener('change', function(e) {
+    if (e.target.files.length > 0) {
+        importPortableSave(e.target.files[0]);
+        e.target.value = ''; // Reset für erneuten Upload
+    }
+});
+
