@@ -1,6 +1,6 @@
-// Copyright - Oliver Acker, acker_oliver@yahoo.de
-// script.js
-// Version 3.26_beta
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+script.js
+Version 3.32_beta */
 
 /* CSS Styles zum toggeln... */
 /* CSS Styles zum toggeln... */
