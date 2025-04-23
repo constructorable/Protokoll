@@ -393,25 +393,6 @@ h2 {
 
 }
 
-/* #zaehlerTable th,
-#zentral td {
-    width: 24%;
-
-    padding: 11px;
-
-    text-align: left;
-
-}
-
-#zentral td {
-    width: 28%;
-
-    padding: 11px;
-
-    text-align: left;
-
-} */
-
 #schluesselTable select,
 #schluesselTable input {
     width: 100%;
@@ -473,8 +454,6 @@ td.label-cell:nth-child(1) {
 .custom-table {
     margin-top: 60px;
 }
-
-
 
 #toggleModeButton,
 #zwischensafebutton,
@@ -549,7 +528,6 @@ td.label-cell:nth-child(1) {
     opacity: 0.9;
     border-radius: 7px;
 }
-
 
 .weissezeilemitbutton {
     background-color: rgb(255, 255, 255)
@@ -1235,13 +1213,6 @@ input[type="date"] {
 #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
 #einzugmieterTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(4)>input:nth-child(1) {
     width: 100% !important;
-}
-
-#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
-#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1),
-#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
-#auszugmieterTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(4)>input:nth-child(1) {
-    width: 204px !important;
 }
 
 .input-container {
@@ -2085,7 +2056,7 @@ input.input-error {
     align-items: center;
     justify-content: center;
     z-index: 99999;
-    /* Z-index erhöht */
+
 }
 
 .abort-progress-modal-content {
@@ -2099,8 +2070,6 @@ input.input-error {
     max-width: 90%;
 }
 
-
-/* Haupt-Container für die Tabelle */
 .zentral-container {
     width: 100%;
     margin: 0 auto;
@@ -2108,14 +2077,12 @@ input.input-error {
     border-spacing: 0;
 }
 
-/* Innere Tabelle */
 .zentral-inner-table {
     width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
 }
 
-/* Heizung Label-Zelle */
 .label-cellheiz {
     width: 10%;
     padding: 8px 15px 8px 5px;
@@ -2125,13 +2092,11 @@ input.input-error {
     color: #333;
 }
 
-/* Heizung Input-Zelle */
 .input-cellheizinput {
     width: 40%;
     padding: 5px 10px;
 }
 
-/* Warmwasser Label-Zelle */
 .label-cellwarm {
     width: 10%;
     padding: 8px 15px 8px 5px;
@@ -2142,7 +2107,6 @@ input.input-error {
     padding-left: 50px;
 }
 
-/* Warmwasser Input-Zelle */
 .input-cellwarminput {
     width: 40%;
     padding: 5px 10px;
@@ -2260,8 +2224,6 @@ input.input-error {
     opacity: 0;
 }
 
-
-
 .sticky-container {
     position: sticky;
     top: 0;
@@ -2275,42 +2237,35 @@ input.input-error {
     z-index: 1000;
 }
 
-/* Gemeinsames Styling für alle Buttons und das Dropdown */
 .sticky-container button,
 .sticky-container select {
-   /*  flex: 1 1 calc(14.285% - 0.5em); */
-    /* Bei 7 Elemente je 1/7 minus Gap */
+
     min-width: 100px;
     padding: 0.5em 1em;
-    /* font-size: 0.9em; */
+
     border: 1px solid #ccc;
     border-radius: 5px;
-    /* background-color: #ffffff; */
+
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: background-color 0.2s ease;
 }
 
-/* Hover-Effekt */
 .sticky-container button:hover,
 #pictopdfButton:hover
 
-/* .sticky-container select:hover */
     {
     background-color: #466ec3;
 }
 
 #pictopdfButton {
     background-color: rgb(80, 132, 29) !important;
-  }
-  
-  #pictopdfButton:hover {
+}
+
+#pictopdfButton:hover {
     background-color: rgb(66, 108, 23) !important;
-  }
+}
 
-
-
-/* Name der aktuell geladenen Version */
 #currentSaveName {
     flex-basis: 100%;
     text-align: center;
@@ -2324,7 +2279,6 @@ input.input-error {
     color: #fff;
 }
 
-/* Allgemeine Button-Styles */
 .pdf-button,
 #sendEmailButton,
 #pictopdfButton,
@@ -2347,7 +2301,6 @@ input.input-error {
     background-color: #3a5a8a;
 }
 
-/* Container Layout */
 .sticky-container {
     display: flex;
     flex-wrap: wrap;
@@ -2358,10 +2311,8 @@ input.input-error {
     margin-bottom: 35px !important;
 }
 
-/* Responsive Anordnung */
 @media (min-width: 768px) {
 
-    /* Tablet und größer */
     .sticky-container {
         flex-direction: row;
     }
@@ -2379,7 +2330,6 @@ input.input-error {
 
 @media (max-width: 767px) {
 
-    /* Mobile */
     .sticky-container {
         flex-direction: column;
         align-items: stretch;
@@ -2394,7 +2344,6 @@ input.input-error {
     }
 }
 
-/* Spezifische Elemente */
 #currentSaveName {
     margin: 0 8px;
     font-weight: bold;
@@ -2417,7 +2366,6 @@ input.input-error {
 
 }
 
-/* Toggle Button - Schlichtes Blau-Design */
 #toggleStickyBtn {
     position: fixed;
     top: 15px;
@@ -2455,10 +2403,9 @@ input.input-error {
     transform: rotate(270deg);
 }
 
-/* Sticky Container mit Animation */
 .sticky-container {
     position: fixed;
-    /* Geändert von sticky zu fixed */
+
     top: 60px;
     right: 15px;
     background: #f9f9f9;
@@ -2475,17 +2422,16 @@ input.input-error {
         padding 0.3s ease;
     z-index: 999;
     width: 500px;
-    /* Feste Breite für das Menü */
+
 }
 
 .sticky-container[data-state="open"] {
     max-height: 500px;
-    /* Ausreichend hoch für Inhalte */
+
     opacity: 1;
     padding: 15px;
 }
 
-/* Responsive Anpassungen */
 @media (max-width: 768px) {
     .sticky-container {
         width: calc(100% - 30px);
@@ -2497,11 +2443,15 @@ input.input-error {
 #sendEmailButton {
     background-color: #d9ad00;
     color: black;
-  }
-  
-  .button-separator {
+}
+
+.button-separator {
     height: 1px;
     background-color: #ccc;
     margin: 15px 1px 15px 1px;
     width: 100%;
 }
+
+ [id^="MailAus"] {
+    width: 100% !important;
+  }
