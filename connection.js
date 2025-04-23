@@ -1,3 +1,7 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+connection.js
+Version 3.32_beta */
+
 document.addEventListener('DOMContentLoaded', function () {
     const connectionIcon = document.getElementById('connection-status');
 
