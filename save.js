@@ -274,4 +274,3 @@ function exportCurrentSaveAsText() {
 
     URL.revokeObjectURL(url);
 }
-
