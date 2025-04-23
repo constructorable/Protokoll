@@ -23,6 +23,28 @@ function toggleMode() {
 
 
 
+
+
+const toggleBtn = document.getElementById("toggleStickyBtn");
+const stickyContainer = document.getElementById("stickyContainer");
+
+toggleBtn.addEventListener("click", () => {
+  const isOpen = stickyContainer.getAttribute("data-state") === "open";
+  
+  if (isOpen) {
+    // Menü schließen
+    stickyContainer.setAttribute("data-state", "closed");
+    toggleBtn.setAttribute("data-state", "closed");
+  } else {
+    // Menü öffnen
+    stickyContainer.setAttribute("data-state", "open");
+    toggleBtn.setAttribute("data-state", "open");
+  }
+});
+
+
+
+
 /* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 /* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
 /* Button einziehender Mieter hinzufügen (inkl. Unterschriftenfeld für einziehenden Mieter)... */
@@ -97,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Zeile am ENDE der Tabelle einfügen
         table.querySelector('tbody').appendChild(newRow);
 
+
+
         // Signatur-Container erstellen
         const signatureContainer = document.createElement('div');
         signatureContainer.classList.add('signature-container');
@@ -165,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
 /* Button ausziehender Mieter hinzufügen (inkl. Unterschriftenfeld für ausziehenden Mieter)... */
 document.addEventListener("DOMContentLoaded", function () {
-    let counterAusziehender = 2;
+    let counterAusziehender = 1;
 
     document.getElementById('addausziehenderMieter').addEventListener('click', function () {
         let table = document.getElementById('auszugmieterTable');
@@ -224,6 +248,8 @@ document.addEventListener("DOMContentLoaded", function () {
         newRow.appendChild(emailCell);
         table.querySelector('tbody').appendChild(newRow);
 
+
+
         // Signatur-Container
         const signatureContainer = document.createElement('div');
         signatureContainer.classList.add('signature-container');
@@ -236,7 +262,20 @@ document.addEventListener("DOMContentLoaded", function () {
         clearButton.type = 'button';
         clearButton.classList.add('signature-clear-btn');
         clearButton.textContent = 'x';
-        clearButton.onclick = () => clearSignature(`ausziehender-mieter-signature-${counterAusziehender}`);
+        // Neuer Event-Handler:
+        clearButton.onclick = function () {
+            const canvas = this.parentElement.querySelector('canvas');
+            if (canvas) {
+                const context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                localStorage.removeItem(`signature_${canvas.id}`);
+            }
+        };
+
+
+
+
+
         signatureBox.appendChild(clearButton);
 
         const canvas = document.createElement('canvas');
@@ -277,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const [name, vorname] = fullName.split(',').map(part => part.trim());
         fullNameSpan.textContent = vorname && name ? `${vorname} ${name}` : fullName;
     }
-    
+
 
 
 
@@ -474,13 +513,13 @@ function initSignatureCanvas(canvasId) {
 }
 
 // Funktion zum Löschen der Unterschrift
-function clearSignature(canvasId) {
+/* function clearSignature(canvasId) {
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
     localStorage.removeItem(`signature_${canvasId}`);
 }
-
+ */
 
 // Unterschriften Canvas-Größe dynamisch an Container anpassen
 // Unterschriften Canvas-Größe dynamisch an Container anpassen
@@ -496,7 +535,7 @@ function resizeCanvas(canvas) {
 // Button Unterschriften löschen
 // Button Unterschriften löschen
 // Button Unterschriften löschen
-function clearSignature(canvasId) {
+/* function clearSignature(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (canvas) {
         const context = canvas.getContext('2d');
@@ -506,7 +545,22 @@ function clearSignature(canvasId) {
     } else {
         console.error(`Canvas mit der ID ${canvasId} wurde nicht gefunden.`);
     }
+} */
+
+
+function clearSignature(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (canvas) {
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        localStorage.removeItem(`signature_${canvasId}`);
+    }
 }
+
+
+
+
+
 
 
 // Unterschriftenfeld für Vermieter
