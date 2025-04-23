@@ -1,4 +1,8 @@
-// progressbar.js - Angepasst für tatsächlichen Fortschritt
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+progressbar.js
+Version 3.32_beta */
+
+
 let progressBar;
 let progressText;
 let animationInterval;
