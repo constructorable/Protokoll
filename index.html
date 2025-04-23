@@ -48,8 +48,12 @@
 
 
 
+        <!--         <button id="toggleStickyBtn" style="position:fixed; top:10px; right:10px; z-index:1000;">
+            ⬇️ Menü anzeigen
+          </button> -->
 
-        <div class="sticky-container">
+
+        <!--         <div class="sticky-container">
 
            
 
@@ -73,9 +77,24 @@
 
 
 
-        </div>
+        </div> -->
 
-
+        <button id="toggleStickyBtn" data-state="closed">
+            Menü
+          </button>
+          
+          <div id="stickyContainer" class="sticky-container" data-state="closed">
+            <!-- Ihre Menü-Inhalte hier -->
+            <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
+            <select id="loadSelect"></select>
+            <p id="currentSaveName"></p>
+            <button class="pdf-button" id="loadButton">Laden</button>
+            <button class="pdf-button" id="saveButton">Speichern</button>
+            <button class="pdf-button" id="saveasText">Daten als Text exportieren</button>
+            <button class="pdf-button" id="deleteButton">Löschen</button>
+            <button id="pictopdfButton" class="pdf-button"><i class="fas fa-images"></i>Bilder zu PDF</button>
+            <button id="savePdfButton"><i class="fas fa-file-pdf"></i>Protokoll erstellen</button>
+          </div>
 
 
 
@@ -114,7 +133,7 @@
                                     </select></td>
 
 
-<!--                                 <td colspan="6" style="text-align: center; font-weight: bold;">
+                                <!--                                 <td colspan="6" style="text-align: center; font-weight: bold;">
                                     <div style="border-bottom: 90px solid rgb(255, 255, 255);"></div>
                                 </td> -->
                             </tr>
@@ -230,7 +249,8 @@
 
                     <h3> <i class="fas fa-fire"></i>
 
-                        Heizung zentral oder dezentral / <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral</h3>
+                        Heizung zentral oder dezentral / <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
+                    </h3>
                     <table id="zentralTable" class="zentral-container">
                     </table>
                     <table id="zentral" class="zentral-inner-table">
@@ -826,8 +846,8 @@
                         <tr class="original-row" style="display: table-row;">
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text" id="duplikuech" class="dupli autoscale" placeholder="" maxlength="115"
-                                        style="font-size: 18px;">
+                                    <input type="text" id="duplikuech" class="dupli autoscale" placeholder=""
+                                        maxlength="115" style="font-size: 18px;">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -1530,8 +1550,8 @@
                         <tr class="original-row" style="display: none;">
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text"  id="duplibad" class="dupli autoscale" placeholder="" maxlength="115"
-                                        style="font-size: 18px;">
+                                    <input type="text" id="duplibad" class="dupli autoscale" placeholder=""
+                                        maxlength="115" style="font-size: 18px;">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -2234,8 +2254,8 @@
                         <tr class="original-row" style="display: none;">
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text"  id="dupliwc" class="dupli autoscale" placeholder="" maxlength="115"
-                                        style="font-size: 18px;">
+                                    <input type="text" id="dupliwc" class="dupli autoscale" placeholder=""
+                                        maxlength="115" style="font-size: 18px;">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -2582,8 +2602,8 @@
                         <tr class="original-row" style="display: none;">
                             <td colspan="6">
                                 <div class="dupli-container">
-                                    <input type="text"  id="dupliflur" class="dupli autoscale" placeholder="" maxlength="115"
-                                        style="font-size: 18px;">
+                                    <input type="text" id="dupliflur" class="dupli autoscale" placeholder=""
+                                        maxlength="115" style="font-size: 18px;">
                                     <button class="dupli-button" onclick="duplicateRow(this)">
                                         +
                                     </button>
@@ -2958,8 +2978,8 @@
                             <tr class="original-row" style="display: none;">
                                 <td colspan="6">
                                     <div class="dupli-container">
-                                        <input type="text" id="dupliabstell" class="dupli autoscale" placeholder="" maxlength="115"
-                                            style="font-size: 18px;">
+                                        <input type="text" id="dupliabstell" class="dupli autoscale" placeholder=""
+                                            maxlength="115" style="font-size: 18px;">
                                         <button class="dupli-button" onclick="duplicateRow(this)">
                                             +
                                         </button>
@@ -3112,10 +3132,11 @@
                             </tr>
                             <tr class="original-row">
                                 <td colspan="6">
-                                    <div class="dupli-container"><input type="text"  id="duplifurther" class="dupli autoscale"
-                                            placeholder="" maxlength="115" style="font-size: 18px;"><button
-                                            class="dupli-button" onclick="duplicateRow(this)">+</button><button
-                                            class="deletedupli-button" onclick="deleteRow(this)">-</button></div>
+                                    <div class="dupli-container"><input type="text" id="duplifurther"
+                                            class="dupli autoscale" placeholder="" maxlength="115"
+                                            style="font-size: 18px;"><button class="dupli-button"
+                                            onclick="duplicateRow(this)">+</button><button class="deletedupli-button"
+                                            onclick="deleteRow(this)">-</button></div>
                                 </td>
                             </tr>
                             <tr>
@@ -3260,8 +3281,8 @@
                             <tr class="original-row">
                                 <td colspan="7">
                                     <div class="dupli-container">
-                                        <input type="text"  id="duplimaengelbeseit" class="dupli autoscale" placeholder="" maxlength="115"
-                                            style="font-size: 18px;">
+                                        <input type="text" id="duplimaengelbeseit" class="dupli autoscale"
+                                            placeholder="" maxlength="115" style="font-size: 18px;">
                                         <button class="dupli-button" onclick="duplicateRow(this)">
                                             +
                                         </button>
@@ -3304,8 +3325,8 @@
                             <tr class="original-row">
                                 <td colspan="8">
                                     <div class="dupli-container">
-                                        <input type="text"  id="dupliproto" class="dupli autoscale" placeholder="" maxlength="115"
-                                            style="font-size: 18px;">
+                                        <input type="text" id="dupliproto" class="dupli autoscale" placeholder=""
+                                            maxlength="115" style="font-size: 18px;">
                                         <button class="dupli-button" onclick="duplicateRow(this)">
                                             +
                                         </button>
