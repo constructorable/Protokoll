@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <input type="text" id="${plzOrtId}" class="plzauszug autoscale" placeholder="PLZ / Ort">`;
 
         emailCell.innerHTML = `
-            <input type="email" id="${emailId}" class="mails2 autoscale" placeholder="E-Mail">`;
+            <input type="email" id="${emailId}" style="width: 11px;" class="mails2 autoscale" placeholder="E-Mail">`;
 
         newRow.appendChild(nameCell);
         newRow.appendChild(strasseCell);
