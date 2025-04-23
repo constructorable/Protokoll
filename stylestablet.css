@@ -2278,7 +2278,7 @@ input.input-error {
 /* Gemeinsames Styling für alle Buttons und das Dropdown */
 .sticky-container button,
 .sticky-container select {
-    flex: 1 1 calc(14.285% - 0.5em);
+   /*  flex: 1 1 calc(14.285% - 0.5em); */
     /* Bei 7 Elemente je 1/7 minus Gap */
     min-width: 100px;
     padding: 0.5em 1em;
@@ -2299,6 +2299,14 @@ input.input-error {
     {
     background-color: #466ec3;
 }
+
+#pictopdfButton {
+    background-color: rgb(80, 132, 29) !important;
+  }
+  
+  #pictopdfButton:hover {
+    background-color: rgb(66, 108, 23) !important;
+  }
 
 
 
@@ -2328,7 +2336,7 @@ input.input-error {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
     transition: background-color 0.3s;
 }
 
@@ -2410,26 +2418,24 @@ input.input-error {
 }
 
 /* Toggle Button - Schlichtes Blau-Design */
-/* Toggle Button - Schlichtes Blau-Design */
 #toggleStickyBtn {
     position: fixed;
     top: 15px;
     right: 15px;
     z-index: 1000;
     padding: 10px 20px;
-    background-color: #e1f0fa;
-    color: #2a6da1;
-    border: 1px solid #b8d4e8;
-    border-radius: 20px;
+    background-color: #4a6fa5;
+    color: #f4f4f4;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
 #toggleStickyBtn:hover {
-    background-color: #d0e6f5;
+    background-color: #4a6fa5;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -2468,7 +2474,7 @@ input.input-error {
         opacity 0.3s ease 0.1s,
         padding 0.3s ease;
     z-index: 999;
-    width: 250px;
+    width: 500px;
     /* Feste Breite für das Menü */
 }
 
@@ -2486,4 +2492,16 @@ input.input-error {
         right: 15px;
         left: 15px;
     }
+}
+
+#sendEmailButton {
+    background-color: #d9ad00;
+    color: black;
+  }
+  
+  .button-separator {
+    height: 1px;
+    background-color: #ccc;
+    margin: 15px 1px 15px 1px;
+    width: 100%;
 }
