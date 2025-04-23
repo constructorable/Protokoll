@@ -1,3 +1,7 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+validbeforepdfprint.js
+Version 3.32_beta */
+
 function validateStrasseeinzug() {
     const strasseeinzugInput = document.getElementById("strasseeinzug");
 
