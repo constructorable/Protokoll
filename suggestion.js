@@ -1,10 +1,15 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+suggestion.js
+Version 3.32_beta */
+
 const mitarbeiternamen = [
     "Christian Adler",
     "Oliver Acker",
     "Manfred Launicke",
     "Claus Zechmeister",
     "Marli Smith",
-    "Darius Andörfer"
+    "Darius Andörfer",
+    "Stefanie Muscat"
 ];
 
 const farben = [
