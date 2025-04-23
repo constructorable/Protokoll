@@ -70,7 +70,6 @@ input[type="radio"] {
     margin-top: 5px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .radio-label::before,
@@ -85,7 +84,6 @@ input[type="radio"] {
     border: 1px solid #8d8d8d;
     border-radius: 4px;
     transform: translate(-50%, -50%);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .radio-label::after,
@@ -97,7 +95,6 @@ input[type="radio"] {
     color: transparent;
     font-size: 15px;
     transform: translate(-50%, -50%);
-    transition: color 0.3s ease;
 }
 
 input[type="radio"]:checked+.radio-label::before,
@@ -163,15 +160,11 @@ body {
 .sticky-container {
     position: sticky;
     top: 10px;
-
     background: white;
-
     padding: 10px;
     z-index: 1000;
-
     display: flex;
     gap: 10px;
-
 }
 
 button {
@@ -345,7 +338,7 @@ input.dupli {
     margin-bottom: 5px;
 }
 
-#einziehender-mieter-signature-1,
+/* #einziehender-mieter-signature-1,
 #einziehender-mieter-signature-2,
 #einziehender-mieter-signature-3,
 #einziehender-mieter-signature-4,
@@ -355,9 +348,14 @@ input.dupli {
 #einziehender-mieter-signature-8 {
     Background-color: rgb(255, 255, 255);
     border: 2px solid green;
+} */
+
+[id^="einziehender-mieter-signature-"] {
+    background-color: #fff;
+    border: 2px solid green;
 }
 
-#einziehender-mieter-info-1,
+/* #einziehender-mieter-info-1,
 #einziehender-mieter-info-2,
 #einziehender-mieter-info-3,
 #einziehender-mieter-info-4,
@@ -408,6 +406,29 @@ input.dupli {
     Background-color: rgb(255, 255, 255);
     border: 2px solid rgb(132, 14, 14);
 }
+ */
+
+[id^="ausziehender-mieter-info-"],
+#einziehender-mieter-info-8 {
+    margin: 25px 0;
+}
+
+[id^="ausziehender-mieter-signature-"] {
+    margin-bottom: 1px;
+    background-color: #fff;
+    border: 2px solid rgb(132, 14, 14);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .signature-content>div:nth-child(2)>label:nth-child(1) {
     font-weight: 600;
@@ -481,7 +502,7 @@ input.dupli {
     width: 250px !important;
 }
 
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+/* #schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
@@ -501,7 +522,23 @@ input.dupli {
     padding-bottom: 1px;
     padding-left: 10px;
     font-size: 16px;
+} */
+
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(2)>input:first-child {
+    width: 100%;
+    background: #f3f8ff;
+    border: none;
+    border-radius: 5px;
+    line-height: 1.11;
+    padding: 11px 0 1px 10px;
+    font-size: 16px;
 }
+
+.separator {
+    width: 80px;
+}
+
+
 
 #schluesselTable th,
 #schluesselTable td {
@@ -515,7 +552,7 @@ input.dupli {
     padding-left: 1px !important;
 }
 
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1),
+/* #schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1),
@@ -527,9 +564,14 @@ input.dupli {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1) {
     padding-left: 0px !important;
+} */
+
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(1) {
+    padding-left: 0 !important;
 }
 
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+
+/* #schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
@@ -542,6 +584,11 @@ input.dupli {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(2)>input:nth-child(1) {
     text-align: center;
 }
+ */
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(2)>input:first-child {
+    text-align: center;
+}
+
 
 .sign02 {
     padding-top: 15px;
@@ -555,7 +602,8 @@ input.dupli {
 }
 
 .spinner {
-    border: 4px solid rgba(255, 255, 255, 0.6);
+    /* border: 4px solid rgba(255, 255, 255, 0.6); */
+    border: 4px solid rgba(255, 255, 255);
     border-radius: 50%;
     border-top: 4px solid #ffffff;
     width: 40px;
@@ -564,7 +612,7 @@ input.dupli {
     margin: 0 auto 10px auto;
 }
 
-@keyframes spin {
+/* @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
@@ -572,7 +620,7 @@ input.dupli {
     100% {
         transform: rotate(360deg);
     }
-}
+} */
 
 .input-euro-container {
     display: flex;
@@ -620,22 +668,31 @@ td.no-border-right.text-right {
     width: 100%;
 }
 
-#loadingOverlay {
+/* #loadingOverlay {
     display: none;
-
     position: fixed;
     top: 0;
     left: 0;
     width: 90%;
-
     height: 100vh;
-
     background-color: rgba(0, 0, 0, 0.8);
-
     justify-content: center;
     align-items: center;
     z-index: 1000;
+} */
 
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 #loadingOverlay .loading-content {
@@ -749,21 +806,7 @@ span {
     width: 300px !important;
 }
 
-#loadingOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
 
-    backdrop-filter: blur(5px);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
 
 .loading-content {
     background-color: white;
@@ -779,7 +822,7 @@ select {
     margin-left: 0px;
 }
 
-#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3)>input:nth-child(1),
+/* #zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3)>input:nth-child(1),
@@ -793,7 +836,12 @@ select {
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(3)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(13)>td:nth-child(3)>input:nth-child(1) {
     width: 314px !important;
+} */
+
+#zaehlerTable>tbody:nth-child(2)>tr>td:nth-child(3)>input:first-child {
+    width: 314px !important;
 }
+
 
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3)>input:nth-child(1) {
     width: 266px;
@@ -848,7 +896,7 @@ input[type="number"] {
     text-align: center;
 }
 
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
+/* #schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3),
@@ -874,7 +922,13 @@ input[type="number"] {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(2),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(2) {
     padding-left: 0px !important;
+} */
+
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(3) {
+    padding-left: 0 !important;
 }
+
 
 .hidden {
     display: none;
@@ -888,7 +942,6 @@ input[type="number"] {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     width: 90%;
     max-width: 400px;
@@ -928,7 +981,6 @@ input[type="number"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 #emailMenu button:hover {
@@ -969,7 +1021,7 @@ input[type="number"] {
     height: auto;
 }
 
-#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
+/* #zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(3),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(3),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(3),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(3),
@@ -981,6 +1033,11 @@ input[type="number"] {
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(3) {
     padding-right: 10px;
 }
+ */
+#zaehlerTable>tbody:nth-child(2)>tr>td:nth-child(3) {
+    padding-right: 10px;
+}
+
 
 #arbeitsdatum {
 
@@ -1046,7 +1103,7 @@ select {
     padding-top: 25px;
 }
 
-#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
+/* #zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1)>select:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1)>select:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1)>select:nth-child(1),
@@ -1059,7 +1116,12 @@ select {
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1)>select:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(1)>select:nth-child(1) {
     padding: 3px !important;
+} */
+
+#zaehlerTable>tbody:nth-child(2)>tr>td:nth-child(1)>select {
+    padding: 3px !important;
 }
+
 
 #toggleDiv>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(3)>td:nth-child(1) {
     width: 350px;
@@ -1322,7 +1384,7 @@ table {
     cursor: pointer !important;
 }
 
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
+/* #schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(1)>select:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(1)>select:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(1)>select:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(1)>select:nth-child(1),
@@ -1335,9 +1397,14 @@ table {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(1)>select:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(12)>td:nth-child(1)>select:nth-child(1) {
     padding-left: 5px !important;
+} */
+
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(1)>select {
+    padding-left: 5px !important;
 }
 
-#schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
+
+/* #schluesselTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(2)>input:nth-child(1),
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(2)>input:nth-child(1),
@@ -1350,7 +1417,12 @@ table {
 #schluesselTable>tbody:nth-child(2)>tr:nth-child(11)>td:nth-child(2)>input:nth-child(1) {
     background: #f3f8ff;
 
+} */
+
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(2)>input {
+    background: #f3f8ff;
 }
+
 
 #schluesselTable th,
 #schluesselTable td {
@@ -1462,7 +1534,7 @@ table {
     display: none !important;
 }
 
-#farbeInput1,
+/* #farbeInput1,
 #farbeInput2,
 #farbeInput3,
 #farbeInput4,
@@ -1481,9 +1553,17 @@ table {
     background-color: #fff !important;
     border: none !important;
     padding-left: 2px !important;
+} */
+
+[id^="farbeInput"] {
+    margin-left: 0 !important;
+    width: 25% !important;
+    background-color: #fff !important;
+    border: none !important;
+    padding-left: 2px !important;
 }
 
-#fussbodenInput1,
+/* #fussbodenInput1,
 #fussbodenInput2,
 #fussbodenInput3,
 #fussbodenInput4,
@@ -1498,6 +1578,14 @@ table {
 #fussbodenInput13,
 #fussbodenInput14 {
     margin-left: 0px !important;
+    width: 25% !important;
+    background-color: #fff !important;
+    border: none !important;
+    padding-left: 2px !important;
+} */
+
+[id^="fussbodenInput"] {
+    margin-left: 0 !important;
     width: 25% !important;
     background-color: #fff !important;
     border: none !important;
@@ -1521,7 +1609,7 @@ table {
     margin-top: 9px !important;
 }
 
-#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1),
+/* #zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1),
 #zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1),
 #zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1),
 #zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1),
@@ -1531,9 +1619,13 @@ table {
 #zimm08>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1),
 #zimm09>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1) {
     margin-top: 9px;
+} */
+
+[id^="zimm"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(7)>td:nth-child(2)>select:nth-child(1) {
+    margin-top: 9px;
 }
 
-#fussbodenFarbeInput1,
+/* #fussbodenFarbeInput1,
 #fussbodenFarbeInput2,
 #fussbodenFarbeInput3,
 #fussbodenFarbeInput4,
@@ -1541,6 +1633,14 @@ table {
 #fussbodenFarbeInput6,
 #fussbodenFarbeInput7 {
     margin-left: 0px !important;
+    width: 25% !important;
+    background-color: #fff !important;
+    border: none !important;
+    padding-left: 2px !important;
+} */
+
+[id^="fussbodenFarbeInput"] {
+    margin-left: 0 !important;
     width: 25% !important;
     background-color: #fff !important;
     border: none !important;
@@ -1564,13 +1664,16 @@ table {
 
 }
 
-#einziehender-mieter-info-2,
+/* #einziehender-mieter-info-2,
 #einziehender-mieter-info-3,
 #einziehender-mieter-info-4,
 #einziehender-mieter-info-5,
 #einziehender-mieter-info-6 {
     margin-left: 0px !important;
+} */
 
+[id^="einziehender-mieter-info-"]:not(:first-child) {
+    margin-left: 0 !important;
 }
 
 .vermieter {
@@ -1580,11 +1683,16 @@ table {
     font-weight: 600 !important;
 }
 
-#einziehender-mieter-signature-1,
+/* #einziehender-mieter-signature-1,
 #einziehender-mieter-signature-2,
 #einziehender-mieter-signature-3,
 #einziehender-mieter-signature-4,
 #einziehender-mieter-signature-5 {
+    width: 500px !important;
+    height: 150px !important;
+} */
+
+[id^="einziehender-mieter-signature-"] {
     width: 500px !important;
     height: 150px !important;
 }
@@ -1614,13 +1722,14 @@ Element .signature-content>div:nth-child(1)>table:nth-child(4)>tbody:nth-child(1
 
 .custom-table {
     margin-bottom: 15px !important;
+    margin-left: -12px !important;
 }
 
 #einziehender-mieter-info-2 {
     margin-top: -7px !important;
 }
 
-div.remark-row:nth-child(3)>div:nth-child(1)>input:nth-child(1),
+/* div.remark-row:nth-child(3)>div:nth-child(1)>input:nth-child(1),
 div.remark-row:nth-child(4)>div:nth-child(1)>input:nth-child(1),
 div.remark-row:nth-child(5)>div:nth-child(1)>input:nth-child(1),
 div.remark-row:nth-child(6)>div:nth-child(1)>input:nth-child(1),
@@ -1635,9 +1744,14 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
     border: 0px solid;
     margin-bottom: 2px;
     margin-left: 0px;
+} */
+
+div.remark-row:nth-child(n+3):nth-child(-n+13)>div:first-child>input:first-child {
+    border: 0;
+    margin: 0 0 2px 0;
 }
 
-#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
+/* #zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
 #zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
 #zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
 #zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
@@ -1648,9 +1762,13 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 #zimm09>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1),
 #zimm10>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(22)>td:nth-child(1) {
     padding-bottom: 10px;
+} */
+
+[id^="zimm"]>table:nth-child(2) tr:nth-child(22)>td:first-child {
+    padding-bottom: 10px;
 }
 
-#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
+/* #zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
 #zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
 #zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
 #zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1),
@@ -1662,6 +1780,11 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 #zimm10>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1) {
     border-bottom: 30px solid rgb(255, 255, 255) !important;
     border-top: 15px solid rgb(255, 255, 255) !important;
+} */
+
+[id^="zimm"]>table:nth-child(2)>tbody>tr:first-child {
+    border-bottom: 30px solid #fff !important;
+    border-top: 15px solid #fff !important;
 }
 
 [id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(8),
@@ -1714,7 +1837,7 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
     left: -12px !important;
 }
 
-#progressBar {
+/* #progressBar {
     transition:
         width 0.4s cubic-bezier(0.65, 0, 0.35, 1),
         background-color 0.7s ease-out,
@@ -1761,7 +1884,47 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
         linear-gradient(90deg, transparent 45%, rgba(0, 120, 0, 0.1) 50%, transparent 55%);
     opacity: 0.3;
     pointer-events: none;
+} */
+
+
+#progressBar {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: none;
+    background-image: none;
+    background-blend-mode: normal;
+    transition: none;
+    will-change: auto;
 }
+
+
+/* #progressBar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 75%; 
+    background-color: #81C784;
+    border-radius: 10px 0 0 10px;
+} */
+
+/* Entferne alle visuellen Effekte, wenn Klasse "pdf-view" aktiv ist */
+#progressBar.pdf-view,
+#progressBar.pdf-view::before {
+    animation: none !important;
+    transition: none !important;
+    background-image: none !important;
+    background-blend-mode: normal !important;
+    box-shadow: none !important;
+    will-change: auto !important;
+}
+
+
 
 .rwm-label {
     font-size: 16px;
@@ -1780,7 +1943,7 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 
 }
 
-#rwm-count1,
+/* #rwm-count1,
 #rwm-count2,
 #rwm-count3,
 #rwm-countzimm01,
@@ -1797,6 +1960,12 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
     width: 30px !important;
     border-radius: 5px;
     border: none !important;
+} */
+
+[id^="rwm-count"] {
+    width: 30px !important;
+    border-radius: 5px;
+    border: none !important;
 }
 
 .commentshead {
@@ -1805,7 +1974,7 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
     font-weight: 600;
 }
 
-#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
+/* #zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
 #zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
 #zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
 #zimm04>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
@@ -1818,15 +1987,23 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 #zimm11>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1),
 #zimm12>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(16)>td:nth-child(1) {
     line-height: 1;
-}
+} */
 
-#zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1),
-#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1),
-#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1) {
+[id^="zimm"]>table:nth-child(2) tr:nth-child(16)>td:first-child {
     line-height: 1;
 }
 
-#zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
+/* #zimm01>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1),
+#zimm02>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1),
+#zimm03>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1) {
+    line-height: 1;
+} */
+
+[id^="zimm0"]>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(18)>td:nth-child(1) {
+    line-height: 1;
+}
+
+/* #zaehlerTable>tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(2)>td:nth-child(4)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(3)>td:nth-child(4)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(4)>td:nth-child(4)>input:nth-child(1),
@@ -1836,6 +2013,11 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(8)>td:nth-child(4)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(9)>td:nth-child(4)>input:nth-child(1),
 #zaehlerTable>tbody:nth-child(2)>tr:nth-child(10)>td:nth-child(4)>input:nth-child(1) {
+    width: 166px;
+    font-size: 16px;
+} */
+
+#zaehlerTable>tbody:nth-child(2)>tr:nth-child(n+1):nth-child(-n+10)>td:nth-child(4)>input:nth-child(1) {
     width: 166px;
     font-size: 16px;
 }
@@ -1879,7 +2061,6 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
     background: #fff;
     padding: 30px 40px;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
     font-size: 18px;
     color: #333;
     text-align: center;
@@ -1944,8 +2125,23 @@ div.remark-row:nth-child(13)>div:nth-child(1)>input:nth-child(1) {
 #protokollart2,
 #protokollart3 {
     background-color: #f3f8ff !important;
-    padding:5px !important;
+    padding: 5px !important;
     border: 1px solid rgb(176, 176, 176) !important;
     padding-left: 5px !important;
 
+}
+
+.fa-fire,
+.fa-faucet {
+    margin-right: 10px;
+}
+
+#zentral11 {
+    margin-bottom: 0;
+}
+
+td.label-cellheiz1:nth-child(1)>h3:nth-child(1),
+td.label-cellheiz1:nth-child(3)>h3:nth-child(1) {
+    margin-bottom: 1px !important;
+    margin-top: 15px !important;
 }
