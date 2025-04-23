@@ -1,3 +1,7 @@
+// Copyright - Oliver Acker, acker_oliver@yahoo.de
+// pictopdf.js
+// Version 3.32_beta
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pictopdfButton').addEventListener('click', async function () {
         const { jsPDF } = window.jspdf;
