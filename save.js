@@ -1,6 +1,6 @@
-// Alle Daten aus dem Formular sammeln
-
-// Export-Funktion an den Anfang stellen
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+save.js
+Version 3.32_beta */
 
 
 function getFormData() {
