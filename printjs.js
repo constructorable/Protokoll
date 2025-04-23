@@ -75,7 +75,8 @@ async function renderElementsInParallel(elements) {
 }
 
 document.getElementById('savePdfButton').addEventListener('click', async function (event) {
-    if (!validateStrasseeinzug() || !validateNumberInputs()) {
+    /* if (!validateStrasseeinzug() || !validateNumberInputs()) { */
+    if (!validateStrasseeinzug()) {
         event.preventDefault();
         return;
     }
