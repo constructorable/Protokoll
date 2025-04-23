@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-
+    <script src="connection.js"></script>
     <script src="scriptzimmer.js"></script>
     <script src="pictopdf.js"></script>
 </head>
@@ -48,52 +48,41 @@
 
 
 
-        <!--         <button id="toggleStickyBtn" style="position:fixed; top:10px; right:10px; z-index:1000;">
-            ⬇️ Menü anzeigen
-          </button> -->
 
-
-        <!--         <div class="sticky-container">
-
-           
-
-
-            <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
-
-            <select id="loadSelect"></select>
-            <p id="currentSaveName"></p>
-
-            <button class="pdf-button" id="loadButton">Laden</button>
-            <button class="pdf-button" id="saveButton">Speichern</button>
-            <button class="pdf-button" id="saveasText">Daten als Text exportieren</button>
-            <button class="pdf-button" id="deleteButton">Löschen</button>
-            <button id="pictopdfButton" class="pdf-button"><i class="fas fa-images"></i>Bilder zu PDF</button>
-            <button id="savePdfButton"><i class="fas fa-file-pdf"></i>Protokoll erstellen</button>
-
-
-
-
-
-
-
-
-        </div> -->
-
-        <button id="toggleStickyBtn" data-state="closed">
+        <button class="pdf-button" id="toggleStickyBtn" data-state="closed">
             Menü
           </button>
           
           <div id="stickyContainer" class="sticky-container" data-state="closed">
             <!-- Ihre Menü-Inhalte hier -->
-            <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
+            <div id="connection-status" title="Verbindungsstatus wird geprüft...">
+                <div class="signal-container">
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path id="bar1" d="M5 16V8" stroke-width="2" stroke-linecap="round"/>
+                        <path id="bar2" d="M9 16V11" stroke-width="2" stroke-linecap="round"/>
+                        <path id="bar3" d="M13 16V13" stroke-width="2" stroke-linecap="round"/>
+                        <path id="bar4" d="M17 16V14" stroke-width="2" stroke-linecap="round"/>
+                        <path id="bar5" d="M21 16V15" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            
             <select id="loadSelect"></select>
             <p id="currentSaveName"></p>
-            <button class="pdf-button" id="loadButton">Laden</button>
-            <button class="pdf-button" id="saveButton">Speichern</button>
+            <button class="pdf-button" id="loadButton">Protokoll laden</button>
+            <button class="pdf-button" id="saveButton">Protokoll speichern</button>
+            <button class="pdf-button" id="deleteButton">Protokoll löschen</button>
             <button class="pdf-button" id="saveasText">Daten als Text exportieren</button>
-            <button class="pdf-button" id="deleteButton">Löschen</button>
+            
             <button id="pictopdfButton" class="pdf-button"><i class="fas fa-images"></i>Bilder zu PDF</button>
             <button id="savePdfButton"><i class="fas fa-file-pdf"></i>Protokoll erstellen</button>
+            <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
+            <div class="button-separator"></div>
+            <button id="exportPortableBtn" class="btn">Portable Version exportieren</button>
+<input type="file" id="importFileInput" accept=".protokoll,.json" style="display: none;">
+<button id="importPortableBtn" class="btn" onclick="document.getElementById('importFileInput').click()">Portable Version importieren</button>
+
+
           </div>
 
 
