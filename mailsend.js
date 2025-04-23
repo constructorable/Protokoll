@@ -1,6 +1,6 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
 // mailsend.js
-// Version 3.30_beta
+// Version 3.32_beta
 
 
 function sendEmail(fileName, emails, client) {
@@ -11,18 +11,22 @@ function sendEmail(fileName, emails, client) {
     const datum = document.getElementById('datum').value;
     const mietid = document.getElementById('mieterid').value;
 
-    const abnahmeCheckbox = document.getElementById('abnahme').checked ? "Abnahmeprotokoll" : "";
-    const uebergabeCheckbox = document.getElementById('uebergabe').checked ? "Übergabeprotokoll" : "";
-
-
+    const protokollSelect = document.getElementById('protokollart1');
     let protokollTyp = "";
 
 
-    if (abnahmeCheckbox && uebergabeCheckbox) {
-        protokollTyp = "Abnahme- und Übergabeprotokoll";
-    } else {
-
-        protokollTyp = `${abnahmeCheckbox} ${uebergabeCheckbox}`.trim();
+    switch(protokollSelect.value) {
+        case "Abnahmeprotokoll (Mieterauszug)":
+            protokollTyp = "Abnahmeprotokoll";
+            break;
+        case "Übergabeprotokoll (Mieterinzug)":
+            protokollTyp = "Übergabeprotokoll";
+            break;
+        case "Abnahme- & Übergabeprotokoll (Ein- und Auszug)":
+            protokollTyp = "Abnahme- und Übergabeprotokoll";
+            break;
+        default:
+            protokollTyp = "Protokoll"; // Fallback für Option "-"
     }
 
 
@@ -46,7 +50,6 @@ function sendEmail(fileName, emails, client) {
         `90402 Nürnberg\n\n` +
         `Tel.: 0911 / 21491-0\n\n` +
         `E-Mail: hausverwaltung@sauer-immobilien.de`
-
     );
 
 
