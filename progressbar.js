@@ -15,7 +15,7 @@ function initializeProgressBar() {
     progressText = document.getElementById('progressText');
     
     document.getElementById('loadingOverlay').style.display = 'block';
-    document.getElementById('closeLoadingOverlay').style.display = 'block';
+    /* document.getElementById('closeLoadingOverlay').style.display = 'block'; */
 
     // Reset Zustand
     progressBar.style.width = '0%';
@@ -88,7 +88,7 @@ function completeProgressBar() {
 }
 
 // Close-Button Funktion
-document.getElementById('closeLoadingOverlay').addEventListener('click', () => {
+/* document.getElementById('closeLoadingOverlay').addEventListener('click', () => {
     // 1. Lade-Overlay ausblenden
     document.getElementById('loadingOverlay').style.display = 'none';
 
@@ -108,4 +108,4 @@ document.getElementById('closeLoadingOverlay').addEventListener('click', () => {
     setTimeout(() => {
         abortModal.style.display = 'none';  // Nach 3 Sekunden Modal ausblenden
     }, 3000);
-});
+}); */
