@@ -172,7 +172,7 @@ Version 3.33_beta -->
                         </tbody>
                     </table>
                     <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">einziehender
-                        Mieter</h3>
+                        Mieter (nicht zutreffend)</h3>
                     <table id="einzugmieterTable" style="width: 100%; border: none;">
                     </table>
                     <div style="text-align: right; background-color: white;">
@@ -182,7 +182,7 @@ Version 3.33_beta -->
                         </button>
                     </div>
                     <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">ausziehender
-                        Mieter</h3>
+                        Mieter (nicht zutreffend)</h3>
                     <table style="width: 100%; border: none;">
                         <tbody>
                             <tr id="addausziehenderMieterRow" style="background-color: white;">
@@ -2704,8 +2704,12 @@ Version 3.33_beta -->
                                     <input type="radio" id="abstellzus03" name="abstellzus">
                                     <label for="abstellzus03" class="radio-label"></label>
                                 </td>
-                                <td><input type="radio" id="abstellzus04" name="abstellzus">
-                                    <label for="abstellzus04" class="radio-label"></label></td>
+                                <td><select id="protokollart80" class="dropdown-style">
+                                        <option>-</option>
+                                        <option>Mieter</option>
+                                        <option>Vermieter</option>
+                                        <option>in Klärung</option>
+                                    </select></td>
                                 <td>
                                     <input type="radio" id="abstellzus05" name="abstellzus">
                                     <label for="abstellzus05" class="radio-label"></label>
@@ -3427,7 +3431,6 @@ Version 3.33_beta -->
     </div>
     <script src="script.js"></script>
     <script src="immo.js"></script>
-    <script src="ueberschriftkeyandmeter.js"></script>
     <script src="mailcheck.js"></script>
     <script src="mailsend.js"></script>
     <script src="suggestion.js"></script>
