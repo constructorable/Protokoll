@@ -1,6 +1,6 @@
 <!-- Copyright - Oliver Acker, acker_oliver@yahoo.de
 index.html
-Version 3.32_beta -->
+Version 3.33_beta -->
 
 <!DOCTYPE html>
 <html lang="de">
@@ -55,41 +55,43 @@ Version 3.32_beta -->
 
         <button class="pdf-button" id="toggleStickyBtn" data-state="closed">
             Menü
-          </button>
-          
-          <div id="stickyContainer" class="sticky-container" data-state="closed">
+        </button>
+
+        <div id="stickyContainer" class="sticky-container" data-state="closed">
             <!-- Ihre Menü-Inhalte hier -->
             <div id="connection-status" title="Verbindungsstatus wird geprüft...">
                 <div class="signal-container">
                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path id="bar1" d="M5 16V8" stroke-width="2" stroke-linecap="round"/>
-                        <path id="bar2" d="M9 16V11" stroke-width="2" stroke-linecap="round"/>
-                        <path id="bar3" d="M13 16V13" stroke-width="2" stroke-linecap="round"/>
-                        <path id="bar4" d="M17 16V14" stroke-width="2" stroke-linecap="round"/>
-                        <path id="bar5" d="M21 16V15" stroke-width="2" stroke-linecap="round"/>
+                        <path id="bar1" d="M5 16V8" stroke-width="2" stroke-linecap="round" />
+                        <path id="bar2" d="M9 16V11" stroke-width="2" stroke-linecap="round" />
+                        <path id="bar3" d="M13 16V13" stroke-width="2" stroke-linecap="round" />
+                        <path id="bar4" d="M17 16V14" stroke-width="2" stroke-linecap="round" />
+                        <path id="bar5" d="M21 16V15" stroke-width="2" stroke-linecap="round" />
                     </svg>
                 </div>
             </div>
-            
+
             <select id="loadSelect"></select>
             <p id="currentSaveName"></p>
             <button class="pdf-button" id="loadButton">Protokoll laden</button>
             <button class="pdf-button" id="saveButton">Protokoll speichern</button>
             <button class="pdf-button" id="deleteButton">Protokoll löschen</button>
-            <button class="pdf-button" id="saveasText">Daten als Text exportieren</button>
-            
+
+
             <button id="pictopdfButton" class="pdf-button"><i class="fas fa-images"></i>Bilder zu PDF</button>
             <button id="savePdfButton"><i class="fas fa-file-pdf"></i>Protokoll erstellen</button>
             <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
             <div class="button-separator"></div>
             <button id="exportPortableBtn" class="btn">Portable Version exportieren</button>
-<input type="file" id="importFileInput" accept=".protokoll,.json" style="display: none;">
-<button id="importPortableBtn" class="btn" onclick="document.getElementById('importFileInput').click()">Portable Version importieren</button>
+            <input type="file" id="importFileInput" accept=".protokoll,.json" style="display: none;">
+            <button id="importPortableBtn" class="btn"
+                onclick="document.getElementById('importFileInput').click()">Portable Version importieren</button>
 
-<button id="toggleModeButton">Ansicht wechseln (nur für Entwickler)</button>
+            <button id="saveasText">Daten als Text exportieren (Entwicklermodus)</button>
+            <button id="toggleModeButton">Ansicht wechseln (Entwicklermodus)</button>
 
 
-          </div>
+        </div>
 
 
 
@@ -238,7 +240,7 @@ Version 3.32_beta -->
 
 
 
-<!--                     <h3>
+                    <!--                     <h3>
                     <i class="fas fa-fire"></i>Heizung zentral oder dezentral / <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
                     </h3> -->
 
@@ -248,15 +250,21 @@ Version 3.32_beta -->
                         <tbody>
                             <tr>
                                 <!-- Heizung -->
-                                <td class="label-cellheiz1">                    <h3>
-                                    <i class="fas fa-fire"></i>Heizung zentral oder dezentral</h3></td>
-                                
-                                
-                                    <td class="separator"></td>
+                                <td class="label-cellheiz1">
+                                    <h3>
+                                        <i class="fas fa-fire"></i>Heizung zentral oder dezentral
+                                    </h3>
+                                </td>
+
+
+                                <td class="separator"></td>
 
                                 <!-- Warmwasser -->
-                                <td class="label-cellheiz1">                    <h3>
-                                    <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral</h3></td>
+                                <td class="label-cellheiz1">
+                                    <h3>
+                                        <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
+                                    </h3>
+                                </td>
 
                             </tr>
                         </tbody>
@@ -295,7 +303,7 @@ Version 3.32_beta -->
                     </table>
 
 
-                     </div>
+                </div>
             </div>
             <div class="rooms" id="zzzkueche">
                 <h3>Küche</h3>
@@ -2696,12 +2704,8 @@ Version 3.32_beta -->
                                     <input type="radio" id="abstellzus03" name="abstellzus">
                                     <label for="abstellzus03" class="radio-label"></label>
                                 </td>
-                                <td><select id="protokollart80" class="dropdown-style">
-                                        <option>-</option>
-                                        <option>Mieter</option>
-                                        <option>Vermieter</option>
-                                        <option>in Klärung</option>
-                                    </select></td>
+                                <td><input type="radio" id="abstellzus04" name="abstellzus">
+                                    <label for="abstellzus04" class="radio-label"></label></td>
                                 <td>
                                     <input type="radio" id="abstellzus05" name="abstellzus">
                                     <label for="abstellzus05" class="radio-label"></label>
@@ -3419,7 +3423,7 @@ Version 3.32_beta -->
         </div>
         <div class="bilderzimmer"></div>
         <div id="large-images-container"></div>
-        
+
     </div>
     <script src="script.js"></script>
     <script src="immo.js"></script>
