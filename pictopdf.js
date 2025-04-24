@@ -1,9 +1,163 @@
 // Copyright - Oliver Acker, acker_oliver@yahoo.de
 // pictopdf.js
-// Version 3.32_beta
+// Version 3.33_beta
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pictopdfButton').addEventListener('click', async function () {
+        // Qualitätsauswahl Dialog erstellen
+        const qualityDialog = document.createElement('div');
+        qualityDialog.style.position = 'fixed';
+        qualityDialog.style.top = '50%';
+        qualityDialog.style.left = '50%';
+        qualityDialog.style.transform = 'translate(-50%, -50%)';
+        qualityDialog.style.backgroundColor = '#fff';
+        qualityDialog.style.border = '1px solid #ccc';
+        qualityDialog.style.padding = '20px';
+        qualityDialog.style.zIndex = '10000';
+        qualityDialog.style.width = '400px';
+        qualityDialog.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+        qualityDialog.style.textAlign = 'center';
+
+        const titleText = document.createElement('div');
+        titleText.innerText = 'PDF Qualität wählen';
+        titleText.style.fontSize = '20px';
+        titleText.style.fontWeight = 'bold';
+        titleText.style.marginBottom = '20px';
+        titleText.style.fontFamily = 'sans-serif';
+        qualityDialog.appendChild(titleText);
+
+        // Qualitätsoptionen
+        const qualityOptions = [
+            { value: 'low', label: 'Geringe Qualität (kleinere Dateigröße)', jpegQuality: 0.5, scale: 1.5 },
+            { value: 'medium', label: 'Mittlere Qualität (empfohlen)', jpegQuality: 0.6, scale: 2 },
+            { value: 'high', label: 'Hohe Qualität (größere Dateigröße)', jpegQuality: 0.7, scale: 3 }
+        ];
+
+        let selectedQuality = qualityOptions[1]; // Standard: mittlere Qualität
+
+        // Container für Radio-Buttons
+        const radioContainer = document.createElement('div');
+        radioContainer.style.margin = '20px 0';
+        
+        qualityOptions.forEach(option => {
+            const optionContainer = document.createElement('div');
+            optionContainer.style.margin = '10px 0';
+            optionContainer.style.display = 'flex';
+            optionContainer.style.alignItems = 'center';
+            optionContainer.style.cursor = 'pointer';
+
+            // Unsichtbarer echter Radio-Button (für Funktionalität)
+            const realRadio = document.createElement('input');
+            realRadio.type = 'radio';
+            realRadio.name = 'pdfQuality';
+            realRadio.id = `quality-real-${option.value}`;
+            realRadio.value = option.value;
+            realRadio.style.position = 'absolute';
+            realRadio.style.opacity = '0';
+            realRadio.style.width = '0';
+            realRadio.style.height = '0';
+            if (option.value === 'medium') realRadio.checked = true;
+
+            // Visuelle Repräsentation des Radio-Buttons
+            const customRadio = document.createElement('span');
+            customRadio.style.display = 'inline-block';
+            customRadio.style.width = '20px';
+            customRadio.style.height = '20px';
+            customRadio.style.borderRadius = '50%';
+            customRadio.style.border = '2px solid #4caf50';
+            customRadio.style.marginRight = '10px';
+            customRadio.style.position = 'relative';
+            customRadio.style.flexShrink = '0';
+            
+            // Innerer Punkt für ausgewählten Zustand
+            const radioDot = document.createElement('span');
+            radioDot.style.position = 'absolute';
+            radioDot.style.top = '50%';
+            radioDot.style.left = '50%';
+            radioDot.style.transform = 'translate(-50%, -50%)';
+            radioDot.style.width = '12px';
+            radioDot.style.height = '12px';
+            radioDot.style.borderRadius = '50%';
+            radioDot.style.backgroundColor = realRadio.checked ? '#4caf50' : 'transparent';
+            
+            customRadio.appendChild(radioDot);
+
+            const label = document.createElement('label');
+            label.htmlFor = `quality-real-${option.value}`;
+            label.innerText = option.label;
+            label.style.fontFamily = 'sans-serif';
+            label.style.flex = '1';
+            label.style.cursor = 'pointer';
+
+            // Event-Handler für die visuelle Darstellung
+            const updateRadioVisual = () => {
+                if (realRadio.checked) {
+                    radioDot.style.backgroundColor = '#4caf50';
+                    selectedQuality = option;
+                } else {
+                    radioDot.style.backgroundColor = 'transparent';
+                }
+            };
+
+            realRadio.addEventListener('change', updateRadioVisual);
+            
+            // Klick auf Container soll Radio-Button auswählen
+            optionContainer.addEventListener('click', () => {
+                realRadio.checked = true;
+                updateRadioVisual();
+                // Andere Radio-Buttons aktualisieren
+                document.querySelectorAll(`input[name="pdfQuality"]`).forEach(r => {
+                    if (r !== realRadio) {
+                        r.checked = false;
+                        r.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+
+            optionContainer.appendChild(realRadio);
+            optionContainer.appendChild(customRadio);
+            optionContainer.appendChild(label);
+            radioContainer.appendChild(optionContainer);
+        });
+
+        qualityDialog.appendChild(radioContainer);
+
+        // Buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.style.marginTop = '20px';
+        buttonContainer.style.display = 'flex';
+        buttonContainer.style.justifyContent = 'center';
+        buttonContainer.style.gap = '10px';
+
+        const cancelButton = document.createElement('button');
+        cancelButton.innerText = 'Abbrechen';
+        cancelButton.style.padding = '8px 16px';
+        cancelButton.style.cursor = 'pointer';
+        cancelButton.addEventListener('click', function() {
+            document.body.removeChild(qualityDialog);
+        });
+
+        const confirmButton = document.createElement('button');
+        confirmButton.innerText = 'PDF erstellen';
+        confirmButton.style.padding = '8px 16px';
+        confirmButton.style.backgroundColor = '#4caf50';
+        confirmButton.style.color = 'white';
+        confirmButton.style.border = 'none';
+        confirmButton.style.borderRadius = '4px';
+        confirmButton.style.cursor = 'pointer';
+        confirmButton.addEventListener('click', function() {
+            document.body.removeChild(qualityDialog);
+            createPDF(selectedQuality);
+        });
+
+        buttonContainer.appendChild(cancelButton);
+        buttonContainer.appendChild(confirmButton);
+        qualityDialog.appendChild(buttonContainer);
+
+        document.body.appendChild(qualityDialog);
+    });
+
+    async function createPDF(qualitySettings) {
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pageWidth = 210;
@@ -77,13 +231,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 // html2canvas auf dem Klon anwenden
                 await new Promise(resolve => setTimeout(resolve, 100));
                 const canvas = await html2canvas(clonedElement, {
-                    scale: 3,
+                    scale: qualitySettings.scale,
                     useCORS: true,
                     allowTaint: true,
                     letterRendering: true
                 });
 
-                const imgData = canvas.toDataURL('image/jpeg', 0.75);
+                const imgData = canvas.toDataURL('image/jpeg', qualitySettings.jpegQuality);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
                 let scaledHeight = (imgHeight * usableWidth) / imgWidth;
@@ -123,9 +277,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error("Fehler beim Rendern des Bildes:", error);
             }
         }
-
-
-
 
         // Bilder sammeln
         const bilderZimmer = document.querySelector('.bilderzimmer');
@@ -177,8 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         pdf.save(fileName);
 
-
         // Fortschrittsanzeige entfernen
         document.body.removeChild(progressWrapper);
-    });
+    }
 });
