@@ -615,7 +615,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 pdf.setFontSize(8);
                 pdf.setTextColor(100);
                 const pageWidth = pdf.internal.pageSize.getWidth();
-                pdf.text(`Seite ${i} von ${total}`, pageWidth - 30, pdf.internal.pageSize.getHeight() - 10);
+                pdf.text(`Seite ${i} von ${total}`, pageWidth - 30, pdf.internal.pageSize.getHeight() - 7);
             }
         }
         
