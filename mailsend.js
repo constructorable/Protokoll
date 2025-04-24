@@ -87,7 +87,21 @@ function sendEmail(fileName, emails, client) {
 function showEmailMenu(fileName) {
     let validEmails = findValidEmails();
 
-    // E-Mail-Menü direkt anzeigen ohne Validierung
+    if (validEmails.length === 0) {
+        const userResponse = confirm("Keine gültigen E-Mail-Adressen gefunden.");
+        if (userResponse) {
+            const emailInput = prompt("Bitte geben Sie eine gültige E-Mail-Adresse ein:");
+            if (emailInput && validateEmail(emailInput)) {
+                validEmails.push(emailInput);
+            } else {
+                alert("ungültige Mailadresse");
+                return;
+            }
+        } else {
+            return;
+        }
+    }
+
     const overlay = document.createElement('div');
     overlay.id = 'emailMenuOverlay';
     document.body.appendChild(overlay);
@@ -95,7 +109,7 @@ function showEmailMenu(fileName) {
     const emailMenu = document.createElement('div');
     emailMenu.id = 'emailMenu';
     emailMenu.innerHTML = `
-        <h3>E-Mail-Adressen:</h3>
+        <h3>Gültige E-Mail-Adressen gefunden:</h3>
         <ul>
             ${validEmails.map(email => `<li>${email}</li>`).join('')}
         </ul>
@@ -105,6 +119,7 @@ function showEmailMenu(fileName) {
             Hinweis:<br><br> Bitte PDF-Datei manuell im E-Mail-Client anhängen
         </div>
         <button id="cancel">← zurück</button>
+
     `;
 
     document.body.appendChild(emailMenu);
