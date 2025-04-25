@@ -2246,13 +2246,12 @@ input.input-error {
 
     min-width: 100px;
     padding: 0.5em 1em;
-
     border: 1px solid #ccc;
     border-radius: 5px;
-
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: background-color 0.2s ease;
+    font-size: 20px;
 }
 
 .sticky-container button:hover,
