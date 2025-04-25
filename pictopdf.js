@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const titleText = document.createElement('div');
         titleText.innerText = 'PDF Qualität wählen';
-        titleText.style.fontSize = '20px';
+        titleText.style.fontSize = '20px !important';
         titleText.style.fontWeight = 'bold';
         titleText.style.marginBottom = '20px';
         titleText.style.fontFamily = 'sans-serif';
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         progressText.innerText = '0 %';
         progressText.style.marginTop = '10px';
         progressText.style.fontFamily = 'sans-serif';
-        progressText.style.fontSize = '22px';
+        progressText.style.fontSize = '22px !important';
 
         const titleText = document.createElement('div');
         titleText.innerText = 'PDF wird erstellt...';
