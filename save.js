@@ -38,7 +38,7 @@ function getFormData() {
     return data;
 }
 
-function exportCurrentSaveAsText() {
+/* function exportCurrentSaveAsText() {
     const select = document.getElementById("loadSelect");
     const selectedName = select?.value;
     if (!selectedName) {
@@ -65,7 +65,7 @@ function exportCurrentSaveAsText() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-}
+} */
 
 
 const saveAsTextBtn = document.getElementById("saveasText");
