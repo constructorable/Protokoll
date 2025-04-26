@@ -216,7 +216,7 @@ function deleteSelectedSave() {
             delete allSaves[selectedName];
             localStorage.setItem("saves", JSON.stringify(allSaves));
             updateSaveList();
-            
+
         }
 
     } else if (choice === "2") {
@@ -278,7 +278,7 @@ function saveMieterDaten() {
     localStorage.setItem("einziehendeMieter", JSON.stringify(mieterdaten));
 }
 
-function exportPortableSave() {
+/* function exportPortableSave() {
     const data = getFormData();
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const fileName = `Protokoll_${timestamp}.protokoll`;
@@ -303,44 +303,161 @@ function exportPortableSave() {
     document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
+} */
+
+
+
+
+function exportPortableSave() {
+    const data = getFormData();
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const fileName = `ExportProtokoll_${timestamp}.protokoll`;
+
+    // Metadaten hinzufügen
+    const portableData = {
+        version: 1,
+        created: new Date().toISOString(),
+        browser: navigator.userAgent,
+        data: data
+    };
+
+    const jsonText = JSON.stringify(portableData, null, 2);
+    const blob = new Blob([jsonText], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+    // Erfolgs-Modal erstellen
+    const modal = document.createElement("div");
+    modal.id = "successModal";
+    modal.innerHTML = `
+            <div style="
+                background: #ffffff;
+                padding: 30px;
+                border-radius: 12px;
+                text-align: center;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                animation: fadeInUp 0.4s ease;
+            ">
+                <h2 style="margin-bottom: 20px; color: #4CAF50; font-size:26px;">Export erfolgreich!</h2>
+                <button id="closeModalBtn" style="
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 20px;
+                    transition: background-color 0.3s;
+                ">OK</button>
+            </div>
+        `;
+    Object.assign(modal.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: "0",
+        pointerEvents: "none",
+        transition: "opacity 0.3s ease",
+        zIndex: "9999"
+    });
+    document.body.appendChild(modal);
+
+    // Modal erst nach 1500ms sichtbar machen
+    setTimeout(() => {
+        modal.style.opacity = "1";
+        modal.style.pointerEvents = "auto";
+    }, 1000); // Geändert von 10ms auf 1500ms
+
+    // Button schließen
+    document.getElementById("closeModalBtn").addEventListener("click", () => {
+        modal.style.opacity = "0";
+        modal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(modal);
+        }, 300);
+    });
+
+    // kleine CSS-Animation direkt einfügen
+    const style = document.createElement('style');
+    style.innerHTML = `
+            @keyframes fadeInUp {
+                from {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            #closeModalBtn:hover {
+                background-color: #45a049;
+            }
+        `;
+    document.head.appendChild(style);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 function importPortableSave(file) {
     const reader = new FileReader();
-    
-    reader.onload = function(e) {
+
+    reader.onload = function (e) {
         try {
             const portableData = JSON.parse(e.target.result);
-            
+
             // Version prüfen
             if (!portableData.version || portableData.version > 1) {
                 throw new Error("Nicht unterstütztes Dateiformat");
             }
-            
+
             // Daten ins Formular laden
             setFormData(portableData.data);
-            
+
             // Erfolgsmeldung
             alert("Protokoll erfolgreich importiert!");
-            
+
         } catch (error) {
             console.error("Import fehlgeschlagen:", error);
             alert("Fehler beim Import: " + error.message);
         }
     };
-    
-    reader.onerror = function() {
+
+    reader.onerror = function () {
         alert("Fehler beim Lesen der Datei");
     };
-    
+
     reader.readAsText(file);
 }
 
 // Event-Handler für Datei-Upload
-document.getElementById('importFileInput')?.addEventListener('change', function(e) {
+document.getElementById('importFileInput')?.addEventListener('change', function (e) {
     if (e.target.files.length > 0) {
         importPortableSave(e.target.files[0]);
         e.target.value = ''; // Reset für erneuten Upload
     }
 });
-
