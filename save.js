@@ -140,7 +140,7 @@ function setFormData(data) {
 }
 
 // Speichern unter einem Namen
-function saveData() {
+/* function saveData() {
     const name = prompt("Bitte Namen für die Speicherung eingeben:");
     if (!name) return;
 
@@ -156,6 +156,232 @@ function saveData() {
         nameDisplay.textContent = `Aktuell geladene Version: ${name}`;
     }
 }
+ */
+
+function saveData() {
+    // Modal für Namenseingabe erstellen
+    const inputModal = document.createElement("div");
+    inputModal.id = "saveNameModal";
+    inputModal.innerHTML = `
+        <div style="
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            max-width: 90%;
+            animation: fadeInUp 0.4s ease;
+        ">
+            <h2 style="margin-bottom: 20px; color:rgb(90, 94, 103); font-size: 22px;">Name eingeben</h2>
+            <input type="text" id="saveNameInput" placeholder="" style="
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 2px solid #ddd;
+                border-radius: 6px;
+                font-size: 16px;
+                box-sizing: border-box;
+            ">
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button id="confirmSaveBtn" style="
+                    background-color:rgb(40, 118, 43);
+                    color: white;
+                    padding: 10px 25px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background-color 0.3s;
+                ">Speichern</button>
+                <button id="cancelSaveBtn" style="
+                    background-color:rgb(57, 103, 176);
+                    color: white;
+                    padding: 10px 25px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background-color 0.3s;
+                ">Abbrechen</button>
+            </div>
+        </div>
+    `;
+    
+    Object.assign(inputModal.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "9999",
+        opacity: "0",
+        pointerEvents: "none",
+        transition: "opacity 0.3s ease"
+    });
+    
+    document.body.appendChild(inputModal);
+    
+    // Modal sofort anzeigen
+    setTimeout(() => {
+        inputModal.style.opacity = "1";
+        inputModal.style.pointerEvents = "auto";
+        document.getElementById("saveNameInput").focus();
+    }, 10);
+
+    // Event-Handler für Speichern-Button
+    document.getElementById("confirmSaveBtn").addEventListener("click", () => {
+        const name = document.getElementById("saveNameInput").value.trim();
+        if (!name) {
+            alert("Bitte geben Sie einen Namen ein!");
+            return;
+        }
+
+        // Daten speichern
+        const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+        allSaves[name] = getFormData();
+        localStorage.setItem("saves", JSON.stringify(allSaves));
+
+        updateSaveList();
+
+        // Nach dem Speichern den Namen als geladen anzeigen
+        const nameDisplay = document.getElementById("currentSaveName");
+        if (nameDisplay) {
+            nameDisplay.textContent = `Aktuell geladene Version: ${name}`;
+        }
+
+        // Modal schließen
+        inputModal.style.opacity = "0";
+        inputModal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(inputModal);
+        }, 100);
+
+        // Erfolgsmeldung anzeigen
+        showSuccessModal(`Name: "${name}"`);
+    });
+
+    // Event-Handler für Abbrechen-Button
+    document.getElementById("cancelSaveBtn").addEventListener("click", () => {
+        inputModal.style.opacity = "0";
+        inputModal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(inputModal);
+        }, 100);
+    });
+
+    // Enter-Taste abfangen
+    document.getElementById("saveNameInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            document.getElementById("confirmSaveBtn").click();
+        }
+    });
+}
+
+// Hilfsfunktion für Erfolgsmeldung
+function showSuccessModal(message) {
+    const modal = document.createElement("div");
+    modal.id = "successModal";
+    modal.innerHTML = `
+        <div style="
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.4s ease;
+        ">
+            <h2 style="margin-bottom: 10px; color: #4CAF50; font-size: 22px;">Erfolgreich gespeichert!</h2>
+            <p style="margin-bottom: 20px; font-size: 22px;">${message}</p>
+            <button id="closeModalBtn" style="
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            ">OK</button>
+        </div>
+    `;
+    
+    Object.assign(modal.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: "0",
+        pointerEvents: "none",
+        transition: "opacity 0.3s ease",
+        zIndex: "9999"
+    });
+    
+    document.body.appendChild(modal);
+
+    setTimeout(() => {
+        modal.style.opacity = "1";
+        modal.style.pointerEvents = "auto";
+    }, 100);
+
+    document.getElementById("closeModalBtn").addEventListener("click", () => {
+        modal.style.opacity = "0";
+        modal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(modal);
+        }, 100);
+    });
+}
+
+// CSS-Animationen sicherstellen
+if (!document.getElementById('modalStyles')) {
+    const style = document.createElement('style');
+    style.id = 'modalStyles';
+    style.innerHTML = `
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        #confirmSaveBtn:hover {
+            background-color: #45a049 !important;
+        }
+        #cancelSaveBtn:hover {
+            background-color: #d32f2f !important;
+        }
+        #closeModalBtn:hover {
+            background-color: #45a049 !important;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Liste gespeicherter Einträge aktualisieren
@@ -174,7 +400,7 @@ function updateSaveList() {
 }
 
 // Gewählte Speicherung laden
-function loadSelectedSave() {
+/* function loadSelectedSave() {
     const select = document.getElementById("loadSelect");
     const selectedName = select.value;
     if (!selectedName) return;
@@ -189,7 +415,119 @@ function loadSelectedSave() {
             nameDisplay.textContent = `Aktuell geladene Version: ${selectedName}`;
         }
     }
-}
+} */
+
+    function loadSelectedSave() {
+        const select = document.getElementById("loadSelect");
+        const selectedName = select.value;
+        if (!selectedName) return;
+    
+        const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+        if (allSaves[selectedName]) {
+            setFormData(allSaves[selectedName]);
+    
+            // Name der aktuellen Version anzeigen
+            const nameDisplay = document.getElementById("currentSaveName");
+            if (nameDisplay) {
+                nameDisplay.textContent = `Aktuell geladene Version: ${selectedName}`;
+            }
+    
+            // Erfolgs-Modal erstellen
+            const modal = document.createElement("div");
+            modal.id = "loadSuccessModal";
+            modal.innerHTML = `
+                <div style="
+                    background: #ffffff;
+                    padding: 30px;
+                    border-radius: 12px;
+                    text-align: center;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                    animation: fadeInUp 0.4s ease;
+                ">
+                    <h2 style="margin-bottom: 10px; color: #4CAF50; font-size: 26px;">Laden erfolgreich!</h2>
+                    <p style="margin-bottom: 20px; font-size: 22px;">(Version "${selectedName}")</p>
+                    <button id="closeLoadModalBtn" style="
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        transition: background-color 0.3s;
+                    ">OK</button>
+                </div>
+            `;
+            Object.assign(modal.style, {
+                position: "fixed",
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                opacity: "0",
+                pointerEvents: "none",
+                transition: "opacity 0.3s ease",
+                zIndex: "9999"
+            });
+            document.body.appendChild(modal);
+    
+            // Modal nach 1500ms sichtbar machen
+            setTimeout(() => {
+                modal.style.opacity = "1";
+                modal.style.pointerEvents = "auto";
+            }, 50);
+    
+            // Button schließen
+            document.getElementById("closeLoadModalBtn").addEventListener("click", () => {
+                modal.style.opacity = "0";
+                modal.style.pointerEvents = "none";
+/*                 setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 50); */
+            });
+    
+            // CSS-Animation falls noch nicht vorhanden
+            if (!document.getElementById('modalStyles')) {
+                const style = document.createElement('style');
+                style.id = 'modalStyles';
+                style.innerHTML = `
+                    @keyframes fadeInUp {
+                        from {
+                            transform: translateY(20px);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+                    #closeLoadModalBtn:hover {
+                        background-color: #45a049;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        } else {
+            // Optional: Fehler-Modal falls gewünscht
+            console.error("Ausgewählte Version nicht gefunden");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Auswahl zwischen Einzel- und Komplettlöschung
 function deleteSelectedSave() {
@@ -461,3 +799,4 @@ document.getElementById('importFileInput')?.addEventListener('change', function 
         e.target.value = ''; // Reset für erneuten Upload
     }
 });
+
