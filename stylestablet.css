@@ -2794,3 +2794,21 @@ h3 i.fas {
 td.label-cellheiz1:nth-child(1)>h3:nth-child(1) {
     margin-left: 0;
 }
+
+#selectAllVersions,
+#cancelDelete,
+#confirmDelete {
+    font-size: 22px !important;
+}
+
+#versionSelection,
+#versionSelection > label,
+#versionSelection input[type="checkbox"] {
+    font-size: 22px !important;
+}
+
+#selectAllVersions:hover,
+#cancelDelete:hover,
+#confirmDelete:hover {
+    opacity:0.8 !important;
+}
