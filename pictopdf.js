@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const titleText = document.createElement('div');
         titleText.innerText = 'PDF Qualität wählen';
-        titleText.style.fontSize = '20px !important';
+        titleText.style.fontSize = '20px';
         titleText.style.fontWeight = 'bold';
         titleText.style.marginBottom = '20px';
         titleText.style.fontFamily = 'sans-serif';
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Container für Radio-Buttons
         const radioContainer = document.createElement('div');
         radioContainer.style.margin = '20px 0';
-        
+
         qualityOptions.forEach(option => {
             const optionContainer = document.createElement('div');
             optionContainer.style.margin = '10px 0';
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             customRadio.style.marginRight = '10px';
             customRadio.style.position = 'relative';
             customRadio.style.flexShrink = '0';
-            
+
             // Innerer Punkt für ausgewählten Zustand
             const radioDot = document.createElement('span');
             radioDot.style.position = 'absolute';
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             radioDot.style.height = '12px';
             radioDot.style.borderRadius = '50%';
             radioDot.style.backgroundColor = realRadio.checked ? '#4caf50' : 'transparent';
-            
+
             customRadio.appendChild(radioDot);
 
             const label = document.createElement('label');
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             realRadio.addEventListener('change', updateRadioVisual);
-            
+
             // Klick auf Container soll Radio-Button auswählen
             optionContainer.addEventListener('click', () => {
                 realRadio.checked = true;
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cancelButton.innerText = 'Abbrechen';
         cancelButton.style.padding = '8px 16px';
         cancelButton.style.cursor = 'pointer';
-        cancelButton.addEventListener('click', function() {
+        cancelButton.addEventListener('click', function () {
             document.body.removeChild(qualityDialog);
         });
 
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmButton.style.border = 'none';
         confirmButton.style.borderRadius = '4px';
         confirmButton.style.cursor = 'pointer';
-        confirmButton.addEventListener('click', function() {
+        confirmButton.addEventListener('click', function () {
             document.body.removeChild(qualityDialog);
             createPDF(selectedQuality);
         });
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         progressText.innerText = '0 %';
         progressText.style.marginTop = '10px';
         progressText.style.fontFamily = 'sans-serif';
-        progressText.style.fontSize = '22px !important';
+        progressText.style.fontSize = '22px';
 
         const titleText = document.createElement('div');
         titleText.innerText = 'PDF wird erstellt...';
@@ -326,5 +326,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Fortschrittsanzeige entfernen
         document.body.removeChild(progressWrapper);
+
+        const successModal2 = document.getElementById('sucpdf2');
+        const closeButton = document.getElementById('closeSuccessModal2');
+        /* const successModal2 = document.createElement('div'); */
+
+        if (!closeButton._hasListener) {
+            closeButton.addEventListener('click', function() {
+                successModal2.style.opacity = '0';
+                setTimeout(() => {
+                    successModal2.style.display = 'none';
+                }, 300);
+            });
+            closeButton._hasListener = true;
+        }
+
+        successModal2.style.display = 'block';
+        setTimeout(() => {
+            successModal2.style.opacity = '1';
+        }, 10);
+
+        document.body.appendChild(successModal2);
+
+        document.getElementById('closeSuccessModal2').addEventListener('click', function () {
+            document.body.removeChild(successModal2);
+        });
+
+        document.body.appendChild(successModal2);
+        setTimeout(() => {
+            const modalContent = successModal2.querySelector('div');
+            modalContent.style.opacity = '1';
+            modalContent.style.fontSize = '22px';
+            /* modalContent.style.transform = 'translate(-80%, -50%) scale(1)'; */
+        }, 10);
+
+
     }
 });
