@@ -712,17 +712,14 @@ function deleteRow(button) {
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 function setupImageUpload(uploadButton) {
-    const finishButton = document.getElementById("finishUploadKüche");
-    const continueButton = document.getElementById("continueUploadKüche"); 
-    let isInUploadMode = false;
-
     uploadButton.addEventListener("change", function (event) {
         const title = this.getAttribute("data-title");
-        const imagePreview = this.nextElementSibling; 
-        const signContainer = document.querySelector('.bilderzimmer'); 
 
-        if (!event.target.files.length) return;
+        // Container für Miniaturansichten und hochauflösende Bilder auswählen
+        const imagePreview = this.nextElementSibling; // Miniaturansicht-Container
+        const signContainer = document.querySelector('.bilderzimmer'); // Container für hochauflösende Bilder
 
+        // Bilder verarbeiten und hinzufügen, ohne bestehende Bilder zu ersetzen
         Array.from(event.target.files).forEach(file => {
             let reader = new FileReader();
             reader.onload = function (e) {
@@ -733,11 +730,13 @@ function setupImageUpload(uploadButton) {
                     let canvas = document.createElement("canvas");
                     let ctx = canvas.getContext("2d");
 
+                    // Zielgröße für die Skalierung
                     const maxWidth = 3000;
                     const maxHeight = 3000;
                     let width = img.width;
                     let height = img.height;
 
+                    // Skalieren, wenn eine Seite größer als die maximale Größe ist
                     if (width > maxWidth || height > maxHeight) {
                         const ratio = Math.min(maxWidth / width, maxHeight / height);
                         width = width * ratio;
@@ -748,9 +747,11 @@ function setupImageUpload(uploadButton) {
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
 
+                    // Bild komprimieren und als Blob speichern
                     canvas.toBlob(function (blob) {
                         const scaledImageSrc = URL.createObjectURL(blob);
 
+                        // Temporär im localStorage speichern
                         const imageData = {
                             title: title,
                             imageUrl: scaledImageSrc,
@@ -759,6 +760,7 @@ function setupImageUpload(uploadButton) {
                         storedImages.push(imageData);
                         localStorage.setItem('uploadedImages', JSON.stringify(storedImages));
 
+                        // Miniaturansicht mit Löschen-Button
                         let imgWrapper = document.createElement("div");
                         imgWrapper.style.display = "inline-block";
                         imgWrapper.style.position = "relative";
@@ -771,24 +773,27 @@ function setupImageUpload(uploadButton) {
                         imgThumbnail.style.border = "1px solid #ccc";
                         imgThumbnail.style.borderRadius = "5px";
 
+                        // Löschen-Button für Miniaturansicht
                         let deleteButton = document.createElement("button");
                         deleteButton.textContent = "X";
                         deleteButton.style.position = "absolute";
                         deleteButton.style.top = "-10px";
                         deleteButton.style.right = "-11px";
                         deleteButton.style.color = "white";
-                        deleteButton.style.backgroundColor = "rgb(181, 45, 45)"; 
+                        deleteButton.style.backgroundColor = "rgb(181, 45, 45)"; // Hintergrundfarbe rot
                         deleteButton.style.border = "none";
                         deleteButton.style.cursor = "pointer";
                         deleteButton.style.fontSize = "12px";
                         deleteButton.style.borderRadius = "15px";
                         deleteButton.style.padding = "3px 7px";
 
+                        // Löschen-Funktion
                         deleteButton.addEventListener("click", function () {
                             imgWrapper.remove();
                             highResWrapper.remove();
                             URL.revokeObjectURL(scaledImageSrc);
 
+                            // Entferne das Bild aus localStorage
                             storedImages = storedImages.filter(img => img.imageUrl !== scaledImageSrc);
                             localStorage.setItem('uploadedImages', JSON.stringify(storedImages));
                         });
@@ -797,6 +802,7 @@ function setupImageUpload(uploadButton) {
                         imgWrapper.appendChild(deleteButton);
                         imagePreview.appendChild(imgWrapper);
 
+                        // Hochauflösendes Bild mit Titel in der gewünschten HTML-Struktur
                         let highResWrapper = document.createElement("div");
                         highResWrapper.className = "large-image-wrapperxxx";
                         highResWrapper.id = `largexxx-wrapperxxx-imgxxx-${storedImages.length}-${Math.random().toString(36).substr(2, 9)}`;
@@ -825,11 +831,13 @@ function setupImageUpload(uploadButton) {
                         deleteButtonHighRes.style.borderRadius = "15px";
                         deleteButtonHighRes.style.padding = "3px 7px";
 
+                        // Löschen-Funktion für das hochauflösende Bild
                         deleteButtonHighRes.addEventListener("click", function () {
                             highResWrapper.remove();
                             imgWrapper.remove();
                             URL.revokeObjectURL(scaledImageSrc);
 
+                            // Entferne das Bild aus localStorage
                             storedImages = storedImages.filter(img => img.imageUrl !== scaledImageSrc);
                             localStorage.setItem('uploadedImages', JSON.stringify(storedImages));
                         });
@@ -841,29 +849,15 @@ function setupImageUpload(uploadButton) {
                     }, 'image/jpeg', 0.7);
                 };
             };
+
             reader.readAsDataURL(file);
         });
 
-        if (!isInUploadMode) {
-            continueButton.style.display = "inline-block";
-            finishButton.style.display = "inline-block";
-            isInUploadMode = true;
-        }
-    });
-
-    continueButton.addEventListener("click", () => {
-        uploadButton.click();
-    });
-
-    finishButton.addEventListener("click", function() {
-        uploadButton.value = "";
-        continueButton.style.display = "none";
-        finishButton.style.display = "none";
-        isInUploadMode = false;
+        // Nach dem Hochladen den Input zurücksetzen, damit man das gleiche Bild erneut hochladen kann
+        this.value = "";
     });
 }
 
-// Initialisierung
 document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUpload);
 
 
