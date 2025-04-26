@@ -207,7 +207,7 @@ function saveData() {
             </div>
         </div>
     `;
-    
+
     Object.assign(inputModal.style, {
         position: "fixed",
         top: "0",
@@ -223,9 +223,9 @@ function saveData() {
         pointerEvents: "none",
         transition: "opacity 0.3s ease"
     });
-    
+
     document.body.appendChild(inputModal);
-    
+
     // Modal sofort anzeigen
     setTimeout(() => {
         inputModal.style.opacity = "1";
@@ -309,7 +309,7 @@ function showSuccessModal(message) {
             ">OK</button>
         </div>
     `;
-    
+
     Object.assign(modal.style, {
         position: "fixed",
         top: "0",
@@ -325,7 +325,7 @@ function showSuccessModal(message) {
         transition: "opacity 0.3s ease",
         zIndex: "9999"
     });
-    
+
     document.body.appendChild(modal);
 
     setTimeout(() => {
@@ -417,7 +417,7 @@ function updateSaveList() {
     }
 } */
 
-    function loadSelectedSave() {
+/*      function loadSelectedSave() {
         const select = document.getElementById("loadSelect");
         const selectedName = select.value;
         if (!selectedName) return;
@@ -445,7 +445,7 @@ function updateSaveList() {
                     animation: fadeInUp 0.4s ease;
                 ">
                     <h2 style="margin-bottom: 10px; color: #4CAF50; font-size: 26px;">Laden erfolgreich!</h2>
-                    <p style="margin-bottom: 20px; font-size: 22px;">(Version "${selectedName}")</p>
+                    <p style="margin-bottom: 20px; font-size: 22px;">(Name: "${selectedName}")</p>
                     <button id="closeLoadModalBtn" style="
                         background-color: #4CAF50;
                         color: white;
@@ -485,9 +485,7 @@ function updateSaveList() {
             document.getElementById("closeLoadModalBtn").addEventListener("click", () => {
                 modal.style.opacity = "0";
                 modal.style.pointerEvents = "none";
-/*                 setTimeout(() => {
-                    document.body.removeChild(modal);
-                }, 50); */
+
             });
     
             // CSS-Animation falls noch nicht vorhanden
@@ -515,9 +513,340 @@ function updateSaveList() {
             // Optional: Fehler-Modal falls gewünscht
             console.error("Ausgewählte Version nicht gefunden");
         }
-    }
+    } */
 
 
+        function loadSelectedSave() {
+            // Modal für Ladeauswahl erstellen
+            const loadModal = document.createElement("div");
+            loadModal.id = "loadSelectionModal";
+        
+            // Optionen aus dem LocalStorage laden
+            const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+            const saveOptions = Object.keys(allSaves).map(name =>
+                `<option value="${name}">${name}</option>`
+            ).join('');
+        
+            loadModal.innerHTML = `
+                <div style="
+                    background: #ffffff;
+                    padding: 30px;
+                    border-radius: 12px;
+                    text-align: center;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                    width: 500px;
+                    max-width: 90%;
+                    animation: fadeInUp 0.4s ease;
+                ">
+                    <h2 style="margin-bottom: 20px; color: rgb(90, 94, 103); font-size: 26px;">Version laden</h2>
+                    
+                    <select id="modalLoadSelect" style="
+                        width: 100%;
+                        padding: 12px;
+                        margin-bottom: 25px;
+                        border: 2px solid #ddd;
+                        border-radius: 6px;
+                        font-size: 16px;
+                        box-sizing: border-box;
+                    ">
+                        <option value="">-- Bitte auswählen --</option>
+                        ${saveOptions}
+                    </select>
+                    
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <button id="confirmLoadBtn" style="
+                            background-color: rgb(40, 118, 43);
+                            color: white;
+                            padding: 10px 25px;
+                            border: none;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 16px;
+                            transition: background-color 0.3s;
+                        ">Laden</button>
+                        <button id="cancelLoadBtn" style="
+                            background-color: rgb(57, 103, 176);
+                            color: white;
+                            padding: 10px 25px;
+                            border: none;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 16px;
+                            transition: background-color 0.3s;
+                        ">Abbrechen</button>
+                    </div>
+                </div>
+            `;
+        
+            Object.assign(loadModal.style, {
+                position: "fixed",
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: "9999",
+                opacity: "0",
+                pointerEvents: "none",
+                transition: "opacity 0.3s ease"
+            });
+        
+            document.body.appendChild(loadModal);
+        
+            // Modal anzeigen
+            setTimeout(() => {
+                loadModal.style.opacity = "1";
+                loadModal.style.pointerEvents = "auto";
+                document.getElementById("modalLoadSelect").focus();
+            }, 10);
+        
+            // Event-Handler für Laden-Button
+            document.getElementById("confirmLoadBtn").addEventListener("click", () => {
+                const selectedName = document.getElementById("modalLoadSelect").value;
+        
+                if (!selectedName) {
+                    alert("Bitte wählen Sie eine Version aus!");
+                    return;
+                }
+        
+                // Modal schließen
+                loadModal.style.opacity = "0";
+                loadModal.style.pointerEvents = "none";
+                setTimeout(() => {
+                    document.body.removeChild(loadModal);
+                }, 100);
+        
+                // Originale Funktion mit der ausgewählten Version aufrufen
+                loadSelectedVersion(selectedName);
+            });
+        
+            // Event-Handler für Abbrechen-Button
+            document.getElementById("cancelLoadBtn").addEventListener("click", () => {
+                loadModal.style.opacity = "0";
+                loadModal.style.pointerEvents = "none";
+                setTimeout(() => {
+                    document.body.removeChild(loadModal);
+                }, 100);
+            });
+        
+            // Enter-Taste abfangen
+            document.getElementById("modalLoadSelect").addEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    document.getElementById("confirmLoadBtn").click();
+                }
+            });
+        
+            // Hilfsfunktion, die die eigentliche Ladefunktion enthält
+            function loadSelectedVersion(selectedName) {
+                const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+                if (allSaves[selectedName]) {
+                    setFormData(allSaves[selectedName]);
+        
+                    // Name der aktuellen Version anzeigen
+                    const nameDisplay = document.getElementById("currentSaveName");
+                    if (nameDisplay) {
+                        nameDisplay.textContent = `Aktuell geladene Version: ${selectedName}`;
+                    }
+        
+                    // Vorhandenes Modal entfernen, falls vorhanden
+                    const existingModal = document.getElementById("loadSuccessModal");
+                    if (existingModal) {
+                        document.body.removeChild(existingModal);
+                    }
+        
+                    // Erfolgs-Modal erstellen
+                    const modal = document.createElement("div");
+                    modal.id = "loadSuccessModal";
+                    modal.innerHTML = `
+                        <div style="
+                            background: #ffffff;
+                            padding: 30px;
+                            border-radius: 12px;
+                            text-align: center;
+                            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                            animation: fadeInUp 0.4s ease;
+                        ">
+                            <h2 style="margin-bottom: 10px; color: rgb(40, 118, 43); font-size: 26px;">Laden erfolgreich!</h2>
+                            <p style="margin-bottom: 20px; font-size: 22px;">Name: ${selectedName}</p>
+                            <button id="closeLoadModalBtn" style="
+                                background-color: rgb(40, 118, 43);
+                                color: white;
+                                padding: 10px 20px;
+                                border: none;
+                                border-radius: 6px;
+                                cursor: pointer;
+                                font-size: 16px;
+                                transition: background-color 0.3s;
+                            ">OK</button>
+                        </div>
+                    `;
+                    Object.assign(modal.style, {
+                        position: "fixed",
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "rgba(0, 0, 0, 0.6)",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        opacity: "0",
+                        pointerEvents: "none",
+                        transition: "opacity 0.3s ease",
+                        zIndex: "9999"
+                    });
+                    document.body.appendChild(modal);
+        
+                    // Modal nach 1500ms sichtbar machen
+                    setTimeout(() => {
+                        modal.style.opacity = "1";
+                        modal.style.pointerEvents = "auto";
+                    }, 50);
+        
+                    // Button schließen mit kompletter Entfernung des Modals
+                    document.getElementById("closeLoadModalBtn").addEventListener("click", () => {
+                        modal.style.opacity = "0";
+                        modal.style.pointerEvents = "none";
+                        setTimeout(() => {
+                            document.body.removeChild(modal);
+                        }, 300);
+                    });
+                } else {
+                    console.error("Ausgewählte Version nicht gefunden");
+                }
+            }
+        }
+
+// CSS-Animationen sicherstellen
+if (!document.getElementById('modalStyles')) {
+    const style = document.createElement('style');
+    style.id = 'modalStyles';
+    style.innerHTML = `
+                @keyframes fadeInUp {
+                    from {
+                        transform: translateY(20px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+                #confirmLoadBtn:hover {
+                    background-color: rgb(33, 96, 35) !important;
+                }
+                #cancelLoadBtn:hover {
+                    background-color: rgb(48, 87, 149) !important;
+                }
+                #closeLoadModalBtn:hover {
+                    background-color: rgb(33, 96, 35) !important;
+                }
+            `;
+    document.head.appendChild(style);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Hilfsfunktion für Erfolgsmeldung (aktualisiert mit neuen Farben)
+function showSuccessModal(message) {
+    const modal = document.createElement("div");
+    modal.id = "successModal";
+    modal.innerHTML = `
+            <div style="
+                background: #ffffff;
+                padding: 30px;
+                border-radius: 12px;
+                text-align: center;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                animation: fadeInUp 0.4s ease;
+            ">
+                <h2 style="margin-bottom: 10px; color: #388E3C; font-size: 26px;">Erfolgreich gespeichert!</h2>
+                <p style="margin-bottom: 20px; font-size: 22px;">${message}</p>
+                <button id="closeModalBtn" style="
+                    background-color: #388E3C;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background-color 0.3s;
+                ">OK</button>
+            </div>
+        `;
+
+    Object.assign(modal.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        opacity: "0",
+        pointerEvents: "none",
+        transition: "opacity 0.3s ease",
+        zIndex: "9999"
+    });
+
+    document.body.appendChild(modal);
+
+    setTimeout(() => {
+        modal.style.opacity = "1";
+        modal.style.pointerEvents = "auto";
+    }, 200);
+
+    document.getElementById("closeModalBtn").addEventListener("click", () => {
+        modal.style.opacity = "0";
+        modal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(modal);
+        }, 200);
+    });
+}
+
+// CSS-Animationen sicherstellen
+if (!document.getElementById('modalStyles')) {
+    const style = document.createElement('style');
+    style.id = 'modalStyles';
+    style.innerHTML = `
+            @keyframes fadeInUp {
+                from {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            #confirmLoadBtn:hover {
+                background-color: #2E7D32 !important;
+            }
+            #cancelLoadBtn:hover {
+                background-color: #3457a1 !important;
+            }
+            #closeModalBtn:hover {
+                background-color: #2E7D32 !important;
+            }
+        `;
+    document.head.appendChild(style);
+}
 
 
 
@@ -799,4 +1128,3 @@ document.getElementById('importFileInput')?.addEventListener('change', function 
         e.target.value = ''; // Reset für erneuten Upload
     }
 });
-
