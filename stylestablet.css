@@ -2654,21 +2654,21 @@ input.input-error {
     background-color: #a63636;
 }
 
-#savePdfButton:hover {
+#savePdfButton:hover, #pictopdfButton:hover, #sendEmailButton:hover {
     background-color: #892828;
     
 }
 
 
 /* Focus: wenn der Button mit Tab ausgewählt oder angeklickt wird */
-#savePdfButton:focus {
+#savePdfButton:focus, #pictopdfButton:focus, #sendEmailButton:focus {
     background-color: #751f1f;
     transform: scale(1.2),
 
 }
 
 /* Active: wenn der Button gerade gedrückt wird */
-#savePdfButton:active {
+#savePdfButton:active, #pictopdfButton:active, #sendEmailButton:active {
     background-color: #892828;
     transform: scale(1.2); /* leichte "Drück"-Animation */
 }
