@@ -229,33 +229,62 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.addEventListener("input", function (event) {
-        const target = event.target;
-        if (target.classList.contains("suggestion-input")) {
-            const suggestionListId = target.getAttribute("data-suggestion-list");
-            const suggestionList = document.getElementById(suggestionListId);
-            const dataType = target.getAttribute("data-type");
-
-            let suggestionsArray = [];
-            switch (dataType) {
-                case "farbe":
-                    suggestionsArray = farben;
-                    break;
-                case "mitarbeiter":
-                    suggestionsArray = mitarbeiternamen;
-                    break;
-                case "fussboden":
-                    suggestionsArray = fussbodenMaterialien;
-                    break;
-                case "fussboden-farbe":
-                    suggestionsArray = fussbodenFarben;
-                    break;
-
-                default:
-                    console.warn(`Unbekannter Datentyp: ${dataType}`);
-                    return;
+        try {
+            // 1. Sicherstellen, dass target ein gültiges DOM-Element mit classList ist
+            const target = event.target;
+            if (!target || typeof target.classList === 'undefined' || !target.classList.contains) {
+                return;
             }
-
-            showSuggestions(target, suggestionsArray, suggestionList);
+    
+            // 2. Nur für Elemente mit Klasse 'suggestion-input' ausführen
+            if (target.classList.contains("suggestion-input")) {
+                // 3. Sicherstellen, dass benötigte Attribute existieren
+                const suggestionListId = target.getAttribute("data-suggestion-list");
+                const dataType = target.getAttribute("data-type");
+                
+                if (!suggestionListId || !dataType) {
+                    console.warn("Fehlende erforderliche Attribute:", { suggestionListId, dataType });
+                    return;
+                }
+    
+                // 4. Suggestion-Liste finden
+                const suggestionList = document.getElementById(suggestionListId);
+                if (!suggestionList) {
+                    console.warn("Suggestion-Liste nicht gefunden:", suggestionListId);
+                    return;
+                }
+    
+                // 5. Passendes Array basierend auf dataType auswählen
+                let suggestionsArray = [];
+                switch (dataType) {
+                    case "farbe":
+                        suggestionsArray = farben;
+                        break;
+                    case "mitarbeiter":
+                        suggestionsArray = mitarbeiternamen;
+                        break;
+                    case "fussboden":
+                        suggestionsArray = fussbodenMaterialien;
+                        break;
+                    case "fussboden-farbe":
+                        suggestionsArray = fussbodenFarben;
+                        break;
+                    default:
+                        console.warn(`Unbekannter Datentyp: ${dataType}`);
+                        return;
+                }
+    
+                // 6. Suggestions anzeigen (mit zusätzlicher Prüfung)
+                if (Array.isArray(suggestionsArray)) {
+                    showSuggestions(target, suggestionsArray, suggestionList);
+                } else {
+                    console.warn("SuggestionsArray ist kein Array:", suggestionsArray);
+                }
+            }
+        } catch (error) {
+            console.debug("Fehler im input-Event-Listener:", error);
+            // Optional: Fehler an einen Error-Service melden
+            // trackError(error);
         }
     });
 
@@ -293,12 +322,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }, true);
 
     document.addEventListener("click", function (event) {
-        const target = event.target;
-
-        if (target && target.classList && !target.classList.contains("suggestion-input")) {
-            document.querySelectorAll(".suggestion-list").forEach(list => {
-                list.style.display = "none";
-            });
+        try {
+            const target = event.target;
+            // Sicherheitsprüfung für target und classList
+            if (!target || typeof target.classList === 'undefined' || !target.classList.contains) {
+                return;
+            }
+            
+            if (!target.classList.contains("suggestion-input")) {
+                document.querySelectorAll(".suggestion-list").forEach(list => {
+                    list.style.display = "none";
+                });
+            }
+        } catch (error) {
+            console.debug("Klick auf nicht-DOM-Element ignoriert:", error); // Optional: Fehler loggen
         }
     });
 
@@ -332,161 +369,192 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function initAutocomplete(input) {
+    try {
+        // 1. Input-Validierung
+        if (!input || !input.dataset) return;
+        if (input.dataset.autocompleteInit) return;
+        input.dataset.autocompleteInit = 'true';
 
-    if (input.dataset.autocompleteInit) return;
-    input.dataset.autocompleteInit = 'true';
+        // 2. Suggestions-Array
+        const suggestions = [
+            'links', 'rechts', 'hinten', 'vorne', 'mitte',
+            'links (hofseitig)', 'rechts (hofseitig)',
+            'vorne (hofseitig)', 'hinten (hofseitig)', 'mitte (hofseitig)',
+            'links (straßenseitig)', 'rechts (straßenseitig)',
+            'vorne (straßenseitig)', 'hinten (straßenseitig)', 'mitte (straßenseitig)',
+            'straßenseitig', 'hofseitig',
+            'Wohnzimmer', 'Arbeitszimmer', 'Kinderzimmer',
+            'Schlafzimmer', 'Abstellraum', 'Esszimmer', 'Hobbyraum'
+        ];
 
-    const suggestions = [
-        'links',
-        'rechts',
-        'hinten',
-        'vorne',
-        'mitte',
-        'links (hofseitig)',
-        'rechts (hofseitig)',
-        'vorne (hofseitig)',
-        'hinten (hofseitig)',
-        'mitte (hofseitig)',
-        'links (straßenseitig)',
-        'rechts (straßenseitig)',
-        'vorne (straßenseitig)',
-        'hinten (straßenseitig)',
-        'mitte (straßenseitig)',
-        'straßenseitig',
-        'hofseitig',
-        'Wohnzimmer',
-        'Arbeitszimmer',
-        'Kinderzimmer',
-        'Schlafzimmer',
-        'Abstellraum',
-        'Esszimmer',
-        'Hobbyraum'
-    ];
+        // 3. Variablen initialisieren
+        let activeIndex = -1;
+        let currentSuggestions = [];
+        const dropdown = document.createElement('div');
+        dropdown.className = 'suggestion-dropdown';
+        dropdown.style.display = 'none';
 
-    let activeIndex = -1;
-    let currentSuggestions = [];
+        // 4. Hilfsfunktionen
+        const positionDropdown = () => {
+            try {
+                const rect = input.getBoundingClientRect();
+                dropdown.style.position = 'absolute';
+                dropdown.style.left = `${rect.left + window.scrollX}px`;
+                dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+                dropdown.style.width = `${rect.width}px`;
+            } catch (error) {
+                console.debug('Positionierung fehlgeschlagen:', error);
+            }
+        };
 
-    const dropdown = document.createElement('div');
-    dropdown.className = 'suggestion-dropdown';
-    dropdown.style.display = 'none';
+        const highlightItem = (items, index) => {
+            try {
+                items.forEach(item => item.classList.remove('highlighted'));
+                if (index >= 0 && items[index]) {
+                    items[index].classList.add('highlighted');
+                    items[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+            } catch (error) {
+                console.debug('Highlight fehlgeschlagen:', error);
+            }
+        };
 
-    function positionDropdown() {
-        const rect = input.getBoundingClientRect();
-        dropdown.style.position = 'absolute';
-        dropdown.style.left = `${rect.left + window.scrollX}px`;
-        dropdown.style.top = `${rect.bottom + window.scrollY}px`;
-        dropdown.style.width = `${rect.width}px`;
-    }
+        // 5. Dropdown zum DOM hinzufügen
+        document.body.appendChild(dropdown);
 
-    document.body.appendChild(dropdown);
+        // 6. Event-Listener
+        input.addEventListener('input', function(e) {
+            try {
+                const value = e.target.value.toLowerCase();
+                dropdown.innerHTML = '';
+                activeIndex = -1;
 
-    input.addEventListener('input', function (e) {
-        const value = e.target.value.toLowerCase();
-        dropdown.innerHTML = '';
-        activeIndex = -1;
-
-        if (value.length === 0) {
-            dropdown.style.display = 'none';
-            return;
-        }
-
-        currentSuggestions = suggestions.filter(item =>
-            item.toLowerCase().includes(value)
-        );
-
-        if (currentSuggestions.length > 0) {
-            positionDropdown();
-
-            currentSuggestions.sort((a, b) => {
-                const aStartsWith = a.toLowerCase().startsWith(value) ? 0 : 1;
-                const bStartsWith = b.toLowerCase().startsWith(value) ? 0 : 1;
-                return aStartsWith - bStartsWith;
-            });
-
-            currentSuggestions.forEach((item, index) => {
-                const suggestionItem = document.createElement('div');
-
-                const matchIndex = item.toLowerCase().indexOf(value);
-                if (matchIndex >= 0) {
-                    const before = item.substring(0, matchIndex);
-                    const match = item.substring(matchIndex, matchIndex + value.length);
-                    const after = item.substring(matchIndex + value.length);
-
-                    suggestionItem.innerHTML = `${before}${match}${after}`;
-                } else {
-                    suggestionItem.textContent = item;
+                if (!value) {
+                    dropdown.style.display = 'none';
+                    return;
                 }
 
-                suggestionItem.className = 'suggestion-item';
-                suggestionItem.addEventListener('click', () => {
-                    input.value = item;
+                currentSuggestions = suggestions.filter(item => 
+                    item.toLowerCase().includes(value)
+                );
+
+                if (currentSuggestions.length > 0) {
+                    positionDropdown();
+                    currentSuggestions.sort((a, b) => 
+                        a.toLowerCase().startsWith(value) ? 0 : 1 - 
+                        (b.toLowerCase().startsWith(value) ? 0 : 1)
+                    );
+
+                    currentSuggestions.forEach((item, index) => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.className = 'suggestion-item';
+                        
+                        const matchIndex = item.toLowerCase().indexOf(value);
+                        if (matchIndex >= 0) {
+                            const before = item.substring(0, matchIndex);
+                            const match = item.substring(matchIndex, matchIndex + value.length);
+                            const after = item.substring(matchIndex + value.length);
+                            suggestionItem.innerHTML = `${before}<strong>${match}</strong>${after}`;
+                        } else {
+                            suggestionItem.textContent = item;
+                        }
+
+                        suggestionItem.addEventListener('click', () => {
+                            input.value = item;
+                            dropdown.style.display = 'none';
+                        });
+                        dropdown.appendChild(suggestionItem);
+                    });
+                    dropdown.style.display = 'block';
+                } else {
                     dropdown.style.display = 'none';
-                });
-                dropdown.appendChild(suggestionItem);
-            });
-            dropdown.style.display = 'block';
-        } else {
-            dropdown.style.display = 'none';
-        }
-    });
-
-    input.addEventListener('keydown', function (e) {
-        const items = dropdown.querySelectorAll('.suggestion-item');
-
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            activeIndex = (activeIndex + 1) % currentSuggestions.length;
-            highlightItem(items, activeIndex);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            activeIndex = (activeIndex - 1 + currentSuggestions.length) % currentSuggestions.length;
-            highlightItem(items, activeIndex);
-        } else if (e.key === 'Enter' && activeIndex >= 0) {
-            e.preventDefault();
-            input.value = currentSuggestions[activeIndex];
-            dropdown.style.display = 'none';
-        } else if (e.key === 'Escape') {
-            dropdown.style.display = 'none';
-        }
-    });
-
-    function highlightItem(items, index) {
-        items.forEach(item => item.classList.remove('highlighted'));
-        if (index >= 0 && items[index]) {
-            items[index].classList.add('highlighted');
-            items[index].scrollIntoView({ block: 'nearest' });
-        }
-    }
-
-    input.addEventListener('blur', function () {
-        setTimeout(() => {
-            if (!dropdown.contains(document.activeElement)) {
+                }
+            } catch (error) {
+                console.debug('Input-Event fehlgeschlagen:', error);
                 dropdown.style.display = 'none';
             }
-        }, 200);
-    });
+        });
 
-    if (!document.getElementById('suggestion-styles')) {
-        const style = document.createElement('style');
-        style.id = 'suggestion-styles';
-        style.textContent = `
-            .suggestion-dropdown {
-                border: 1px solid #ddd;
-                background: white;
-                z-index: 1000;
-                max-height: 150px;
-                overflow-y: auto;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        input.addEventListener('keydown', function(e) {
+            try {
+                const items = dropdown.querySelectorAll('.suggestion-item');
+                
+                switch(e.key) {
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        activeIndex = (activeIndex + 1) % currentSuggestions.length;
+                        highlightItem(items, activeIndex);
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        activeIndex = (activeIndex - 1 + currentSuggestions.length) % currentSuggestions.length;
+                        highlightItem(items, activeIndex);
+                        break;
+                    case 'Enter':
+                        if (activeIndex >= 0) {
+                            e.preventDefault();
+                            input.value = currentSuggestions[activeIndex];
+                            dropdown.style.display = 'none';
+                        }
+                        break;
+                    case 'Escape':
+                        dropdown.style.display = 'none';
+                        break;
+                }
+            } catch (error) {
+                console.debug('Tastatureingabe fehlgeschlagen:', error);
             }
-            .suggestion-item {
-                padding: 8px 12px;
-                cursor: pointer;
-            }
-            .suggestion-item:hover, .suggestion-item.highlighted {
-                background-color: #f0f0f0;
-            }
+        });
 
-        `;
-        document.head.appendChild(style);
+        input.addEventListener('blur', function() {
+            setTimeout(() => {
+                try {
+                    if (!dropdown.contains(document.activeElement)) {
+                        dropdown.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.debug('Blur-Event fehlgeschlagen:', error);
+                }
+            }, 200);
+        });
+
+        // 7. Styles hinzufügen
+        if (!document.getElementById('suggestion-styles')) {
+            try {
+                const style = document.createElement('style');
+                style.id = 'suggestion-styles';
+                style.textContent = `
+                    .suggestion-dropdown {
+                        border: 1px solid #ddd;
+                        background: white;
+                        z-index: 1000;
+                        max-height: 200px;
+                        overflow-y: auto;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                        border-radius: 4px;
+                        margin-top: 2px;
+                    }
+                    .suggestion-item {
+                        padding: 8px 12px;
+                        cursor: pointer;
+                        transition: background-color 0.2s;
+                    }
+                    .suggestion-item:hover, 
+                    .suggestion-item.highlighted {
+                        background-color: #f0f7ff;
+                    }
+                    .suggestion-item strong {
+                        font-weight: bold;
+                        color: #0066cc;
+                    }
+                `;
+                document.head.appendChild(style);
+            } catch (error) {
+                console.debug('Style-Erstellung fehlgeschlagen:', error);
+            }
+        }
+
+    } catch (error) {
+        console.error('Autocomplete-Initialisierung fehlgeschlagen:', error);
     }
 }
