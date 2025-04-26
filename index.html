@@ -897,14 +897,24 @@ Version 3.33_beta -->
                         </tr>
                         <tr style="display: table-row;">
                             <td colspan="6" style="text-align: center; padding-top: 20px;">
-                                <!-- Haupt-Button für Mehrfachauswahl -->
-                                <label for="uploadKüche" class="customUploadButton">📷3 Mehrere Bilder hinzufügen (Küche)</label>
+                                <!-- Haupt-Button für Kamera -->
+                                <label for="uploadKüche" class="customUploadButton">📸5 Kamera öffnen (Küche)</label>
                                 
-                                <!-- "Fertig"-Button (optional, falls gewünscht) -->
-                                <button id="finishUploadKüche" class="customUploadButton" style="display: none;">✅ Fertig mit Küchenbildern</button>
+                                <!-- Bestätigungs-Buttons (nach Aufnahme) -->
+                                <button id="continueUploadKüche" class="customUploadButton" style="display: none;">➕ Weiteres Foto</button>
+                                <button id="finishUploadKüche" class="customUploadButton" style="display: none;">✅ Fertig</button>
                                 
-                                <!-- Versteckter Datei-Upload -->
-                                <input type="file" id="uploadKüche" class="imageUpload" data-title="Küche" multiple hidden>
+                                <!-- Versteckter Datei-Input (mit Kamera-Fokus) -->
+                                <input 
+                                    type="file" 
+                                    id="uploadKüche" 
+                                    class="imageUpload" 
+                                    accept="image/*" 
+                                    capture="camera"  
+                                    data-title="Küche"
+                                    multiple 
+                                    hidden
+                                >
                                 
                                 <!-- Vorschau-Container -->
                                 <div class="imagePreview"></div>
