@@ -173,14 +173,14 @@ function saveData() {
             max-width: 90%;
             animation: fadeInUp 0.4s ease;
         ">
-            <h2 style="margin-bottom: 20px; color:rgb(90, 94, 103); font-size: 22px;">Name eingeben</h2>
+            <h2 style="margin-bottom: 20px; color:rgb(90, 94, 103); font-size: 26px;">Name eingeben</h2>
             <input type="text" id="saveNameInput" placeholder="" style="
                 width: 100%;
                 padding: 12px;
                 margin-bottom: 20px;
                 border: 2px solid #ddd;
                 border-radius: 6px;
-                font-size: 16px;
+                font-size: 22px;
                 box-sizing: border-box;
             ">
             <div style="display: flex; justify-content: center; gap: 15px;">
@@ -191,7 +191,7 @@ function saveData() {
                     border: none;
                     border-radius: 6px;
                     cursor: pointer;
-                    font-size: 16px;
+                    font-size: 20px;
                     transition: background-color 0.3s;
                 ">Speichern</button>
                 <button id="cancelSaveBtn" style="
@@ -201,7 +201,7 @@ function saveData() {
                     border: none;
                     border-radius: 6px;
                     cursor: pointer;
-                    font-size: 16px;
+                    font-size: 20px;
                     transition: background-color 0.3s;
                 ">Abbrechen</button>
             </div>
@@ -387,16 +387,23 @@ if (!document.getElementById('modalStyles')) {
 // Liste gespeicherter Einträge aktualisieren
 function updateSaveList() {
     const select = document.getElementById("loadSelect");
-    if (!select) return;
-
-    select.innerHTML = "";
     const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
-    Object.keys(allSaves).forEach(name => {
+    
+    select.innerHTML = ''; // Bestehende Optionen löschen
+    
+    if (Object.keys(allSaves).length === 0) {
         const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
+        option.value = "";
+        option.textContent = "Keine Einträge vorhanden";
         select.appendChild(option);
-    });
+    } else {
+        Object.keys(allSaves).forEach(name => {
+            const option = document.createElement("option");
+            option.value = name;
+            option.textContent = name;
+            select.appendChild(option);
+        });
+    }
 }
 
 // Gewählte Speicherung laden
@@ -516,18 +523,18 @@ function updateSaveList() {
     } */
 
 
-        function loadSelectedSave() {
-            // Modal für Ladeauswahl erstellen
-            const loadModal = document.createElement("div");
-            loadModal.id = "loadSelectionModal";
-        
-            // Optionen aus dem LocalStorage laden
-            const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
-            const saveOptions = Object.keys(allSaves).map(name =>
-                `<option value="${name}">${name}</option>`
-            ).join('');
-        
-            loadModal.innerHTML = `
+function loadSelectedSave() {
+    // Modal für Ladeauswahl erstellen
+    const loadModal = document.createElement("div");
+    loadModal.id = "loadSelectionModal";
+
+    // Optionen aus dem LocalStorage laden
+    const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+    const saveOptions = Object.keys(allSaves).map(name =>
+        `<option value="${name}">${name}</option>`
+    ).join('');
+
+    loadModal.innerHTML = `
                 <div style="
                     background: #ffffff;
                     padding: 30px;
@@ -546,10 +553,10 @@ function updateSaveList() {
                         margin-bottom: 25px;
                         border: 2px solid #ddd;
                         border-radius: 6px;
-                        font-size: 16px;
+                        font-size: 26px;
                         box-sizing: border-box;
                     ">
-                        <option value="">-- Bitte auswählen --</option>
+                        <option style="font-size:22px;" value="">-- Bitte auswählen --</option>
                         ${saveOptions}
                     </select>
                     
@@ -561,7 +568,7 @@ function updateSaveList() {
                             border: none;
                             border-radius: 6px;
                             cursor: pointer;
-                            font-size: 16px;
+                            font-size: 22px;
                             transition: background-color 0.3s;
                         ">Laden</button>
                         <button id="cancelLoadBtn" style="
@@ -571,96 +578,96 @@ function updateSaveList() {
                             border: none;
                             border-radius: 6px;
                             cursor: pointer;
-                            font-size: 16px;
+                            font-size: 22px;
                             transition: background-color 0.3s;
                         ">Abbrechen</button>
                     </div>
                 </div>
             `;
-        
-            Object.assign(loadModal.style, {
-                position: "fixed",
-                top: "0",
-                left: "0",
-                width: "100%",
-                height: "100%",
-                backgroundColor: "rgba(0, 0, 0, 0.6)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                zIndex: "9999",
-                opacity: "0",
-                pointerEvents: "none",
-                transition: "opacity 0.3s ease"
-            });
-        
-            document.body.appendChild(loadModal);
-        
-            // Modal anzeigen
-            setTimeout(() => {
-                loadModal.style.opacity = "1";
-                loadModal.style.pointerEvents = "auto";
-                document.getElementById("modalLoadSelect").focus();
-            }, 10);
-        
-            // Event-Handler für Laden-Button
-            document.getElementById("confirmLoadBtn").addEventListener("click", () => {
-                const selectedName = document.getElementById("modalLoadSelect").value;
-        
-                if (!selectedName) {
-                    alert("Bitte wählen Sie eine Version aus!");
-                    return;
-                }
-        
-                // Modal schließen
-                loadModal.style.opacity = "0";
-                loadModal.style.pointerEvents = "none";
-                setTimeout(() => {
-                    document.body.removeChild(loadModal);
-                }, 100);
-        
-                // Originale Funktion mit der ausgewählten Version aufrufen
-                loadSelectedVersion(selectedName);
-            });
-        
-            // Event-Handler für Abbrechen-Button
-            document.getElementById("cancelLoadBtn").addEventListener("click", () => {
-                loadModal.style.opacity = "0";
-                loadModal.style.pointerEvents = "none";
-                setTimeout(() => {
-                    document.body.removeChild(loadModal);
-                }, 100);
-            });
-        
-            // Enter-Taste abfangen
-            document.getElementById("modalLoadSelect").addEventListener("keypress", (e) => {
-                if (e.key === "Enter") {
-                    document.getElementById("confirmLoadBtn").click();
-                }
-            });
-        
-            // Hilfsfunktion, die die eigentliche Ladefunktion enthält
-            function loadSelectedVersion(selectedName) {
-                const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
-                if (allSaves[selectedName]) {
-                    setFormData(allSaves[selectedName]);
-        
-                    // Name der aktuellen Version anzeigen
-                    const nameDisplay = document.getElementById("currentSaveName");
-                    if (nameDisplay) {
-                        nameDisplay.textContent = `Aktuell geladene Version: ${selectedName}`;
-                    }
-        
-                    // Vorhandenes Modal entfernen, falls vorhanden
-                    const existingModal = document.getElementById("loadSuccessModal");
-                    if (existingModal) {
-                        document.body.removeChild(existingModal);
-                    }
-        
-                    // Erfolgs-Modal erstellen
-                    const modal = document.createElement("div");
-                    modal.id = "loadSuccessModal";
-                    modal.innerHTML = `
+
+    Object.assign(loadModal.style, {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "9999",
+        opacity: "0",
+        pointerEvents: "none",
+        transition: "opacity 0.3s ease"
+    });
+
+    document.body.appendChild(loadModal);
+
+    // Modal anzeigen
+    setTimeout(() => {
+        loadModal.style.opacity = "1";
+        loadModal.style.pointerEvents = "auto";
+        document.getElementById("modalLoadSelect").focus();
+    }, 10);
+
+    // Event-Handler für Laden-Button
+    document.getElementById("confirmLoadBtn").addEventListener("click", () => {
+        const selectedName = document.getElementById("modalLoadSelect").value;
+
+        if (!selectedName) {
+            alert("Bitte wählen Sie eine Version aus!");
+            return;
+        }
+
+        // Modal schließen
+        loadModal.style.opacity = "0";
+        loadModal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(loadModal);
+        }, 100);
+
+        // Originale Funktion mit der ausgewählten Version aufrufen
+        loadSelectedVersion(selectedName);
+    });
+
+    // Event-Handler für Abbrechen-Button
+    document.getElementById("cancelLoadBtn").addEventListener("click", () => {
+        loadModal.style.opacity = "0";
+        loadModal.style.pointerEvents = "none";
+        setTimeout(() => {
+            document.body.removeChild(loadModal);
+        }, 100);
+    });
+
+    // Enter-Taste abfangen
+    document.getElementById("modalLoadSelect").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            document.getElementById("confirmLoadBtn").click();
+        }
+    });
+
+    // Hilfsfunktion, die die eigentliche Ladefunktion enthält
+    function loadSelectedVersion(selectedName) {
+        const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
+        if (allSaves[selectedName]) {
+            setFormData(allSaves[selectedName]);
+
+            // Name der aktuellen Version anzeigen
+            const nameDisplay = document.getElementById("currentSaveName");
+            if (nameDisplay) {
+                nameDisplay.textContent = `Aktuell geladene Version: ${selectedName}`;
+            }
+
+            // Vorhandenes Modal entfernen, falls vorhanden
+            const existingModal = document.getElementById("loadSuccessModal");
+            if (existingModal) {
+                document.body.removeChild(existingModal);
+            }
+
+            // Erfolgs-Modal erstellen
+            const modal = document.createElement("div");
+            modal.id = "loadSuccessModal";
+            modal.innerHTML = `
                         <div style="
                             background: #ffffff;
                             padding: 30px;
@@ -683,42 +690,42 @@ function updateSaveList() {
                             ">OK</button>
                         </div>
                     `;
-                    Object.assign(modal.style, {
-                        position: "fixed",
-                        top: "0",
-                        left: "0",
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: "rgba(0, 0, 0, 0.6)",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        opacity: "0",
-                        pointerEvents: "none",
-                        transition: "opacity 0.3s ease",
-                        zIndex: "9999"
-                    });
-                    document.body.appendChild(modal);
-        
-                    // Modal nach 1500ms sichtbar machen
-                    setTimeout(() => {
-                        modal.style.opacity = "1";
-                        modal.style.pointerEvents = "auto";
-                    }, 50);
-        
-                    // Button schließen mit kompletter Entfernung des Modals
-                    document.getElementById("closeLoadModalBtn").addEventListener("click", () => {
-                        modal.style.opacity = "0";
-                        modal.style.pointerEvents = "none";
-                        setTimeout(() => {
-                            document.body.removeChild(modal);
-                        }, 300);
-                    });
-                } else {
-                    console.error("Ausgewählte Version nicht gefunden");
-                }
-            }
+            Object.assign(modal.style, {
+                position: "fixed",
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                opacity: "0",
+                pointerEvents: "none",
+                transition: "opacity 0.3s ease",
+                zIndex: "9999"
+            });
+            document.body.appendChild(modal);
+
+            // Modal nach 1500ms sichtbar machen
+            setTimeout(() => {
+                modal.style.opacity = "1";
+                modal.style.pointerEvents = "auto";
+            }, 50);
+
+            // Button schließen mit kompletter Entfernung des Modals
+            document.getElementById("closeLoadModalBtn").addEventListener("click", () => {
+                modal.style.opacity = "0";
+                modal.style.pointerEvents = "none";
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 300);
+            });
+        } else {
+            console.error("Ausgewählte Version nicht gefunden");
         }
+    }
+}
 
 // CSS-Animationen sicherstellen
 if (!document.getElementById('modalStyles')) {
@@ -858,43 +865,169 @@ if (!document.getElementById('modalStyles')) {
 
 
 
-// Auswahl zwischen Einzel- und Komplettlöschung
 function deleteSelectedSave() {
     const allSaves = JSON.parse(localStorage.getItem("saves")) || {};
-    const select = document.getElementById("loadSelect");
-    const selectedName = select.value;
-
+    
     if (Object.keys(allSaves).length === 0) {
-        alert("Keine gespeicherten Einträge vorhanden.");
+        ModalHelper.showErrorModal("Keine gespeicherten Einträge vorhanden.");
         return;
     }
 
-    const choice = prompt(
-        "Was möchtest du löschen?\n\n1 - Aktuell gewählte Speicherung\n2 - Alle Speicherungen\n\nGib 1 oder 2 ein:"
-    );
+    // Modal für Löschauswahl erstellen
+    const deleteModal = document.createElement('div');
+    deleteModal.id = "deleteSelectionModal";
+    deleteModal.innerHTML = `
+        <div style="
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            overflow-y: auto;
+        ">
+            <h3 style="margin-top: 0; color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                Versionen zum Löschen auswählen
+            </h3>
+            
+            <div id="versionSelection" style="margin: 15px 0;">
+                ${Object.keys(allSaves).map(name => `
+                    <label style="display: block; padding: 8px; margin-bottom: 5px; border-radius: 4px; background: #f9f9f9;">
+                        <input type="checkbox" name="versionToDelete" value="${name}" style="margin-right: 10px;">
+                        ${name}
+                    </label>
+                `).join('')}
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button id="selectAllVersions" style="
+                    padding: 8px 12px;
+                    background:rgb(185, 185, 185);
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    margin-right:11px;
+                    ">Alle auswählen</button>
 
-    if (choice === "1") {
-        if (!selectedName) {
-            alert("Bitte eine Speicherung auswählen.");
+                                        <button id="confirmDelete" style="
+                        padding: 8px 16px;
+                        background: #e74c3c;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                    ">Ausgewählte löschen</button>
+
+                
+                <div style="display: flex; gap: 10px;">
+                    <button id="cancelDelete" style="
+                        padding: 8px 16px;
+                        background:rgb(179, 179, 179);
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        margin-left:11px;
+                    ">Abbrechen</button>
+                    
+
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Modal-Stile
+    Object.assign(deleteModal.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: '1000'
+    });
+
+    document.body.appendChild(deleteModal);
+
+    // Event Listener für Buttons
+    document.getElementById('cancelDelete').addEventListener('click', () => {
+        document.body.removeChild(deleteModal);
+    });
+
+    document.getElementById('selectAllVersions').addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('input[name="versionToDelete"]');
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = !allChecked;
+        });
+    });
+
+    document.getElementById('confirmDelete').addEventListener('click', () => {
+        const selectedVersions = Array.from(
+            document.querySelectorAll('input[name="versionToDelete"]:checked')
+        ).map(checkbox => checkbox.value);
+
+        if (selectedVersions.length === 0) {
+            ModalHelper.showErrorModal("Bitte mindestens eine Version auswählen.");
             return;
         }
 
-        if (confirm(`"${selectedName}" wirklich löschen?`)) {
-            delete allSaves[selectedName];
+
+
+
+
+/*         const confirmationMessage = selectedVersions.length === Object.keys(allSaves).length
+            ? "Wirklich ALLE gespeicherten Versionen löschen?"
+            : `Wirklich ${selectedVersions.length} ausgewählte Version${selectedVersions.length > 1 ? 'en' : ''} löschen?`; */
+
+
+
+
+
+        if (confirm(`Wirklich ${selectedVersions.length} Version${selectedVersions.length > 1 ? 'en' : ''} löschen?`)) {
+            // Lösche die ausgewählten Versionen
+            selectedVersions.forEach(version => {
+                delete allSaves[version];
+            });
+            
             localStorage.setItem("saves", JSON.stringify(allSaves));
+            
+            // WICHTIG: Aktualisiere die Dropdown-Liste
             updateSaveList();
-
+            
+            // Schließe das Modal
+            document.body.removeChild(deleteModal);
+            
+            // Zeige Erfolgsmeldung
+            ModalHelper.showSuccessModal(
+                `${selectedVersions.length} Version${selectedVersions.length > 1 ? 'en' : ''} wurden gelöscht.`
+            );
+            
+            // ZUSÄTZLICH: Aktualisiere das Dropdown manuell
+            const select = document.getElementById("loadSelect");
+            select.innerHTML = ''; // Leere das Dropdown
+            
+            // Füge die verbleibenden Optionen hinzu
+            const remainingSaves = JSON.parse(localStorage.getItem("saves")) || {};
+            if (Object.keys(remainingSaves).length === 0) {
+                const option = document.createElement("option");
+                option.value = "";
+                option.textContent = "Keine Einträge vorhanden";
+                select.appendChild(option);
+            } else {
+                Object.keys(remainingSaves).forEach(name => {
+                    const option = document.createElement("option");
+                    option.value = name;
+                    option.textContent = name;
+                    select.appendChild(option);
+                });
+            }
         }
-
-    } else if (choice === "2") {
-        if (confirm("Wirklich **alle** gespeicherten Versionen löschen?")) {
-            localStorage.removeItem("saves");
-            updateSaveList();
-            alert("Alle Einträge wurden gelöscht.");
-        }
-    } else {
-        alert("Ungültige Eingabe. Vorgang abgebrochen.");
-    }
+    });
 }
 
 // Event-Listener zu Buttons
