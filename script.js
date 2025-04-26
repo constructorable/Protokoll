@@ -712,6 +712,8 @@ function deleteRow(button) {
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 function setupImageUpload(uploadButton) {
+    const finishButton = document.getElementById("finishUploadKüche");
+
     uploadButton.addEventListener("change", function (event) {
         const title = this.getAttribute("data-title");
         const imagePreview = this.nextElementSibling; 
@@ -838,15 +840,22 @@ function setupImageUpload(uploadButton) {
             reader.readAsDataURL(file);
         });
 
+        if (event.target.files.length > 0) {
+            finishButton.style.display = "inline-block";
+        }
+
         // this.value = ""; // WICHTIG: Dies entfernen, damit der Button nicht zurückgesetzt wird
     });
+
+    finishButton.addEventListener("click", function() {
+        uploadButton.value = "";  // Reset des Datei-Inputs
+        finishButton.style.display = "none";  // Button wieder ausblenden
+    });
+
 }
 document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUpload);
 
-document.getElementById("finishUploadKüche").addEventListener("click", function() {
-    document.getElementById("uploadKüche").value = ""; // Reset des Upload-Buttons
-    alert("Küchenbilder wurden erfolgreich hinzugefügt!");
-});
+
 
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
 // Stammdaten aus allgemeinen Informationen ziehen und unterhalb der Überschrift "Unterschriften" hinzufügen
