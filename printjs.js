@@ -605,8 +605,8 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
 
         const fileName = generateFileName();
         totalPages = pdf.internal.getNumberOfPages();
-                // Aufruf direkt vor pdf.save()
-                addPageNumbers(pdf, totalPages);
+        // Aufruf direkt vor pdf.save()
+        addPageNumbers(pdf, totalPages);
         pdf.save(fileName);
 
         function addPageNumbers(pdf, total) {
@@ -618,12 +618,31 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 pdf.text(`Seite ${i} von ${total}`, pageWidth - 30, pdf.internal.pageSize.getHeight() - 7);
             }
         }
+
+
+
+        /*         inputs.forEach((input, index) => {
+                    input.style.height = originalHeights[index];
+                });
         
+                const successModal = document.getElementById('sucpdf');
+                if (successModal) {
+                    successModal.style.display = 'flex'; // oder 'block', je nach Layout
+                    } */
 
+        // ✅ Modal anzeigen
+        const successModal = document.getElementById('sucpdf');
+        if (successModal) {
+            successModal.style.display = 'flex';
+        }
 
-        inputs.forEach((input, index) => {
-            input.style.height = originalHeights[index];
-        });
+        // ✅ Schließen-Button aktivieren
+        const closeBtn = document.getElementById('closeSuccessModal');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                successModal.style.display = 'none';
+            });
+        }
 
     } catch (error) {
         console.error("Fehler beim Generieren des PDFs:", error);
