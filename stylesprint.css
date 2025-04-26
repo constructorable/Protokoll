@@ -928,11 +928,13 @@ input[type="number"] {
     padding-left: 0px !important;
 } */
 
-#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(2),
-#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(3) {
-    padding-left: 0 !important;
-}
 
+
+
+/* [id^="SchluesselBem"] {
+    margin-left: 3px !important;
+}
+ */
 
 .hidden {
     display: none;
@@ -1362,10 +1364,17 @@ table {
     box-sizing: border-box !important;
     font-size: 16px !important;
     padding: 3px 5px !important;
-
     margin: 3px 0 !important;
+}
+
+
+#schluesselTable input[type="text"] {
+    margin-left: 2px !important;
 
 }
+
+
+
 
 #schluesselTable .input-container {
     display: flex !important;
@@ -2125,6 +2134,7 @@ div.remark-row:nth-child(n+3):nth-child(-n+13)>div:first-child>input:first-child
     padding-top: 10px !important;
 
 }
+
 #protokollart2,
 #protokollart3 {
     background-color: #f3f8ff !important;
@@ -2133,6 +2143,7 @@ div.remark-row:nth-child(n+3):nth-child(-n+13)>div:first-child>input:first-child
     padding-left: 5px !important;
 
 }
+
 .fa-fire,
 .fa-faucet {
     margin-right: 10px;
@@ -2146,4 +2157,254 @@ td.label-cellheiz1:nth-child(1)>h3:nth-child(1),
 td.label-cellheiz1:nth-child(3)>h3:nth-child(1) {
     margin-bottom: 1px !important;
     margin-top: 15px !important;
+}
+
+
+
+.sticky-container {
+    position: fixed;
+
+    z-index: 999;
+
+    width: 500px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+
+    transition:
+        max-height 0.4s ease-out,
+        opacity 0.3s ease 0.1s,
+        padding 0.3s ease;
+    margin-bottom: 35px;
+    top: 68px;
+    left: 24px;
+}
+
+
+
+
+
+.sticky-container[data-state="open"] {
+    max-height: 700px;
+    opacity: 1;
+    padding: 15px;
+}
+
+/* BUTTONS & SELECTS */
+.sticky-container button,
+.sticky-container select {
+    min-width: 100px;
+    padding: 0.5em 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease;
+}
+
+.sticky-container button:hover,
+#pictopdfButton:hover {
+    background-color: #466ec3;
+}
+
+/* BUTTON-GRUPPEN */
+.button-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    .sticky-container {
+        width: calc(100% - 30px);
+        left: 15px;
+        right: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #loadSelect,
+    .pdf-button,
+    #pictopdfButton,
+    #savePdfButton {
+        width: 100%;
+        margin: 4px 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .sticky-container {
+        flex-direction: row;
+    }
+
+    #loadSelect {
+        min-width: 120px;
+        margin-right: 8px;
+    }
+}
+
+/* #toggleStickyBtn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #4a6fa5;
+    color: #f4f4f4;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+#toggleStickyBtn:hover {
+    background-color: #4a6fa5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#toggleStickyBtn::after {
+    content: "❯";
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+#toggleStickyBtn[data-state="closed"]::after {
+    transform: rotate(90deg);
+}
+
+#toggleStickyBtn[data-state="open"]::after {
+    transform: rotate(270deg);
+}
+
+#toggleStickyBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+#toggleStickyBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+
+    padding: 10px 16px;
+    background-color: #4a6fa5;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover-Zustand */
+#toggleStickyBtn:hover {
+    background-color: #3b5d87;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+}
+
+/* Pfeil rechts oder runter */
+#toggleStickyBtn::after {
+    content: "❯";
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+#toggleStickyBtn[data-state="closed"]::after {
+    transform: rotate(90deg);
+    /* zeigt nach unten */
+}
+
+#toggleStickyBtn[data-state="open"]::after {
+    transform: rotate(270deg);
+    /* zeigt nach oben */
+}
+
+/* Tablet & PC – zusätzliche Anpassungen */
+@media (max-width: 768px) {
+    #toggleStickyBtn {
+        left: 10px;
+        top: 10px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+#connection-status {
+    top: 585px !important;
+    left: 502px !important;
+}
+
+
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(2),
+#schluesselTable>tbody:nth-child(2)>tr>td:nth-child(3) {
+    padding-left: 0 !important;
+    padding-right: 3px !important;
+}
+
+
+#duplizimm01-zeile1,
+#duplizimm02-zeile1,
+#duplizimm03-zeile1,
+#duplizimm04-zeile1,
+#duplizimm05-zeile1,
+#duplizimm06-zeile1,
+#duplizimm07-zeile1,
+#duplizimm08-zeile1,
+#duplizimm09-zeile1 {
+    left: -5px !important;
+    position: relative !important;
+    border: none;
+}
+
+#duplimaengelbeseit {
+    width: 97% !important;
+}
+
+#duplihauptBemerkungen01 {
+    font-size: 18px;
+    height: 24px;
+    width: 97% !important;
+}
+
+
+h3 i.fas {
+    margin-left: 15px !important;
+}
+
+.fa-fire {
+    margin-left: 1px !important;
 }
