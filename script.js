@@ -25,22 +25,82 @@ function toggleMode() {
 
 
 
-const toggleBtn = document.getElementById("toggleStickyBtn");
+/* const toggleBtn = document.getElementById("toggleStickyBtn");
 const stickyContainer = document.getElementById("stickyContainer");
 
 toggleBtn.addEventListener("click", () => {
-  const isOpen = stickyContainer.getAttribute("data-state") === "open";
-  
-  if (isOpen) {
-    // Menü schließen
-    stickyContainer.setAttribute("data-state", "closed");
-    toggleBtn.setAttribute("data-state", "closed");
-  } else {
-    // Menü öffnen
-    stickyContainer.setAttribute("data-state", "open");
-    toggleBtn.setAttribute("data-state", "open");
-  }
+    const isOpen = stickyContainer.getAttribute("data-state") === "open";
+
+    if (isOpen) {
+        // Menü schließen
+        stickyContainer.setAttribute("data-state", "closed");
+        toggleBtn.setAttribute("data-state", "closed");
+    } else {
+        // Menü öffnen
+        stickyContainer.setAttribute("data-state", "open");
+        toggleBtn.setAttribute("data-state", "open");
+    }
 });
+ */
+
+
+// Sticky- und Toggle Menü
+// Sticky- und Toggle Menü
+// Sticky- und Toggle Menü
+const toggleBtn = document.getElementById("toggleStickyBtn");
+const stickyContainer = document.getElementById("stickyContainer");
+const pageOverlay = document.createElement("div");
+pageOverlay.style.position = "fixed";
+pageOverlay.style.top = "0";
+pageOverlay.style.left = "0";
+pageOverlay.style.width = "100%";
+pageOverlay.style.height = "100%";
+pageOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+pageOverlay.style.backdropFilter = "blur(5px)";
+pageOverlay.style.zIndex = "998";
+pageOverlay.style.display = "none";
+document.body.appendChild(pageOverlay);
+stickyContainer.style.zIndex = "999";
+function toggleMenu(isOpen) {
+    if (isOpen) {
+        stickyContainer.setAttribute("data-state", "open");
+        toggleBtn.setAttribute("data-state", "open");
+        pageOverlay.style.display = "block";
+    } else {
+        stickyContainer.setAttribute("data-state", "closed");
+        toggleBtn.setAttribute("data-state", "closed");
+        pageOverlay.style.display = "none";
+    }
+}
+toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = stickyContainer.getAttribute("data-state") === "open";
+    toggleMenu(!isOpen);
+});
+pageOverlay.addEventListener("click", () => {
+    toggleMenu(false);
+});
+stickyContainer.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+function ensureToggleBtnExists() {
+    const existingBtn = document.getElementById("toggleStickyBtn");
+    if (!existingBtn) {
+        const newBtn = document.createElement("button");
+        newBtn.className = "pdf-button";
+        newBtn.id = "toggleStickyBtn";
+        newBtn.setAttribute("data-state", "closed");
+        newBtn.textContent = "Menü";
+        document.body.appendChild(newBtn);
+        newBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = stickyContainer.getAttribute("data-state") === "open";
+            toggleMenu(!isOpen);
+        });
+    }
+}
+
+
 
 
 
@@ -795,6 +855,13 @@ function setupImageUpload(uploadButton) {
 
         // Nach dem Hochladen den Input zurücksetzen, damit man das gleiche Bild erneut hochladen kann
         this.value = "";
+
+        setTimeout(() => {
+            if (confirm("Möchtest du weitere Bilder aufnehmen?")) {
+                uploadButton.click();
+            }
+        }, 500);
+        
     });
 }
 
@@ -1059,11 +1126,7 @@ window.addEventListener('beforeunload', function (event) {
         return confirmationMessage;
     }
 });
-/* document.getElementById('newTabButton').addEventListener('click', function () {
-    allowUnload = true;
-    window.open('https://www.google.com', '_blank');
-    setTimeout(() => { allowUnload = false; }, 1000);
-}); */
+
 window.addEventListener('beforeunload', function (event) {
     const confirmationMessage = 'Möchten Sie die Seite wirklich verlassen? Alle Eingaben gehen dadurch verloren.';
     event.returnValue = confirmationMessage;
@@ -1374,31 +1437,36 @@ function updateFullName(fullNameSpan, name, vorname) {
 
 
 
-/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
-/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
-/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel, Zähler, Mieter etc. nicht vorkommen */
-document.addEventListener("DOMContentLoaded", function() {
-    // Allgemeine Funktion zur Überprüfung von Tabelleninhalten
-    function checkSection(sectionId, defaultText, activeText) {
+/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel und Zähler nicht vorkommen */
+/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel und Zähler nicht vorkommen */
+/* Textinhalt und Farben von Überschriften ändern, wenn Schlüssel und Zähler nicht vorkommen */
+document.addEventListener("DOMContentLoaded", function () {
+    const icons = {
+        schluessel: '<i class="fas fa-key" aria-hidden="true"></i>',
+        zaehler: '<i class="fas fa-tachometer-alt" aria-hidden="true"></i>',
+        mieter: '<i class="fas fa-user" aria-hidden="true"></i>'
+    };
+    function checkSection(sectionId, defaultText, activeText, icon) {
         const section = document.getElementById(sectionId);
         const hasContent = section && (
-            section.querySelector('input') || 
+            section.querySelector('input') ||
             section.querySelector('select') ||
             section.querySelector('tbody tr:not(#addausziehenderMieterRow)')
         );
-        
         const headers = document.querySelectorAll('h3');
         headers.forEach(header => {
-            if (header.textContent.includes(defaultText)) {  // Hier fehlte die schließende Klammer
+            const baseText = header.textContent.replace(icons.schluessel, '').replace(icons.zaehler, '').trim();
+            
+            if (baseText.includes(defaultText)) {  
                 if (hasContent) {
-                    header.textContent = activeText;
+                    header.innerHTML = `${icon} ${activeText}`;
                     header.style.color = "black";
                     header.style.borderBottom = "0px solid black";
                     header.style.paddingBottom = "0px";
                 }
-            } else if (header.textContent.includes(activeText)) {
+            } else if (baseText.includes(activeText)) {
                 if (!hasContent) {
-                    header.textContent = defaultText;
+                    header.innerHTML = `${icon} ${defaultText}`;
                     header.style.color = "#c80000";
                     header.style.borderBottom = "1px solid black";
                     header.style.paddingBottom = "5px";
@@ -1406,75 +1474,40 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
-    // Spezielle Funktion für einziehende Mieter
-    function checkEinziehendeMieter() {
-        const hasEinziehende = document.querySelectorAll('#einzugmieterTable input').length > 0;
-        const headers = document.querySelectorAll('h3');
-        
-        headers.forEach(header => {
-            if (header.textContent.includes("einziehender Mieter")) {
-                if (hasEinziehende) {
-                    header.textContent = "einziehender Mieter";
-                    header.style.color = "black";
-                    header.style.borderBottom = "0px solid black";
-                    header.style.paddingBottom = "0px";
-                } else {
-                    header.textContent = "einziehender Mieter (nicht zutreffend)";
-                    header.style.color = "#c80000";
-                    header.style.borderBottom = "1px solid black";
-                    header.style.paddingBottom = "5px";
-                }
-            }
-        });
-    }
-
-    // Initiale Prüfung
     function initialCheck() {
-        checkSection('schluesselTable', 'Schlüssel (nicht angegeben)', 'Schlüssel');
-        checkSection('auszugmieterTable', 'ausziehender Mieter (nicht zutreffend)', 'ausziehender Mieter');
-        checkSection('zaehlerTable', 'Zähler (nicht angegeben)', 'Zähler');
-        checkEinziehendeMieter();
+        checkSection('schluesselTable', 'Schlüssel (nicht angegeben)', 'Schlüssel', icons.schluessel);
+        checkSection('zaehlerTable', 'Zähler (nicht angegeben)', 'Zähler', icons.zaehler);
     }
-
-    // Event Listener für Buttons
     function setupEventListeners() {
-        document.getElementById('addKeyButton').addEventListener('click', () => {
-            setTimeout(() => checkSection('schluesselTable', 'Schlüssel (nicht angegeben)', 'Schlüssel'), 50);
+        document.getElementById('addKeyButton')?.addEventListener('click', () => {
+            setTimeout(() => checkSection('schluesselTable', 'Schlüssel (nicht angegeben)', 'Schlüssel', icons.schluessel), 50);
         });
-        
-        document.getElementById('addausziehenderMieter').addEventListener('click', () => {
-            setTimeout(() => {
-                checkSection('auszugmieterTable', 'ausziehender Mieter (nicht zutreffend)', 'ausziehender Mieter');
-                checkEinziehendeMieter();
-            }, 50);
-        });
-        
-        document.getElementById('addeinziehenderMieter').addEventListener('click', () => {
-            setTimeout(checkEinziehendeMieter, 50);
-        });
-        
-        document.getElementById('addZaehlerButton').addEventListener('click', () => {
-            setTimeout(() => checkSection('zaehlerTable', 'Zähler (nicht angegeben)', 'Zähler'), 50);
+        document.getElementById('addZaehlerButton')?.addEventListener('click', () => {
+            setTimeout(() => checkSection('zaehlerTable', 'Zähler (nicht angegeben)', 'Zähler', icons.zaehler), 50);
         });
     }
-
+    if (!document.getElementById('dynamic-icons-style')) {
+        const style = document.createElement('style');
+        style.id = 'dynamic-icons-style';
+        style.textContent = `
+            h3 i.fas {
+                margin-right: 8px;
+                color: #4a6fa5;
+                font-size: 0.9em;
+            }
+            h3[style*="color: #c80000"] i.fas {
+                color: #c80000 !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
     initialCheck();
     setupEventListeners();
-
-    // Zusätzliche Überprüfung bei Änderungen
-    const observer = new MutationObserver(function(mutations) {
-        initialCheck();
-    });
-
-    // Beobachte Änderungen in den relevanten Containern
+    const observer = new MutationObserver(initialCheck);
     const containers = [
         document.getElementById('schluesselTable'),
-        document.getElementById('auszugmieterTable'),
-        document.getElementById('zaehlerTable'),
-        document.getElementById('einzugmieterTable')
+        document.getElementById('zaehlerTable')
     ].filter(Boolean);
-
     containers.forEach(container => {
         observer.observe(container, {
             childList: true,
@@ -1482,7 +1515,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
 
 
 
