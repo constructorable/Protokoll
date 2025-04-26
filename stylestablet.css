@@ -2656,7 +2656,21 @@ input.input-error {
 
 #savePdfButton:hover {
     background-color: #892828;
+    
+}
 
+
+/* Focus: wenn der Button mit Tab ausgewählt oder angeklickt wird */
+#savePdfButton:focus {
+    background-color: #751f1f;
+    transform: scale(1.2),
+
+}
+
+/* Active: wenn der Button gerade gedrückt wird */
+#savePdfButton:active {
+    background-color: #892828;
+    transform: scale(1.2); /* leichte "Drück"-Animation */
 }
 
 
@@ -2769,4 +2783,3 @@ h3 i.fas {
 td.label-cellheiz1:nth-child(1) > h3:nth-child(1) {
     margin-left: 0;
   }
-  
