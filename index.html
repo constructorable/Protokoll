@@ -897,11 +897,16 @@ Version 3.33_beta -->
                         </tr>
                         <tr style="display: table-row;">
                             <td colspan="6" style="text-align: center; padding-top: 20px;">
-                                <label for="uploadKüche" class="customUploadButton">++ Mehrere Bilder hinzufügen (Küche)</label>
-                                <label for="uploadKüche" class="customUploadButton">+ Bilder hinzufügen (Küche)</label>
-                                <button id="finishUploadKüche" class="customUploadButton">Fertig mit Küchenbildern</button>
-                                <input type="file" id="uploadKüche" class="imageUpload" data-title="Küche" multiple=""
-                                    hidden="">
+                                <!-- Haupt-Button für Mehrfachauswahl -->
+                                <label for="uploadKüche" class="customUploadButton">📷2 Mehrere Bilder hinzufügen (Küche)</label>
+                                
+                                <!-- "Fertig"-Button (optional, falls gewünscht) -->
+                                <button id="finishUploadKüche" class="customUploadButton" style="display: none;">✅ Fertig mit Küchenbildern</button>
+                                
+                                <!-- Versteckter Datei-Upload -->
+                                <input type="file" id="uploadKüche" class="imageUpload" data-title="Küche" multiple hidden>
+                                
+                                <!-- Vorschau-Container -->
                                 <div class="imagePreview"></div>
                                 <div class="highResImagePreview"></div>
                             </td>
