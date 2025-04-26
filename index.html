@@ -1,13 +1,14 @@
+<!DOCTYPE html>
+<html lang="de">
+
 <!-- Copyright - Oliver Acker, acker_oliver@yahoo.de
 index.html
 Version 3.33_beta -->
 
-<!DOCTYPE html>
-<html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protokoll</title>
     <link id="theme-style" rel="stylesheet" href="stylestablet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -18,7 +19,6 @@ Version 3.33_beta -->
     <script src="connection.js"></script>
     <script src="scriptzimmer.js"></script>
     <script src="pictopdf.js"></script>
-    
 </head>
 
 <body>
@@ -34,8 +34,8 @@ Version 3.33_beta -->
 
         <div id="imageModal" class="modal-overlay" style="display: none;">
             <div class="modal-content">
-                <h2>PDF-Export</h2>
-                <p>Möchten Sie die PDF mit oder ohne Bilder speichern?</p>
+                <h2>Protokoll als PDF exportieren</h2>
+                <!-- <p>Möchten Sie die PDF mit oder ohne Bilder speichern?</p> -->
                 <div class="modal-buttons">
                     <button id="withImagesBtn">mit Bildern</button>
                     <button id="withoutImagesBtn">ohne Bilder</button>
@@ -52,6 +52,21 @@ Version 3.33_beta -->
 
 
 
+        <div id="sucpdf" class="modal-overlay" style="display: none;">
+            <div class="modal-content" style="position: relative;">
+                <button id="closeSuccessModal" style="
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: transparent;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                ">&times;</button>
+                <h2> <i style="color: #c12b2b; font-size: 33px;" class="fas fa-file-pdf"></i>PDF erfolgreich abgespeichert</h2>
+            </div>
+        </div>
+        
 
 
         <button class="pdf-button" id="toggleStickyBtn" data-state="closed">
@@ -83,12 +98,12 @@ Version 3.33_beta -->
             <button id="savePdfButton"><i class="fas fa-file-pdf"></i>Protokoll erstellen</button>
             <button style="display:none" id="sendEmailButton"><i class="fas fa-mail-bulk"></i>E-Mail öffnen</button>
             <div class="button-separator"></div>
-            <button id="exportPortableBtn" class="btn">Portable Version exportieren</button>
+            <button id="exportPortableBtn" class="btn">Vorlage exportieren</button>
             <input type="file" id="importFileInput" accept=".protokoll,.json" style="display: none;">
             <button id="importPortableBtn" class="btn"
-                onclick="document.getElementById('importFileInput').click()">Portable Version importieren</button>
+                onclick="document.getElementById('importFileInput').click()">Vorlage importieren</button>
 
-            <button id="saveasText">Daten als Text exportieren (Entwicklermodus)</button>
+            <!-- <button id="saveasText">Daten als Text exportieren (Entwicklermodus)</button> -->
             <button id="toggleModeButton">Ansicht wechseln (Entwicklermodus)</button>
 
 
@@ -122,8 +137,8 @@ Version 3.33_beta -->
 
                         <tbody>
                             <tr>
-                                <td colspan="5">Art des Protokolls:</td>
-                                <td colspan="2"><select id="protokollart1" class="dropdown-style">
+                                <td colspan="1">Art des Protokolls:</td>
+                                <td colspan="3"><select id="protokollart1" class="dropdown-style">
                                         <option>-</option>
                                         <option>Abnahmeprotokoll (Mieterauszug)</option>
                                         <option>Übergabeprotokoll (Mieterinzug)</option>
@@ -172,8 +187,8 @@ Version 3.33_beta -->
                             </tr>
                         </tbody>
                     </table>
-                    <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">einziehender
-                        Mieter</h3>
+                    <h3 id="einzugtenant" style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">
+                        <i class="fas fa-user"></i>einziehender Mieter (nicht zutreffend)</h3>
                     <table id="einzugmieterTable" style="width: 100%; border: none;">
                     </table>
                     <div style="text-align: right; background-color: white;">
@@ -182,8 +197,8 @@ Version 3.33_beta -->
                             <i class="fas fa-user"></i> einziehenden Mieter hinzufügen +
                         </button>
                     </div>
-                    <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">ausziehender
-                        Mieter</h3>
+                    <h3 id="auszugtenant" style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;"><i class="fas fa-user"></i>ausziehender
+                        Mieter (nicht zutreffend)</h3>
                     <table style="width: 100%; border: none;">
                         <tbody>
                             <tr id="addausziehenderMieterRow" style="background-color: white;">
@@ -198,7 +213,7 @@ Version 3.33_beta -->
                             </tr>
                         </tbody>
                     </table>
-                    <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">Schlüssel
+                    <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;"><i class="fas fa-key"></i>Schlüssel
                         (nicht angegeben)</h3>
                     <div id="schluesselTableContainer"></div>
                     <table style="width: 100%; border: none;">
@@ -217,7 +232,7 @@ Version 3.33_beta -->
                             </tr>
                         </tbody>
                     </table>
-                    <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;">Zähler
+                    <h3 style="color: rgb(200, 0, 0); border-bottom: 1px solid black; padding-bottom: 5px;"><i class="fas fa-tachometer-alt"></i>Zähler
                         (nicht angegeben)</h3>
                     <div id="zaehlerTableContainer"></div>
                     <table style="width: 100%; border: none;">
@@ -253,7 +268,7 @@ Version 3.33_beta -->
                                 <!-- Heizung -->
                                 <td class="label-cellheiz1">
                                     <h3>
-                                        <i class="fas fa-fire"></i>Heizung zentral oder dezentral
+                                        <i style="margin-right: 10px;" class="fas fa-fire"></i>Heizung zentral oder dezentral
                                     </h3>
                                 </td>
 
@@ -263,7 +278,7 @@ Version 3.33_beta -->
                                 <!-- Warmwasser -->
                                 <td class="label-cellheiz1">
                                     <h3>
-                                        <i class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
+                                        <i style="margin-right: 10px;" class="fas fa-faucet"></i> Warmwasser zentral oder dezentral
                                     </h3>
                                 </td>
 
@@ -882,9 +897,15 @@ Version 3.33_beta -->
                         </tr>
                         <tr style="display: table-row;">
                             <td colspan="6" style="text-align: center; padding-top: 20px;">
-                                <label for="uploadKüche" class="customUploadButton">+ Bilder hinzufügen (Küche)</label>
-                                <input type="file" id="uploadKüche" class="imageUpload" data-title="Küche" multiple=""
-                                    hidden="">
+                                <label for="uploadKüche" class="customUploadButton">+ Mehrere Fotos hinzufügen (Küche)</label>
+                                <input type="file" 
+                                       id="uploadKüche" 
+                                       class="imageUpload" 
+                                       data-title="Küche" 
+                                       multiple 
+                                       accept="image/*" 
+                                       capture="environment"
+                                       hidden>
                                 <div class="imagePreview"></div>
                                 <div class="highResImagePreview"></div>
                             </td>
@@ -2705,12 +2726,10 @@ Version 3.33_beta -->
                                     <input type="radio" id="abstellzus03" name="abstellzus">
                                     <label for="abstellzus03" class="radio-label"></label>
                                 </td>
-                                <td><select id="protokollart80" class="dropdown-style">
-                                        <option>-</option>
-                                        <option>Mieter</option>
-                                        <option>Vermieter</option>
-                                        <option>in Klärung</option>
-                                    </select></td>
+                                <td>
+                                    <input type="radio" id="abstellzus03x" name="abstellzus">
+                                    <label for="abstellzus03x" class="radio-label"></label>
+                                </td>
                                 <td>
                                     <input type="radio" id="abstellzus05" name="abstellzus">
                                     <label for="abstellzus05" class="radio-label"></label>
@@ -3431,6 +3450,7 @@ Version 3.33_beta -->
 
     </div>
     <script src="script.js"></script>
+    <script src="headline.js"></script>
     <script src="immo.js"></script>
     <script src="mailcheck.js"></script>
     <script src="mailsend.js"></script>
