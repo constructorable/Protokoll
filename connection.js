@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Stil für das Icon setzen
     Object.assign(connectionIcon.style, {
-        position: 'fixed',
+        position: 'sticky',
         top: '10px',
         left: '10px',
         zIndex: '1000',
