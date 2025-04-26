@@ -555,6 +555,7 @@ function loadSelectedSave() {
                         border-radius: 6px;
                         font-size: 26px;
                         box-sizing: border-box;
+                        height: 70px;
                     ">
                         <option style="font-size:22px;" value="">-- Bitte auswählen --</option>
                         ${saveOptions}
@@ -685,7 +686,7 @@ function loadSelectedSave() {
                                 border: none;
                                 border-radius: 6px;
                                 cursor: pointer;
-                                font-size: 16px;
+                                font-size: 22px;
                                 transition: background-color 0.3s;
                             ">OK</button>
                         </div>
@@ -789,7 +790,7 @@ function showSuccessModal(message) {
                     border: none;
                     border-radius: 6px;
                     cursor: pointer;
-                    font-size: 16px;
+                    font-size: 22px;
                     transition: background-color 0.3s;
                 ">OK</button>
             </div>
