@@ -713,11 +713,15 @@ function deleteRow(button) {
 // Bilder hochladen, Funktion zum Hinzufügen des Event-Listeners für ein bestimmtes .imageUpload-Element
 function setupImageUpload(uploadButton) {
     const finishButton = document.getElementById("finishUploadKüche");
+    const continueButton = document.getElementById("continueUploadKüche"); 
+    let isInUploadMode = false;
 
     uploadButton.addEventListener("change", function (event) {
         const title = this.getAttribute("data-title");
         const imagePreview = this.nextElementSibling; 
         const signContainer = document.querySelector('.bilderzimmer'); 
+
+        if (!event.target.files.length) return;
 
         Array.from(event.target.files).forEach(file => {
             let reader = new FileReader();
@@ -840,19 +844,26 @@ function setupImageUpload(uploadButton) {
             reader.readAsDataURL(file);
         });
 
-        if (event.target.files.length > 0) {
+        if (!isInUploadMode) {
+            continueButton.style.display = "inline-block";
             finishButton.style.display = "inline-block";
+            isInUploadMode = true;
         }
+    });
 
-        // this.value = ""; // WICHTIG: Dies entfernen, damit der Button nicht zurückgesetzt wird
+    continueButton.addEventListener("click", () => {
+        uploadButton.click();
     });
 
     finishButton.addEventListener("click", function() {
-        uploadButton.value = "";  // Reset des Datei-Inputs
-        finishButton.style.display = "none";  // Button wieder ausblenden
+        uploadButton.value = "";
+        continueButton.style.display = "none";
+        finishButton.style.display = "none";
+        isInUploadMode = false;
     });
-
 }
+
+// Initialisierung
 document.querySelectorAll('input[class^="imageUpload"]').forEach(setupImageUpload);
 
 
