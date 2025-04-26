@@ -2642,9 +2642,13 @@ input.input-error {
     font-weight: bold;
     min-width: 100px;
     text-align: center;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    font-size: 24px;
 }
 
 #loadSelect {
+    display: none;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -2654,23 +2658,30 @@ input.input-error {
     background-color: #a63636;
 }
 
-#savePdfButton:hover, #pictopdfButton:hover, #sendEmailButton:hover {
+#savePdfButton:hover,
+#pictopdfButton:hover,
+#sendEmailButton:hover {
     background-color: #892828;
-    
+
 }
 
 
 /* Focus: wenn der Button mit Tab ausgewählt oder angeklickt wird */
-#savePdfButton:focus, #pictopdfButton:focus, #sendEmailButton:focus {
+#savePdfButton:focus,
+#pictopdfButton:focus,
+#sendEmailButton:focus {
     background-color: #751f1f;
     transform: scale(1.2),
 
 }
 
 /* Active: wenn der Button gerade gedrückt wird */
-#savePdfButton:active, #pictopdfButton:active, #sendEmailButton:active {
+#savePdfButton:active,
+#pictopdfButton:active,
+#sendEmailButton:active {
     background-color: #892828;
-    transform: scale(1.2); /* leichte "Drück"-Animation */
+    transform: scale(1.2);
+    /* leichte "Drück"-Animation */
 }
 
 
@@ -2780,6 +2791,6 @@ h3 i.fas {
     color: #575757 !important;
 }
 
-td.label-cellheiz1:nth-child(1) > h3:nth-child(1) {
+td.label-cellheiz1:nth-child(1)>h3:nth-child(1) {
     margin-left: 0;
-  }
+}
