@@ -1,5 +1,5 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-connection.js
+mailsend.js
 Version 3.34_beta */
 
 function sendEmail(fileName, emails, client) {
