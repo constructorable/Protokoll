@@ -1,26 +1,246 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pictopdfButton').addEventListener('click', async function () {
         // Qualitätsauswahl Dialog erstellen
-        const qualityDialog = document.createElement('div');
-        qualityDialog.style.position = 'fixed';
-        qualityDialog.style.top = '50%';
-        qualityDialog.style.left = '50%';
-        qualityDialog.style.transform = 'translate(-50%, -50%)';
-        qualityDialog.style.backgroundColor = '#fff';
-        qualityDialog.style.border = '1px solid #ccc';
-        qualityDialog.style.padding = '20px';
-        qualityDialog.style.zIndex = '10000';
-        qualityDialog.style.width = '400px';
-        qualityDialog.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
-        qualityDialog.style.textAlign = 'center';
+        const qualityDialog = createQualityDialog();
+        document.body.appendChild(qualityDialog);
 
-        const titleText = document.createElement('div');
-        titleText.innerText = 'PDF Qualität wählen';
-        titleText.style.fontSize = '20px';
-        titleText.style.fontWeight = 'bold';
-        titleText.style.marginBottom = '20px';
-        titleText.style.fontFamily = 'sans-serif';
-        qualityDialog.appendChild(titleText);
+        // Animation auslösen
+        setTimeout(() => {
+            qualityDialog.style.opacity = '1';
+            qualityDialog.style.pointerEvents = 'auto';
+            qualityDialog.querySelector('.modal-content').style.transform = 'translateY(0)';
+        }, 10);
+    });
+
+    /*   function createQualityDialog() {
+          const modal = document.createElement('div');
+          modal.className = 'modal';
+          modal.style.position = 'fixed';
+          modal.style.top = '0';
+          modal.style.left = '0';
+          modal.style.width = '100%';
+          modal.style.height = '100%';
+          modal.style.backgroundColor = 'rgba(0,0,0,0.5)';
+          modal.style.display = 'flex';
+          modal.style.justifyContent = 'center';
+          modal.style.alignItems = 'center';
+          modal.style.zIndex = '1000';
+          modal.style.opacity = '0';
+          modal.style.transition = 'opacity 0.3s ease';
+          modal.style.pointerEvents = 'none';
+  
+          const modalContent = document.createElement('div');
+          modalContent.className = 'modal-content';
+          modalContent.style.backgroundColor = 'white';
+          modalContent.style.padding = '2rem';
+          modalContent.style.borderRadius = '8px';
+          modalContent.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+          modalContent.style.maxWidth = '600px';
+          modalContent.style.width = '90%';
+          modalContent.style.textAlign = 'center';
+          modalContent.style.transform = 'translateY(-20px)';
+          modalContent.style.transition = 'transform 0.3s ease';
+  
+          const titleText = document.createElement('h2');
+          titleText.textContent = 'PDF Qualität wählen';
+          titleText.style.marginTop = '0';
+          titleText.style.color = '#4CAF50';
+          titleText.style.fontFamily = 'sans-serif';
+  
+          // Qualitätsoptionen
+          const qualityOptions = [
+              { value: 'low', label: 'Geringe Qualität (kleinere Dateigröße)', jpegQuality: 0.5, scale: 1.5 },
+              { value: 'medium', label: 'Mittlere Qualität (empfohlen)', jpegQuality: 0.6, scale: 2 },
+              { value: 'high', label: 'Hohe Qualität (größere Dateigröße)', jpegQuality: 0.7, scale: 3 }
+          ];
+  
+          let selectedQuality = qualityOptions[1]; // Standard: mittlere Qualität
+  
+          // Radio-Buttons Container
+          const radioContainer = document.createElement('div');
+          radioContainer.style.margin = '20px 0';
+          radioContainer.style.display = 'flex';
+          radioContainer.style.flexDirection = 'column';
+          radioContainer.style.gap = '10px';
+  
+          qualityOptions.forEach(option => {
+              const optionContainer = document.createElement('label');
+              optionContainer.htmlFor = `quality-${option.value}`;
+              optionContainer.style.display = 'flex';
+              optionContainer.style.alignItems = 'center';
+              optionContainer.style.padding = '10px';
+              optionContainer.style.border = '2px solid #ccc';
+              optionContainer.style.borderRadius = '8px';
+              optionContainer.style.cursor = 'pointer';
+              optionContainer.style.transition = 'all 0.2s';
+              optionContainer.style.fontFamily = 'sans-serif';
+              optionContainer.style.userSelect = 'none';
+              optionContainer.style.position = 'relative';
+              optionContainer.style.backgroundColor = '#fff';
+  
+              
+  
+              // Radio-Button
+              const radio = document.createElement('input');
+              radio.type = 'radio';
+              radio.name = 'pdfQuality';
+              radio.id = `quality-${option.value}`;
+              radio.value = option.value;
+              radio.style.display = 'none';
+              if (option.value === 'medium') radio.checked = true;
+  
+              // Label
+              const label = document.createElement('label');
+              label.htmlFor = `quality-${option.value}`;
+              label.textContent = option.label;
+              label.style.fontFamily = 'sans-serif';
+              label.style.cursor = 'pointer';
+              label.style.flex = '1';
+              label.style.textAlign = 'left';
+  
+              radio.addEventListener('change', () => {
+                  if (radio.checked) {
+                      selectedQuality = option;
+          
+                      // Alle Container zurücksetzen
+                      document.querySelectorAll('input[name="pdfQuality"]').forEach(input => {
+                          const parent = input.closest('label');
+                          if (parent) {
+                              parent.style.borderColor = '#ccc';
+                              parent.querySelector('div div').style.opacity = '0';
+                          }
+                      });
+          
+                      // Aktuellen Container anpassen
+                      optionContainer.style.borderColor = '#4CAF50';
+                      innerDot.style.opacity = '1';
+                  }
+              });
+  
+              
+              optionContainer.appendChild(radio);
+              optionContainer.appendChild(customCheckbox);
+              optionContainer.appendChild(labelText);
+              radioContainer.appendChild(optionContainer);
+          });
+  
+          const customCheckbox = document.createElement('div');
+          customCheckbox.style.width = '20px';
+          customCheckbox.style.height = '20px';
+          customCheckbox.style.border = '2px solid #4CAF50';
+          customCheckbox.style.borderRadius = '50%';
+          customCheckbox.style.marginRight = '15px';
+          customCheckbox.style.display = 'flex';
+          customCheckbox.style.alignItems = 'center';
+          customCheckbox.style.justifyContent = 'center';
+          customCheckbox.style.transition = 'background-color 0.2s, border-color 0.2s';
+      
+          const innerDot = document.createElement('div');
+          innerDot.style.width = '10px';
+          innerDot.style.height = '10px';
+          innerDot.style.borderRadius = '50%';
+          innerDot.style.backgroundColor = '#4CAF50';
+          innerDot.style.opacity = radio.checked ? '1' : '0';
+          customCheckbox.appendChild(innerDot);
+  
+          const labelText = document.createElement('span');
+          labelText.textContent = option.label;
+          labelText.style.flex = '1';
+          labelText.style.textAlign = 'left';
+      
+  
+          // Buttons Container
+          const buttonContainer = document.createElement('div');
+          buttonContainer.style.marginTop = '20px';
+          buttonContainer.style.display = 'flex';
+          buttonContainer.style.justifyContent = 'center';
+          buttonContainer.style.gap = '10px';
+  
+          // Abbrechen Button
+          const cancelButton = document.createElement('button');
+          cancelButton.textContent = 'Abbrechen';
+          cancelButton.style.padding = '8px 16px';
+          cancelButton.style.backgroundColor = '#f44336';
+          cancelButton.style.color = 'white';
+          cancelButton.style.border = 'none';
+          cancelButton.style.borderRadius = '4px';
+          cancelButton.style.cursor = 'pointer';
+          cancelButton.addEventListener('click', () => {
+              modal.style.opacity = '0';
+              setTimeout(() => {
+                  document.body.removeChild(modal);
+              }, 300);
+          });
+  
+          // Bestätigen Button
+          const confirmButton = document.createElement('button');
+          confirmButton.textContent = 'PDF erstellen';
+          confirmButton.style.padding = '8px 16px';
+          confirmButton.style.backgroundColor = '#4CAF50';
+          confirmButton.style.color = 'white';
+          confirmButton.style.border = 'none';
+          confirmButton.style.borderRadius = '4px';
+          confirmButton.style.cursor = 'pointer';
+          confirmButton.addEventListener('click', () => {
+              modal.style.opacity = '0';
+              setTimeout(() => {
+                  document.body.removeChild(modal);
+                  createPDF(selectedQuality);
+              }, 300);
+          });
+  
+          buttonContainer.appendChild(cancelButton);
+          buttonContainer.appendChild(confirmButton);
+  
+          modalContent.appendChild(titleText);
+          modalContent.appendChild(radioContainer);
+          modalContent.appendChild(buttonContainer);
+          modal.appendChild(modalContent);
+  
+          return modal;
+      } */
+
+    function createQualityDialog() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        Object.assign(modal.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: '1000',
+            opacity: '0',
+            transition: 'opacity 0.3s ease',
+            pointerEvents: 'none'
+        });
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        Object.assign(modalContent.style, {
+            backgroundColor: 'white',
+            padding: '2rem',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            maxWidth: '600px',
+            width: '90%',
+            textAlign: 'center',
+            transform: 'translateY(-20px)',
+            transition: 'transform 0.3s ease'
+        });
+
+        const titleText = document.createElement('h2');
+        titleText.textContent = 'PDF Qualität wählen';
+        Object.assign(titleText.style, {
+            marginTop: '0',
+            color: '#333',
+            fontSize: '26px',
+            fontFamily: 'sans-serif'
+        });
 
         // Qualitätsoptionen
         const qualityOptions = [
@@ -31,335 +251,534 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let selectedQuality = qualityOptions[1]; // Standard: mittlere Qualität
 
-        // Container für Radio-Buttons
+        // Radio-Buttons Container
         const radioContainer = document.createElement('div');
-        radioContainer.style.margin = '20px 0';
+        Object.assign(radioContainer.style, {
+            margin: '20px 0',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px'
+        });
 
         qualityOptions.forEach(option => {
-            const optionContainer = document.createElement('div');
-            optionContainer.style.margin = '10px 0';
-            optionContainer.style.display = 'flex';
-            optionContainer.style.alignItems = 'center';
-            optionContainer.style.cursor = 'pointer';
+            const optionContainer = document.createElement('label');
+            optionContainer.htmlFor = `quality-${option.value}`;
+            optionContainer.className = 'modalpic-option';
+/*             Object.assign(optionContainer.style, {
+                display: 'flex',
+                fontSize: '22px',
+                alignItems: 'center',
+                padding: '10px',
+                border: '2px solid #ccc',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                fontFamily: 'sans-serif',
+                userSelect: 'none',
+                position: 'relative',
+                backgroundColor: '#fff'
+            }); */
 
-            // Unsichtbarer echter Radio-Button (für Funktionalität)
-            const realRadio = document.createElement('input');
-            realRadio.type = 'radio';
-            realRadio.name = 'pdfQuality';
-            realRadio.id = `quality-real-${option.value}`;
-            realRadio.value = option.value;
-            realRadio.style.position = 'absolute';
-            realRadio.style.opacity = '0';
-            realRadio.style.width = '0';
-            realRadio.style.height = '0';
-            if (option.value === 'medium') realRadio.checked = true;
+            // Radio-Button
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'pdfQuality';
+            radio.id = `quality-${option.value}`;
+            radio.value = option.value;
+            radio.style.display = 'none';
+            if (option.value === 'medium') radio.checked = true;
 
-            // Visuelle Repräsentation des Radio-Buttons
-            const customRadio = document.createElement('span');
-            customRadio.style.display = 'inline-block';
-            customRadio.style.width = '20px';
-            customRadio.style.height = '20px';
-            customRadio.style.borderRadius = '50%';
-            customRadio.style.border = '2px solid #4caf50';
-            customRadio.style.marginRight = '10px';
-            customRadio.style.position = 'relative';
-            customRadio.style.flexShrink = '0';
-
-            // Innerer Punkt für ausgewählten Zustand
-            const radioDot = document.createElement('span');
-            radioDot.style.position = 'absolute';
-            radioDot.style.top = '50%';
-            radioDot.style.left = '50%';
-            radioDot.style.transform = 'translate(-50%, -50%)';
-            radioDot.style.width = '12px';
-            radioDot.style.height = '12px';
-            radioDot.style.borderRadius = '50%';
-            radioDot.style.backgroundColor = realRadio.checked ? '#4caf50' : 'transparent';
-
-            customRadio.appendChild(radioDot);
-
-            const label = document.createElement('label');
-            label.htmlFor = `quality-real-${option.value}`;
-            label.innerText = option.label;
-            label.style.fontFamily = 'sans-serif';
-            label.style.flex = '1';
-            label.style.cursor = 'pointer';
-
-            // Event-Handler für die visuelle Darstellung
-            const updateRadioVisual = () => {
-                if (realRadio.checked) {
-                    radioDot.style.backgroundColor = '#4caf50';
-                    selectedQuality = option;
-                } else {
-                    radioDot.style.backgroundColor = 'transparent';
-                }
-            };
-
-            realRadio.addEventListener('change', updateRadioVisual);
-
-            // Klick auf Container soll Radio-Button auswählen
-            optionContainer.addEventListener('click', () => {
-                realRadio.checked = true;
-                updateRadioVisual();
-                // Andere Radio-Buttons aktualisieren
-                document.querySelectorAll(`input[name="pdfQuality"]`).forEach(r => {
-                    if (r !== realRadio) {
-                        r.checked = false;
-                        r.dispatchEvent(new Event('change'));
-                    }
-                });
+            // Custom Checkbox
+            const customCheckbox = document.createElement('div');
+            Object.assign(customCheckbox.style, {
+                width: '20px',
+                height: '20px',
+                border: '2px solid #4CAF50',
+                borderRadius: '50%',
+                marginRight: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'background-color 0.2s, border-color 0.2s'
             });
 
-            optionContainer.appendChild(realRadio);
-            optionContainer.appendChild(customRadio);
-            optionContainer.appendChild(label);
+            const innerDot = document.createElement('div');
+            Object.assign(innerDot.style, {
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                backgroundColor: '#4CAF50',
+                opacity: radio.checked ? '1' : '0',
+                transition: 'opacity 0.2s'
+            });
+            customCheckbox.appendChild(innerDot);
+
+            // Label-Text
+            const labelText = document.createElement('span');
+            labelText.textContent = option.label;
+            Object.assign(labelText.style, {
+                flex: '1',
+                textAlign: 'left',
+                fontFamily: 'sans-serif'
+            });
+
+            // Event Listener für Auswahl
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    selectedQuality = option;
+
+                    // Alle Container zurücksetzen
+                    document.querySelectorAll('input[name="pdfQuality"]').forEach(input => {
+                        const parent = input.closest('label');
+                        if (parent) {
+                            parent.style.borderColor = '#ccc';
+                            const dot = parent.querySelector('div > div');
+                            if (dot) dot.style.opacity = '0';
+                        }
+                    });
+
+                    // Aktuelle Auswahl hervorheben
+                    optionContainer.style.borderColor = '#4CAF50';
+                    innerDot.style.opacity = '1';
+                }
+            });
+
+            optionContainer.appendChild(radio);
+            optionContainer.appendChild(customCheckbox);
+            optionContainer.appendChild(labelText);
             radioContainer.appendChild(optionContainer);
         });
 
-        qualityDialog.appendChild(radioContainer);
-
-        // Buttons
+        // Buttons Container
         const buttonContainer = document.createElement('div');
-        buttonContainer.style.marginTop = '20px';
-        buttonContainer.style.display = 'flex';
-        buttonContainer.style.justifyContent = 'center';
-        buttonContainer.style.gap = '10px';
-
-        const cancelButton = document.createElement('button');
-        cancelButton.innerText = 'Abbrechen';
-        cancelButton.style.padding = '8px 16px';
-        cancelButton.style.cursor = 'pointer';
-        cancelButton.addEventListener('click', function () {
-            document.body.removeChild(qualityDialog);
+        Object.assign(buttonContainer.style, {
+            marginTop: '20px',
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '10px'
         });
 
+        // Abbrechen Button
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Abbrechen';
+        cancelButton.className = 'modalpic01';
+/*         Object.assign(cancelButton.style, {
+            padding: '8px 16px',
+            backgroundColor: 'rgb(160, 48, 40)',
+            fontSize:'22px',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+        }); */
+        cancelButton.addEventListener('click', () => {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(modal);
+            }, 300);
+        });
+
+        // Bestätigen Button
         const confirmButton = document.createElement('button');
-        confirmButton.innerText = 'PDF erstellen';
-        confirmButton.style.padding = '8px 16px';
-        confirmButton.style.backgroundColor = '#4caf50';
-        confirmButton.style.color = 'white';
-        confirmButton.style.border = 'none';
-        confirmButton.style.borderRadius = '4px';
-        confirmButton.style.cursor = 'pointer';
-        confirmButton.addEventListener('click', function () {
-            document.body.removeChild(qualityDialog);
-            createPDF(selectedQuality);
+        confirmButton.textContent = 'PDF erstellen';
+        confirmButton.className = 'modalpic02';
+/*         Object.assign(confirmButton.style, {
+            padding: '8px 16px',
+            backgroundColor: 'rgb(49, 130, 52)',
+            color: 'white',
+            fontSize:'22px !important',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+        }); */
+        confirmButton.addEventListener('click', () => {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(modal);
+                createPDF(selectedQuality);
+            }, 300);
         });
 
         buttonContainer.appendChild(cancelButton);
         buttonContainer.appendChild(confirmButton);
-        qualityDialog.appendChild(buttonContainer);
 
-        document.body.appendChild(qualityDialog);
-    });
+        modalContent.appendChild(titleText);
+        modalContent.appendChild(radioContainer);
+        modalContent.appendChild(buttonContainer);
+        modal.appendChild(modalContent);
+
+        return modal;
+    }
+
 
     async function createPDF(qualitySettings) {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pageWidth = 210;
-        const pageHeight = 297;
-        const margin = 10;
-        const usableWidth = pageWidth - (2 * margin);
-        const maxPageHeight = pageHeight - 2 * margin;
+        // Fortschrittsmodal erstellen
+        const progressModal = createProgressModal();
+        document.body.appendChild(progressModal);
 
-        // Fortschrittsanzeige erstellen
-        const progressWrapper = document.createElement('div');
-        progressWrapper.style.position = 'fixed';
-        progressWrapper.style.top = '50%';
-        progressWrapper.style.left = '50%';
-        progressWrapper.style.transform = 'translate(-50%, -50%)';
-        progressWrapper.style.backgroundColor = '#fff';
-        progressWrapper.style.border = '1px solid #ccc';
-        progressWrapper.style.padding = '20px';
-        progressWrapper.style.zIndex = '10000';
-        progressWrapper.style.width = '600px';
-        progressWrapper.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
-        progressWrapper.style.textAlign = 'center';
+        // Animation auslösen
+        setTimeout(() => {
+            progressModal.style.opacity = '1';
+            progressModal.style.pointerEvents = 'auto';
+            progressModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+        }, 10);
 
-        const progressBar = document.createElement('div');
-        progressBar.style.height = '20px';
-        progressBar.style.width = '0%';
-        progressBar.style.backgroundColor = '#4caf50';
-        progressBar.style.borderRadius = '10px';
-        progressBar.style.boxShadow = '0 0 5px rgba(76, 175, 80, 0.7)';
-        progressBar.style.transition = 'width 0.2s';
+        try {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pageWidth = 210;
+            const pageHeight = 297;
+            const margin = 10;
+            const usableWidth = pageWidth - (2 * margin);
+            const maxPageHeight = pageHeight - 2 * margin;
 
+            const progressBar = progressModal.querySelector('.progress-bar');
+            const progressText = progressModal.querySelector('.progress-text');
+
+            async function renderImageElement(originalElement, index, total) {
+                try {
+                    // Element klonen, um es gefahrlos manipulieren zu können
+                    const clonedElement = originalElement.cloneNode(true);
+                    clonedElement.style.backgroundColor = '#ffffff';
+                    clonedElement.style.padding = '0';
+
+                    // Interaktive Elemente im Klon ausblenden
+                    const elementsToHide = clonedElement.querySelectorAll('button, a, input, select, textarea, .no-print');
+                    elementsToHide.forEach(el => el.style.display = 'none');
+
+                    // Klon temporär zur Seite hinzufügen (aber nicht sichtbar)
+                    clonedElement.style.position = 'absolute';
+                    clonedElement.style.left = '-9999px';
+                    document.body.appendChild(clonedElement);
+
+                    // html2canvas auf dem Klon anwenden
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    const canvas = await html2canvas(clonedElement, {
+                        scale: qualitySettings.scale,
+                        useCORS: true,
+                        allowTaint: true,
+                        letterRendering: true
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', qualitySettings.jpegQuality);
+                    const imgWidth = canvas.width;
+                    const imgHeight = canvas.height;
+                    let scaledHeight = (imgHeight * usableWidth) / imgWidth;
+
+                    if (scaledHeight > maxPageHeight) {
+                        const scaleFactor = maxPageHeight / scaledHeight;
+                        const scaledWidth = usableWidth * scaleFactor;
+                        scaledHeight = maxPageHeight;
+                        pdf.addImage(imgData, 'JPEG',
+                            margin + (usableWidth - scaledWidth) / 2,
+                            margin,
+                            scaledWidth,
+                            scaledHeight,
+                            undefined,
+                            'SLOW'
+                        );
+                    } else {
+                        pdf.addImage(imgData, 'JPEG',
+                            margin,
+                            margin,
+                            usableWidth,
+                            scaledHeight,
+                            undefined,
+                            'SLOW'
+                        );
+                    }
+
+                    // Fortschritt anzeigen
+                    const percent = Math.round(((index + 1) / total) * 100);
+                    progressBar.style.width = percent + '%';
+                    progressText.textContent = `${index + 1} von ${total} Bildern verarbeitet (${percent} %)`;
+
+                    // Klon entfernen
+                    document.body.removeChild(clonedElement);
+
+                } catch (error) {
+                    console.error("Fehler beim Rendern des Bildes:", error);
+                }
+            }
+
+            // Bilder sammeln
+            const bilderZimmer = document.querySelector('.bilderzimmer');
+            const largeImages = document.querySelectorAll('[id^="large-wrapper-img"]');
+            const bilder = [];
+
+            if (bilderZimmer) {
+                bilder.push(...bilderZimmer.children);
+            }
+            if (largeImages.length > 0) {
+                bilder.push(...largeImages);
+            }
+
+            for (let i = 0; i < bilder.length; i++) {
+                if (i !== 0) pdf.addPage();
+                await renderImageElement(bilder[i], i, bilder.length);
+            }
+
+            // Dateiname automatisch generieren
+            const strasseInput = document.getElementById('strasseeinzug');
+            const strasse = strasseInput ? strasseInput.value.trim() : 'Unbekannte_Straße';
+
+            const now = new Date();
+            const datumZeit = now.toLocaleString('de-DE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
+
+            let protokollTyp = '';
+            const isAbnahme = document.getElementById('abnahme')?.checked;
+            const isUebergabe = document.getElementById('uebergabe')?.checked;
+
+            if (isAbnahme && isUebergabe) {
+                protokollTyp = 'Abnahme- und Übergabeprotokoll';
+            } else if (isAbnahme) {
+                protokollTyp = 'Abnahmeprotokoll';
+            } else if (isUebergabe) {
+                protokollTyp = 'Übergabeprotokoll';
+            } else {
+                protokollTyp = 'Protokoll';
+            }
+
+            const fileName = `${strasse}_Bilder_${protokollTyp}_${datumZeit}.pdf`.replace(/\s+/g, '_');
+
+            pdf.save(fileName);
+
+            // Fortschrittsmodal entfernen
+            progressModal.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(progressModal);
+            }, 300);
+
+            // Erfolgsmodal anzeigen
+            const successModal = createSuccessModal();
+            document.body.appendChild(successModal);
+
+            setTimeout(() => {
+                successModal.style.opacity = '1';
+                successModal.style.pointerEvents = 'auto';
+                successModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+            }, 10);
+
+        } catch (error) {
+            console.error("Fehler beim PDF-Erstellen:", error);
+
+            // Fehlermodal anzeigen
+            const errorModal = createErrorModal(error.message);
+            document.body.appendChild(errorModal);
+
+            setTimeout(() => {
+                errorModal.style.opacity = '1';
+                errorModal.style.pointerEvents = 'auto';
+                errorModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+            }, 10);
+        }
+    }
+
+    function createProgressModal() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.5)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.3s ease';
+        modal.style.pointerEvents = 'none';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.padding = '2rem';
+        modalContent.style.borderRadius = '8px';
+        modalContent.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        modalContent.style.maxWidth = '600px';
+        modalContent.style.width = '90%';
+        modalContent.style.textAlign = 'center';
+        modalContent.style.transform = 'translateY(-20px)';
+        modalContent.style.transition = 'transform 0.3s ease';
+
+        const titleText = document.createElement('h2');
+        titleText.textContent = 'PDF wird erstellt...';
+        titleText.style.marginTop = '0';
+        titleText.style.color = '#4CAF50';
+        titleText.style.fontSize = '22px';
+        titleText.style.fontFamily = 'sans-serif';
+
+        // Fortschrittsbalken
         const progressOuter = document.createElement('div');
         progressOuter.style.width = '100%';
+        progressOuter.style.height = '20px';
         progressOuter.style.backgroundColor = '#eee';
-        progressOuter.style.marginTop = '10px';
+        progressOuter.style.borderRadius = '10px';
+        progressOuter.style.margin = '20px 0';
+        progressOuter.style.overflow = 'hidden';
+
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        progressBar.style.height = '100%';
+        progressBar.style.width = '0%';
+        progressBar.style.backgroundColor = '#4CAF50';
+        progressBar.style.transition = 'width 0.3s ease';
+
         progressOuter.appendChild(progressBar);
 
         const progressText = document.createElement('div');
-        progressText.innerText = '0 %';
-        progressText.style.marginTop = '10px';
+        progressText.className = 'progress-text';
+        progressText.textContent = '0 %';
         progressText.style.fontFamily = 'sans-serif';
-        progressText.style.fontSize = '22px';
+        progressText.style.fontSize = '18px';
+        progressText.style.marginBottom = '10px';
 
-        const titleText = document.createElement('div');
-        titleText.innerText = 'PDF wird erstellt...';
+        modalContent.appendChild(titleText);
+        modalContent.appendChild(progressOuter);
+        modalContent.appendChild(progressText);
+        modal.appendChild(modalContent);
+
+        return modal;
+    }
+
+    function createSuccessModal() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.5)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.3s ease';
+        modal.style.pointerEvents = 'none';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.padding = '2rem';
+        modalContent.style.borderRadius = '8px';
+        modalContent.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        modalContent.style.maxWidth = '500px';
+        modalContent.style.width = '90%';
+        modalContent.style.textAlign = 'center';
+        modalContent.style.transform = 'translateY(-20px)';
+        modalContent.style.transition = 'transform 0.3s ease';
+
+        const titleText = document.createElement('h2');
+        titleText.textContent = 'Bilder erfolgreich als PDF abgespeichert!';
+        titleText.style.marginTop = '0';
+        titleText.style.color = '#4CAF50';
         titleText.style.fontSize = '26px';
-        titleText.style.fontWeight = 'bold';
-        titleText.style.marginBottom = '10px';
         titleText.style.fontFamily = 'sans-serif';
-        progressWrapper.appendChild(titleText);
 
-        progressWrapper.appendChild(progressOuter);
-        progressWrapper.appendChild(progressText);
-        document.body.appendChild(progressWrapper);
+        const messageText = document.createElement('p');
+        messageText.textContent = 'Das PDF wurde erfolgreich erstellt und heruntergeladen.';
+        messageText.style.fontFamily = 'sans-serif';
+        messageText.style.fontSize = '22px';
+        messageText.style.marginBottom = '20px';
 
-        async function renderImageElement(originalElement, index, total) {
-            try {
-                // Element klonen, um es gefahrlos manipulieren zu können
-                const clonedElement = originalElement.cloneNode(true);
-                clonedElement.style.backgroundColor = '#ffffff';
-                clonedElement.style.padding = '0';
-
-                // Interaktive Elemente im Klon ausblenden
-                const elementsToHide = clonedElement.querySelectorAll('button, a, input, select, textarea, .no-print');
-                elementsToHide.forEach(el => el.style.display = 'none');
-
-                // Klon temporär zur Seite hinzufügen (aber nicht sichtbar)
-                clonedElement.style.position = 'absolute';
-                clonedElement.style.left = '-9999px';
-                document.body.appendChild(clonedElement);
-
-                // html2canvas auf dem Klon anwenden
-                await new Promise(resolve => setTimeout(resolve, 100));
-                const canvas = await html2canvas(clonedElement, {
-                    scale: qualitySettings.scale,
-                    useCORS: true,
-                    allowTaint: true,
-                    letterRendering: true
-                });
-
-                const imgData = canvas.toDataURL('image/jpeg', qualitySettings.jpegQuality);
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
-                let scaledHeight = (imgHeight * usableWidth) / imgWidth;
-
-                if (scaledHeight > maxPageHeight) {
-                    const scaleFactor = maxPageHeight / scaledHeight;
-                    const scaledWidth = usableWidth * scaleFactor;
-                    scaledHeight = maxPageHeight;
-                    pdf.addImage(imgData, 'JPEG',
-                        margin + (usableWidth - scaledWidth) / 2,
-                        margin,
-                        scaledWidth,
-                        scaledHeight,
-                        undefined,
-                        'SLOW'
-                    );
-                } else {
-                    pdf.addImage(imgData, 'JPEG',
-                        margin,
-                        margin,
-                        usableWidth,
-                        scaledHeight,
-                        undefined,
-                        'SLOW'
-                    );
-                }
-
-                // Fortschritt anzeigen
-                const percent = Math.round(((index + 1) / total) * 100);
-                progressBar.style.width = percent + '%';
-                progressText.innerText = `${index + 1} von ${total} Bildern verarbeitet (${percent} %)`;
-
-                // Klon entfernen
-                document.body.removeChild(clonedElement);
-
-            } catch (error) {
-                console.error("Fehler beim Rendern des Bildes:", error);
-            }
-        }
-
-        // Bilder sammeln
-        const bilderZimmer = document.querySelector('.bilderzimmer');
-        const largeImages = document.querySelectorAll('[id^="large-wrapper-img"]');
-        const bilder = [];
-
-        if (bilderZimmer) {
-            bilder.push(...bilderZimmer.children);
-        }
-        if (largeImages.length > 0) {
-            bilder.push(...largeImages);
-        }
-
-        for (let i = 0; i < bilder.length; i++) {
-            if (i !== 0) pdf.addPage();
-            await renderImageElement(bilder[i], i, bilder.length);
-        }
-
-        // Dateiname automatisch generieren
-        const strasseInput = document.getElementById('strasseeinzug');
-        const strasse = strasseInput ? strasseInput.value.trim() : 'Unbekannte_Straße';
-
-        const now = new Date();
-        const datumZeit = now.toLocaleString('de-DE', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
-
-        let protokollTyp = '';
-        const isAbnahme = document.getElementById('abnahme')?.checked;
-        const isUebergabe = document.getElementById('uebergabe')?.checked;
-
-        if (isAbnahme && isUebergabe) {
-            protokollTyp = 'Abnahme- und Übergabeprotokoll';
-        } else if (isAbnahme) {
-            protokollTyp = 'Abnahmeprotokoll';
-        } else if (isUebergabe) {
-            protokollTyp = 'Übergabeprotokoll';
-        } else {
-            protokollTyp = 'Protokoll';
-        }
-
-        const fileName = `${strasse}_Bilder_${protokollTyp}_${datumZeit}.pdf`.replace(/\s+/g, '_');
-
-        pdf.save(fileName);
-
-        // Fortschrittsanzeige entfernen
-        document.body.removeChild(progressWrapper);
-
-        const successModal2 = document.getElementById('sucpdf2');
-        const closeButton = document.getElementById('closeSuccessModal2');
-        /* const successModal2 = document.createElement('div'); */
-
-        if (!closeButton._hasListener) {
-            closeButton.addEventListener('click', function() {
-                successModal2.style.opacity = '0';
-                setTimeout(() => {
-                    successModal2.style.display = 'none';
-                }, 300);
-            });
-            closeButton._hasListener = true;
-        }
-
-        successModal2.style.display = 'block';
-        setTimeout(() => {
-            successModal2.style.opacity = '1';
-        }, 10);
-
-        document.body.appendChild(successModal2);
-
-        document.getElementById('closeSuccessModal2').addEventListener('click', function () {
-            document.body.removeChild(successModal2);
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'OK';
+        closeButton.style.padding = '10px 20px';
+        closeButton.style.backgroundColor = '#4CAF50';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.borderRadius = '4px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.fontSize = '22px';
+        closeButton.addEventListener('click', () => {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(modal);
+            }, 300);
         });
 
-        document.body.appendChild(successModal2);
-        setTimeout(() => {
-            const modalContent = successModal2.querySelector('div');
-            modalContent.style.opacity = '1';
-            modalContent.style.fontSize = '22px';
-            /* modalContent.style.transform = 'translate(-80%, -50%) scale(1)'; */
-        }, 10);
+        modalContent.appendChild(titleText);
+        modalContent.appendChild(messageText);
+        modalContent.appendChild(closeButton);
+        modal.appendChild(modalContent);
 
+        return modal;
+    }
 
+    function createErrorModal(errorMessage) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.5)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.3s ease';
+        modal.style.pointerEvents = 'none';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.padding = '2rem';
+        modalContent.style.borderRadius = '8px';
+        modalContent.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        modalContent.style.maxWidth = '500px';
+        modalContent.style.width = '90%';
+        modalContent.style.textAlign = 'center';
+        modalContent.style.transform = 'translateY(-20px)';
+        modalContent.style.transition = 'transform 0.3s ease';
+
+        const titleText = document.createElement('h2');
+        titleText.textContent = 'Fehler!';
+        titleText.style.marginTop = '0';
+        titleText.style.color = '#F44336';
+        titleText.style.fontFamily = 'sans-serif';
+
+        const messageText = document.createElement('p');
+        messageText.textContent = `Fehler beim Erstellen des PDFs: ${errorMessage}`;
+        messageText.style.fontFamily = 'sans-serif';
+        messageText.style.fontSize = '18px';
+        messageText.style.marginBottom = '20px';
+
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'OK';
+        closeButton.style.padding = '10px 20px';
+        closeButton.style.backgroundColor = '#F44336';
+        closeButton.style.color = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.borderRadius = '4px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.fontSize = '16px';
+        closeButton.addEventListener('click', () => {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(modal);
+            }, 300);
+        });
+
+        modalContent.appendChild(titleText);
+        modalContent.appendChild(messageText);
+        modalContent.appendChild(closeButton);
+        modal.appendChild(modalContent);
+
+        return modal;
     }
 });
