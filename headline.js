@@ -1,3 +1,7 @@
+/* Copyright - Oliver Acker, acker_oliver@yahoo.de
+connection.js
+Version 3.34_beta */
+
 document.addEventListener('DOMContentLoaded', function() {
     function handleTenantChange(buttonId, headingId, newText, extraStyles = {}) {
         const button = document.getElementById(buttonId);
