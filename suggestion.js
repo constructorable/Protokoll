@@ -1,5 +1,5 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-connection.js
+suggestion.js
 Version 3.34_beta */
 
 const mitarbeiternamen = [
