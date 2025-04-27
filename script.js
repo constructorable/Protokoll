@@ -1,5 +1,5 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-connection.js
+script.js
 Version 3.34_beta */
 
 /* CSS Styles zum toggeln... */
