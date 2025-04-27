@@ -1,6 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-immo.js
-Version 3.32_beta */
+connection.js
+Version 3.34_beta */
 
 document.addEventListener("DOMContentLoaded", function () {
     window.strassen = [
