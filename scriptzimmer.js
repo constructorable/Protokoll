@@ -1,6 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-scriptzimmer.js
-Version 3.32_beta */
+connection.js
+Version 3.34_beta */
 
 function initializeSuggestionInputs() {
     document.querySelectorAll(".suggestion-input").forEach(inputField => {
