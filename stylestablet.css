@@ -842,7 +842,7 @@ td.label-cell:nth-child(1) {
     }
 
     .sticky-container[data-state="open"] {
-        position: sticky;
+        /* position: sticky; */
         left: 50%;
         transform: translateX(-50%);
         margin: 15px auto !important;
@@ -2803,6 +2803,11 @@ td.label-cellheiz1:nth-child(1)>h3:nth-child(1) {
     font-size: 22px !important;
 }
 
+#selectAllVersions {
+    background:rgb(71, 107, 164);
+    color: #fff;
+    }
+
 #versionSelection,
 #versionSelection>label,
 #versionSelection input[type="checkbox"] {
@@ -2853,7 +2858,7 @@ td.label-cellheiz1:nth-child(1)>h3:nth-child(1) {
     opacity: 0.8;
 }
 
-#sucpdf,
+
 #sucpdf2 {
     position: fixed;
     top: 0;
@@ -2867,12 +2872,11 @@ td.label-cellheiz1:nth-child(1)>h3:nth-child(1) {
     z-index: 1000;
 }
 
-#sucpdf .modal-content,
 #sucpdf2 .modal-content {
     position: relative;
     background: white;
     padding: 30px;
-    margin: 100px auto;
+    margin: 300px auto;
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -2880,4 +2884,38 @@ td.label-cellheiz1:nth-child(1)>h3:nth-child(1) {
 
 #sucpdf2[style*="display: block"] .modal-content {
     transform: translateY(0);
+} 
+
+.modalpic01, .modalpic02 {
+    padding: 8px 16px;
+    background-color: rgb(160, 48, 40);
+    font-size: 22px !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modalpic02 {
+    background-color: rgb(24, 95, 40);
+}
+
+.modalpic-option {
+    display: flex;
+    font-size: 22px;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: sans-serif;
+    user-select: none;
+    position: relative;
+    background-color: #fff;
+}
+
+/* Dezenter Hover-Effekt */
+.modalpic-option:hover {
+      border-color: #2b55c0;
 }
