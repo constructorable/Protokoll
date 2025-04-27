@@ -1,5 +1,5 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
-connection.js
+mailcheck.js
 Version 3.34_beta */
 
 function validateEmail(email) {
