@@ -68,7 +68,7 @@ async function preloadImages() {
 async function renderElementsInParallel(elements) {
     const promises = elements.map(element =>
         html2canvas(element, {
-            scale: 1,
+            scale: 2,
             useCORS: true,
             logging: false,
             allowTaint: true,
@@ -397,7 +397,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                     });
                 }
 
-                const imgData = canvas.toDataURL('image/jpeg', 0.7);
+                const imgData = canvas.toDataURL('image/jpeg', 0.5);
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
 
@@ -669,7 +669,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
         let currentY = margin;
         let needsNewPage = true;
         let renderStartTime = performance.now();
-        let qualityFactor = 0.7;
+        let qualityFactor = 0.5;
 
         for (let i = 0; i < elementsToRender.length; i += batchSize) {
             const batch = elementsToRender.slice(i, i + batchSize);
@@ -696,7 +696,7 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                             const result = await renderElementToPDF(clone, currentY, qualityFactor);
                             return { success: true, y: result };
                         } catch (error) {
-                            qualityFactor = Math.max(0.3, qualityFactor - 0.1);
+                            qualityFactor = Math.max(0.5, qualityFactor - 0.1);
                             return { success: false, y: currentY };
                         } finally {
                             document.body.removeChild(clone);
