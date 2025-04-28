@@ -1,6 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
 suggestion.js
-Version 3.34_beta */
+Version 3.35_beta */
 
 const mitarbeiternamen = [
     "Christian Adler",
@@ -20,6 +20,7 @@ const farben = [
     "hellgrau",    
     "anthrazit",
     "creme",
+    "creme-weiß",
     "elfenbein",
     "taubenblau",
     "hellblau",
