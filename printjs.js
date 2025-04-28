@@ -1,6 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
 printjs.js
-Version 3.34_beta */
+Version 3.35_beta */
 
 document.addEventListener('DOMContentLoaded', function () {
 });
@@ -562,6 +562,47 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
             input.style.height = "24px";
         });
 
+        /*         function generateFileName() {
+                    const strasse = document.getElementById('strasseeinzug').value;
+                    const now = new Date();
+                    const datumZeit = now.toLocaleString('de-DE', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
+        
+                    const protokollDropdown = document.querySelector('.dropdown-style');
+                    let protokollTyp = protokollDropdown ? protokollDropdown.value : '';
+        
+                    if (!protokollTyp) {
+                        const isAbnahme = document.getElementById('abn01')?.checked || false;
+                        const isUebergabe = document.getElementById('ueb01')?.checked || false;
+        
+                        if (isAbnahme && isUebergabe) {
+                            protokollTyp = 'Abnahme- und Übergabeprotokoll';
+                        } else if (isAbnahme) {
+                            protokollTyp = 'Abnahmeprotokoll';
+                        } else if (isUebergabe) {
+                            protokollTyp = 'Übergabeprotokoll';
+                        }
+                    }
+        
+                    const cleanStrasse = strasse.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+                    const cleanProtokollTyp = protokollTyp.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+        
+                    let fileName = `${cleanStrasse}_Protokoll_${datumZeit}`;
+                    if (cleanProtokollTyp && cleanProtokollTyp !== '-') {
+                        fileName += `_${cleanProtokollTyp}`;
+                    }
+                    fileName += '.pdf';
+        
+                    return fileName;
+                } */
+
         function generateFileName() {
             const strasse = document.getElementById('strasseeinzug').value;
             const now = new Date();
@@ -575,26 +616,42 @@ document.getElementById('savePdfButton').addEventListener('click', async functio
                 hour12: false
             }).replace(/, /, '_').replace(/\./g, '-').replace(/:/g, '-');
 
-            const protokollDropdown = document.querySelector('.dropdown-style');
+            const protokollDropdown = document.getElementById('protokollart1');
             let protokollTyp = protokollDropdown ? protokollDropdown.value : '';
 
-            if (!protokollTyp) {
+            // Wenn Dropdown nicht ausgewählt ist, Checkboxen prüfen (alte Logik)
+            if (!protokollTyp || protokollTyp === '-') {
                 const isAbnahme = document.getElementById('abn01')?.checked || false;
                 const isUebergabe = document.getElementById('ueb01')?.checked || false;
 
                 if (isAbnahme && isUebergabe) {
-                    protokollTyp = 'Abnahme- und Übergabeprotokoll';
+                    protokollTyp = 'Abnahme- & Uebergabe';
                 } else if (isAbnahme) {
-                    protokollTyp = 'Abnahmeprotokoll';
+                    protokollTyp = 'Abnahme';
                 } else if (isUebergabe) {
-                    protokollTyp = 'Übergabeprotokoll';
+                    protokollTyp = 'Uebergabe';
+                }
+            } else {
+                // Mapping für Dropdown-Auswahl
+                switch (protokollTyp) {
+                    case 'Abnahme (Auszug)':
+                        protokollTyp = 'Abnahme';
+                        break;
+                    case 'Übergabe (Einzug)':
+                        protokollTyp = 'Uebergabe';
+                        break;
+                    case 'Abnahme- & Übergabe (Ein- und Auszug)':
+                        protokollTyp = 'Abnahme- und Uebergabe';
+                        break;
+                    default:
+                        protokollTyp = '';
                 }
             }
 
             const cleanStrasse = strasse.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
             const cleanProtokollTyp = protokollTyp.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
 
-            let fileName = `${cleanStrasse}_${datumZeit}`;
+            let fileName = `${cleanStrasse}_Protokoll_${datumZeit}`;
             if (cleanProtokollTyp && cleanProtokollTyp !== '-') {
                 fileName += `_${cleanProtokollTyp}`;
             }
