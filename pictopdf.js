@@ -1,6 +1,6 @@
 /* Copyright - Oliver Acker, acker_oliver@yahoo.de
 pictopdf.js
-Version 3.34_beta */
+Version 3.35_beta */
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pictopdfButton').addEventListener('click', async function () {
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
         modalContent.style.transition = 'transform 0.3s ease';
 
         const titleText = document.createElement('h2');
-        titleText.textContent = 'PDF wird erstellt...';
+        titleText.textContent = 'Bilder werden als PDF erstellt...';
         titleText.style.marginTop = '0';
         titleText.style.color = '#4CAF50';
         titleText.style.fontSize = '22px';
@@ -504,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function () {
         titleText.style.fontFamily = 'sans-serif';
 
         const messageText = document.createElement('p');
-        messageText.textContent = 'Das PDF wurde erfolgreich erstellt und heruntergeladen.';
+        messageText.textContent = 'Die Datei ist im Ordner Downloads abgespeichert';
         messageText.style.fontFamily = 'sans-serif';
         messageText.style.fontSize = '22px';
         messageText.style.marginBottom = '20px';
