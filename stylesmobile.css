@@ -170,7 +170,7 @@ td[colspan="5"] {
     border: 1px solid #ddd;
     border-radius: 0 0 4px 4px;
     width: calc(100% - 30px);
-    max-height: 200px;
+    max-height: 350px;
     overflow-y: auto;
     z-index: 100;
     display: none;
@@ -190,36 +190,38 @@ td[colspan="5"] {
 
 
 .farbe-vorschlaege-container {
-  position: absolute;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 0 0 4px 4px;
-  width: calc(100% - 2px); /* Angepasst: weniger Abzug da colspan="3" */
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 100;
-  display: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  bottom: auto;
-  top: 100%;
-  margin-top: -1px;
-  left: 0; /* Hinzugefügt: explizite Positionierung */
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
+    width: calc(100% - 2px);
+    /* Angepasst: weniger Abzug da colspan="3" */
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    bottom: auto;
+    top: 100%;
+    margin-top: -1px;
+    left: 0;
+    /* Hinzugefügt: explizite Positionierung */
 }
 
 /* Parent-Container für korrekte Positionierung */
 td .farbe-input {
-  position: relative;
+    position: relative;
 }
 
 /* Wrapper um das Input-Feld für bessere Kontrolle */
 .input-wrapper02 {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 }
 
 .input-wrapper02 .farbe-vorschlaege-container {
-  width: 100%;
-  left: 0;
+    width: 100%;
+    left: 0;
 }
 
 
@@ -423,6 +425,19 @@ select::-ms-expand {
     background: #2961a590;
 }
 
+.aak,
+.aak2,
+.aab,
+.aab1,
+.aaw,
+.aaw1,
+.aaf,
+.aaf1,
+.aaabstell,
+.aaabstell1 {
+    background-color: #b4b4b4 !important;
+}
+
 .aa1 {
     background: #eff0f1;
     color: rgb(53, 53, 53);
@@ -451,7 +466,7 @@ select::-ms-expand {
 }
 
 .load-btn {
-    font-size:1rem !important;
+    font-size: 1rem !important;
 }
 
 .bilder-thumbnails {
@@ -2339,18 +2354,14 @@ Element #objektdaten>table:nth-child(1)>tbody:nth-child(2)>tr:nth-child(4)>td:nt
     width: 100%;
 }
 
-.grid-col-1 {
-
-}
+.grid-col-1 {}
 
 .grid-col-2 {
 
     justify-self: center;
 }
 
-.grid-col-3 {
-
-}
+.grid-col-3 {}
 
 .grid-col-4 {
 
@@ -2558,7 +2569,7 @@ input.no-spin {
 #wandfarbe,
 #wandfarbebad {
     margin-left: 0rem;
-   /*  width: 27rem; */
+    /*  width: 27rem; */
 }
 
 #fussbodenkue,
@@ -3059,7 +3070,7 @@ tr.bemerkung-row:nth-child(12)>td:nth-child(1) {
 
 #mail {
     background-color: rgb(22, 113, 19);
-    color:#fff;
+    color: #fff;
 }
 
 .sticky {
@@ -3105,11 +3116,11 @@ tr.bemerkung-row:nth-child(12)>td:nth-child(1) {
 }
 
 #stylechange {
-    background-color:#919191 !important;
+    background-color: #919191 !important;
 }
 
 .color1 {
-    font-weight:300;
+    font-weight: 300;
 }
 
 /* table {
@@ -3259,22 +3270,22 @@ td {
         align-items: center;
         gap: 10px;
     }
-    
+
     .menu-row {
         flex-direction: column;
         align-items: center;
         gap: 8px;
     }
-    
+
     .button {
         min-width: 200px;
         justify-content: flex-start;
     }
-    
+
     .submenu-toggle {
         max-width: 250px;
     }
-    
+
     .button-text {
         display: inline;
     }
@@ -3284,7 +3295,7 @@ td {
     .menu-row {
         gap: 10px;
     }
-    
+
     .button {
         min-width: 140px;
     }
@@ -3294,7 +3305,7 @@ td {
     .menu-row {
         gap: 15px;
     }
-    
+
     .button {
         min-width: 160px;
     }
@@ -3321,6 +3332,7 @@ td {
         opacity: 0;
         max-height: 0;
     }
+
     to {
         opacity: 1;
         max-height: 200px;
@@ -3487,17 +3499,17 @@ td {
 .menu-item-button.danger:hover {
     background: #671818;
     color: white;
-     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
 
 #mail:hover {
-  background-color: rgb(35, 128, 32);
- 
+    background-color: rgb(35, 128, 32);
+
 }
 
 #screenshot:hover {
-  background-color: #962f2f;
+    background-color: #962f2f;
 }
 
 /* Trigger Buttons in Sticky */
@@ -3516,16 +3528,16 @@ td {
         width: 95%;
         max-height: 90vh;
     }
-    
+
     .menu-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .modal-content {
         padding: 20px;
     }
-    
+
     .menu-item-button {
         padding: 12px 16px;
         min-height: 50px;
@@ -3536,11 +3548,11 @@ td {
     .modal-header {
         padding: 15px 20px;
     }
-    
+
     .modal-title {
         font-size: 1.1rem;
     }
-    
+
     .menu-item-button {
         font-size: 0.9rem;
         gap: 10px;
@@ -3549,7 +3561,7 @@ td {
 
 .fa-bars:before,
 .fa-navicon:before {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 
@@ -3596,13 +3608,13 @@ td {
     transform: scale(1) translateY(0);
 }
 
-div.room-toggle:nth-child(6) > div:nth-child(2) > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(6) > td:nth-child(1) {
-  background: #fff;
+div.room-toggle:nth-child(6)>div:nth-child(2)>div:nth-child(1)>table:nth-child(2)>tbody:nth-child(2)>tr:nth-child(6)>td:nth-child(1) {
+    background: #fff;
 
 }
 
 .sticky {
-        position: sticky !important;
-          padding-bottom: 1rem !important;
-        padding-top: -1.3rem !important;
-    }
+    position: sticky !important;
+    padding-bottom: 1rem !important;
+    padding-top: -1.3rem !important;
+}
