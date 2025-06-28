@@ -80,6 +80,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (bodenListe.includes("Laminat")) {
             hauptkategorien.push("Laminat");
         }
+        if (bodenListe.includes("PVC")) {
+            hauptkategorien.push("PVC");
+        }
+        if (bodenListe.includes("Holz - Dielen")) {
+            hauptkategorien.push("Holz - Dielen");
+        }
 
         // Alle anderen Einträge alphabetisch sortiert
         bodenListe.forEach(boden => {
@@ -190,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Funktion zur Initialisierung für dynamisch hinzugefügte Zimmer
-    window.initBodenForZimmer = function(count) {
+    window.initBodenForZimmer = function (count) {
         const inputFeld = document.getElementById(`fussbodenzimm${count}`);
         initBodenVorschlaege(inputFeld, `zimm${count}`);
     };
