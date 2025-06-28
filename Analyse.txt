@@ -1,0 +1,305 @@
+=== ERWEITERTE WEB-APP TIEFENANALYSE ===
+Analysiert am: 24.6.2025, 18:33:55
+URL: http://127.0.0.1:5500/index.html
+JavaScript-Dateien: 23
+
+=== HTML STRUKTUR ===
+Gesamt Elemente: 2003
+IDs: 856
+CSS Klassen: 115
+Formulare: 0 | Inputs: 486 | Buttons: 45
+Modals: 5
+Data-Attribute: 3
+
+=== JAVASCRIPT DATEIEN ÜBERSICHT ===
+📁 html2pdf.bundle.min.js
+📁 farbe.js
+📁 boden.js
+📁 rwm.js
+📁 addrow.js
+📁 addbilder.js
+📁 addkeys.js
+📁 addzaehler.js
+📁 togglerooms.js
+📁 stylechange.js
+📁 immo.js
+📁 addeintenant.js
+📁 addaustenant.js
+📁 addzimmer.js
+📁 script1.js
+📁 suggestion.js
+📁 screenshot.js
+📁 importexport.js
+📁 saveloadlocal.js
+📁 loadhint.js
+📁 email.js
+📁 html2canvas.min.js
+📁 jspdf.umd.min.js
+
+=== DETAILLIERTE DATEI-ANALYSE ===
+
+📁 html2pdf.bundle.min.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 farbe.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 boden.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 rwm.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addrow.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addbilder.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addkeys.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addzaehler.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 togglerooms.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 stylechange.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 immo.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addeintenant.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addaustenant.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 addzimmer.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 script1.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 suggestion.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 screenshot.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 importexport.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 saveloadlocal.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 loadhint.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 email.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 html2canvas.min.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+📁 jspdf.umd.min.js:
+ - Funktionen: 0
+ - Event Listeners: 0
+ - DOM Operationen: 0
+ - Storage Operationen: 0
+ - API Calls: 0
+ - Design Patterns: none
+ - Funktionen: 
+
+
+=== EVENT SYSTEM ANALYSE ===
+Total Inline Events: 0
+Event Types: 
+
+=== ARCHITEKTUR & DESIGN PATTERNS ===
+singleton: Nicht gefunden
+observer: Erkannt
+factory: Erkannt
+module: Erkannt
+facade: Nicht gefunden
+
+=== DATENFLUSS & STORAGE ===
+LocalStorage Keys: 6 (153 KB)
+SessionStorage Keys: 1
+Globale Datenobjekte: 0
+
+=== PERFORMANCE METRIKEN ===
+Scripts: 25
+Stylesheets: 2
+DOM Nodes: 2003
+Load Time: 76263ms
+
+=== SECURITY STATUS ===
+Inline Scripts: 2
+External Scripts: 23
+Mixed Content: Nein
+Dangerous Functions: 3
+
+=== CSS & STYLING ===
+Stylesheets: 9
+CSS Variables: 3
+Responsive Breakpoints: 6
+CSS Animationen: 5
+CSS Transitions: 18
+JS Animationen: 6
