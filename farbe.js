@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "lachs",       
         "moosgrün",    
         "zitronengelb",
+        "bunt",
         "sonstige",
 
         "rot",
