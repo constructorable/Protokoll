@@ -3600,3 +3600,9 @@ div.room-toggle:nth-child(6) > div:nth-child(2) > div:nth-child(1) > table:nth-c
   background: #fff;
 
 }
+
+.sticky {
+        position: sticky !important;
+          padding-bottom: 1rem !important;
+        padding-top: -1.3rem !important;
+    }
