@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "hellblau",
         "schwarz",
         "dunkelblau",
+        "bunt",
         "mintgrün",
         "pastellrosa",
         "sand",
