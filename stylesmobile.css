@@ -2166,7 +2166,7 @@ input[type="number"] {
     padding: 0 8px;
 }
 
-@media (max-width: 1679px) {
+@media (max-width: 2140px) {
     .column-headers {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -2251,14 +2251,14 @@ input[type="number"] {
 #moveout-firstname-2,
 #moveout-firstname-3,
 #moveout-firstname-4,
-#moveout-phone-1,
-#moveout-phone-2,
-#moveout-phone-3,
-#moveout-phone-4,
-#moveout-email-1,
-#moveout-email-2,
-#moveout-email-3,
-#moveout-email-4 {
+#moveout-addr-1,
+#moveout-addr-2,
+#moveout-addr-3,
+#moveout-addr-4,
+#moveout-addr-1,
+#moveout-addr-2,
+#moveout-addr-3,
+#moveout-addr-4 {
     padding: 8px;
 }
 
@@ -3617,4 +3617,5 @@ div.room-toggle:nth-child(6)>div:nth-child(2)>div:nth-child(1)>table:nth-child(2
     position: sticky !important;
     padding-bottom: 1rem !important;
     padding-top: -1.3rem !important;
-}
+}   
+
