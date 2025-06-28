@@ -2749,7 +2749,7 @@ div.design-profile-card:nth-child(3) {
 }
 
 #screenshot {
-  background-color: #8c2323;
+    background-color: #8c2323;
 }
 
 .fa,
@@ -2765,11 +2765,11 @@ div.design-profile-card:nth-child(3) {
 .far,
 .fas,
 .fat {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 #toggleButtons {
-  display: block !important;
+    display: block !important;
 }
 
 .haus i {
@@ -2779,11 +2779,11 @@ div.design-profile-card:nth-child(3) {
 }
 
 #stylechange {
-    background-color:#919191 !important;
+    background-color: #919191 !important;
 }
 
 .color1 {
-    font-weight:300;
+    font-weight: 300;
 }
 
 
@@ -2834,3 +2834,18 @@ div.design-profile-card:nth-child(3) {
 
     padding-left: 46px !important;
 }
+
+.aak,
+.aak2,
+.aab,
+.aab1,
+.aaw,
+.aaw1,
+.aaf,
+.aaf1,
+.aaabstell,
+.aaabstell1 {
+    background-color: #fafafa !important;
+    color: #000;
+}
+
