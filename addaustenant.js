@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const phoneCell = document.createElement('div');
         phoneCell.className = 'moveout-addr';
         const phoneInput = document.createElement('input');
-        phoneInput.type = 'tel';
+        phoneInput.type = 'text';
         phoneInput.id = `moveout-addr-${moveOutTenantCounter}`;
         phoneInput.className = 'bemerkung-input';
         phoneInput.placeholder = 'PLZ / Ort';
@@ -360,4 +360,5 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('moveout-addr-1').placeholder = 'Straße';
         document.getElementById('moveout-email-1').placeholder = 'E-Mail-Adresse';
     }
-}); 
+});
+
