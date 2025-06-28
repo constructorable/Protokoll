@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Telefon
         const phoneCell = document.createElement('div');
-        phoneCell.className = 'moveout-phone';
+        phoneCell.className = 'moveout-addr';
         const phoneInput = document.createElement('input');
         phoneInput.type = 'tel';
-        phoneInput.id = `moveout-phone-${moveOutTenantCounter}`;
+        phoneInput.id = `moveout-addr-${moveOutTenantCounter}`;
         phoneInput.className = 'bemerkung-input';
         phoneInput.placeholder = 'PLZ / Ort';
         phoneCell.appendChild(phoneInput);
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             /* Drittes Feld (Telefon) */
-            .moveout-phone {
+            .moveout-addr {
                 grid-column: 1;
                 grid-row: 2;
             }
@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (initialMoveOutEntry) {
         document.getElementById('moveout-name-1').placeholder = 'Nachname';
         document.getElementById('moveout-firstname-1').placeholder = 'Vorname';
-        document.getElementById('moveout-phone-1').placeholder = 'Telefonnummer';
+        document.getElementById('moveout-addr-1').placeholder = 'Straße';
         document.getElementById('moveout-email-1').placeholder = 'E-Mail-Adresse';
     }
-});
+}); 
