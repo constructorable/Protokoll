@@ -1185,7 +1185,7 @@ tr.bemerkung-row:nth-child(7)>td:nth-child(4) {
 }
 
 .sticky {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
