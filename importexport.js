@@ -51,7 +51,254 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Export-Funktion
+    // Dateiname-Modal erstellen
+    const createFilenameModal = () => {
+        const modal = document.createElement('div');
+        modal.id = 'filenameModal';
+        modal.innerHTML = `
+            <div class="filename-modal-overlay">
+                <div class="filename-modal-content">
+                    <div class="filename-modal-header">
+                        <h3>Export-Datei speichern</h3>
+                        <button class="filename-modal-close-btn" type="button">&times;</button>
+                    </div>
+                    <div class="filename-modal-body">
+                        <label for="filenameInput">Dateiname:</label>
+                        <input type="text" id="filenameInput" class="filename-input" placeholder="Dateiname eingeben">
+                        <small class="filename-hint">Die Endung .json wird automatisch hinzugefügt</small>
+                    </div>
+                    <div class="filename-modal-footer">
+                        <button class="btn-secondary" id="cancelExport">Abbrechen</button>
+                        <button class="btn-primary" id="confirmExport">Speichern</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Modal-Styles hinzufügen
+        const style = document.createElement('style');
+        style.textContent = `
+            .filename-modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 999999;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            
+            .filename-modal-content {
+                background: #ffffff;
+                border-radius: 12px;
+                max-width: 500px;
+                width: 100%;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                animation: filenameModalFadeIn 0.3s ease-out;
+            }
+            
+            @keyframes filenameModalFadeIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+            
+            .filename-modal-header {
+                padding: 24px 24px 16px 24px;
+                border-bottom: 1px solid #e0e0e0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .filename-modal-header h3 {
+                margin: 0;
+                color: #333;
+                font-size: 1.3em;
+                font-weight: 600;
+            }
+            
+            .filename-modal-body {
+                padding: 24px;
+            }
+            
+            .filename-modal-body label {
+                display: block;
+                margin-bottom: 8px;
+                color: #555;
+                font-weight: 500;
+            }
+            
+            .filename-input {
+                width: 100%;
+                padding: 12px 16px;
+                border: 2px solid #ddd;
+                border-radius: 6px;
+                font-size: 16px;
+                box-sizing: border-box;
+                transition: border-color 0.2s;
+            }
+            
+            .filename-input:focus {
+                outline: none;
+                border-color: #2196F3;
+            }
+            
+            .filename-hint {
+                display: block;
+                margin-top: 8px;
+                color: #888;
+                font-size: 0.9em;
+            }
+            
+            .filename-modal-footer {
+                padding: 16px 24px 24px 24px;
+                display: flex;
+                gap: 12px;
+                justify-content: flex-end;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 12px 24px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                min-width: 100px;
+            }
+            
+            .btn-primary {
+                background:rgb(77, 122, 159);
+                color: white;
+            }
+            
+            .btn-primary:hover {
+                background: #1976D2;
+            }
+            
+            .btn-secondary {
+                background: #757575;
+                color: white;
+            }
+            
+            .btn-secondary:hover {
+                background: #616161;
+            }
+            
+            .filename-modal-close-btn {
+                background: none;
+                border: none;
+                font-size: 28px;
+                cursor: pointer;
+                color: #999;
+                padding: 4px;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+            }
+            
+            .filename-modal-close-btn:hover {
+                color: #333;
+                background: #f5f5f5;
+            }
+            
+            @media (max-width: 500px) {
+                .filename-modal-content {
+                    margin: 10px;
+                    max-width: none;
+                }
+                
+                .filename-modal-header,
+                .filename-modal-body,
+                .filename-modal-footer {
+                    padding: 16px;
+                }
+            }
+        `;
+        
+        document.head.appendChild(style);
+        document.body.appendChild(modal);
+        return modal;
+    };
+
+    // Modal anzeigen
+    const showFilenameModal = (defaultFilename, onConfirm, onCancel) => {
+        const modal = createFilenameModal();
+        const input = modal.querySelector('#filenameInput');
+        const confirmBtn = modal.querySelector('#confirmExport');
+        const cancelBtn = modal.querySelector('#cancelExport');
+        const closeBtn = modal.querySelector('.filename-modal-close-btn');
+        const overlay = modal.querySelector('.filename-modal-overlay');
+
+        // Dateiname ohne .json-Endung setzen
+        const nameWithoutExtension = defaultFilename.replace(/\.json$/, '');
+        input.value = nameWithoutExtension;
+        input.select();
+
+        // Event Handlers
+        const handleConfirm = () => {
+            const filename = input.value.trim();
+            if (!filename) {
+                input.focus();
+                return;
+            }
+            
+            // .json-Endung hinzufügen falls nicht vorhanden
+            const finalFilename = filename.endsWith('.json') ? filename : filename + '.json';
+            closeModal();
+            onConfirm(finalFilename);
+        };
+
+        const handleCancel = () => {
+            closeModal();
+            if (onCancel) onCancel();
+        };
+
+        const closeModal = () => {
+            modal.remove();
+        };
+
+        // Events binden
+        confirmBtn.addEventListener('click', handleConfirm);
+        cancelBtn.addEventListener('click', handleCancel);
+        closeBtn.addEventListener('click', handleCancel);
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) handleCancel();
+        });
+
+        // Enter-Taste für Bestätigung
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleConfirm();
+            } else if (e.key === 'Escape') {
+                handleCancel();
+            }
+        });
+
+        // Modal anzeigen und Input fokussieren
+        modal.style.display = 'block';
+        setTimeout(() => input.focus(), 100);
+    };
+
+    // Export-Funktion (angepasst)
     document.getElementById('export').addEventListener('click', () => {
         try {
             const formData = {};
@@ -88,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Dateinamen generieren
+            // Standard-Dateinamen generieren
             const straßenname = document.getElementById('strasseeinzug').value || 'UnbekannteStrasse';
             const now = new Date();
             const datumZeit = now.toISOString()
@@ -102,20 +349,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 .trim()
                 .replace(/\s+/g, '_');
 
-            const dateiname = `Export_${cleanStraßenname}_${datumZeit}.json`;
+            const defaultFilename = `Export_${cleanStraßenname}_${datumZeit}.json`;
 
-            // Datei erstellen und herunterladen
-            const dataStr = JSON.stringify(formData, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
+            // Modal anzeigen für Dateiname-Eingabe
+            showFilenameModal(
+                defaultFilename,
+                (finalFilename) => {
+                    // Export durchführen
+                    const dataStr = JSON.stringify(formData, null, 2);
+                    const blob = new Blob([dataStr], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
 
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = dateiname;
-            link.click();
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = finalFilename;
+                    link.click();
 
-            showFeedback("Daten erfolgreich exportiert", true);
-            setTimeout(() => URL.revokeObjectURL(url), 100);
+                   /*  showFeedback(`Daten erfolgreich als "${finalFilename}" exportiert`, true); */
+                    showFeedback(`Export erfolgreich auf dem Gerät abgespeichert`, true);
+                    setTimeout(() => URL.revokeObjectURL(url), 100);
+                },
+                () => {
+                    showFeedback("Export abgebrochen", false);
+                }
+            );
 
         } catch (error) {
             console.error("Export-Fehler:", error);
@@ -137,11 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
             reader.onload = (e) => {
                 try {
                     const formData = JSON.parse(e.target.result);
-
-                    /*                     if (!confirm(`Daten aus "${file.name}" importieren?`)) {
-                                            showFeedback("Import abgebrochen", false);
-                                            return;
-                                        } */
 
                     let importedCount = 0;
 
@@ -212,6 +464,4 @@ document.addEventListener('DOMContentLoaded', () => {
             element.style.display = 'none';
         }, 500);
     }
-
-
 });
