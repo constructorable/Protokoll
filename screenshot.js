@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 id: 'mobile',
                 name: 'Mobile Design',
                 description: 'Responsive Design für mobile Geräte',
-                cssFile: 'stylesmobile.css'
+                cssFile: 'stylestablet.css'
             }
         ];
 
@@ -254,8 +254,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 pdfStyles.remove();
             }
 
-            applyStyle('stylesmobile.css');
-            localStorage.setItem('currentStyle', 'stylesmobile.css');
+            applyStyle('stylestablet.css');
+            localStorage.setItem('currentStyle', 'stylestablet.css');
         };
 
         const pdfStyles = document.getElementById('pdf-styles');
@@ -1301,6 +1301,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    
 function closeEmailMenu() {
     const overlay = document.getElementById('emailMenuOverlay');
     const menu = document.getElementById('emailMenu');
@@ -1314,5 +1316,5 @@ function closeEmailMenu() {
         pdfModalEmailButtons.forEach(button => button.remove());
     }
 }
-
 });
+
