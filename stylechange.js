@@ -12,12 +12,15 @@ function toggleStyle() {
     const currentStyle = localStorage.getItem('currentStyle') || 'stylesdesktop.css';
     let newStyle;
    
-    // Rotiere durch die verfügbaren Styles
+    // Rotiere durch die verfügbaren Styles (jetzt mit Phone-Ansicht)
     switch(currentStyle) {
         case 'stylesdesktop.css':
-            newStyle = 'stylesmobile.css';
+            newStyle = 'stylestablet.css';
             break;
-        case 'stylesmobile.css':
+        case 'stylestablet.css':
+            newStyle = 'stylesphone.css';
+            break;
+        case 'stylesphone.css':
             newStyle = 'stylespdf.css';
             break;
         case 'stylespdf.css':
@@ -37,7 +40,8 @@ function applyStyle(styleFile) {
     // Alle vorhandenen Stylesheets entfernen
     document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
         if (link.href.includes('stylesdesktop.css') ||
-            link.href.includes('stylesmobile.css') ||
+            link.href.includes('stylestablet.css') ||
+            link.href.includes('stylesphone.css') ||
             link.href.includes('stylespdf.css')) {
             link.remove();
         }
@@ -50,16 +54,20 @@ function applyStyle(styleFile) {
     document.head.appendChild(link);
 }
 
+
 function updateButtonText(styleFile) {
     const styleButton = document.getElementById('stylechange');
-    
+   
     // Bestimme den Anzeigetext basierend auf der CSS-Datei
     switch(styleFile) {
         case 'stylesdesktop.css':
             styleButton.textContent = 'Mieteransicht';
             break;
-        case 'stylesmobile.css':
+        case 'stylestablet.css':
             styleButton.textContent = 'Ansicht für Tableteingabe';
+            break;
+        case 'stylesphone.css':
+            styleButton.textContent = 'Smartphone Ansicht';
             break;
         case 'stylespdf.css':
             styleButton.textContent = 'PDF Ansicht';
@@ -67,4 +75,4 @@ function updateButtonText(styleFile) {
         default:
             styleButton.textContent = 'Mieteransicht';
     }
-}
+} 
