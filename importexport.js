@@ -462,8 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.opacity = '0';
         setTimeout(() => {
             element.style.display = 'none';
-        }, 555);
+        }, 500);
     }
 });
 
- 
